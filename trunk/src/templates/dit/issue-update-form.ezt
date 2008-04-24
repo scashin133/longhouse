@@ -1,0 +1,201 @@
+<div id=makechanges>
+
+ [# Note: user must have enter_comment permission to even include this file. ]
+
+ <div class="h4" style="margin-bottom: 0">Add a Comment[if-any tool_perms.enter_metadata] and Make Changes[end]</div>
+ <div id="makechangesarea" class="closed">
+
+  <div class="ifClosed">
+   <textarea onmousedown="_openIssueUpdateForm('[projectname]', 'issueOptions')" 
+    id=tempt cols="85" rows="8" style="color:#666"
+    >Enter your comments[if-any tool_perms.enter_metadata] and make changes[end]</textarea>
+  </div>
+
+  <div class="ifOpened">
+   <form action="update.do" method="POST" enctype="multipart/form-data">
+   <input type=hidden name=_charset_ value="" />
+   <input type=hidden name=projectname id="projectname" value="[projectname]" />
+   [if-any token]<input type=hidden name=token value="[token]" />[end]
+   <input type=hidden name=id value="[issue.id]" />
+   <input type=hidden name=can value="[can]" />
+   <input type=hidden name=q value="[q]" />
+   <input type=hidden name=colspec value="[colspec]" />
+   <input type=hidden name=sort value="[sortspec]" />
+   <input type=hidden name=start value="[start]" />
+   <input type=hidden name=num value="[num]" />
+   <input type=hidden name=pagegen value="[pagegen]" />
+   <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+     <td>
+      <textarea cols="85" rows="8" wrap=hard name=comment id="addCommentTextArea" onkeyup="_dirty(); return true;">[initial_comment]</textarea><br/>
+      [if-any allow_attachments]
+       <div id="attachmentarea"></div>
+       <img src="/images/paperclip.gif" border=0 /><a href="javascript:_addAttachmentFields('attachmentarea')" id=attachafile>Attach a file</a><br/>
+       [if-any errors.attachments]
+        <div class=fielderror>[errors.attachments]</div>
+       [end]
+      [else]
+       <div style="color:#666">Issue attachment storage quota exceeded.</div>
+      [end]
+      <br/>
+     </td> 
+    </tr>
+    <tr>
+     <td>
+      [if-any tool_perms.enter_metadata]
+      <table cellspacing=2 cellpadding=2 border=0 class="rowmajor" width="100%">
+       <tr><th style="width: 1em">Summary:</th><td class="inplace" colspan=2>
+          <input  autocomplete=off 
+                 onkeyup="_dirty(); return true;"
+                 name="summary" value="[initial_summary]" /></td>
+       </tr>
+       <tr><th>Status:</th><td class="inplace" style="width: 12em">
+            <input autocomplete=off id=statusedit 
+                   onkeyup="_dirty(); return _confirmNovelStatus(this);" onblur="_RC(this,'hasfocus')"
+                   name="status" value="[initial_status]" /></td>
+         <td>&nbsp;</td>
+       </tr>
+       <tr><th>Assigned To:</th><td class="inplace" style="width: 12em">
+               <input class="acofmember"  autocomplete=off id=owneredit 
+                      onkeyup="_dirty(); return true;"
+                      name="owner" value="[is initial_owner "----"][else][initial_owner][end]"></td>
+         <td>&nbsp;</td>
+       </tr>
+       <tr><th>Other Users to Notify:</th><td class="inplace" colspan=2>
+            <input class="acofmember" autocomplete=off id=memberccedit 
+                      onkeyup="_dirty(); return true;"
+            name="cc" value="[initial_cc]" />
+            [if-any errors.usernames]
+             <div class=fielderror>[errors.usernames]</div>
+            [end]
+           </td></tr>
+       <tr><th class=vt>Labels:<br/>
+           </th>
+           <td class="labelediting" colspan=2>
+            <div id="editrow1">
+             <input  autocomplete=off id=labeledit0 size=20 
+                    onkeyup="_dirty(); return _vallab(this)" onblur="_vallab(this); _RC(this,'hasfocus')"
+                    name="label" value="[label0]" />
+             <input  autocomplete=off id=labeledit1 size=20 
+                    onkeyup="_dirty(); return _vallab(this)" onblur="_vallab(this); _RC(this,'hasfocus')" 
+                    name="label" value="[label1]" /> 
+             <input  autocomplete=off id=labeledit2 size=20 
+                    onkeyup="_dirty(); return _vallab(this)" onblur="_vallab(this); _RC(this,'hasfocus')"
+                    name="label" value="[label2]" />
+            </div>
+            <div id=editrow2>
+              <input  autocomplete=off id=labeledit3 size=20 
+                     onkeyup="_dirty(); return _vallab(this)" onblur="_vallab(this); _RC(this,'hasfocus')"
+                     name="label" value="[label3]" /> 
+              <input  autocomplete=off id=labeledit4 size=20 
+                     onkeyup="_dirty(); return _vallab(this)" onblur="_vallab(this); _RC(this,'hasfocus')"
+                     name="label" value="[label4]" />
+              <input  autocomplete=off id=labeledit5 size=20 
+                     onkeyup="_dirty(); if (this.value){_showID('editrow3');_hideID('addrow2');} return _vallab(this)" 
+                    onblur="_vallab(this); _RC(this,'hasfocus')"
+                     name="label" value="[label5]" />&nbsp;<u id=addrow2 class=fakelink onclick="_showID('editrow3'); _hideEl(this)">Add a row</u>
+             </div>
+             <div id=editrow3 style="display:none">
+              <input  autocomplete=off id=labeledit6 size=20 
+                     onkeyup="_dirty(); return _vallab(this)" onblur="_vallab(this); _RC(this,'hasfocus')"
+                     name="label" value="[label6]" /> 
+              <input  autocomplete=off id=labeledit7 size=20 
+                     onkeyup="_dirty(); return _vallab(this)" onblur="_vallab(this); _RC(this,'hasfocus')"
+                     name="label" value="[label7]" />
+              <input  autocomplete=off id=labeledit8 size=20 
+                     onkeyup="_dirty(); if (this.value){_showID('editrow4');_hideID('addrow3');} return _vallab(this)" 
+                    onblur="_vallab(this); _RC(this,'hasfocus')"
+                     name="label" value="[label8]" />&nbsp;<u id=addrow3 class=fakelink onclick="_showID('editrow4'); _hideEl(this)">Add a row</u>
+             </div>
+             <div id=editrow4 style="display:none">
+              <input  autocomplete=off id=labeledit9 size=20 
+                     onkeyup="_dirty(); return _vallab(this)" onblur="_vallab(this); _RC(this,'hasfocus')"
+                     name="label" value="[label9]" /> 
+              <input  autocomplete=off id=labeledit10 size=20 
+                     onkeyup="_dirty(); return _vallab(this)" onblur="_vallab(this); _RC(this,'hasfocus')"
+                     name="label" value="[label10]" />
+              <input  autocomplete=off id=labeledit11 size=20 
+                     onkeyup="_dirty(); if (this.value){_showID('editrow5');_hideID('addrow4');} return _vallab(this)" 
+                    onblur="_vallab(this); _RC(this,'hasfocus')"
+                     name="label" value="[label11]" />&nbsp;<u id=addrow4 class=fakelink onclick="_showID('editrow5'); _hideEl(this)">Add a row</u>
+             </div>
+             <div id=editrow5 style="display:none">
+              <input  autocomplete=off id=labeledit12 size=20 
+                     onkeyup="_dirty(); return _vallab(this)" onblur="_vallab(this); _RC(this,'hasfocus')"
+                     name="label" value="[label12]" /> 
+              <input  autocomplete=off id=labeledit13 size=20 
+                     onkeyup="_dirty(); return _vallab(this)" onblur="_vallab(this); _RC(this,'hasfocus')"
+                     name="label" value="[label13]" />
+              <input  autocomplete=off id=labeledit14 size=20 
+                     onkeyup="_dirty(); return _vallab(this)" onblur="_vallab(this); _RC(this,'hasfocus')"
+                     name="label" value="[label14]" /> 
+             </div>
+           </td>
+       </tr>
+
+
+       <tr>
+        <td colspan=3><span id=confirmarea class="novel" style="padding-top:5px; margin:0">
+          <span id=confirmmsg></span>&nbsp; 
+         </span>
+        </td>
+       </tr>
+      </table>
+      [end]
+
+      <input type=submit id=submit name=btn value="Submit Changes" />
+      <input type=button id=discard name=nobtn value="Discard"
+             onclick="_confirmDiscardUpdate(this); return false;"  />
+    </td>
+   </tr>
+  </table>
+  </form>
+  </div>
+ </div>
+</div>
+
+<div id="ac-list" style="display:none;"></div>
+
+[if-any tool_perms.enter_metadata]
+<script type="text/javascript">
+
+ [# Work around IE CSS/keyboard handling bug that forces us 
+    to actually delete the "tempting text area"
+    rather than simply not displaying it.]
+ function rmTempt() {
+  var tempt = $('tempt');
+  tempt.parentNode.removeChild(tempt);
+ }
+
+ [# TODO(students): reimlpement all JS in the pages. ]
+
+function _openIssueUpdateForm(projectName, feedName) {
+  var closed_div = document.getElementById('makechangesarea');
+  closed_div.setAttribute('class', 'opened');
+  //todo: populate other js functions with values for mouseover menus based on project name & feed name?
+}
+
+ function _confirmDiscardUpdate(unused) {
+  if (!_dirty || confirm('Discard your changes?')) {
+    document.location = 'detail?id=[issue.id]';
+  }
+ }
+
+ _exposeExistingLabelFields('edit');
+ _lfidprefix = 'labeledit';
+ [if-any show_update_form]
+  _openIssueUpdateForm('[projectname]', 'issueOptions');
+ [end]
+
+ var submit = $('submit');
+ var cg = $('cg');
+ if (cg != undefined) { submit.disabled='disabled'; }
+
+ function checksubmit() {
+   submit.disabled='disabled';
+   if (cg == undefined || cg.value.length > 1) {
+     submit.disabled='';
+   }
+  }
+</script>
+[end]

@@ -1,0 +1,82 @@
+[# Pass the list of column names from HTML to JS ]
+<script type="text/javascript">
+   var cancelBubble = false;
+   var _allColumnNames = [
+    [for column_values]'[column_values.column_name]'[if-index column_values last][else], [end][end]
+    ];
+
+   function addcol(colname) {
+     var colspec = document.getElementById('colspec');
+     colspec.value += ' ' + colname;
+     document.getElementById('colspecform').submit();
+   }
+</script>
+ 
+[# Set up some DOM attributes that we do not want to repeat many times in the HTML source]
+<script>
+  var allImages = document.images;
+  for (var i=0; i<allImages.length; i++) {
+   var img = allImages[[]i];
+   if (img.src.indexOf("/images/star_" != -1)) {
+    img.title='Vote for this issue and get email change notifications';
+   }
+  }
+</script>
+
+
+[# Update the issue link hrefs on-load and whenever the column-spec changes.]
+<script type="text/javascript">
+  function MakeIssueLink(issueId) {
+    var colspec = document.getElementById('colspec').value;
+    var default_colspec = "[default_colspec]";
+    var url = 'detail?id=' + issueId;
+    if ([can] != 2) url += "&can=[can]";
+    if ("[query]" != "") url += "&q=[query]";
+    [is sortspec ""][else]url += "&sort=[sortspec]";[end]
+    if (colspec != default_colspec) url += "&colspec=" + colspec;
+    if ([start] != 0) url += "&start=" + [start];
+    if ([num] != [default_results_per_page]) url += "&num=" + [num];
+    return url;
+  }
+
+  function _goIssue(issueId) {
+   return _go(MakeIssueLink(issueId));
+  }
+
+  var issueIds = [[] 
+   [for table_data][table_data.issue_id][if-index table_data last][else],[end][end]
+   ];
+
+  function SetRowLinks() {
+    var table = document.getElementById('resultstable');
+    for (var r=1; r < table.rows.length; r++) {
+      var h = MakeIssueLink(issueIds[[]r - 1]);
+      var row = table.rows[[]r];
+      for (var c = 0; c < row.cells.length; c++) {
+       var cell = row.cells[[]c];
+       for (var a = cell.firstChild; a; a = a.nextSibling) {
+        if (a.tagName == 'A') {
+         a.href = h;
+         break; // skip labels
+        }
+       }
+      }
+    }
+  }
+
+  SetRowLinks();
+
+  function _toggleColumnUpdate(colIndex) {
+   var shownCols = document.getElementById('colspec').value.split(' ');
+   var filteredCols = [];
+   for (var i=0; i< shownCols.length; i++) {
+     if (_allColumnNames[[]colIndex] != shownCols[[]i].toLowerCase()) filteredCols.push(shownCols[[]i]);
+   }
+
+   document.getElementById('colspec').value = filteredCols.join(' ');
+   _toggleColumn('hide_col_' + colIndex);
+   SetRowLinks();
+  }
+
+  _onload();
+</script>

@@ -1,0 +1,14 @@
+ [if-any project]
+  [if-any project.analytics_account]
+   [define project_analytics_tracking_code]<script type="text/javascript">
+_uacct = "[project.analytics_account]";
+urchinTracker();
+</script>
+   [end]
+  [end]
+ [end]
+
+  [include "debug.ezt"]
+
+ </body>
+</html>
