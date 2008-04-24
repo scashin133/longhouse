@@ -237,6 +237,17 @@ if PORT == None or PORT == "":
     PORT = 8080
 
 """
+Get the svn location.
+Required.
+"""
+SVN_LOC = config.get('svn')
+if SVN_LOC == None or SVN_LOC == "":
+    print 'Error: svn location not specified in config.yml'
+    sys.exit(1)
+constants.SVN_LOC = SVN_LOC
+
+
+"""
 The standard I/O file descriptors are redirected 
 to /dev/null by default.
 """

@@ -8,6 +8,8 @@ import glob
 import twisted.internet.utils
 from twisted.internet import reactor, defer
 
+from framework import constants
+
 VERBOSE = True
 
 def deferred_helloworld(self):
@@ -47,12 +49,10 @@ class SvnController:
     def __init__(self, repository_location, 
                  repository_username,
                  repository_password,
-                 svn_location="/usr/local/bin/svn",
                  working_copy_root=""):
         """
         Initialize a new SvnController. Repository location must be specified.
-        You may also have to specify the location of the 'svn' command line
-        utility, and can optionaly specify a location to check out
+        You may also optionaly specify a location to check out
         working copies to.
         """
         if VERBOSE:
@@ -73,8 +73,6 @@ class SvnController:
         if (len(self.working_copy_root) > 0) and\
             (self.working_copy_root[len(self.working_copy_root)-1:] != "/"):
             self.working_copy_root += "/"
-        
-        self.svn_location = svn_location
         
         if VERBOSE:
             print 'testing newly created svn controller'
@@ -130,7 +128,7 @@ class SvnController:
                 '--password', self.repository_password]
         
         return twisted.internet.utils.getProcessOutputAndValue(
-                    self.svn_location, args)
+                    constants.SVN_LOC, args)
 
 
     def d_checkout(self, repo_dir = '', local_path = '#'):
@@ -153,7 +151,7 @@ class SvnController:
                 '--password', self.repository_password]
         
         return twisted.internet.utils.getProcessOutputAndValue(
-                    self.svn_location, args)
+                    constants.SVN_LOC, args)
 
 
     def d_up_add_commit(self, message="generic Longhouse commit"):
@@ -179,7 +177,7 @@ class SvnController:
         args = ['up', self.working_copy_root]
         
         d = twisted.internet.utils.getProcessOutputAndValue(
-                    self.svn_location, args)
+                    constants.SVN_LOC, args)
         d.addCallback(self._handle_bad_merges)
         
         return d
@@ -192,7 +190,7 @@ class SvnController:
         args = ['cleanup']
         
         return twisted.internet.utils.getProcessOutputAndValue(
-                    self.svn_location, args)
+                    constants.SVN_LOC, args)
     
 
     def _d_add_all(self, *args):
@@ -206,7 +204,7 @@ class SvnController:
         args = ['add', '--force', self.working_copy_root]
         
         return twisted.internet.utils.getProcessOutputAndValue(
-                    self.svn_location, args)
+                    constants.SVN_LOC, args)
 
 
     def _d_commit(self, *args):
@@ -226,7 +224,7 @@ class SvnController:
                 '--password', self.repository_password,
                 '-m', '"%s"' % self.message]
         
-        d = twisted.internet.utils.getProcessOutput(self.svn_location, args)
+        d = twisted.internet.utils.getProcessOutput(constants.SVN_LOC, args)
         self.message = None
         return d
 
@@ -290,99 +288,5 @@ def url_join(*args):
     return joined.replace("\\", "/")
 
 
-
-def simulate_xml():
-    """
-    the following method simulates things the xml layer will be doing.
-    In practice, the subversion layer (this) will not manipulate the file
-    system at all except for checking out a working copy in case one
-    does not exist.
-    """
-    try:
-        file = open("wc/file.txt")
-        fileExists = True
-        file.close()
-    except IOError:
-        # write a file template to the working copy
-        #shutil.copyfile("fileTemplate.txt", "wc/file.txt")
-        file = open("wc/file.txt", "w")
-        file.write("this is a file")
-        file.close()
-        # add file.txt to the repository
-        svnc.add("wc/file.txt")
-        
-    # open the file for appending
-    file = open("wc/file.txt", "a")
-    
-    # append to the log file
-    datePattern = "%b %d, %Y"
-    timePattern = "%I:%M %p"
-    writeText = "\nsvn demo run on " + strftime(datePattern) + " at " + strftime(timePattern)
-    file.write(writeText)
-    file.close()
-
-
-
-"""
-The field '_instance' along with methods 'initialize()' and 
-'get_instance()' represent a singleton pattern. When
-longhouse starts up, 'initialize()' should be called to set up
-a SvnController object to be used by the rest of the code. Then
-whenever the SvnController needs to be used, retrieve it with
-the 'get_instance' method. 
-"""
-
-_instance = None
-
-def initialize(repository_location, 
-                 svn_location="/usr/local/bin/svn",
-                 working_copy_root=""):
-    global _instance
-    _instance = SvnController(repository_location=repository_location,
-                             svn_location=svn_location,
-                             working_copy_root=working_copy_root) 
-
-def get_instance():
-    global _instance
-    if _instance == None:
-        raise Exception('No SvnController has been initialized. Call \
-initialize() before trying to retrieve an instance.')
-    return _instance
-
-
 if __name__ == '__main__':
-    """
-    Add an entry to the log file (meta/file.txt)
-    If a working copy doesn't already exist, check it out first
-    """
-    
-    # create a new svn controller connected to a repository on 
-    # the local computer, setting the working copy root
-    # TODO: set up some other repository to use
-    #svnc = SvnController("file:///repository/svn/svndemo",\
-    #                    working_copy_root="wc") 
-    initialize("file:///repository/svn/svndemo",\
-                        working_copy_root="wc")
-    
-    svnc = get_instance()
-    
-    # check if we have a working copy
-    # if we don't, check out the repository's 'meta' folder
-    # into our specified working copy root ('wc')
-    if not svnc.has_working_copy():
-        print 'no working copy, checking it out'
-        svnc.checkout('meta')
-    
-    # simulate the xml layer
-    # (make some changes to file.txt)    
-    simulate_xml()
-    
-    # check in the changes
-    result = svnc.commit(message="logging another run of svncontrols")
-    
-    if result[0] == SvnController.SUCCESS:
-        print "Success!"
-    else:
-        print "Error", result
-    
-        
+  sys.exit('This is not meant to be run as a standalone program. Exiting.')

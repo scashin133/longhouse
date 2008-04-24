@@ -19,8 +19,9 @@
 
 import re
 
-# Do not change this, it will be set at runtime by run.py
+# Do not change these, they will be set at runtime by run.py
 WORKING_DIR = ""
+SVN_LOC = ""
 
 # persistence constants:
 
