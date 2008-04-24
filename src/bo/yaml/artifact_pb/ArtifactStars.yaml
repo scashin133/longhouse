@@ -1,0 +1,6 @@
+---
+describe: field
+name: starrer_gaia
+type: array_primitive_string
+value: "[]"
+---

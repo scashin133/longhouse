@@ -1,0 +1,294 @@
+[# Copyright 2006 Google Inc. All Rights Reserved.
+
+   This page is used to create a new Demetrius project.
+]
+
+[define title]Create a Project[end]
+
+[define breadcrumbs]
+<span class="item"><a href="">Create a Project</a></span>
+[end]
+
+[include "master-header.ezt" "notabs"]
+
+    <style type="text/css">
+.fielderror { color:red; font-weight:bold; padding:4px;}
+.formlabel {  }
+
+.rounded_ul { background: url(/images/ul.gif) no-repeat top left;}
+.rounded_ur { background: url(/images/ur.gif) no-repeat top right;}
+.rounded_ll { background: url(/images/ll.gif) no-repeat bottom left;}
+.rounded_lr { background: url(/images/lr.gif) no-repeat bottom right;}
+.tip {
+  background-color: #e5ecf9;
+  margin-left: 2em;
+  font-size: 92%;
+  width: 16em;
+}
+    </style>
+[if-any banner_message]
+ <div style="font-weight:bold; color:#a03; padding:5px; margin:6px; text-align:center; background:#ffeac0;">
+  [banner_message]
+ </div>
+[end]
+
+[if-any read_only][include "../demetrius/read-only-rejection.ezt"]
+[else]
+
+  <table cellpadding=0 cellspacing=0 border=0>
+   <tr>
+    <td>
+
+<div style="margin-top: 0; padding: 3px;">
+ <form action="createProject.do" method=POST onsubmit="s=document.getElementById('submit');s.value='Creating Project...'; s.disabled='disabled';">
+ [if-any token]<input type=hidden name=token value="[token]" />[end]
+
+ <div>Project Name <a href="#" onclick="showInstructions('projectname');return false;">Help</a></div>
+ <div>
+  <input id="projectname" class="viewableInstructions"  name="projectname" size=30 value="[initialName]"
+      onkeyup="checkprojectname()"/>
+  <span id=projectnamefeedback></span>
+ </div>
+ [if-any errors.projectname]
+   <div class=fielderror>[errors.projectname]</div>
+ [end]
+ 
+ <div style="padding-top:2ex">Repository URL: <a href="#" onclick="showInstructions('repositoryurl');return false;">Help</a></div>
+ <div>
+  <input id="repositoryurl" class="viewableInstructions"  name=repositoryurl size=75 value="[initialRepositoryURL]"
+  		onkeyup="checkrepositoryurl();"/><br />
+  <span id="repositoryurlfeedback"></span>
+ </div>
+ [if-any errors.repositoryurl]
+   <div class=fielderror>[errors.repositoryurl]</div>
+ [end]
+
+ <div style="padding-top: 2ex;">Summary: <a href="#" onclick="showInstructions('summary');return false;">Help</a></div>
+ <div>
+  <input id=summary class="viewableInstructions"  name=summary size=75 value="[initialSummary]"
+       onkeyup="checksubmit()"/><br/>
+ </div>
+ [if-any errors.summary]
+   <div class=fielderror>[errors.summary]</div>
+ [end]
+
+ <div style="padding-top: 2ex;">Description: <a href="#" onclick="showInstructions('description');return false;">Help</a></div>
+  <textarea cols=75 rows=13 class="viewableInstructions"  name=description id=description onkeyup="checksubmit()">[initialDescription]</textarea>
+ </div>
+ [if-any errors.description]
+   <div class=fielderror>[errors.description]</div>
+ [end]
+
+ <div style="padding-top: 2ex;">License: <a href="#" onclick="showInstructions('license_key');return false;">Help</a></div>
+ <div>
+  <select name=license_key class="viewableInstructions"  id=license_key onchange="checksubmit()">
+   <option value="" [if-any initialLicenseKey][else]selected=selected[end]
+     disabled=disabled>Select a license...</option>
+   [for available_licenses]
+     <option value="[available_licenses.key]" 
+       [is initialLicenseKey available_licenses.key]selected=selected[end]
+       >&nbsp;[available_licenses.name]</option>
+   [end]
+  </select> [# TODO: link to more info in faq. ]
+ </div>
+ [if-any errors.licensekey]
+   <div class=fielderror>[errors.licensekey]</div>
+ [end]
+
+ <div style="padding-top: 2ex;">Labels: <a href="#" onclick="showInstructions('labeledit');return false;">Help</a></div>
+ <div id="editrow1">
+   <input class="viewableInstructions"  autocomplete=off id=labeledit0 size=20 
+      name="label" value="[label0]" />
+   <input class="viewableInstructions" autocomplete=off id=labeledit1 size=20 
+      name="label" value="[label1]" /> 
+   <input  class="viewableInstructions"  autocomplete=off id=labeledit2 size=20 
+      name="label" value="[label2]" />
+ </div>
+ <div id=editrow2>
+   <input class="viewableInstructions"  autocomplete=off id=labeledit3 size=20 
+      name="label" value="[label3]" /> 
+   <input class="viewableInstructions"  autocomplete=off id=labeledit4 size=20 
+      name="label" value="[label4]" />
+   <input class="viewableInstructions"  autocomplete=off id=labeledit5 size=20 
+      onkeyup="if (this.value){_showID('editrow3');_hideID('addrow2');}return true;" 
+      name="label" value="[label5]" />
+   <a href="#" class=fakelink id=addrow2 onclick="_showInstead('editrow3', 'addrow3', 'addrow2');return false;">Add row</a>
+ </div>
+ <div id=editrow3 style="display:none">
+   <input class="viewableInstructions"  autocomplete=off id=labeledit6 size=20 
+      name="label" value="[label6]" /> 
+   <input class="viewableInstructions"  autocomplete=off id=labeledit7 size=20 
+      name="label" value="[label7]" />
+   <input class="viewableInstructions"   autocomplete=off id=labeledit8 size=20 
+      onkeyup="if (this.value){_showID('editrow4');_hideID('addrow3');}return true;" 
+      name="label" value="[label8]" />
+   <a href="#" class=fakelink id=addrow3 onclick="_showInstead('editrow4', 'addrow4', 'addrow3');return false;">Add row</a>
+ </div>
+ <div id=editrow4 style="display:none">
+   <input class="viewableInstructions"  autocomplete=off id=labeledit9 size=20 
+      name="label" value="[label9]" /> 
+   <input class="viewableInstructions"  autocomplete=off id=labeledit10 size=20 
+      name="label" value="[label10]" />
+   <input class="viewableInstructions"  autocomplete=off id=labeledit11 size=20 
+      onkeyup="if (this.value){_showID('editrow5');_hideID('addrow4');}return true;" 
+      name="label" value="[label11]" /> 
+   <a href="#" class=fakelink id=addrow4 onclick="_showInsteadFinal('editrow5', 'addrow4');return false;">Add row</a>
+ </div>
+ <div id=editrow5 style="display:none">
+   <input class="viewableInstructions"  autocomplete=off id=labeledit12 size=20 
+      name="label" value="[label12]" /> 
+   <input class="viewableInstructions"  autocomplete=off id=labeledit13 size=20 
+      name="label" value="[label13]" />
+   <input class="viewableInstructions"  autocomplete=off id=labeledit14 size=20 
+      name="label" value="[label14]" /> 
+ </div>
+ [if-any errors.labels]
+    <div class=fielderror>[errors.labels]</div>
+ [end]
+
+  [if-any captcha_id]
+   <div style="padding-top: 2ex">Word&nbsp;Verification:</div>
+   [include "../framework/captcha-field.ezt"]
+  [end]
+
+
+ [if-any demetrius_perms.ignore_reservation]
+  <div style="padding-top: 2ex">
+    <input type=checkbox name=ignorerez id=ignorerez value=ignorerez />
+    <label for=ignorerez>Ignore name reservations</label>
+    <span style="color: red; font-style: italic">(Administrators only)</span>
+  </div>
+ [end]
+ 
+ 
+
+ <div style="padding-top: 2ex">
+  <input type=submit id=submit name=btn value="Create Project" />
+ </div>
+
+ </form>
+ </div>
+
+   </td>
+   <td style="vertical-align: top; width: 14em;">
+
+   <div class=tip><div class=rounded_ul><div class=rounded_ur><div class=rounded_ll><div class=rounded_lr>
+    <div style="padding: 5px">
+     <div id="instructions"><b>Instructions:</b></div>
+	 <div id="projectnameinstructions">
+     Your project's name must consist of a lowercase letter, followed by lowercase 
+     letters, digits, and dashes, with no spaces.
+     The project name will be part of your project's URL and cannot be changed later.
+     </div>
+   
+   <div id="repositoryurlinstructions" style="display:none;">
+	This is the url for the repository that houses the source code for your project.  Make sure to enter a valid subversion url
+	(starting with either http, https, svn, svn+ssh).
+   </div>
+
+   <div id="summaryinstructions" style="display:none;">
+     Your project's summary is a one-line description that will be shown
+     when the project's name is shown.
+   </div>
+
+   <div id="descriptioninstructions" style="display:none;">
+     This plain-text description will be the main content of your project's home page.
+   </div>
+
+   <div id="license_keyinstructions" style="display:none;">
+     Your choice of license determines how others are allowed to use your work.
+   </div>
+
+   <div id="labeleditinstructions" style="display:none;">
+     Project labels help to classify your project so that other users can easily
+     find it or browse projects by label.
+   </div>
+
+   </div>
+   </div></div></div></div></div>
+
+
+   </td>
+   </tr>
+   </table>
+
+<script type="text/javascript">
+  _exposeExistingLabelFields('edit');
+  var submit = document.getElementById('submit');
+  submit.disabled='disabled';
+  var projectname = document.getElementById('projectname');
+  var licensekey = document.getElementById('license_key');
+  var summary = document.getElementById('summary');
+  var repositoryurl = document.getElementById('repositoryurl');
+  var description = document.getElementById('description');
+  var cg = document.getElementById('cg');
+  projectname.focus();
+  var solelyDigits = /^[[]-0-9]+$/
+  var hasUppercase = /[[]A-Z]/
+  var projectRE = /^[[]a-z0-9][[]-a-z0-9]*$/
+  var repositoryHTTPCheck = /^[http|svn|https|svn+ssh]/
+  
+  function checkprojectname() {
+   name = projectname.value;
+   feedback = document.getElementById('projectnamefeedback');
+   submit.disabled='disabled';
+   feedback.style.color = 'red';
+   if (name == '') {
+     feedback.innerHTML = '';
+   } else if (hasUppercase.test(name)) {
+     feedback.innerHTML = 'Must be all lowercase';
+   } else if (solelyDigits.test(name)) {
+     feedback.innerHTML = 'Must include a lowercase letter';
+   } else if (!projectRE.test(name)) {
+     feedback.innerHTML = 'Invalid project name';
+   } else if (name.length > 50) {
+     feedback.innerHTML = 'Project name is too long';
+   } else {
+     feedback.innerHTML = '';
+     feedback.style.color = '';
+     [# TODO: dynamicall check project name availablity using AJAX. ]
+     checksubmit();
+   }
+  }
+
+  function checkrepositoryurl(){
+	url = repositoryurl.value;
+	feedback = document.getElementById('repositoryurlfeedback');
+	submit.disabled='disabled';
+	feedback.style.color = 'red';
+	
+	if (url == '') {
+		feedback.innerHTML = '';
+	} else if (!repositoryHTTPCheck.test(url)) {
+		feedback.innerHTML = 'Must start with either http, svn, svn+ssh, or https';
+	} else if (url.length < 6){
+		feedback.innerHTML = 'Repository URL is too short.  Must be at least 6 characters.  Check to make sure it is a valid url.';
+	} else {
+		feedback.innerHTML = '';
+		feedback.style.color = '';
+		checksubmit();
+	}
+  }
+
+  function checksubmit() {
+   submit.disabled='disabled';
+   if (projectname.value.length > 0 &&
+       repositoryurl.value.length > 0 &&
+       licensekey.value.length > 0 &&  
+       summary.value.length > 0 &&  
+       description.value.length > 0 &&  
+       (cg == undefined || cg.value.length > 1)) {
+     submit.removeAttribute("disabled");
+   }
+  }
+
+  checkprojectname();
+
+
+</script>
+[end]
+
+    [include "footer-script.ezt"]
+    [include "../../html/_bottom.ezt"]
+  </body>
+</html>

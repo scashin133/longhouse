@@ -1,0 +1,16 @@
+---
+describe: field
+name: status
+type: string
+value: ""
+---
+describe: field
+name: means_open
+type: integer
+value: 0
+---
+describe: field
+name: status_docstring
+type: string
+value: ""
+---
