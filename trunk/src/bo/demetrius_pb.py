@@ -30,7 +30,7 @@ class Project(generated_demetrius_pb.Project):
     # svn controller stuff is too complex to be handled
     # by the yaml files so it goes here
     
-    def setup_svn_controller(self, svn_location="/usr/local/bin/svn"):
+    def setup_svn_controller(self):
         print 'setting up svn controller for project', self.project_name()
         
         try:
@@ -47,7 +47,6 @@ class Project(generated_demetrius_pb.Project):
                      repository_location,
                      repository_username,
                      repository_password,
-                     svn_location,
                      working_copy_root)
             print 'Connected to svn repository:', repository_location
             
