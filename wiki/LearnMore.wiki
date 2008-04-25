@@ -1,0 +1,19 @@
+#summary Information about installing, using and extending Longhouse.
+
+== Learn More About Longhouse ==
+
+Hi! Thanks for your interest in Longhouse, a collaborative development environment based on Google Code. If you haven't already, please read our introduction to Longhouse, on our home page at http://code.google.com/p/longhouse/.
+
+If you'd like more information about Longhouse, see [MoreInformation additional information].
+
+For instructions on how to get up and running with Longhouse, see [InstallLonghouse how to install Longhouse].
+
+To learn about how to use Longhouse, see [UsingLonghouse using Longhouse].
+
+If you're having trouble installing, running or using Longhouse, see [FAQTroubleshoot the FAQ and troubleshooting page].
+
+To learn how to extend Longhouse, see [ExtendingLonghouse extending Longhouse].
+
+Thanks!
+
+- Longhouse development team

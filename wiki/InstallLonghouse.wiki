@@ -70,11 +70,11 @@ Longhouse's setup is easy once you've made the config file properly. in the `/sr
 
 == Part 5: Run ==
 
-Run the file `run.py` in the `/src` directory. If all goes well, Longhouse should be running properly. If you encounter any errors, check our FAQ/Troubleshooting page.
+Run the file `run.py` in the `/src` directory. If all goes well, Longhouse should be running properly. If you encounter any errors, check our [FAQTroubleshoot FAQ/Troubleshooting page].
 
 == Part 6: Use Longhouse ==
 
-Visit `http://localhost:portnumber/` to test whether Longhouse is running, where portnumber is the value you specified for port in the config.yml file. If you encounter an 'Unable to connect' or similar error, it means Longhouse isn't running on that port for one reason or another. Check our FAQ/Troubleshooting page to find out why.
+Visit `http://localhost:portnumber/` to test whether Longhouse is running, where `portnumber` is the value you specified for `port` in the `config.yml` file. If you encounter an 'Unable to connect' or similar error, it means Longhouse isn't running on that port for one reason or another. Check our [FAQTroubleshoot FAQ/Troubleshooting page] to find out why.
 
 == Part 7: Shut Down ==
 
