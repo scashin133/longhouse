@@ -30,18 +30,18 @@
     <th class=vt rowspan=3>Description: <a href="#" onclick="showInstructions('description');return false;">Help</a><br/>
     </th>
     <td colspan=2>
-	 
+	         <b>Select a Description Template</b>:
+        <select name="template_menu" onChange="">
+			[for all_prompts_list]
+			<option onclick="set_text('[all_prompts_list.prompt_text_]')">[all_prompts_list.prompt_name_]</option>
+			[end]
+		</select>
+	 <br /><br />
      <textarea onfocus="" onblur="" class="viewableInstructions" id="description" cols=75 rows=13 wrap=hard  onkeyup="_dirty(); return true;" name="comment">[initial_description]
      </textarea>
        [if-any errors.comment]
          <div class=fielderror>[errors.comment]</div>
         [end]<br>
-        <b>Select a Description Template</b>:
-        <select name="template_menu" onChange="">
-[for all_prompts_list]
-<option onclick="set_text('[all_prompts_list.prompt_text_]')">[all_prompts_list.prompt_name_]</option>
-[end]
-</select>
     </td>
    </tr>
    <tr><td colspan=2>
