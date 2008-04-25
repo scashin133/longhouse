@@ -1,0 +1,2 @@
+#summary Information on how to extend the functionality of Longhouse.
+#labels Featured

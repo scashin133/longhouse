@@ -1,4 +1,5 @@
 #summary Information about installing, using and extending Longhouse.
+#labels Featured
 
 == Learn More About Longhouse ==
 
