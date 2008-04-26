@@ -31,7 +31,7 @@
        <td><b>without</b> the words</td><td><input autocomplete=off size=25 name=without value="" /></td>
    </tr>
    <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
-   <tr><td><b>&nbsp;Restrict search to</b></td><td>Labels</td><td><input autocomplete=off name=labels size=25 value="" /></td><td class="eg">e.g., FrontEnd Priority-High</td></tr>
+   <tr><td><b>&nbsp;Restrict search to</b></td><td>Tags</td><td><input autocomplete=off name=labels size=25 value="" /></td><td class="eg">e.g., FrontEnd Priority-High</td></tr>
    <tr><td rowspan=4><br/>
         <table cellspacing=0 cellpadding=0 border=0><tr><td>
         <div class=tip><div class=rounded_ul><div class=rounded_ur><div class=rounded_ll><div class=rounded_lr>

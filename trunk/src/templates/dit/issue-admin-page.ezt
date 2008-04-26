@@ -32,7 +32,7 @@
   </table>
  </div>
 
- <h4>Predefined Issue Labels</h4>
+ <h4>Predefined Issue Tags</h4>
  <div class="section">
   <table>
    <tr><td>
@@ -40,7 +40,7 @@
 [issue_labels.name_padded][if-any issue_labels.docstring] = [issue_labels.docstring][end][end]
 </textarea><br/><br/>
 
-     Each issue may have <b>at most one</b> label with each of these prefixes:<br/>
+     Each issue may have <b>at most one</b> tag with each of these prefixes:<br/>
      <input type=text size=75 name="excl_prefixes"
        value="[for excl_prefixes][excl_prefixes][if-index excl_prefixes last][else], [end][end]" />
     </td>
@@ -48,8 +48,8 @@
     <td class=vt>
      <div class=tip><div class=rounded_ul><div class=rounded_ur><div class=rounded_ll><div class=rounded_lr>
       <div style="padding: 5px">
-       <b>Instructions:</b><br/> List one label per line in desired sort-order.<br/><br/>
-       Optionally, use an equals-sign to document the meaning of each label.
+       <b>Instructions:</b><br/> List one tag per line in desired sort-order.<br/><br/>
+       Optionally, use an equals-sign to document the meaning of each tag.
       </div>
      </div></div></div></div></div>
     </td>

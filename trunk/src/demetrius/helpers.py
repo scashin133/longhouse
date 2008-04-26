@@ -207,7 +207,7 @@ def BuildProjectAdminOptions(project, user_pb):
     if plk not in offered_licenses:
       offered_licenses[plk] = licenses.ADMIN_LICENSES[plk]
 
-  license_objects = [ezt_google.EZTItem(key=key, name=name)
+  license_objects = [ezt_google.EZTItem(key=key, name=name, url=url)
                      for key, (name, url) in offered_licenses.items()]
   license_objects.sort(lambda a, b: cmp(a.name, b.name))
 

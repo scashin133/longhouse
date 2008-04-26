@@ -4,7 +4,7 @@
    <th class="col_[ordered_columns.col_index]" style="border-left:0">&nbsp;</th>
    <th class="col_[ordered_columns.col_index]" nowrap=nowrap id=summaryheading 
        onclick="_showBelow('pop_[ordered_columns.col_index]',this)" width="100%"
-       ><a href="#" style="text-decoration: none">Summary + Labels</a></th>
+       ><a href="#" style="text-decoration: none">Summary + Tags</a></th>
   [else]
    [is ordered_columns.name "ID"]
     <th class="col_[ordered_columns.col_index]" nowrap=nowrap 

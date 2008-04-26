@@ -44,7 +44,7 @@
  [end]
 <br/>
 
- <a id="labels">Labels:</a><br/>
+ <a id="labels">Tags:</a><br/>
             <div id="editrow1">
              <input onfocus="_acof(event)" autocomplete=off id=labeledit1 size=20 
                     name="plabel" value="[label1]" />

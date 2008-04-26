@@ -1,7 +1,7 @@
 [# Copyright 2006 Google Inc. All Rights Reserved.
 
    This page lists simply offers a project search box, and some popular
-   project labels.
+   project tags.
 ]
 
 [define title]Longhouse: A Collaborative Development Environment[end]
@@ -68,7 +68,7 @@
 
 <div style="margin:2em">
 <table align=center>
-<tr><td><div>Example project labels:</div></td></tr>
+<tr><td><div>Example project tags:</div></td></tr>
 <tr><td align=center>
 <div id=popular>
 <table>
