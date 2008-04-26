@@ -30,4 +30,4 @@ List for release 0.1:
 
 == FAQ/Troubleshooting ==
 
-Check the [FAQTroubleshooting FAQ/Troubleshooting page] if you have any other questions.
+Check the [FAQTroubleshoot FAQ/Troubleshooting page] if you have any other questions.
