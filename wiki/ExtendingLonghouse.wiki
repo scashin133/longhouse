@@ -17,7 +17,8 @@ Let's say that I want to make a page called `SilverBullet`. This page will be a 
 
 In `/demetrius`, I create `silverbullet.py`. The first part of `silverbullet.py` will be the following:
 
-{{{import sys
+{{{
+import sys
 
 from common import post
 from common import http
@@ -30,9 +31,10 @@ from demetrius import pageclasses
 from demetrius import helpers
 from demetrius import permissions
 
-class SilverBulletPage(pageclasses.DemetriusPage):}}}
+class SilverBulletPage(pageclasses.DemetriusPage):
+}}}
 
-Next, we need to specify where the template to associate with this page is. We'll add it later, but let's assume it's going to be at `/demetrius/silverbullet.ezt' inside `/templates`. We add, as the first line of the class:
+Next, we need to specify where the template to associate with this page is. We'll add it later, but let's assume it's going to be at `/demetrius/silverbullet.ezt'` inside `/templates`. We add, as the first line of the class:
 
 `_PAGE_TEMPLATE = '/demetrius/silverbullet.ezt'`
 
