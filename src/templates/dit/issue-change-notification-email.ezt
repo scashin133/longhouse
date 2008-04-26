@@ -12,7 +12,7 @@ Attachments:
 	Status: [is issue.status ""]----[else][issue.status][end]
 	Owner: [is issue.owner.username ""]----[else][issue.owner.display_name][end][if-any issue.cc]
 	CC: [for issue.cc][issue.cc.display_name][if-index issue.cc last] [else], [end] [end][end][if-any issue.labels]
-	Labels:[for issue.labels] [issue.labels.name][end][end]
+	Tags:[for issue.labels] [issue.labels.name][end][end]
 [else][if-any comment.update_objs]Issue attribute updates:
 [for comment.update_objs]	[comment.update_objs.field_name]: [format "raw"][comment.update_objs.newvalue][end]
 [end][end][end]

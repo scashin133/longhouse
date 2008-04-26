@@ -4,10 +4,10 @@
    <div class=pmeta_bubble_bg><div class=rounded_ul><div class=rounded_ur><div class=rounded_ll><div class=rounded_lr>
    <table class="pmeta" cellpadding=5>
     <tr>
-     <th>License[if-any demetrius_perms.edit_project] <a href="/p/[projectname]/admin#license">(edit)</a>[end]: </th> <td><a href="[project_license.url]" rel=nofollow>[project_license.name]</a></td>
+     <th>License[if-any demetrius_perms.edit_project] <a href="/p/[projectname]/admin#license">(edit)</a>[end]: </th> <td><a href="[project_license.url]" target="_new" rel=nofollow>[project_license.name]</a></td>
     </tr>
     [if-any project_labels]
-     <tr><th>Labels[if-any demetrius_perms.edit_project] <a href="/p/[projectname]/admin#labels">(edit)</a>[end]:</th>
+     <tr><th>Tags[if-any demetrius_perms.edit_project] <a href="/p/[projectname]/admin#labels">(edit)</a>[end]:</th>
       <td>
         [for project_labels]
          <a href="/hosting/search?q=label:[project_labels]">[project_labels]</a>[if-index project_labels last][else], [end]

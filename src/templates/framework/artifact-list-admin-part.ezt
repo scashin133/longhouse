@@ -18,9 +18,9 @@
     <br/>
     <div>
      Columns may be the names of built-in attributes, e.g., "Summary" 
-     or "Stars". Columns may also be prefixes of the labels on items. 
-     To experiment with label prefixes, label some items with 
-     Key-Value labels, then click the "..." menu in the far upper right 
+     or "Stars". Columns may also be prefixes of the tags on items. 
+     To experiment with tag prefixes, tag some items with 
+     Key-Value tags, then click the "..." menu in the far upper right 
      heading of the list view.
     </div>
    </div>

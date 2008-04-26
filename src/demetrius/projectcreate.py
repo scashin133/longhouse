@@ -89,11 +89,11 @@ class ProjectCreate(pageclasses.DemetriusPage):
       project_name = post.LoadFieldFromPOST('projectname', post_data)
 
     try:
-      repositoryurl = post.LoadFieldFromPOST('repositoryurl', post_data,
-                                       validator=validate.Required())
-    except validate.InvalidFormattedField, e:
-      errors.repositoryurl = e.text
       repositoryurl = post.LoadFieldFromPOST('repositoryurl', post_data)
+    except validate.InvalidFormattedField, e:
+      #errors.repositoryurl = e.text
+      #repositoryurl = post.LoadFieldFromPOST('repositoryurl', post_data)
+      repositoryurl = ''
 
     try:
       summary = post.LoadFieldFromPOST('summary', post_data,

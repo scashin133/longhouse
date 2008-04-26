@@ -69,7 +69,7 @@
              <div class=fielderror>[errors.usernames]</div>
             [end]
            </td></tr>
-       <tr><th class=vt>Labels:<br/>
+       <tr><th class=vt>Tags:<br/>
            </th>
            <td class="labelediting" colspan=2>
             <div id="editrow1">

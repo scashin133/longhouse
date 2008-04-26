@@ -100,7 +100,7 @@
        </td>
    </tr>
 
-   <tr><th class=vt>Labels: <br />
+   <tr><th class=vt>Tags: <br />
         <a href="#" onclick="showInstructions('labelenter');return false;">Help</a><br/>
        </th>
        <td colspan=2 class="labelediting">
@@ -211,7 +211,7 @@
 				Users to Notify - Who should be informed that this ticket was created?  Enter the project members' usernames, and they will be notified about the ticket by email.
 			</div><br />
 			<div id="labelenterinstructions" style="display:none;">
-				Labels - These are used to give context to a ticket.  Is this an enhancement, defect, or question?  What is the issue's priority?  What component is this issue referring too?  What milestone does this issue need to be addressed by?
+				Tag - These are used to give context to a ticket.  Is this an enhancement, defect, or question?  What is the issue's priority?  What component is this issue referring too?  What milestone does this issue need to be addressed by?
 			</div>
 		[end]
 
