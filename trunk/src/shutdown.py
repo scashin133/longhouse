@@ -45,16 +45,16 @@ except IOError:
     sys.exit(1)
 
 try:
-    port = re.search("process ID = (\d+)", log).group(1)
+    pid = re.search("process ID = (\d+)", log).group(1)
 except AttributeError:
     print 'Process number not found in daemon log. ' + \
         'Is Longhouse running?'
     sys.exit(1)
 
 """
-Kill the process on that port.
+Kill the process.
 """
-success = commands.getstatusoutput("kill " + port)
+success = commands.getstatusoutput("kill " + pid)
 
 if(success[0] == 0):
     """
