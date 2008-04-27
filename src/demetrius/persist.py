@@ -69,9 +69,13 @@ class DemetriusPersist(object):
   def CreateUser(self, email, username, pwdhash, require_validation=False):
     """Create a user's account, either in the code directly or by using the 
     registration form. If you supply a 4th argument as True, the user will need
-    to verify the account by visiting the account verification page and entering
+    to verify the account by visiting the account validation page and entering
     data that is supplied to the user by email. The default for require_validation
     is False, to enable easy creation of users in the code."""
+
+    """An easy way to turn off validation (developer tool)"""
+    
+    AUTO_VALIDATE = False    
     
     """generate the user's business object, and generate
     the validation key from the timestamp of the form transaction."""
@@ -80,6 +84,7 @@ class DemetriusPersist(object):
     sha1 = hashlib.sha1()
     sha1.update(str(time.time()))
     user.set_validation_key(str(sha1.hexdigest()))
+
     
     """set the user's account to require validation, if require_validation
     is true. users cannot create projects or contribute to existing projects
@@ -87,7 +92,7 @@ class DemetriusPersist(object):
     membership of an existing project by a project owner. they will still not be
     able to submit/change issues or other project artifacts."""
     
-    if require_validation:
+    if require_validation and AUTO_VALIDATE:
         user.set_is_validated(0)
         # TODO: Use Twisted's email tools to email the user with a link to the
         # validation form for their account and the appropriate key to enter
