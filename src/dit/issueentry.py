@@ -15,6 +15,11 @@
 # limitations under the License.
 
 """Classes that implement the entry of new issues into DIT.
+Summary of page classes:
+  IssueEntry: Display a simple form for issue entry and process it.
+  IssueOptionsFeed: Feed describing all issue labels and statuses.
+
+Note that feed are sent in JSON (JavaScript Object Notation) format.
 """
 
 import time
@@ -35,6 +40,7 @@ import dit.helpers
 import dit.pageclasses
 import dit.constants
 import dit.permissions
+
 
 
 class IssueEntry(dit.pageclasses.DITPage):
@@ -167,8 +173,9 @@ class IssueEntry(dit.pageclasses.DITPage):
     if not dit.helpers.UsersAreInProject(req_info.project, owner_id, cc_ids):
       errors.usernames = 'Invalid username for owner or CC'
       print errors.username
-
+      
     config = req_info.early_promise.WaitAndGetValue()
+    
     if not errors.AnyErrors():
       self.demetrius_persist.LockProject(req_info.project_name)
       try:
@@ -228,6 +235,30 @@ class IssueEntry(dit.pageclasses.DITPage):
       thanks=new_issue_id, ts=int(time.time()))
     http.SendRedirect(url, request)
 
+
+class IssueOptionsFeed(dit.pageclasses.DITPage):
+  """XML and JSON feed describing all issue statuses, labels, and members."""
+
+  _PAGE_TEMPLATE = 'dit/issue-options-feed.ezt'
+
+  def GatherPageData(self, request, req_info):
+    """Build up a dictionary of data values to use when rendering the page.
+
+    Args:
+      request: the HTTP request being processed.
+      req_info: commonly used info parsed from the request.
+
+    Returns: dict of values used by EZT for rendering almost all DIT pages.
+    """
+
+    self.content_type = 'application/x-javascript; charset=UTF-8'
+
+    page_data = demetrius.helpers.BuildProjectMembers(
+        req_info.project, self.demetrius_persist,  self.conn_pool)
+    config = dit.helpers.BuildProjectIssuesConfig(req_info.project,
+                                                  self.dit_persist)
+    page_data.update(config)
+    return page_data
 
 def _MarkupIssueCommentOnInput(content, prompt_text):
   """Return HTML for the content of an issue description or comment.

@@ -66,7 +66,7 @@
   [if-any offer_meta]
    <tr><th width=10%>Status: <br />
         <a href="#" onclick="showInstructions('statusenter');return false;">Help</a></th><td class="inplace" style="width: 12em">
-        <input class="viewableInstructions" onblur="" autocomplete=off id=statusenter onfocus="" 
+        <input class="viewableInstructions acofstatus" onblur="" autocomplete=off id=statusenter onfocus="" 
                onkeyup="_dirty(); return _confirmNovelStatus(this);" onblur="_RC(this,'hasfocus')"
                name="status" value="[initial_status]" />
        </td>
@@ -105,63 +105,66 @@
        </th>
        <td colspan=2 class="labelediting">
         <div id=enterrow1 style="display:block">
-         <input class="viewableInstructions" onfocus="_acof(event)" autocomplete=off id=labelenter0 size=20 
+         <input class="viewableInstructions acoflabel" onfocus="_acof(event)" autocomplete=off id=labelenter0 size=20 
                 onkeyup="_dirty(); return _vallab(this);" onblur="_vallab(this); _RC(this,'hasfocus')"
                 name="label" value="[label0]" />
-         <input class="viewableInstructions" onfocus="_acof(event)" autocomplete=off id=labelenter1 size=20 
+         <input class="viewableInstructions acoflabel" onfocus="_acof(event)" autocomplete=off id=labelenter1 size=20 
                 onkeyup="_dirty(); return _vallab(this);" onblur="_vallab(this); _RC(this,'hasfocus')"
                 name="label" value="[label1]" /> 
-         <input class="viewableInstructions" onfocus="_acof(event)" autocomplete=off id=labelenter2 size=20 
+         <input class="viewableInstructions acoflabel" onfocus="_acof(event)" autocomplete=off id=labelenter2 size=20 
                 onkeyup="_dirty(); return _vallab(this);" onblur="_vallab(this); _RC(this,'hasfocus')"
                 name="label" value="[label2]" />
         </div>
         <div id=enterrow2 style="display:block">
-         <input class="viewableInstructions" onfocus="_acof(event)" autocomplete=off id=labelenter3 size=20 
+         <input class="viewableInstructions acoflabel" onfocus="_acof(event)" autocomplete=off id=labelenter3 size=20 
                 onkeyup="_dirty(); return _vallab(this);" onblur="_vallab(this); _RC(this,'hasfocus')"
                 name="label" value="[label3]" /> 
-         <input class="viewableInstructions" onfocus="_acof(event)" autocomplete=off id=labelenter4 size=20 
+         <input class="viewableInstructions acoflabel" onfocus="_acof(event)" autocomplete=off id=labelenter4 size=20 
                 onkeyup="_dirty(); return _vallab(this);" onblur="_vallab(this); _RC(this,'hasfocus')"
                 name="label" value="[label4]" />
-         <input class="viewableInstructions" onfocus="_acof(event)" autocomplete=off id=labelenter5 size=20 
+         <input class="viewableInstructions acoflabel" onfocus="_acof(event)" autocomplete=off id=labelenter5 size=20 
                 onkeyup="_dirty(); if (this.value){_showID('enterrow3');_hideID('addrow2');} return _vallab(this);" 
                 onblur="_vallab(this); _RC(this,'hasfocus')"
                 name="label" value="[label5]" />&nbsp;<u id=addrow2 class=fakelink onclick="_showInstead('enterrow3','addrow3', 'addrow2')">Add a row</u>
         </div>
         <div id=enterrow3 style="display:none">
-         <input class="viewableInstructions" onfocus="_acof(event)" autocomplete=off id=labelenter6 size=20 
+         <input class="viewableInstructions acoflabel" onfocus="_acof(event)" autocomplete=off id=labelenter6 size=20 
                 onkeyup="_dirty(); return _vallab(this);" onblur="_vallab(this); _RC(this,'hasfocus')"
                 name="label" value="[label6]" /> 
-         <input class="viewableInstructions" onfocus="_acof(event)" autocomplete=off id=labelenter7 size=20 
+         <input class="viewableInstructions acoflabel" onfocus="_acof(event)" autocomplete=off id=labelenter7 size=20 
                 onkeyup="_dirty(); return _vallab(this);" onblur="_vallab(this); _RC(this,'hasfocus')"
                 name="label" value="[label7]" />
-         <input class="viewableInstructions" onfocus="_acof(event)" autocomplete=off id=labelenter8 size=20 
+         <input class="viewableInstructions acoflabel" onfocus="_acof(event)" autocomplete=off id=labelenter8 size=20 
                 onkeyup="_dirty(); if (this.value){_showID('enterrow4');_hideID('addrow3');} return _vallab(this);" 
                 onblur="_vallab(this); _RC(this,'hasfocus')"
                 name="label" value="[label8]" />&nbsp;<u id=addrow3 class=fakelink onclick="_showInstead('enterrow4','addrow4', 'addrow3')">Add a row</u>
         </div>
         <div id=enterrow4 style="display:none">
-         <input class="viewableInstructions" onfocus="_acof(event)" autocomplete=off id=labelenter9 size=20 
+         <input class="viewableInstructions acoflabel" onfocus="_acof(event)" autocomplete=off id=labelenter9 size=20 
                 onkeyup="_dirty(); return _vallab(this);" onblur="_vallab(this); _RC(this,'hasfocus')"
                 name="label" value="[label9]" /> 
-         <input class="viewableInstructions" onfocus="_acof(event)" autocomplete=off id=labelenter10 size=20 
+         <input class="viewableInstructions acoflabel" onfocus="_acof(event)" autocomplete=off id=labelenter10 size=20 
                 onkeyup="_dirty(); return _vallab(this);" onblur="_vallab(this); _RC(this,'hasfocus')"
                 name="label" value="[label10]" />
-         <input class="viewableInstructions" onfocus="_acof(event)" autocomplete=off id=labelenter11 size=20 
+         <input class="viewableInstructions acoflabel" onfocus="_acof(event)" autocomplete=off id=labelenter11 size=20 
                 onkeyup="_dirty(); if (this.value){_showID('enterrow5');_hideID('addrow4');} return _vallab(this);" 
                 onblur="_vallab(this); _RC(this,'hasfocus')"
                 name="label" value="[label11]" />&nbsp;<u id=addrow4 class=fakelink onclick="_showInsteadFinal('enterrow5','addrow4')">Add a row</u>
         </div>
         <div id=enterrow5 style="display:none">
-         <input class="viewableInstructions" onfocus="_acof(event)" autocomplete=off id=labelenter12 size=20 
+         <input class="viewableInstructions acoflabel" onfocus="_acof(event)" autocomplete=off id=labelenter12 size=20 
                 onkeyup="_dirty(); return _vallab(this);" onblur="_vallab(this); _RC(this,'hasfocus')"
                 name="label" value="[label12]" /> 
-         <input class="viewableInstructions" onfocus="_acof(event)" autocomplete=off id=labelenter13 size=20 
+         <input class="viewableInstructions acoflabel" onfocus="_acof(event)" autocomplete=off id=labelenter13 size=20 
                 onkeyup="_dirty(); return _vallab(this);" onblur="_vallab(this); _RC(this,'hasfocus')"
                 name="label" value="[label13]" />
-         <input class="viewableInstructions" onfocus="_acof(event)" autocomplete=off id=labelenter14 size=20 
+         <input class="viewableInstructions acoflabel" onfocus="_acof(event)" autocomplete=off id=labelenter14 size=20 
                 onkeyup="_dirty(); return _vallab(this);" onblur="_vallab(this); _RC(this,'hasfocus')"
                 name="label" value="[label14]" />
         </div>
+        [if-any errors.labels]
+          <div class=fielderror>[errors.labels]</div>
+         [end]
        </td>
    </tr>
 	[end]

@@ -97,11 +97,72 @@ document.observe("dom:loaded", function(){
 	  hoveredElement.addClassName("selected");	  
 	}
 	
+	function acofOptionsHandler(e){
+	    optionsArray = arguments[1];
+
+        eventElement = Event.element(e);
+
+        aclist = $('ac-list');
+        aclist.innerHTML = "";
+        aclist.insert(new Element("table").insert(tbody = new Element("tbody")));
+        
+        counter = 0
+        
+        optionsArray.each(function(optionArrayItem){
+            if(optionsArray.size() > 1){
+                tbody.insert(new Element("th").insert(optionArrayItem.name));
+            }
+            
+            optionArrayItem.values.each(function(valueItem){
+                if(counter == 0){
+                  tbody.insert(new Element("tr", {"class" : "acse acmo selected"}).insert(new Element("td", {"class" : "valueName"}).insert(valueItem.name)).insert(new Element("td").insert("= " + valueItem.doc)));
+                } else {
+                  tbody.insert(new Element("tr", {"class" : "acse acmo"}).insert(new Element("td", {"class" : "valueName"}).insert(valueItem.name)).insert(new Element("td").insert("= " + valueItem.doc)));
+                }
+                counter++;
+            });
+        });
+        
+        cOffset = Element.cumulativeOffset(eventElement);
+
+        aclist.setStyle({
+          top: (cOffset[1] + eventElement.getHeight()).toPaddedString(0) + "px",
+          left: cOffset[0].toPaddedString(0) + "px",
+          position: "absolute"
+        });
+
+        aclist.show();
+        
+        $$('tr.acmo').each(function(element){
+          Event.observe(element, 'mouseover', function(e){
+            $$('tr.selected').each(function(element){
+              element.removeClassName('selected');
+            });
+            element.addClassName('selected');
+          });      
+        });
+
+        $$('tr.acse').each(function(element){
+          Event.observe(element, 'click', function(e){
+            valueToInsert = ""         
+            $$('tr.selected').each(function(element){
+                valueToInsert = element.down("td.valueName").innerHTML
+            });
+            eventElement.writeAttribute({value : valueToInsert});
+
+            aclist = $('ac-list');
+            aclist.innerHTML = "";
+            aclist.hide();
+          });
+      });
+	}
+	
   // acof functionality for the project members
   projName = $F('projectname');
   
   if(projName != ""){
   	urlProjectMembers = "/p/" + projName + "/feeds/projectMembers";
+  	urlIssueOptions = "/p/" + projName + "/feeds/issueOptions"
 	
   	new Ajax.Request(urlProjectMembers, {
   	  method: 'get',
@@ -110,13 +171,36 @@ document.observe("dom:loaded", function(){
       		Event.observe(element, "focus", acofMemberHandler.bindAsEventListener(element, transport.responseText.evalJSON()));
       	});
     	
-      	document.observe('click', function(e){
-          aclist = $('ac-list');
-          if(!Event.element(e).hasClassName('acofmember') && aclist.visible()){
-            aclist.innerHTML = "";
-            aclist.hide();
-          }
-        });
+        // document.observe('click', function(e){
+        //           aclist = $('ac-list');
+        //           if(!Event.element(e).hasClassName('acofmember') && aclist.visible()){
+        //             aclist.innerHTML = "";
+        //             aclist.hide();
+        //           }
+        //         });
+    	}
+  	});
+  	
+  	new Ajax.Request(urlIssueOptions, {
+  	  method: 'get',
+  	  onSuccess: function(transport){
+  	      json = transport.responseText.evalJSON();
+  	      
+  	      statusJSON = []
+  	      statusJSON.push({'name' : 'Open', 'values' : json.open})
+  	      statusJSON.push({'name' : 'Closed', 'values' : json.closed})
+  	      
+  	      $$('input.acofstatus').each(function(element){
+  	          Event.observe(element, "focus", acofOptionsHandler.bindAsEventListener(element, statusJSON));
+  	      });
+  	      
+  	      labelsJSON = []
+  	      labelsJSON.push({'name' : 'Labels', 'values' : json.labels})
+  	      
+  	      $$('input.acoflabel').each(function(element){
+  	          Event.observe(element, "focus", acofOptionsHandler.bindAsEventListener(element, labelsJSON));
+  	      });
+    	
     	}
   	});
 	}

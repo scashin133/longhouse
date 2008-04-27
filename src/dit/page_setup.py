@@ -84,6 +84,11 @@ class PageSetup(framework.helpers.AbstractPageSetup):
     self._SetupProjectForm(issue_entry_page.FormHandler,
                            constants.ISSUE_ENTRY_FORM_URL)
 
+    issue_options_feed = issueentry.IssueOptionsFeed(
+      self.conn_pool, self.demetrius_persist,
+      self.dit_persist, self.universal_ezt_data)
+    self._SetupProjectPage(issue_options_feed.Handler,
+                           constants.ISSUE_OPTIONS_FEED_URL)
 
     set_star_form = issuedetail.SetStarForm(
       self.conn_pool, self.demetrius_persist,
