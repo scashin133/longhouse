@@ -74,6 +74,37 @@ _SORTABLE_FIELDS_DESCENDING = {
   }
 
 
+def checkMultipleLabels(exclusive_label_prefixes_list, labels):
+    """Checks the labels to see if there are mutliples of exclusive labels
+    
+    Args:
+        exclusive_label_prefixes: list of labels that should only exist once.
+        labels: the labels to test
+    
+    Return: boolean true if there are multiple exclusive labels (making it a bad issue)    
+    """
+    label_prefixes = {}
+
+    for label in labels:
+      split_label = label.split("-")
+      first_element = split_label[0].lower()
+
+      try:
+          label_prefixes[first_element] = label_prefixes[first_element] = label_prefixes[first_element] + 1
+      except KeyError:
+          label_prefixes[first_element] = 1
+
+    for excl_label in excl_labels:
+      try:
+        if(label_prefixes[excl_label] > 1):
+          return "true"
+      except KeyError:
+        continue
+
+    return "false"
+
+    
+
 def BuildProjectIssuesConfig(project, dit_persist):
   """Gather data for the issue section of a project admin page.
 

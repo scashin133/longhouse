@@ -136,4 +136,6 @@ function _vallab(element){}
 
 function _dirty(){}
 
+function _confirmNovelStatus(element){}
 
+function _RC(element, event){}
