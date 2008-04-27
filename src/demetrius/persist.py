@@ -75,7 +75,7 @@ class DemetriusPersist(object):
 
     """An easy way to turn off validation (developer tool)"""
     
-    AUTO_VALIDATE = False    
+    USE_VALIDATION = False    
     
     """generate the user's business object, and generate
     the validation key from the timestamp of the form transaction."""
@@ -92,7 +92,7 @@ class DemetriusPersist(object):
     membership of an existing project by a project owner. they will still not be
     able to submit/change issues or other project artifacts."""
     
-    if require_validation and AUTO_VALIDATE:
+    if require_validation and USE_VALIDATION:
         user.set_is_validated(0)
         # TODO: Use Twisted's email tools to email the user with a link to the
         # validation form for their account and the appropriate key to enter
