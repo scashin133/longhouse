@@ -102,7 +102,7 @@ class UserIDProxy(object):
     self.projects_member = []
     self.demetrius_persist = demetrius_persist
 
-    if user_id:
+    if user_id or user_id == 0:
         
         if user_pb is None:
             user_pb = demetrius_persist.GetUser(user_id)
