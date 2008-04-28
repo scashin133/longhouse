@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//Tigris//DTD XHTML 1.0 Transitional//EN"
+"http://style.tigris.org/tigris_transitional.dtd">
+<html>
+<head>
+ <style type="text/css">
+/* <![CDATA[ */ 
+@import "css/readyset.css"; 
+@import "css/inst.css";
+@import "css/plan.css";
+/*  ]]> */
+ </style>
+
+<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+ <title>Usability Planning</title>
+</head>
+
+<body>
+<div class="app">
+<div class="readyset">
+ <h2>Usability Planning</h2>
+
+ <div id="projectinfo">
+ <h3>Document Information</h3>
+ <table border="1" cellpadding="3" cellspacing="2" class="axial">
+  <tr>
+   <th>Project:</th> 
+   <td><a href="index.html">Longhouse</a></td>
+  </tr>
+  <tr>
+   <th>Purpose</th> 
+   <td>To plan out the types of usability studies that we would need to improve upon Longhouse.</td>
+  </tr>
+  <tr>
+	<th>Related Documents</th>
+	<td><a href="usability-analysis.html">Usability Analysis</a></td>
+  </tr>
+ </table>
+ </div> <!-- /projectinfo -->
+
+ <div id="usabilityPlan">
+	<h3>Conducting Usability Analysis</h3>
+	
+	<h4>Our Beginning Analysis</h4>
+	
+	<p>Our own <a href="usability-analysis.html">analysis of the Google Code UI</a>, which acts as the base UI of Longhouse, provides us with starting points from which we can conduct further usability studies to investigate which improvements are most crucial to the user experience. In addition, we can already identify changes that need to be made in the development process starting in Spring, when new Longhouse features are designed and implemented.</p>
+	
+	<h4>Alfred Kobsa's Informatics 131 students</h4>
+	<p>A major requirement of our customer is to have our product maintain the "Googley" clean look and feel throughout the site.  Most sections of the site already keep this appearance because Google has provided us with their templates.  However, since not all sections of the site are implemented and some are missing functionality we will still require the need of a good usability study to check for three important aspects that are defined below. We hope these things will be evaluated by Alfred Kobsa's Informatics 131 students and will use their feedback to bring the entire project up to our customer's expectations of a "Googley" clean look and feel. </p>
+	<dl>
+	<dt>Usefulness of error feedback</dt>
+		<dd>The need from this comes from two areas.  For one there is new functionality being added in that we will need their error messages checked for.  Second we have decided to change some of Googles original error messages in favor of ones that we felt were more descriptive.  Either way we will be wanting our evaluation team to be checking that our error messages provide them enough information to determine appropriate action to take. </dd>
+
+	<dt>Does it maintain Googley clean look and feel</dt>
+		<dd>As stated before the biggest requirement given for the user interface is that it keeps with that consistent look and feel.  We will be requiring that our evaluation team checks that the sections we were required to implement without pre-made Google templates do indeed follow the look and feel.  Perhaps even providing suggestions to our team about how best to change the section to follow the look and feel.</dd>
+
+	<dt>Missing functionality</dt>
+		<dd>Google was not able to provide to our team all of the required javascript for the Google code site.  This means that our team is having to go through and re-implement it all from scratch.  Another aspect that the evaluation team will cover is checking for missing javascript functionality.  Checking to make sure that not only did we find all the places that require javascript but also that it works in a real world setting.</dd>
+	</dl>
+	<p>All feedback given from the evaluation team will be analyzed and result in tickets being generated through our currently hosted Google code site.  We will then incorporate into our project plan a release schedule for changes to the interface based off of the feedback given.  We would try to finish these changes before the open source release, discussed below, so that we can get a free evaluation of our changes from the open source community.</p>
+	
+	<h4>First In-Class Usability Evaluation</h4>
+	<p>For this evaluation, we concentrated on the ease with which the user could fill out a few forms in the system, react to any feedback and proceed through the sections of the site. The following tasks were performed:
+	<ol>
+	<li>Log in (easy)</li>
+		<dd>A simple task; tests whether the user can log into a given account with any problems.</dd>
+	
+	<li>Create a project (medium)</li>
+		<dd>This task tests whether the user can successfully work through the Project Creation form and absorb the instructions on the right-hand side of the form, to correctly deduce the valid input for each section of the form.</dd>
+		
+	<li>Edit project information (medium)</li>
+		<dd>This task tests whether the user can find the section of the project's home page that allows administrators to edit project information. Furthermore, it tests whether a user can identify the section of the project metadata change form to edit to change the information they want to change, and tests whether they can verify the changes.</dd>
+	
+	<li>Create an issue (hard)</li>
+		<dd>First, this task tests whether users can find the issues section of the web site, and whether they can go from there to finding the New Issue form. Second, this task tests the use of the New issue form in a manner similar to the second task except that the New issue form has a wider variety of inputs and input types to deduce, and to see whether users can successfully figure it out.</dd>
+	</ol>
+	For the results of this test please consult the <a href="usability-analysis.html">Usability Analysis</a>, Part III.
+	<h4>Second In-Class Usability Evaluation</h4>
+	<p>For this evaluation, we tested some new additions to the site's UI, such as the navigation form to visit projects that a user is associated with. IN addition, we were able to test sections of the site that were not working during the first usability evaluation due to various errors. The following tasks were performed:</p>
+	<ol>
+	<li>Log in (easy)</li>
+		<dd>This task is simply necessary to start an evaluation.</dd>
+	
+	<li>Go to a previously created project (easy)</li>
+		<dd>This task tests whether the menu we had just added, which allows users to view a list of their projects and visit a project's home page based on clicking on that project's name, is successfully placed on their signin bar at the top and easily usable.</dd>
+			
+	<li>Add a new member to project (medium)</li>
+		<dd>This task tests whether the user can easily find the form to change the project membership, and furthermore tests whether the user can successfully guess the proper formatting of inserting new users into the project.</dd>
+		
+	<li>Edit project information (medium)</li>
+		<dd>This step basically tests one important change from the similar step in the first evaluation: we added many save buttons to save the user the trouble of scrolling all the way down to the bottom of the very long form to save their changes, and we wanted to see whether the user would find that an effective time-saver.</dd>
+	
+	<li>Create an issue (medium)</li>
+		<dd>This task tests the issue creation form, similar to the task from the first evaluation. It is different in terms of performance because the user was asked to specify numerous additional data in more of the fields compared to the first trial, and the user tested the effectiveness of highlighting the instructions for each field, which was a feature that was not added for the first trial. Therefore, this test principally tested whether the user could edit the additional fields that were not tested upon the first time, and whether the instruction highlighting was effective.</dd>
+		
+	<li>Delete the project (hard)</li>
+		<dd>This task tests whether the user can find the Project Deletion form and whether they can comprehend how the process of deletion works. This is classified as Hard because neither of those points seem immediately obvious.</dd>
+	</ol>	
+	For the results of this test please consult the <a href="usability-analysis.html">Usability Analysis</a>, Part III.
+	<h4>Open Source community</h4>
+	
+	<p>Additionally, we are hoping to leverage the contributions of the open source community for evaluating our software. Some time this quarter we will be opening our project up to the public to allow potential contributors to read the documentation, download and install the software, and add tickets to the issue tracker. Having the project be open source results in a sort of continuous usability evaluation. We will be closely monitoring the issue tracker and providing quick feedback on any tickets that are submitted. It is very important that anyone who submits a ticket feels their input is valuable and is being acknowledged. This will encourage both that individual and others to continue to voluntarily devote time and effort to the project's well being.</p>
+
+	<p>There are some key areas that we hope contributors will help us explore. They are:</p>
+	
+	<dl>
+		<dt>Installation</dt>
+	
+			<dd>The three of us are comfortable with the installation process because we know the software inside and out, so it is hard for us to look at it from a "newcomer;s" perspective. Any issues with the installation process should become apparent very quickly, provided at least some of those individuals downloading our software take enough interest in the project to be willing to submit an issue report. </dd>
+
+		<dt>Usage</dt>
+		 	<dd>Along the same lines as the above point, a fresh perspective on the software will reveal assumptions and problems that would be difficult for us to perceive on our own. </dd>
+
+		<dt>Documentation</dt>
+		 	<dd>The completeness and clarity of our documentation is important on a number of levels. A good installation guide will evolve over time as we get feedback over common installation troubles and how to successfully install in diverse environments. Usage documentation is, at this stage, virtually nonexistent. Issues and questions that frequently come up will make their way into a usage manual. Likewise developer documentation does not currently exist, because our development team is small and collocated. Probably towards the end of Spring quarter we will get our development practices down on paper to lower the barrier of entry for new developers.</dd>
+	</dl>
+	
+	<p>Of course there may be many other areas that the open source community can help us with. One of the great things about an open source project is you are never quite sure who will just show up and begin to help. We look forward to any contributions that may come our way and we will do our best to foster a healthy community around the project. While we do not have any plans to specifically court Google employees to conduct testing, we hope that interested Google employees act as open-source contributors.</p>
+	
+ </div>
+
+
+
+</div>
+</body>
+</html>

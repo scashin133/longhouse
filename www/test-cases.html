@@ -1,0 +1,2426 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//Tigris//DTD XHTML 1.0 Transitional//EN"
+"http://style.tigris.org/tigris_transitional.dtd">
+<html>
+<head>
+ <style type="text/css">
+/* <![CDATA[ */ 
+@import "css/readyset.css"; 
+@import "css/inst.css";
+/*  ]]> */
+ </style>
+
+<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+ <title>Test Cases</title>
+</head>
+
+<body>
+<div class="app">
+<div class="readyset">
+
+<h2><a href="srs.html">SRS</a> &gt;
+    <a href="test-suite.html">Test Suite</a> &gt; Test Cases</h2>
+
+ <div id="releaseinfo">
+ <h3>Release Information</h3>
+  <table border="1" cellpadding="3" cellspacing="2" class="axial">
+
+  <tr>
+   <th>Project:</th> 
+   <td><a href="index.html">Longhouse</a></td> 
+  </tr>
+  <tr>
+
+   <th>Related Documents:</th> 
+   <td>
+    <div><a href="test-case-suite.html">Test Case Suite</a><br>
+    <a href="use-case-suite.html">Use Case Suite</a></dv>
+   </td>
+  </tr>
+
+ </table>
+ </div> <!-- /releaseinfo -->
+
+<div id="TC-101A">
+<h3>TC-101A: Successful Login</h3>
+
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   To verify that users can successfully login to an existing account using their known name and password.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   User has created an account with the system with a known username and password.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Click "login" on any page of the system.</li>
+    <li>Enter user name and password.</li>
+    <li>Verify that the "login" link is now replaced with a status message indicating that the user is logged in, and a "logout" link is provided.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-101B">
+<h3>TC-101B: Rejection Due to Lack of User Approval</h3>
+
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Verify that the system rejects users with incorrect username/password combinations.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   User has created an account with a known username and password.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Click "login" on any page of the system.</li>
+    <li>Enter the correct username and a password different than the known password.</li>
+    <li>Verify that the system rejects the login attempt.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-103A">
+<h3>TC-103A: Successful Logout</h3>
+
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the system correctly logs out a user when the logout option is selected.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Log in successfully (see <a href="test-cases.html#TC-101A">TC-101A</a>).
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Click "logout" on any page of the system.</li>
+    <li>Verify that the system now does not show the user as logged in using his or her username, and instead provides a "login" link.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-200A">
+<h3>TC-200A: Successful Creation</h3>
+
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether new projects are createable. 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   None
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Log in (see <a href="test-cases.html#TC-101A">TC-101A</a>).</li>
+    <li>On the main system page, choose to create a new project.</li>
+    <li>Enter all the fields required to create a project.</li>
+	<li>Submit the request to create a project.</li>
+    <li>Verify that the system indicates when the project creation is complete, and takes the user to the new project's home page.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-200B">
+<h3>TC-200B: Already-Used Name</h3>
+
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the system allows a new project to use the same name as another project.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Create at least 1 prior project (see <a href="test-cases.html#TC-200A">TC-200A</a>).
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Log in (see <a href="test-cases.html#TC-101A">TC-101A</a>).</li>
+    <li>Choose to create a new project.</li>
+    <li>Fill out all data for the new project. For the project name, choose the exact same name as the name of the project previously created.</li>
+    <li>Submit the request to create the new project.</li>
+
+    <li>Verify that the system disallows the request to create a new project and forces the user to choose a different name.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-200C">
+<h3>TC-200C: Missing Information</h3>
+
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   To determine whether the system does or does not allow projects with incomplete information to be created.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Have an account.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+   <li>Log in (see <a href="test-cases.html#TC-101A">TC-101A</a>).</li>
+    <li>Choose to create a new project.</li>
+    <li>Enter all information for the new project, but leave the Project Name field blank.</li>
+    <li>Verify that the system disallows the creation of the project and forces the user to give a project name.</li>
+    <li>Repeat for other fields, leaving the Summary, Description and License fields blank in succession.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+
+<div id="TC-200D">
+<h3>TC-200D: User Has Already Created 10 Projects</h3>
+
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the system allows users to create projects beyond the stated limit.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Create 10 prior projects (see <a href="test-cases.html#TC-200A">TC-200A</a>).
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+   <li>Log in (see <a href="test-cases.html#TC-101A">TC-101A</a>).</li>
+    <li>Choose to create a project.</li>
+    <li>Enter all information for the new project and submit the creation request.</li>
+
+    <li>Verify that the system does now allow the project to be created because the user's project creation maximum has already been reached.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-200E">
+<h3>TC-200E: Disk Space is Full</h3>
+
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   To determine whether projects can be created when the disk is full.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Fill the entire hard disk that the server is running on.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+   <li>Log in (see <a href="test-cases.html#TC-101A">TC-101A</a>).</li>
+    <li>Choose to create a project.</li>
+    <li>Enter all information for the project.</li>
+    <li>Submit the project creation request.</li>
+
+    <li>Verify that the system rejects the request to create the project because the disk is full.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-201A">
+<h3>TC-201A: Sucessful Search via Search Terms</h3>
+
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the project search works.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Create a project (see <a href="test-cases.html#TC-200A">TC-200A</a>).
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>On the system main page, enter the name of the previously created project in the search box and submit the search.</li>
+    <li>Receive the search results.</li>
+    <li>Verify that the project with the given project name exists in the search results.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-201B">
+<h3>TC-201B: Successful Search via Labels</h3>
+
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether users can browse projects by label. 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Create a project (see <a href="test-cases.html#TC-200A">TC-200A</a>). Ensure that the project has at least 1 label.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>On the system home page, choose to browse the label that the given project was tagged with.</li>
+    <li>Verify that the project appears in the list of projects that have that label.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-201C">
+<h3>TC-201C: No Results</h3>
+
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Verify that the search engine gives no results correctly, when there is no project matching a search query.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+ 	<ol>
+ 		<li>Ensure that there is no page in the system with a given word (can be either a real or nonsense word).</li>
+ 		<li>Ensure that there is one label or more that does not have a project associated.</li>
+	</ol>
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>On the main system page, search by the word that should not be found anywhere in the system.</li>
+    <li>Verify that no search results appear.</li>
+    <li>On the main system page, browse by the label that has no projects associated.</li>
+
+    <li>Verify that no projects appear in the list of projects associated with that label.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-202A">
+<h3>TC-202A: User Receives Join Instructions</h3>
+
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the instructions to join a project are successfully delivered.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Have an account.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+   <li>Log in (see <a href="test-cases.html#TC-101A">TC-101A</a>).</li>
+    <li>Find a project.</li>
+    <li>On the project's home page, click "join this project."</li>
+   <li>Verify that the system gives the user instructions to participate in the project's mailing list to join the project.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-300A">
+<h3>TC-300A: Project Settings Change via Web UI</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the project owner can change project settings using the Web UI.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   User is logged in (see <a href="test-cases.html#TC-101A">TC-101A</a>).
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Values TBD</div>
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the project settings portion of the website by clicking on the "Administer" tab.</li>
+    <li>Change the contents of the field, "Summary."</li>
+    <li>Click "Save Changes."</li>
+    <li>Click the "Project Home" tab.</li>
+    <li>Verify that project summary on the project home page reflects the change made.</li>
+    <li>Repeat steps 1-5 with the Project Description field, the license and the project labels.</li>
+    <li>Attempt to add a new link to the Links list by clicking "Add row" and then supplying a text and URL.</li>
+   	<li>Repeat steps 3-5.</li>
+   	<li>Repeat steps 7-8 for the Blogs link list.</li>
+   	<li>Attempt to add a new discussion group by supplying a description and an email address.</li>
+   	<li>Repeat steps 3-5.</li>
+   	<li>Repeat steps 10-11 for the Activity Notifications.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-300B">
+<h3>TC-300B: Project Settings Change via Subversion</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the project owner can change project settings by editing XML files in Subversion.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be a Project Owner, and have a Subversion client.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Log into the project repository using a Subversion client.</li>
+    <li>Navigate to the project settings XML file, download it, edit one of the fields and reupload it.</li>
+    <li>Visit the project hosting home page.</li>
+
+    <li>Verify that the edited field was successfully changed.</li>
+    <li>Repeat for the other fields of the file that contain project settings information.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-400A">
+<h3>TC-400A: File List Manipulation</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether manipulating the file list in the Downloads section works as intended.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Have at least two or more files uploaded to the Downloads section of the website.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+	<li>Enter the Downloads section of the site by clicking the "Downloads" tab.</li>
+	<li>Click the header of the "Filename" column to sort by the file name alphabetically. Choose either "sort up" or "sort down" and remember the choice.</li>
+	<li>Verify that the list of files is now sorted by file name in the manner that was chosen in step 2.</li>
+	<li>Now click the "Filename" column header again, choosing the sorting mechanism (i.e., "up" or "down") that was NOT chosen in step 2.</li>
+	<li>Verify that the list of files is now sorted by file name in the manner that was chosen in step 4.</li>
+	<li>Click the "Filename" column header again and choose "hide column."</li>
+	<li>Verify that the Filename column is now hidden.</li>
+	<li>Repeat steps 2 through 7 with the other columns of the list.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-400B">
+<h3>TC-400B: File Search</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the search engine works properly for files.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Have at least one file uploaded in the Downloads section with a given name.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Downloads section of the website by clicking on the Downloads tab.</li>
+    <li>Enter a term matching the name of a file in the downloads section, or a part of a name.</li>
+    <li>Submit the search query.</li>
+
+    <li>Verify that the file is returned as a search result.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-400C">
+<h3>TC-400C: Subversion</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Verify that files can be browsed via Subversion.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Have a Subversion client.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Follow instructions in test case <a href="test-cases.html#700C">700C</a> and <a href="test-cases.html#700D">700D</a>.
+    <li>Verify that the repository's files are browsable.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-401A">
+<h3>TC-401A: Download via File List</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether file downloading by using the File List is possible.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Have at least one file uploaded to the Downloads section.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the "Downloads" portion of the website by clicking on the "Downloads" tab.</li>
+    <li>Click the file name for the first file in the File List.</li>
+    <li>Verify that the file was downloaded to the local machine or opened in the browser.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-401B">
+<h3>TC-401B: Download via Information Page</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether files can be downloaded on the File Information Page.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Have at least one file uploaded to the Downloads section.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Downloads section of the website by clicking on the "Downloads" tab.</li>
+    <li>Click the summary for the first file in the File List to enter the File Information Page.</li>
+    <li>Click the file name of the file on the File Information Page surrounded by a green box.</li>
+
+    <li>Verify that the file was downloaded to the local machine or opened in the browser.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-401C">
+<h3>TC-401C: Download via Subversion</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether files are downloadable by accessing the Subversion repository.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Have at least one file uploaded, and have a Subversion client.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Follow instructions in test case <a href="test-cases.html#700C">700C</a> and <a href="test-cases.html#700D">700D</a>.</li>
+    <li>Choose a file to download.</li>
+    <li>Verify that the file was downloaded successfully.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-402A">
+<h3>TC-402A: File Upload via Web </h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether Project Members can upload new files to the Downloads section.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be logged in (see <a href="test-cases.html#TC-101A">TC-101A</a>).
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Downloads section of the website by clicking on the "Downloads" tab.</li>
+    <li>Click the "New Download" link.</li>
+    <li>Enter a summary for the file.</li>
+    <li>Click "Browse", locate the file on your local machine, and choose to upload it.</li>
+    <li>Add any labels to the file.</li>
+    <li>Click "Submit File".</li>
+    <li>Verify that the file appears in the File List.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-402B">
+<h3>TC-402B: File >20MB</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the system disallows files greater than 20 MB.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be logged in (see <a href="test-cases.html#TC-101A">TC-101A</a>) and have a file larger than 20 MB on the local machine.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Perform <a href="test-cases.html#TC-402A">TC-402A</a> but choose a file larger than 20 MB.</li>
+     <li>Verify that the system disallows the file upload and indicates that the file is too large.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-402C">
+<h3>TC-402C: File Upload via Subversion</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether files can be uploaded by using a Subversion client.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be a project member, and have a Subversion client.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>STEP</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-403A">
+<h3>TC-403A: Info Change via Web</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the system allows changes to be made to file information via the Web interface.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be a Project Member, and be logged in (see <a href="test-cases.html#TC-101A">TC-101A</a>). Have at least one file uploaded to the Downloads section.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Downloads section of the website by clicking the "Downloads" tab.</li>
+    <li>Click on the first file in the File List to go to the File Information Page.</li>
+    <li>Under the "Edit Downloads" section, enter a different summary than the file currently has, and add an additional label.</li>
+    <li>Click "Submit Changes."</li>
+
+    <li>Verify that the File List now shows the new summary for the file and its new label.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-403B">
+<h3>
+TC-403B: Info Change via Subversion</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether file information can be changed by editing repository files.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be a project member and have at least one file uploaded. Have a Subversion client.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the repository using a Subversion client.</li>
+    <li>Navigate to the downloads section of the repository.</li>
+    <li>Download a file's accompanying information file and change the summary for that file.</li>
+	<li>Re-upload the file.</li>
+    <li>Go to the project website and visit the Downloads section of the website by clicking on the "Downloads" tab.</li>
+    <li>Verify that the file's summary is correctly changed.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-404A">
+<h3>TC-404A: Download Settings Change via Web</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   SENTENCES
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   SENTENCES
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>STEP</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-404B">
+<h3>TC-404B: Download Settings Change via Subversion</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   SENTENCES
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   SENTENCES
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>STEP</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-500A">
+<h3>TC-500A: Wiki Page Creation via Web</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether project members can create new Wiki pages via the Web interface.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be logged in (see <a href="test-cases.html#TC-101A">TC-101A</a>) and be a Project Member.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Wiki section of the website by clicking on the "Wiki" tab.</li>
+    <li>Click "New Page."</li>
+    <li>Enter a page name.</li>
+    <li>In the page body, add at least one link that leads to a Wiki page that does not currently exist.</li>
+    <li>Add a label to the page.</li>
+    <li>Click "Preview".</li>
+    <li>Verify that the page title and contents are shown and that its label is attached.</li>
+    <li>Click "Save Page."</li>
+    <li>Go back to the Page List and verify that the page is in the list.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-500B">
+<h3>TC-500B: Wiki Page Creation via Following Bad Link</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the system offers to create a Wiki page if it is linked to, but does not exist.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be logged in (see <a href="test-cases.html#TC-101A">TC-101A</a>) and be a Project Member.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Execute <a href="test-cases.html#TC-500A">TC-500A</a>.</li>
+    <li>Find the Wiki page created in the Page List and click its name to enter the page.</li>
+    <li>Click on the link that was added to the page in TC-500A and leads to a non-existent Wiki page.</li>
+    <li>Verify that the system returns a New Page with the Page Name field already populated.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-500C">
+<h3>TC-500C: Attempt to Use Already-Used Page Name</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the system rejects the creation of new pages with duplicate names.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be logged in (see <a href="test-cases.html#TC-101A">TC-101A</a>) and be a Project Member.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Execute <a href="test-cases.html#TC-500A">TC-500A</a>.</li>
+    <li>Return to the File List page.</li>
+    <li>Click "New Page."</li>
+    <li>Enter the same name for the new page as was used for the page in TC-500A.</li>
+	<li>Click "Save Page."</li>
+    <li>Verify that the system rejects the page and informs the user that the name was already taken.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-500D">
+<h3>TC-500D: Wiki Page Creation via Subversion</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   SENTENCES
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   SENTENCES
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>STEP</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-501A">
+<h3>TC-501A: Page List Manipulation</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the Page List can be manipulated as intended.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Have at least 2 pages in the Page List.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Wiki section of the website by clicking on the "Wiki" tab.</li>
+	<li>Click the header of the "PageName" column to sort by the page name alphabetically. Choose either "sort up" or "sort down" and remember the choice.</li>
+	<li>Verify that the list of pages is now sorted by page name in the manner that was chosen in step 2.</li>
+	<li>Now click the "PageName" column header again, choosing the sorting mechanism (i.e., "up" or "down") that was NOT chosen in step 2.</li>
+	<li>Verify that the list of pages is now sorted by page name in the manner that was chosen in step 4.</li>
+	<li>Click the "PageName" column header again and choose "hide column."</li>
+	<li>Verify that the PageName column is now hidden.</li>
+	<li>Repeat steps 2 through 7 with the other columns of the list.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-501B">
+<h3>TC-501B: Page Searching via Web</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the search engine works for Wiki pages.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Have at least one Wiki page in the Wiki section.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Wiki section of the website by clicking on the "Wiki" tab.</li>
+    <li>Enter the name of a Wiki page in the Search box and click "Search."</li>
+    <li>Receive the search results.</li>
+
+    <li>Verify that the Wiki page is in the search results.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-502A">
+<h3>TC-502A: Editing Page via Web</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether pages can be edited via the Web.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be logged in (see <a href="test-cases.html#TC-101A">TC-101A</a>) and be a Project Member. Have at least one Wiki page created. 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Wiki section of the website by clicking on the "Wiki" tab.</li>
+    <li>Click the summary of the first page in the Page List to visit that page.</li>
+    <li>Click "Edit this Page."</li>
+    <li>Add a new sentence to the last line of the page.</li>
+    <li>Click "Save Page."</li>
+
+    <li>Verify that the new sentence appears on the page.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-502B">
+<h3>TC-502B: Editing Page via Subversion</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether pages can be edited via Subversion.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be a Project Member. Have a Subversion client. Have at least one Wiki page created.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Log in to the Subversion repository as a member.</li>
+    <li>Download a Wiki page. Edit its contents.</li>
+    <li>Reupload the Wiki page.</li>
+    <li>Visit the project web site, enter the Wiki section, and find the page that was edited.</li>
+
+    <li>Verify that the page's content reflects the edit made in step 2.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-503A">
+<h3>TC-503A: Deleting Page</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Verify that project owners can delete pages.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be logged in (see <a href="test-cases.html#TC-101A">TC-101A</a>) and be a Project Owner.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Wiki section of the website by clicking on the "Wiki" tab.</li>
+    <li>Click the first Wiki page in the Page List.</li>
+    <li>Click "Delete This Page."</li>
+    <li>Read the warning the system gives. Click "Delete Page."</li>
+    <li>Verify that the deleted page no longer appears on the Page List.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-504A">
+<h3>TC-504A: Commenting</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether users can add comments to Wiki pages.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+Have at least one Wiki page created.  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+   <li>Log out, if you are logged in.</li>
+    <li>Enter the Wiki section of the website by clicking on the "Wiki" tab.</li>
+    <li>Click the first Wiki page on the Page List.</li>
+    <li>In the text box at the bottom of the Wiki page, type a comment.</li>
+    <li>Click "Submit."</li>
+	
+    <li>Verify that the comment appears on the Wiki page, tagged with the correct time and date of the test, and "anonymous" as the author.</li>
+   	<li>Log in and repeat the test. Instead of "anonymous", the new comment should be attributed to your username.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-505A">
+<h3>TC-505A: Changing Wiki Settings via Web</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether Project Owners can change  the Wiki settings via the Web interface.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be logged in (see <a href="test-cases.html#TC-101A">TC-101A</a>) and be a Project Owner.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>STEP</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-505B">
+<h3>TC-505B: Changing Wiki Settings via Subversion</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   SENTENCES
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   SENTENCES
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>STEP</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-600A">
+<h3>TC-600A: Adding Issue via Web</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether new issues can be added via the Web interface.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be logged in (see <a href="test-cases.html#TC-101A">TC-101A</a>) and be a Project Member.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Issues section of the website by clicking on the "Issues" tab.</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-600B">
+<h3>TC-600B: Adding Issue via Subversion</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether new issues can be added via Subversion.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be a Project Member. Have a Subversion client.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>STEP</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-601A">
+<h3>TC-601A: Issue List Manipulation</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the Issue List  can be manipulated as intended.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Have at least 2 issues in the Issue List.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Issues section of the website by clicking on the "Issues" tab.</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-601B">
+<h3>TC-601B: Issue Search via Web</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the search engine works for Issues.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Have at least one issue in the Issue List.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Issues section of the website by clicking on the "Issues" tab.</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-601C">
+<h3>TC-601C: Grid View Manipulation</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the Grid View manipulation for Issues works as intended.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Have at least 2 issues in the Issue List. Verify that the issues do not share any fields in common.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Issues section of the website by clicking on the "Issues" tab.</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-602A">
+<h3>TC-602A: Star an Issue on the Issue List Page</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether issues can be Starred.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be logged in (see <a href="test-cases.html#TC-101A">TC-101A</a>) and be at least an Identified Visitor.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Issues section of the website by clicking on the "Issues" tab.</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-602B">
+<h3>TC-602B: Star an Issue on the Issue Information Page</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Detemrine whether issues can be Starred on the Issue Information Page.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be logged in (see <a href="test-cases.html#TC-101A">TC-101A</a>) and be at least an Identified Visitor.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Issues section of the website by clicking on the "Issues" tab.</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-603A">
+<h3>TC-603A: Issue Attribute Change via Web</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether issues' information can be changed via the Web interface.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be logged in (see <a href="test-cases.html#TC-101A">TC-101A</a>) and be a Project Member. Have at least one Issue created.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Issues section of the website by clicking on the "Issues" tab.</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-603B">
+<h3>TC-603B: Issue Attribute Change via Subversion</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether issues' information can be changed via Subversion.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be a Project Member. Have a Subversion client. Have at least 1 issue created.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>STEP</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-604A">
+<h3>TC-604A: Comment via Web</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether comments can be added to an issue via the Web interface.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Have at least one issue created.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Enter the Issues section of the website by clicking on the "Issues" tab.</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-604B">
+<h3>TC-604B: Comment via Subversion</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether  comments can be added via Subversion.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be a Project Member. Have a Subversion client. Have at least one issue created.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>STEP</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-605A">
+<h3>TC-605A: Change Settings via Web</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether issue settings can be changed by Project Owners via the Web interface.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be logged in (see <a href="test-cases.html#TC-101A">TC-101A</a>) and be a Project Owner.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>STEP</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-605B">
+<h3>TC-605B: Change Settings via Subversion</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether Project Owners can change Issue Settings via Subversion.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be a Project Owner. Have at least one Issue created. Have a Subversion client.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>STEP</li>
+    <li>STEP</li>
+    <li>STEP</li>
+
+    <li>verify ...</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-700A">
+<h3>TC-700A: Browse by File System Analogy</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the system allows users to browse the subversion repository via the Web in a manner analogous to file system browsing.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Create a project and upload any number of known files to the Subversion repository.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>From the project home page, click the "Source" tab.</li>
+    <li>Choose to browse the Subversion repository via the Web.</li>
+    <li>Verify that the file system displayed by the system is accurate compared to what has been uploaded to Subversion.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-700B">
+<h3>TC-700B: Browse by Search</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the search engine works for searching Subversion repositories via the Web interface.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Create a project and upload a file with a known name to the repository.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>From the project home page, click the "Source" tab.</li>
+    <li>Enter the file's name in the search box on the source page.</li>
+    <li>Submit the search query.</li>
+
+    <li>Verify that the file is displayed in the search results.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-700C">
+<h3>TC-700C: Anonymous Subversion Checkout</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the system gives accurate instructions and allows anonymous users to check out files via Subversion.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Have a Subversion client.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>From the project home page, click the "Source" tab.</li>
+    <li>View the instructions provided on the Subversion repository URL under the section, "Use this command to anonymously check out the latest project source code:"</li>
+    <li>Attempt to follow the instructions using a Subversion client.</li>
+
+    <li>Verify that the Subversion login is successful and the project's repository is downloadable.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-700D">
+<h3>TC-700D: Identified Subversion Checkout</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the system allows identified users to log in using a Subversion client.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be a member of a project and have a Subversion client.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Log in (see <a href="test-cases.html#TC-101A">TC-101A</a>).</li>
+    <li>From the project for which the user is a member, click the "Source" tab.</li>
+    <li>View the instructions the system provides under the heading, "If you plan to make changes, use this command to check out the code as yourself using HTTPS:".</li>
+	<li>Follow the link to the user's generated password and record the password externally.</li>
+	<li>Attempt to log into the Subversion repository using the given URL and username and password with a Subversion client.</li>
+    <li>Verify that the Subversion client shows that the user is logged in with the given username.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-1000">
+<h3>TC-1000: View Profile</h3><table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the system correctly displays user profiles.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Have a user with a known username that is only a member of one project.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Test Data:</th>
+  <td>
+   <div>Technical Data TBD</div> 
+   <div>Technical Data TBD</div> 
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Visit the user's project's home page.</li>
+    <li>Click on the user's home page.</li>
+    <li>View the user's profile page.</li>
+
+    <li>Verify that the user's profile page displays his or her username and only links to the aforementioned project in the "project membership" section.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div class="legal1">Company Proprietary</div>
+
+<div class="footnote">
+ Copyright &#169; 2003-2004 Jason Robbins.  All rights reserved. <a href="readyset-license.html">License terms</a>.
+ Retain this copyright statement whenever this file is used as a
+ template.
+</div>
+
+</div>
+</body>
+</html>

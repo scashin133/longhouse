@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//Tigris//DTD XHTML 1.0 Transitional//EN"
+"http://style.tigris.org/tigris_transitional.dtd">
+<html>
+<head>
+ <style type="text/css">
+/* <![CDATA[ */ 
+@import "css/readyset.css"; 
+@import "css/inst.css";
+/*  ]]> */
+ </style>
+
+<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+ <title>SRS</title>
+</head>
+
+<body>
+<div class="app">
+<div class="readyset">
+
+ <h2>Software Requirements Specification</h2>
+
+ <div id="releaseinfo">
+ <h3>Release Information</h3>
+ <table border="1" cellpadding="3" cellspacing="2" class="axial">
+  <tr>
+   <th>Project:</th> 
+   <td><a href="index.html">Longhouse</a></td> 
+  </tr>
+  <tr>
+   <th>Related Documents:</th>
+   <td><a href="plan.html">Project Plan</a>
+   <br><a href="design.html">Design Document</a>
+   <br><a href="test-suite.html">Test Plan</a>
+   <br><a href="glossary.html">Glossary</a>
+   </td>
+  </tr>
+ </table>
+
+ </div> <!-- /releaseinfo -->
+
+ <div id="introduction">
+ <h3>Introduction</h3>
+
+ <p>
+ 	This is the senior design project for the Informatics program at UCI. 
+ 	Our goal is to make an open source project hosting solution based off the 
+ 	Google Code Collaborative Development Environment (CDE). This system will 
+ 	be installed on a project's own servers instead of running on Google's servers. 
+ 	In the short term we will be porting the system from Google proprietary 
+ 	technologies to open source solutions. In the future we will introduce some 
+ 	new ideas based off feedback and observations from the open source community.
+ </p>
+
+ <p>
+ 	We hope that this project is not only a single successful open source project, 
+ 	but also produces a system that benefits the open source community as a whole. 
+ 	After June 2008 we will continue this project and promote it as a fully-fledged 
+ 	open source project by getting the word out and allowing other people to 
+ 	contribute their own design, coding, and testing skills.
+ </p>
+
+ </div> <!-- /introduction -->
+
+ <div id="introduction">
+ 
+ <h3>Project Scope</h3>
+ 
+<p>See the <a href="user-needs.html">Stakeholder Analysis</a>.
+ 
+ </div>
+
+
+ <div id="functional">
+ <h3>Functional Requirements</h3>
+
+ <!-- <p>ONE PARAGRAPH OVERVIEW</p> -->
+
+ <p>The <a href="feature-set.html">feature set</a> lists all
+   features in an organized way.</p>
+
+
+ </div> <!-- /functional -->
+
+ <div id="usecases">
+
+ <h3>Use Cases</h3>
+
+ <p>Use cases can be found in the <a href="use-case-suite.html">use case suite</a>.</p>
+ 
+ </div> <!-- /usecases -->
+
+
+<div id="phases">
+<h3>Project By Phases</h3>
+<p>The project schedule is broken down in the <a href="phases-by-features.html">list of project phases by feature set</a>.
+</div>
+
+ <div id="environmental">
+ <h3>Design Guidelines and Environmental Constraints</h3>
+
+ <p><b>Project development constraints</b></p>
+ <ul>
+  <li>This project with its associated documents and code will be hosted as a 
+      project on code.google.com.</li>
+  <li>The entirety of the code for this project will be open source under the 
+      Apache 2.0 license.</li>
+  <li>The project is based on the existing 
+  	<a href="http://code.google.com">Google Code</a> project. 
+  	See the <a href="design.html">design document</a>
+	for information about how this influences the design.
+	</li>
+ </ul>
+ 
+ <p><b>Environment</b></p>
+ <ul>
+  <li>This system will run on a mid-level server running a Unix environment.</li>
+  <li>Subversion is assumed to have already been installed on this server, 
+      but we make no further assumptions about the nature of the subversion 
+      installation or configuration.</li>
+ </ul> 
+ 
+ <p><b>Language</b></p>
+ <ul>
+  <li>The system will be written in Python 2.5.1</li>
+ </ul> 
+
+ </div> <!-- /environmental -->
+
+
+
+ <div id="nonfunctional">
+ <h3>Non-Functional Requirements</h3>
+
+ <p><b>Reliability</b></p>
+ <ul><li>
+   The system shall be reliable. System downtime could have a very detrimental 
+   effect on the projects hosted using this system and should be minimized. 
+   Under no circumstances will accidental data malformation or loss caused by 
+   the system be acceptable. However, data malformation or loss could still 
+   happen if the system's interface is bypassed, an issue brought up in the 
+   "robustness" requirement below. 
+  </li>
+  </ul>
+  
+  <p><b>Compatibility</b></p>
+  <ul><li>
+   All rendered pages shall render <i>acceptably well</i> on the major browsers 
+   being used on the Internet. This includes Firefox, Safari, Opera, Netscape, 
+   and Microsoft Internet Explorer 6 and 7. By <i>acceptably well</i> we acknowledge 
+   that pages will not render identically across all browsers, but what is 
+   rendered shall still be usable.
+  </li></ul>
+  
+  <p><b>Robustness</b></p>
+  <ul><li>
+   The system shall be robust. Since users will be allowed to make changes 
+   to their project(s) by bypassing the web interface (such as by using a third 
+   party subversion client) there is the potential for the project to contain 
+   malformed or missing data. The system will gracefully handle data integrity 
+   issues.
+  </li></ul>
+  
+  <p><b>Open Source</b></p>
+  <ul><li>
+   This project will act as a good example of open source methodologies and practices, 
+   as laid out in [1] and [2].
+  </li>
+  
+  <li>
+   After completion of the Informatics 191 course in June 2008, development of the 
+   system will continue indefinitely as a fully fledged open source project (still 
+   under the Apache 2.0 license). Contributers other than the four individuals 
+   taking the course will be welcome and encouraged to make contributions to the 
+   project. 
+  </li></ul>
+
+ </div> <!-- /nonfunctional -->
+
+
+
+
+
+ <div id="glossary">
+ <h3>Glossary</h3>
+ <p>A glossary of project specific terms can be found <a href="glossary.html">here</a>.</p>
+ </div> <!-- /glossary -->
+
+
+
+
+
+
+
+
+
+ <div id="references">
+ 
+ <h3>References</h3>
+ 
+ <ol>
+   <li>Fogel, Karl. <i>Producing Open Source Software</i>. 
+       Sebastopol, CA: O'Reilly Media, Inc., 2006.</li>
+   <li>Robbins, Jason E. "Adopting Open Source Software Engineering (OSSE)
+       Practices by Adopting OSSE Tools." &lt;<a href="http://methodlabs.com/jrobbins/papers/robbins-msotb.pdf">http://methodlabs.com/jrobbins/papers/robbins-msotb.pdf</a>&gt;.</li>
+ </ol>
+ 
+ </div> <!-- /references -->
+
+ 
+</div>
+
+
+
+
+<div class="legal1">Company Proprietary</div>
+
+<div class="footnote">
+ Copyright &#169; 2003-2004 Jason Robbins.  All rights reserved. <a href="readyset-license.html">License terms</a>.
+ Retain this copyright statement whenever this file is used as a
+ template.
+</div>
+
+</div>
+</body>
+</html>

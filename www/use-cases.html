@@ -1,0 +1,1675 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//Tigris//DTD XHTML 1.0 Transitional//EN"
+"http://style.tigris.org/tigris_transitional.dtd">
+<html>
+<head>
+ <style type="text/css">
+/* <![CDATA[ */ 
+@import "css/readyset.css"; 
+@import "css/inst.css";
+/*  ]]> */
+ </style>
+
+<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+ <title>Use Cases</title>
+</head>
+
+<body>
+<div class="app">
+<div class="readyset">
+
+
+<h2><a href="srs.html">SRS</a> &gt; <a href="use-case-suite.html">Use Case Suite</a> &gt; Use Cases</h2>
+
+ <div id="releaseinfo">
+ <h3>Release Information</h3>
+ <table border="1" cellpadding="3" cellspacing="2" class="axial">
+
+  <tr>
+   <th>Project:</th> 
+   <td><a href="index.html">Longhouse</a></td> 
+  </tr>
+  <tr>
+   <th>Related Documents:</th> 
+   <td>
+    <div><a href="feature-set.html">Feature set</a></div>
+    <div><a href="use-case-template.html">Use case template</a></div>
+    <div><a href="use-case-suite.html">Use case suite</a></div>
+   </td>
+  </tr>
+ </table>
+</div> <!-- /releaseinfo -->
+
+
+<div id="note">
+<h3>Note</h3>
+<p>In this project, user roles are hierarchical, as explained in the 
+<a href="glossary.html#user">glossary</a>. In these use cases, unless
+specifically noted otherwise, an action available to a user 
+of a specific type is also available to all other users above that
+user in the hierarchy.</p></div>
+
+<div id="defaults">
+<h3>Default Aspects of All Use Cases</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Direct Actors:</th>
+  <td>
+   <div>User: end-user in any role</div>
+   <div>System: The system being built</div>
+   <div>When actors are not listed, assume User is doing it.</div>
+   <div>Items beginning with &quot;see&quot; indicate that System has presented a new screen.</div>
+  </td>
+ </tr>
+ <tr>
+
+  <th>Stakeholders:</th>
+  <td>Project Owners and other members</td>
+ </tr>
+ <tr>
+ <th>Prereq:</th>
+  <td>User is logged in</td>
+ </tr>
+
+</table>
+</div> <!-- /defaults -->
+
+
+<div id="UC-101">
+<h3>UC-101: Log in to account</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+
+ <tr>
+  <th>Summary:</th>
+  <td><a href="glossary.html#anonymous-visitor">Anonymous visitor</a> with a Google account logs in using Google AuthSub.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Often</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td>Anonymous Visitor</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>Anonymous visitor is <i>not</i> logged in</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>Anonymous visitor clicks link to log in</li>
+    <li>Anonymous visitor is sent to Google site where they log in</li>
+    <li>Anonymous visitor is sent back to our system</li>
+   </ol>
+  </td>  
+ </tr>       
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>This user's credentials are now known to our system. They are now recognized as a 
+      <a href="glossary.html#system-administrator">System Administrator</a>,
+      <a href="glossary.html#project-owner">Project Owner</a>, 
+      <a href="glossary.html#project-member">Project Member</a>, or 
+      <a href="glossary.html#identified-visitor">Identified Visitor</a>.
+      </td>
+ </tr> 
+ 
+ <tr>
+  <th>Exceptions:</th>
+  <td>
+   <ul>
+    <li>Anonymous visitor does not have a Google account</li>
+    <li>Anonymous visitor does not enter corrent login information</li>
+    <li>Anonymous visitor does not grant our system access to their Google account</li>
+   </ul>
+  </td>  
+ </tr>      
+  
+ <tr>
+  <th>Failure postconditions:</th>
+  <td>Anonymous visitor remains not logged in</td>  
+ </tr> 
+
+</table>
+</div>
+
+<div id="UC-103">
+<h3>UC-103: Log out of account</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+
+ <tr>
+  <th>Summary:</th>
+  <td><a href="glossary.html#user">User</a> logs out of system.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Often</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>User is logged in</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>User clicks link to log out</li>
+    <li>User is brought to page notifying them that they have been successfully logged out</li>
+   </ol>
+  </td>  
+ </tr>     
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>User is now identified as an <a href="glossary.html#anonymous-visitor">anonymous visitor</a></td>  
+ </tr>  
+
+</table>
+</div>
+
+<div id="UC-200">
+<h3>UC-200: Create a Project</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>A logged-in user creates a new project.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Sometimes</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#identified-visitor">Identified visitor</a></td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>Identified visitor is logged in</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>User clicks to create a new project</li>
+    <li>User enters the name for the new project, a project summary, description of the project, choosing a license, and adding labels to the project.</li>
+    <li>User submits request to create project.</li>
+    <li>System creates project and takes creator to project home page.</li>
+ 
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   <ol>
+    <li>The project creator chooses a project name that is already used. 
+        When the project creation form is submited, the project creator
+        is brought back to the project creation form and asked to chose another project
+        name. Valid fields from the previous form are automatically filled in
+        for the new form.
+    </li>
+    <li>The project creator does not enter one or more fields of information. 
+    When the project creation form is submited, the project creator is brought
+    back to the project creation form and asked to enter information for those fields
+    that were missing. Valid fields from the previous form are automatically filled in
+    for the new form.
+    </li>
+   </ol>
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>The project is successfully created and allocated disk space, the project creator is 
+  registered as the initial <a href="glossary.html#project-owner">project owner</a>, 
+  and is taken to the project's home page.</td>  
+ </tr> 
+ 
+ <tr>
+  <th>Exceptions:</th>
+  <td>
+   <ul>
+    <li>The project creator has already created 10 projects. Project creation is denied.</li>
+    <li>The disk space of the server is full. Project creation is denied.</li>
+   </ul>
+   </td>
+ </tr>      
+  
+ <tr>
+  <th>Failure postconditions:</th>
+  <td>The project creator's request to create the project is denied when he or she attempts to submit the project's information for creation.</td>  
+ </tr>   
+  
+</table>
+</div>
+
+<div id="UC-201">
+<h3>UC-201: Search for a Project</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Summary:</th>
+  <td>A user uses the system search engine to find a project.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Often</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#user">User</a>: a user in any role</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>None</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+	<li>User enters the name or keyword of a project to find.</li>
+    <li>The system displays the projects that match the name or keyword the user has entered</li>
+    <li>The user can click any of the search results to visit that project's home page.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   <ol>
+    <li>The system presents the user with a list of labels. Clicking a label allows the user to see the projects that are associated with that label, and clicking a project's name will take the user to that project's home page.</li>
+   </ol>
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>
+  	<ul>
+  	 <li>The user finds the particular project they were searching for.</li>
+    </ul>
+  </td>  
+ </tr> 
+ 
+ <tr>
+  <th>Exceptions:</th>
+  <td>
+   <ul>
+    <li>The user's search doesn't return any results.</li>
+    <li>The user's search doesn't return the result(s) they were expecting.</li>
+   </ul>
+   </td>
+ </tr>      
+  
+ <tr>
+  <th>Failure postconditions:</th>
+  <td>The user does not find the project they were searching for.</td>  
+ </tr>   
+  
+</table>
+</div>
+
+<div id="UC-202">
+<h3>UC-202: Join a Project</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>An <a href="glossary.html#identified-visitor">identified visitor</a> chooses to join a project.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Sometimes</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td>Identified visitor</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>Identified visitor has found the project home page.</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>Identified visitor clicks to join the project currently being viewed.</li>
+    <li>The system presents instructions to the user to participate in the project's mailing list and request being added to the project via the mailing list.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>Identified visitor is aware of the procedure for joining a project.</td>  
+ </tr> 
+ 
+  
+</table>
+</div>
+
+<div id="UC-300">
+<h3>UC-300: Change project information</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Summary:</th>
+  <td>A <a href="glossary.html#project-owner">Project Owner</a> changes the information for a project he or she owns.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Sometimes</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td>Project Owner</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>Project Owner is logged in and on the project's home page.</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>User enters the project administration section of the website.</li>
+    <li>User edits the summary of the project, description of the project, license the project uses, 
+    labels attached to the project, URLs for blogs and miscellaneous websites, discussion group email addresses,
+    email addresses to notify when activity occurs in the project, and the means of tracking
+    project statistics.</li>
+    <li>User submits the request to save the changes.</li>
+   </ol>
+  </td>  
+ </tr>   
+  
+  <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   <ol>Case A:
+    <li>User logs into the Subversion repository using his or her username and generated password.</li>
+    <li>User downloads the settings file for the project and edits the file.</li>
+    <li>User reuploads the changed file to the repository.</li>
+     </ol>
+  </td>
+ </tr> 
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>Settings are successfully saved and used by the project.</td>  
+ </tr> 
+ </table>
+</div>
+ 
+<div id="UC-301">
+<h3>UC-301: Add new members to project</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Summary:</th>
+  <td>todo</td>
+ </tr>
+</table>
+</div>
+
+<div id="UC-302">
+<h3>UC-302: Promote members of project</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Summary:</th>
+  <td>todo</td>
+ </tr>
+</table>
+</div>
+
+<div id="UC-303">
+<h3>UC-303: Delete project</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Summary:</th>
+  <td>todo</td>
+ </tr>
+</table>
+</div>
+
+<div id="UC-400">
+<h3>UC-400: Search for a file</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>An <a href="glossary.html#user">User</a> searches for a file to view.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Often</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#user">User</a></td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>None</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>User enters the files portion of the project home page.</li>
+    <li>User is presented with a list of files with details in columns.</li>
+    <li>User optionally clicks the column names to sort the list by that column.</li>
+    <li>User clicks the summary of the file to view information for that file.</li>
+    <li>The system shows the user a download link, who uploaded the file, when it was
+    uploaded, a checksum, any labels attached to it, and how many times it was downloaded.
+    From this page the user can perform <a href="use-cases.html#UC-401">UC-401</a>.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   <ol>Case A:
+    <li>User enters the files portion of the project home page.</li>
+    <li>User types a search term into the search box.</li>
+    <li>User is presented with a list of files on that project that match the query.</li>
+    <li>User can click the summary of one of the files in the list to view that file, enter a new 
+    search, or go back to the complete list of files to search another way.</li>
+   </ol>
+   <ol>Case B:
+    <li>Instead of clicking on the summary on the file list page, the user clicks the file name, 
+    which performs <a href="use-cases.html#UC-401">UC-401</a>.</li>
+   </ol>
+   <ol>Case C:
+    <li>User uses a Subversion client to find a file (see <a href="use-cases.html#UC-700">UC-700</a>).
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>User has found a file to view and can execute <a href="use-cases.html#UC-401">UC-401</a>.</td>  
+ </tr> 
+  
+</table>
+</div>
+
+<div id="UC-401">
+<h3>UC-401: Download a file</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>A user can download a specific file.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Often</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#user">User</a></td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>A user has performed <a href="use-cases.html#UC-400">UC-400</a></td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>User clicks the download link to download the file</li>
+    <li>The system serves the file to the user.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   <ol>Case A:
+    <li>The user uses a Subversion client to download the file (see <a href="use-cases.html#UC-700">UC-700</a>).</li>
+   </ol>
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>User successfully receives the file.</td>  
+ </tr> 
+   
+</table>
+</div>
+
+<div id="UC-402">
+<h3>UC-402: Upload a file</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>A user uploads a new file that other users can download.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Sometimes</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#project-member#">Project Member</a></td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>None</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>Project Member selects to upload a new file.</li>
+    <li>Project Member supplies the file, enters a one-line summary of the file, and adds labels to the file.</li>
+    <li>Project Member submits the file and it is successfully uploaded, and appears on the file list page.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   <ol>Case A:
+    <li>The file the Project Member submits is larger than 20 MB. The system requests the user to choose a different file.</li>
+    <li>The Project Member chooses a different file to upload and uploads successfully.</li>
+   </ol>
+   <ol>Case B:
+    <li>The Project Member logs into the repository using a Subversion client and uploads the file in that client.</li>
+   </ol>
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>The file is succesfully uploaded and visible in the repository and on the file list page.</td>  
+ </tr> 
+ 
+ <tr>
+  <th>Exceptions:</th>
+  <td>
+   <ul>
+    <li>The user needs to upload a file larger than 20MB. The action is not allowed by the system and the file cannot be hosted.</li>
+   </ul>
+   </td>
+ </tr>      
+  
+ <tr>
+  <th>Failure postconditions:</th>
+  <td>The user's desired file is not uploaded.</td>  
+ </tr>   
+  
+</table>
+</div>
+
+<div id="UC-403">
+<h3>UC-403: Change information related to a download</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>A <a href="glossary.html#project-member">Project Member</a> changes the information related to a download.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Rarely</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td>Project Member</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>Project Member has performed <a href="use-cases.html#UC-400">UC-400</a> and is viewing the download's information page.</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>Project Member supplies a new summary and a new set of labels.</li>
+    <li>Project Member submits changes.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   <ol>
+    <li>Project Member logs onto the repository using a Subversion client and downloads the file's metadata.</li>
+    <li>Project Member edits the metadata file for that download and changes the summary and labels.</li>
+    <li>Project Member re-uploads the metadata file.
+   </ol>
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>The file's information is successfully changed.</td>  
+ </tr> 
+
+  
+</table>
+</div>
+
+<div id="UC-404">
+<h3>UC-404: Change download settings</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>A project owner changes the settings of the downloads section of the project home page.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Rarely</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#project-owner">Project Owner</a></td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>None</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>Project Owner enters the administration section of the project home page.</li>
+    <li>Project Owner chooses to edit downloads settings.</li>
+    <li>Project Owner can delete or edit the existing labels or add new labels, change the 
+    prefixes that a download can have only one of, and change the order that file details
+     are shown in on the file list page.</li>
+    <li>Project Owner submits changes.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   <ol>
+    <li>Project Owner logs into Subversion, downloads the config file for the downloads section, makes changes, and uploads the new version of the config file via Subversion.</li>
+   </ol>
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>The new settings are applied to the downloads section.</td>  
+ </tr> 
+   
+</table>
+</div>
+
+<div id="UC-500">
+<h3>UC-500: Create a new wiki page</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+
+ <tr>
+  <th>Summary:</th>
+  <td><a href="glossary.html#project-member">Project member</a> creates a new wiki page.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Sometimes</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td>Project member</td>
+ </tr>
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>User goes to the wiki page list</li>
+    <li>User clicks the new page link</li>
+    <li>User is brought to wiki edit page</li>
+    <li>User enters a new page name, content, and optional labels
+    	(see <a href="#UC-502">UC-502</a>)</li>
+    <li>User clicks save page button</li>
+   </ol>
+  </td>  
+ </tr>  
+ 
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td>
+   <p>Precondition: An existing wiki page contains a link to another wiki page that does not exist</p>
+   <ol>Case A:
+    <li>User clicks the link to the nonexistant wiki page</li>
+    <li>User is brought to wiki edit page, with the page name already populated</li>
+    <li>User completes and saves the page the same as in the main success scenario</li>
+   </ol>
+   <ol>Case B:
+   	<li>User creates the file for a new Wiki page and uploads it via Subversion.</li>
+   	</ol>
+  </td>
+ </tr>       
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>The new wiki page is created, and can now be seen in the wiki page list.</td>
+ </tr> 
+ 
+ <tr>
+  <th>Exceptions:</th>
+  <td>
+   <ul>
+    <li>User creates a new page with the same name as an existing page (can only happen in the main success scenario)</li>
+   </ul>
+  </td>  
+ </tr>      
+  
+ <tr>
+  <th>Failure postconditions:</th>
+  <td>New wiki page is not created. User is brought to a page notifying them of why their page was not created.</td>  
+ </tr> 
+
+</table>
+</div>
+
+<div id="UC-501">
+<h3>UC-501: Search for a wiki page</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td><a href="glossary.html#user">User</a> searches for a wiki page, either by browsing the list of pages
+  or using the search box.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Often</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>User is at the wiki page list</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>User looks through the wiki page list and sees the page she is looking for</li>
+    <li>User clicks the link to that wiki page</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   <ol>
+    <li>User enters a search string into the search box</li>
+    <li>User clicks the search button</li>
+    <li>User is presented with a list of wiki pages that match that search criteria. 
+    	One of these is the desired page.</li>
+    <li>User clicks the link to that wiki page</li>
+    
+   </ol>
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>User is brought to the desired wiki page</td>  
+ </tr> 
+ 
+ <tr>
+  <th>Exceptions:</th>
+  <td>
+   <ul>
+    <li>User does not locate the page they were looking for</li>
+   </ul>
+   </td>
+ </tr>      
+  
+ <tr>
+  <th>Failure postconditions:</th>
+  <td>User is sad</td>  
+ </tr>   
+  
+</table>
+</div>
+
+<div id="UC-502">
+<h3>UC-502: Edit a wiki page</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td><a href="glossary.html#project-member">Project member</a> edits a wiki page.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Often</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td>Project member</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>User has found and is viewing the wiki page they wish to edit
+  	(see <a href="#UC-501">UC-501</a>)</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>User clicks the link to edit the page</li>
+    <li>User is brought to the "edit wiki page" page</li>
+    <li>User modifies content and/or labels</li>
+    <li>User specifies a commit comment (a default one is provided)</li>
+    <li>User clicks button the save the page</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   <ol>
+    <li>User uses a subversion client to check out a copy of the page from the repository</li>
+    <li>User edits the contents of this file</li>
+    <li>User commits the changes back to the repository</li>
+   </ol>
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>The wiki page has been changed</td>  
+ </tr> 
+ 
+ <tr>
+  <th>Exceptions:</th>
+  <td>
+   <ul>
+    <li>While user is editing the page, another user edits and saves the same page.</li>
+   </ul>
+   </td>
+ </tr>      
+  
+ <tr>
+  <th>Failure postconditions:</th>
+  <td>User is brought to a page notifying them a collision has occured.</td>  
+ </tr>   
+  
+</table>
+</div>
+
+<div id="UC-503">
+<h3>UC-503: Delete a wiki page</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>A <a href="glossary.html#project-member">project member</a> deletes a wiki page.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Rarely</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td>Project member</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>User has found and is viewing the wiki page they wish to delete
+  	(see <a href="#UC-501">UC-501</a>)</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>User clicks the link to delete the page</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <!-- <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   <ol>
+    <li>User uses a subversion client to delete the file from the repository</li>
+   </ol>
+  </td>
+ </tr>    -->
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>
+  	<ul>
+  	  <li>The user is brought to a page notifying them the page was deleted.</li>
+  	  <li>The page no longer shows up in the web interface but is still
+  		  in the repository.</li>
+      <!-- <li>If it was deleted using a subversion client, the page is no longer visible through the web and
+  is gone from the repository.</li> -->
+  	</ul>
+  </td>  
+ </tr>       
+  
+</table>
+</div>
+
+<div id="UC-504">
+<h3>UC-504: Comment on a wiki page</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>A <a href="glossary.html#project-member">project member</a> adds a comment about a wiki page.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Often</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td>Project member</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>User has found and is viewing the wiki page they wish to comment on
+  	(see <a href="#UC-501">UC-501</a>)</td> 
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>User enters their comment text in the comment box</li>
+    <li>User clicks the button to submit their comment</li>
+   </ol>
+  </td>  
+ </tr>    
+   <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   <ol>
+    <li>User enters the Subversion repository, edits the Wiki page's comments and reuploads the new version of the file via Subversion.</li>
+   </ol>
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>A new comment can be seen when viewing that wiki page</td>  
+ </tr> 
+  
+</table>
+</div>
+
+<div id="UC-505">
+<h3>UC-505: Change wiki settings</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>A <a href="glossary.html#project-owner">project owner</a> changes the wiki settings for a given project.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Rarely</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td>Project owner</td>
+ </tr>
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>User goes to the project administration section</li>
+    <li>User goes to the wiki administration area</li>
+    <li>User makes changes to one or more of the settings displayed</li>
+    <li>User clicks a button to apply the changes</li>
+   </ol>
+  </td>  
+ </tr>     
+   <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   <ol>
+    <li>User enters the Subversion repository, edits the config file for the Wiki section of the site, and uploads the new version of the config file via Subversion.</li>
+   </ol>
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>The project's wiki reflects the new settings</td>  
+ </tr>      
+  
+</table>
+</div>
+
+<div id="UC-600">
+<h3>UC-600: Add a new issue</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>A Project Member adds a new issue to the list of issues.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Sometimes</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#project-member">Project Member</a></td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>None</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>Project Member enters the issue section of the website.</li>
+    <li>Project Member chooses to add a new issue.</li>
+    <li>Project Member supplies a summary, describes the issue, and sets the status of the issue
+    	and the labels attached to the issue. Project Member can optionally specify a different
+    	owner than him or herself for the issue, and optionally attach a file.</li>
+	<li>Project Member submits issue request.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+	<ol>
+	<li>Project Member creates a new issue file and adds it to the repository using a Subversion client.</li>
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>Issue is successfully added to the list of issues.</td>  
+ </tr> 
+  
+</table>
+</div>
+
+<div id="UC-601">
+<h3>UC-601: Search for an issue</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>A user searches for an issue and is able to view its details.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Often</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#anonymous-visitor">Anonymous Visitor</a></td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>At least one issue is created for the project</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>User enters the issue section of the project web site.</li>
+    <li>User is presented with a list of current issues. He or she may
+    resort the list according to a column or his or her choosing, or enter a search
+    query that returns a list of issues that match the query.</li>
+    <li>User can click on the issue's summary to view that issue's page,
+    which lists the description, status, owner and labels of the issue, and the comments
+    that users have made on the issue.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   <ol>Case A:
+    <li>Rather than finding a specific issue, the Anonymous Visitor wants to see a visualization
+    of the issues. From the issue list page, the user selects the Grid view.</li>
+    <li>The user is able to choose an attribute of the issues to use as the row delineation
+    for the Grid view, and another attribute for the column delineation, as well as what
+    each cell in the Grid will show.</li>
+    <li>The user submits the request to order the issues in the Grid.</li>
+    <li>The user can then click on an issue's cell to view its description page.</li>
+   </ol>
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>The user has successfully found the issue he or she was looking for.</td>  
+ </tr> 
+ 
+ <tr>
+  <th>Exceptions:</th>
+  <td>
+   <ul>
+    <li>The issue the user has been looking for does not exist.</li>
+   </ul>
+   </td>
+ </tr>      
+  
+ <tr>
+  <th>Failure postconditions:</th>
+  <td>The user does not find the issue he or she was looking for.</td>  
+ </tr>   
+  
+</table>
+</div>
+
+<div id="UC-602">
+<h3>UC-602: "Star" an issue</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>A user chooses an issue to 'star', meaning that when that issue
+  is changed, the user will receive an email reporting the change.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Rarely</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#identified-visitor">Identified Visitor</a> or higher</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>There is at least one issue in the list of issues.</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>The user enters the issue section of the project website.</li>
+    <li>While viewing the list of issues, the user clicks the star next
+    to the issue's row, and the star illuminates.</li>
+    <li>The user will now receive an email if that issue is modified.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   <ol>Case A:
+    <li>Rather than clicking an issue's star on the list of issues, the 
+    user clicks the star on an individual issue's description page. The star 
+    illuminates.</li>
+    <li>The user will now receive an email if that issue is modified.</li>
+   </ol>
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>The user has successfully marked the issues he or she wishes to be
+  notified about when they change, and the system successfully sends an
+  email when those issues are changed.</td>  
+ </tr> 
+ 
+ <tr>
+  <th>Exceptions:</th>
+  <td>
+   <ul>
+    <li>There are no issues to "star."</li>
+    <li>There is a technical issue receiving the emails sent by the system.</li>
+   </ul>
+   </td>
+ </tr>      
+  
+ <tr>
+  <th>Failure postconditions:</th>
+  <td>The user does not receive emails when desired issues update.</td>  
+ </tr>   
+  
+</table>
+</div>
+
+<div id="UC-603">
+<h3>UC-603: Change an issue</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>A user changes attributes of an issue.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Sometimes</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#project-member">Project Member</a> or higher</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>There is at least 1 issue in the issue list</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>The user enters the issue section of the web site.</li>
+    <li>The user finds the issue to modify (see <a href="use-cases.html#UC-601">UC-601</a>).</li>
+    <li>The user enters the issue's information page.</li>
+    <li>The user can change the summary of the issue, change the status
+    of the issue, specify a new owner, and change the labels attached to the 
+    issue and attach additional labels.</li>
+    <li>The user submits the request to change the information.</li>
+    <li>The user is brought back to the issue's information page, which shows the changes he or she made.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+  	User enters the Subversion repository, downloads the issue file, modifies it, and uploads the new version using a Subversion client.
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>The information related to the issue is succesfully changed and displayed.</td>  
+ </tr> 
+  
+</table>
+</div>
+
+<div id="UC-604">
+<h3>UC-604: Comment on an issue</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>A user submits a comment on an issue.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Sometimes</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#anonymous-visitor">Anonymous Visitor</a> or higher</td> 
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>None</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>The user enters the issues section of the project web site.</li>
+    <li>The user finds the issue to comment on (see <a href="use-cases.html#UC-601">UC-601</a>).</li>
+    <li>The user views the issue's information page and chooses to add a comment.</li>
+    <li>The user enters a comment and submits the comment.</li>
+    <li>The user is taken back to the issue's information page and his or her comment is displayed.
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td>User enters the Subversion repository, downloads the issue's file, edits it to add a comment, and uploads the new version using a Subversion client.
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td><ol>
+ 	 	<li>The user's comment is displayed successfully.</li>
+ 	 	<li>If the user was an Anonymous Visitor at the time of submission, the
+ 	 	comment is shown as attributed to "Anonymous."</li>
+ 	 	<li>If the user was a <a href="glossary.html#identified-visitor">Identified Visitor</a> or higher
+ 	 	user level, the comment is attributed to their username.</li>
+ 	  </ol>  
+ </td>  
+ </tr> 
+   
+</table>
+</div>
+
+
+<div id="UC-605">
+<h3>UC-605: Change issue tracking settings</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>A project administrator changes the settings of the project web site's
+  issue section.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Rarely</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#project-administrator">Project Administrator</a> or higher</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>None</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>The user enters the web site's administration section.</li>
+    <li>The user chooses to change Issues settings.</li>
+    <li>The user can add to, edit, or delete from the list of status values
+    and labels available to users who start new issues or edit issues.</li>
+    <li>The user can also change the instructions shown to users when they
+    create new issues and change the list of label prefixes that users may 
+    only choose one of when tagging an issue with labels.</li>
+    <li>The user can also change the sorting of the issue list page,
+    and the default axes of the Grid view.</li>
+    <li>The user submits the changes to be saved.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   The user enters the repository, downloads the config file for the issue section of the website, edits the file to make changes, and uploads the new version using a Subversion client.
+  </td>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>The changes are successfully saved.</td>  
+ </tr> 
+ </table>
+</div>
+
+
+<div id="UC-700">
+<h3>UC-700: Browse subversion repository</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>Users can browse the Subversion repository for a project through the web interface or a Subversion client.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Often</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#anonymous-visitor">Anonymous Visitor</a> or <a href="glossary.html#project-member">Project Member</a>.</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>None</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>The Anonymous Visitor is clicks a link to browse the Subversion repository via the web.</li>
+    <li>The Anonymous Visitor is shown the directory layout for the Subversion repository.</li>
+    <li>The Anonymous Visitor browses the repository by clicking folders in the web view.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Alternative success scenario:</th>
+  <td> 
+   <ol>Case A:
+    <li>The Anonymous Visitor types in a search term into a search box in the web interface.</li>
+    <li>The system searches the project's repository and returns the results that match the user's query.</li>
+   </ol>
+   <ol>Case B:
+    <li>The Anonymous Visitor sees the instructions given on the web interface to anonymously check out the repository using a Subversion client.</li>
+    <li>The Anonymous Visitor follows the instructions using a separate client to successfully download the repository.</li>
+  </ol>
+   <ol>Case C:
+    <li>The Project Member sees the instructions given on the web interface to log in and browse the repository as a registered user using a Subversion client.</li>
+    <li>The Project Member follows the instructions using a separate client to successfully browse the repository.</li>
+   </ol>
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>The Anonymous Visitor or Project Member have the ability to browse the repository and download files from it one or more ways.</td>  
+ </tr> 
+ 
+ <tr>
+  <th>Exceptions:</th>
+  <td>
+   <ul>
+    <li>The Project Member has been banned from the service. The Subversion client rejects him/her when he/she attempts to log in via a separate Subversion client.</li>
+    <li>The project is invisible to non-members. The Anonymous Visitor is required to log-in before he or she can browse and download the repository.</li>
+   </ul>
+   </td>
+ </tr>      
+  
+ <tr>
+  <th>Failure postconditions:</th>
+  <td>The user cannot access the Subversion repository in his or her current user state.</td>  
+ </tr>   
+  
+</table>
+</div>
+
+
+<div id="UC-800">
+<h3>UC-800: Promote user to system administrator</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Summary:</th>
+  <td>todo</td>
+ </tr>
+</table>
+</div>
+
+<div id="UC-801">
+<h3>UC-801: Ban a user</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Summary:</th>
+  <td>todo</td>
+ </tr>
+</table>
+</div>
+
+<div id="UC-802">
+<h3>UC-802: Allocate a project's disk space</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Summary:</th>
+  <td>todo</td>
+ </tr>
+</table>
+</div>
+
+<div id="UC-803">
+<h3>UC-803: Check site-wide metrics</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Summary:</th>
+  <td>todo</td>
+ </tr>
+</table>
+</div>
+
+<div id="UC-1000">
+<h3>UC-1000: View a user's profile</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ 
+ <tr>
+  <th>Summary:</th>
+  <td>A user views another user's profile.</td>
+ </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Often</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#user">User</a></td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>The User is viewing a page with another user's username.</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+    <li>User clicks on the other user's username.</li>
+    <li>User is shown a page listing the other user's username, the projects for which
+    	the other user is a <a href="glossary.html#project-member">Project Member</a>, and the
+    	projects for which the other user is a <a href="glossary.html#project-owner">Project Owner</a>.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>The lists of projects for which the user being viewed is an owner and a member are shown.</td>  
+ </tr> 
+ 
+  
+</table>
+</div>
+
+
+
+
+
+
+</div>
+
+
+<div class="legal1">Company Proprietary</div>
+
+<div class="footnote">
+ Copyright &#169; 2003-2004 Jason Robbins.  All rights reserved. <a href="readyset-license.html">License terms</a>.
+ Retain this copyright statement whenever this file is used as a
+ template.
+</div>
+
+</div>
+</body>
+</html>

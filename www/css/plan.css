@@ -1,0 +1,11 @@
+tr.single td {
+	background:#EEEEEE none repeat scroll 0% !important;
+}
+
+tr.double td {
+	background:#DDDDDD none repeat scroll 0% !important;
+}
+
+.readyset th {
+	background-color:#AAAAAA;
+}

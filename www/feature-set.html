@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//Tigris//DTD XHTML 1.0 Transitional//EN"
+"http://style.tigris.org/tigris_transitional.dtd">
+<html>
+<head>
+ <style type="text/css">
+/* <![CDATA[ */ 
+@import "css/readyset.css"; 
+@import "css/inst.css";
+/*  ]]> */
+ </style>
+
+<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+ <title>Feature Set</title>
+</head>
+
+<body>
+<div class="app">
+<div class="readyset">
+
+ <h2>Feature Set</h2>
+
+ <div id="releaseinfo">
+ <h3>Release Information</h3>
+ <table border="1" cellpadding="3" cellspacing="2" class="axial">
+  <tr>
+   <th>Project:</th> 
+   <td><a href="index.html">Longhouse</a></td> 
+  </tr>
+<tr>
+   <th>Related Documents:</th> 
+   <td>
+    <a href="reqdoc.html">Software Requirements Specification</a>
+    <br><a href="glossary.html">Project Glossary</a>
+   </td>
+  </tr>
+ </table>
+
+ </div> <!-- /releaseinfo -->
+
+<div id="note">
+   <h3>Note</h3>
+   <p>The following feature set describes the features of the current Google Code system as hosted on http://code.google.com. As such, this feature set is the metric by which the port of the current system will be evaluated.
+   <p>Features in this feature set are designated according to whether they require only integration of prefabricated components (<span class="integration"><b>N</b></span>), implementation of new components (<span class="implementation"><b>M</b></span>),
+    and a hybrid requirement of implementing alongside the integration of components (<span class="hybrid"><b>H</b></span>).
+</div><!-- /note -->
+
+ <div id="account-management">
+	<h3>Account Management</h3>
+		<ol style="list-style-type:decimal;">
+			<li><a id="FS-101"><b>FS-101</b> [<span class="integration"><b>N</b></span>]: All users should be able to log into a previously created account.</a></li>
+				<ul>
+					<li>Account creation and account maintenance is accomplished through a separate Google system and thus is not documented here.</li>
+				</ul>
+			<li><a id="FS-102"><b>FS-102</b> [<span class="implementation"><b>M</b></span>]
+			: All users should be able to log out of their account.</a></li>
+				<ul>
+					<li>Logging out of an account should not require a user name or password.</li>
+					<li>Logging out of an account should take a user back to the page he or she was viewing prior to logging out, but with the subtraction of any options requiring project member or owner privileges, e.g., changing project administrative information.</li>
+				</ul>
+		</ol>
+	</div>
+	 <div id="user-project-relationship">
+	<h3>User/Project Relationship</h3>
+	
+		<ol style="list-style-type:decimal;">
+			<li><a id="FS-200"><b>FS-200</b> [<span class="implementation"><b>M</b></span>]: All users should be able to create a project.</a></li>
+				<ul>
+					<li>Project creators should supply the project name, a summary of the project, and a short description.</li>
+					<li>Project creators should supply labels, which are single words that describe the languages used or areas explored; any information that helps with classification.</li>
+					<li>Project creators must choose from one of several licenses:</li>
+						<ul>
+							<li>Apache License v2.0</li>
+							<li>Artistic License/GPLv2</li>
+							<li>GNU General Public License v2</li>
+							<li>GNU General Public License v3</li>
+							<li>GNU Lesser General Public License</li>
+							<li>MIT License</li>
+							<li>Mozilla Public License 1.1</li>
+							<li>New BSD License</li>
+						</ul>
+					<li>Project creators can create a maximum of 10 projects.</li>
+				</ul>
+			<li><a id="FS-201"><b>FS-201</b> [<span class="hybrid"><b>H</b></span>]: All users should be able to search for a project.</a></li>
+				<ul>
+					<li>Users should be able to use a search box to search through project names, summaries, descriptions, etc.</li>
+					<li>Users should also be able to browse by project labels.</li>
+				</ul>
+			<li><a id="FS-202"><b>FS-202</b> [<span class="implementation"><b>M</b></span>]: All users should be able to join one or more projects.</a></li>
+		</ol>
+		</div>
+	<!-- <div id="project-home-page">
+	<h3>Project Home Page</h3>
+		<ol style="list-style-type:decimal;">
+			<li><a id="FS-301"><b>FS-301</b> [<span class="implementation"><b>M</b></font>]: Projects should have their own home page.</a></li>
+				<ul>
+					<li>The project home page should show the project description and list the license that the project uses, the labels applied to it, the featured Wiki pages, its discussion groups, and the project owners, as well as any links to sites or blogs the administrators have specified.</li>
+				</ul>
+			<li><a id="FS-302"><b>FS-302</b> [<span class="implementation"><b>M</b></font>]: The project's home page should have a tabbed menu to access the Downloads, Wiki, Issues, Source, and Administer sections of the project site (Administer only if the user is a project owner).</a></li>
+		</ol>
+		</div> -->
+	 <div id="project-administration">
+	<h3>Project Administration</h3>
+		<ol style="list-style-type:decimal;">
+			<li><a id="FS-300"><b>FS-300</b> [<span class="implementation"><b>M</b></span>]: Project administrators should be able to change the information related to a project.</a></li>
+				<ul>
+					<li>The project summary, description, license and labels should be changeable.</li>
+					<li>It should be possible to add links to relevant websites to the front page of the project home page.</li>
+					<li>It should be possible to register Google Groups related to the project and have their mailing addresses appear on the front page of the project home page.</li>
+					<li>It should be possible to add a link to blogs related to the project to the front page of the project home page.</li>
+					<li>It should be possible to send email notifications of project activity to email addresses, project activity being issue changes and subversion commits. </li>
+					<li>It should be possible to register the project with Google Analytics.</li>
+				</ul>
+			<li><a id="FS-301"><b>FS-301</b> [<span class="implementation"><b>M</b></span>]: Project administrators should be able to change project membership.</a></li>
+				<ul>
+					<li>New members are added by supplying email addresses to either the "project members" or "project owners" fields of email addresses.</li>
+					<li>Existing members are removed by removing their email address.</li>
+				</ul>
+			<li><a id="FS-302"><b>FS-302</b> [<span class="implementation"><b>M</b></span>]: Project administrators should be able to change user roles.</a></li>
+				<ul>
+					<li>Project members should be able to become project owners by moving their email address to the "project owners" email addresses section.</li>
+					<li>Project owners should be able to be demoted to project members by moving their email address to the "project members" email addresses section.</li>
+				</ul>
+			<li><a id="FS-303"><b>FS-303</b> [<span class="implementation"><b>M</b></span>]: Project administrators should be able to delete the project.</a></li>
+		</ol>
+		</div>
+	 <div id="downloads">
+	<h3>Downloads</h3>
+		<ol style="list-style-type:decimal;">
+			<li><a id="FS-400"><b>FS-400</b> [<span class="hybrid"><b>H</b></span>]: All users should be able to search for a file.</a></li>
+				<ul>
+					<li>Upon clicking on the "download" tab, users should be presented with a list of files with their filename, summary, date uploaded, size and download count.</li>
+					<li>Users should be able to resort this list according to any column to find a file.</li>
+					<li>Users should also be presented with a search box to search the list of files.</li>
+					<li>Users should also be able to search for files by Subversion command-line options or a Subversion client.</li>
+				</ul>
+			<li><a id="FS-401"><b>FS-401</b> [<span class="implementation"><b>M</b></span>]: All users should be able to download a file.</a></li>
+				<ul>
+					<li>Files should be downloadable from the file list page.</li>
+					<li>Users should be able to click the file's summary on the file list page, which should take them to a page where the file's information is listed, a download link is presented, and a SHA1 checksum for the file is generated and displayed.</li>
+					<li>Users should also be able to download files by using Subversion command-line options or a Subversion client.</li>
+				</ul>
+			<li><a id="FS-402"><b>FS-402</b> [<span class="implementation"><b>M</b></span>]: Project members should be able to upload a file.</a></li>
+				<ul>
+					<li>Uploaders should supply the file from their hard drive, a summary of the file, and labels to classify the download. See the section on changing the download settings for a list of default labels.</li>
+					<li>Files may also be committed using Subversion command-line options or a Subversion client. </li>
+				</ul>
+			<li><a id="FS-403"><b>FS-403</b> [<span class="implementation"><b>M</b></span>]: Project members should be able to change information related to a file.</a></li>
+				<ul>
+					<li>The Summary and Labels should be changeable.</li>
+				</ul>
+			<li><a id="FS-404"><b>FS-404</b> [<span class="implementation"><b>M</b></span>]: Project administrators should be able to change settings related to downloads.</a></li>
+				<ul>
+					<li>Settings include a list of predefined labels, columns and their order displayed on the file list page, and the default sorting order for the file list page.</li>
+					<li>Labels have a name and a comment; the comment of the label is displayed when the user selects label(s) to tag a new download.</li>
+					<li>Labels for downloads optionally have prefixes. The administrators should be able to specify prefixes that a given download may have at most one of, e.g., a given download might be required to have only one Type label and only one OpSys label.</li>
+					<li>Administrators should be able to add, change and delete labels.</li>
+					<li>The following labels are default for downloads:</li>
+					<ul>
+						<li>Featured (listed on project home page)</li>
+						<li>Type-Executable (Executable application)</li>
+						<li>Type-Installer (Download and run to install application)</li>
+						<li>Type-Package (Your OS package manager installs this)</li>
+						<li>Type-Archive (Download, unarchive, then follow directions) </li>
+						<li>Type-Source (Source code archive)</li>
+						<li>Type-Docs (This file contains documentation)</li>
+						<li>OpSys-All (Works with all operating systems)</li>
+						<li>OpSys-Windows (Works with Windows)</li>
+						<li>OpSys-Linux (Works with Linux)</li>
+						<li>OpSys-OSX (Works with Mac OS X)</li>
+						<li>Deprecated (Most users should NOT download this)</li>
+					</ul>
+				</ul>
+		</ol>
+		</div>
+	 <div id="wiki">
+	<h3>Wiki</h3>
+		<ol style="list-style-type:decimal;">
+			<li><a id="FS-500"><b>FS-500</b> [<span class="hybrid"><b>H</b></span>]: Project members should be able to create a new Wiki page.</a></li>
+				<ul>
+					<li>Wiki page creators should supply a one-word Page Name, Labels, and the page content.</li>
+					<li>Content can include Wiki Markup, which should be shown and explained on the Page Creation screen.</li>
+					<li>Creators should be able to preview a new page before saving it.</li>
+					<li>New pages should be able to be added by using Subversion command-line options or a Subversion client.</li>
+				</ul>
+			<li><a id="FS-501"><b>FS-501</b> [<span class="hybrid"><b>H</b></span>]: All users should be able to search for a Wiki page and view Wiki pages.</a></li>
+				<ul>
+					<li>Users should be presented with a list of Wiki pages when they click on the "Wiki" tab. The list should list the Page Names, Summary and Labels, Date Last Changed, and who changed it.</li>
+					<li>Users should also be able to use a search box to find a Wiki page.</li>
+					<li>The contents of the Wiki page should be viewable by everyone.</li>
+					<li>Users should also be able to retrieve a Wiki page by using Subversion command-line options or a Subversion client.</li>
+				</ul>
+			<li><a id="FS-502"><b>FS-502</b> [<span class="hybrid"><b>H</b></span>]: Project members should be able to edit a Wiki page.</a></li>
+				<ul>
+					<li>Editors should be able to use Wiki Markup and preview a page, similar to creators of new Wiki pages.</li>
+					<li>Changes to Wiki pages should be able to be committed by using Subversion command-line options or a Subversion client.</li>
+				</ul>
+			<li><a id="FS-503"><b>FS-503</b> [<span class="hybrid"><b>H</b></span>]: Project members and/or visitors should be able to comment on a Wiki page.</a></li>
+				<ul>
+					<li>The interface to comment should be at the bottom of each Wiki page.</li>
+					<li>Comments should be listed in order of date entered, from earliest to latest, with the commentor's name.</li>
+					<li>Comments should be able to use Wiki Markup.</li>
+					<li>Visitors may be able to add comments to Wiki pages. This depends on whether an administrator has enabled or disabled the option.</li>
+					<li>Project administrators should be able to delete a comment.</li>
+				</ul>
+			<li><a id="FS-504"><b>FS-504</b> [<span class="hybrid"><b>H</b></span>]: Project administrators should be able to delete a Wiki page.</a></li>
+				<ul>
+					<li>The Wiki page should still exist in the Subversion repository but not be viewable by the browser interface.</li>
+				</ul>
+			<li><a id="FS-505"><b>FS-505</b> [<span class="hybrid"><b>H</b></span>]: Project administrators should be able to change settings related to Wiki pages.</a></li>
+				<ul>
+					<li>Labels for Wiki pages have a name and a comment; the comment is shown to users to describe the label's meaning when they are tagging Wiki pages.</li>
+					<li>Label names optionally have prefixes; administrators should be able to specify that a Wiki page can only have one tag with a specified prefix. For example, an administrator might specify that a page have only one tag that begins with "Phase."<li>
+					<li>The following labels for Wiki pages are default:</li>
+						<ul>
+							<li>Featured (Listed on project home page)</li>
+							<li>Phase-Requirements (Project vision and requirements)</li>
+							<li>Phase-Design (Project design and key concerns)</li>
+							<li>Phase-Implementation (Developers' guide)</li>
+							<li>Phase-QA (Testing plans and QA strategies)</li>
+							<li>Phase-Deploy (How to install and configure the program</li>
+							<li>Phase-Support (Plans for user support and advocacy)</li>
+							<li>Deprecated (Most users should NOT reference this)</li>
+							
+						</ul>
+					<li>Project administrators should be able to choose the columns shown on the Wiki page list and their order, as well as their sorting order.</li>
+					<li>Project administrators should be able to turn on and off the ability for visitors to add comments to Wiki pages.</li>
+				</ul>
+		</ol>
+		</div>
+	 <div id="issues">
+	<h3>Issues</h3>
+		<ol style="list-style-type:decimal;">
+			<li><a id="FS-600"><b>FS-600</b> [<span class="implementation"><b>M</b></span>]: Project members should be able to add a new issue.</a></li>
+				<ul>
+					<li>A new issue requires a summary and a short description.</li>
+					<li>Issue adders should be able to specify who owns the issue; it does not necessarily belong to them although that is the default state.</li>
+					<li>Issue adders should be able to supply labels for the issue.</li>
+					<li>Issues require the issue adder to choose a status for the issue. Please see the section on changing settings related to issues for a list of status labels.</li>
+					<li>Users should be able to add an issue using Subversion command-line options or a Subversion client.</li>
+				</ul>
+			<li><a id="FS-601"><b>FS-601</b> [<span class="hybrid"><b>H</b></span>]: Users should be able to search for an issue and view its details.</a></li>
+				<ul>
+					<li>When they click on the "Issues" tab, users should be presented with a list of issues: their ID number, their type, status, priority, milestone date, owner, and summary and labels.</li>
+					<li>Clicking on the row that an issue inhabits should take a user to the page for that issue.</li>
+					<li>On the issue's page, it should list ID number, status, owner, labels, the initial description, and any comments.</li>
+					<li>Clicking on a label of that issue should bring up a list of issues that have a matching label.</li>
+					<li>Users should also be able to search for an issue via a search box.</li>
+					<li>Users should also be able to search for an issue by using Subversion command-line options or a Subversion client.</li>
+				</ul>
+			<li><a id="FS-602"><b>FS-602</b> [<span class="implementation"><b>M</b></span>]: Project members should be able to comment on an issue and change its information.</a></li>
+				<ul>
+					<li>The interface to add comments should be on the issue's dedicated page.</li>
+					<li>Existing comments should be listed by date, most recent to least recent.</li>
+					<li>When adding a comment, project members should also be able to change the issue's summary, status, owner and labels.</li>
+					<li>Project administrators should be able to delete comments.</li>
+					<li>Commentators should be able to attach a file to their comments for other users to download.</li>
+				</ul>
+			<li><a id="FS-603"><b>FS-603</b> [<span class="implementation"><b>M</b></span>]: Project members should be able to "Star" an issue.</a></li>
+				<ul>
+					<li>When a user "stars" an issue, they are sent an email by the system when that issue is changed.</li>
+				</ul>
+			<li><a id="FS-604"><b>FS-604</b> [<span class="implementation"><b>M</b></span>]: Project administrators should be able to change settings related to issues.</a></li>
+				<ul>
+					<li>Project administrators should be able to define status values and their meanings. This includes adding new status values and deleting from the existing pool of status values, as well as changing the meaning of existing values.  The following values are default:</li>
+					<ul>
+							<li>New (Issue has not had initial review yet)</li>
+							<li>Accepted (Problem reproduced/Need acknowledged)</li>
+							<li>Started (Work on this issue has begun)</li>
+							<li>Fixed (Developer made requested changes, QA should verify)</li>
+							<li>Done (Task has been completed)</li>
+							<li>Verified (QA has verified that the fix worked)</li>
+							<li>Invalid (This was not a valid issue report)</li>
+							<li>Duplicate (This was not a valid issue report)</li>
+							<li>WontFix (We decided not to take action on this issue)</li>
+						</ul>
+					<li>Project administrators should be able to define labels, and set a uniqueness clause for labels with given prefixes.</li>
+					<li>Project administrators should be able to write instructions that the system will supply to users creating a new comment.</li>
+					<li>Project administrators should be able to choose the columns shown on the issue list page, as well as their appearance order and sorting order.</li>
+				</ul>
+		</ol>
+		</div>
+	 <div id="subversion">
+	<h3>Subversion</h3>
+		<ol style="list-style-type:decimal;">
+			<li><a id="FS-700"><b>FS-700</b> [<span class="integration"><b>N</b></span>]: All project artifacts must be stored in a Subversion repository, and previous versions of artifacts must be saved in the repository when new versions are committed.</a></li>
+			
+			<li><a id="FS-701"><b>FS-701</b> [<span class="integration"><b>N</b></span>]: All users should be able to access the Subversion repository for the project.</a></li>
+				<ul>
+					<li>The repository should be accessible by web browser, Subversion command-line and Subversion client.</li>
+					<li>Project members should be able to authenticate with the Subversion server by supplying their username and code.google.com password.</li>
+					<li>Visitors should be able to check out the project source code anonymously.</li>
+				</ul>
+			<li><a id="FS-702"><b>FS-702</b> [<span class="integration"><b>N</b></span>]: All users should be able to search the Subversion repository for the project.</a></li>
+				<ul>
+					<li>The web browser should display a search box to search the project's trunk.</li>
+				</ul>
+		</ol>
+		</div>
+	 <div id="system-administrator-privileges">
+	<h3>System Administrator Privileges</h3>
+		<ol style="list-style-type:decimal;">
+			<li><a id="FS-800"><b>FS-800</b> [<span class="implementation"><b>M</b></span>]: System administrators have the same privileges across all projects that a project administrator has on one project.</a></li>
+			<li><a id="FS-801"><b>FS-801</b> [<span class="implementation"><b>M</b></span>]: System administrators should be able to promote other users to be system administrators.</a></li>
+			<li><a id="FS-802"><b>FS-802</b> [<span class="implementation"><b>M</b></span>]: System administrators should be able to allocate additional disk space to a project.</a></li>
+			<li><a id="FS-803"><b>FS-803</b> [<span class="implementation"><b>M</b></span>]: System administrators should be able to ban a user from the service.</a></li>
+			<li><a id="FS-804"><b>FS-804</b> [<span class="integration"><b>N</b></span>]: System administrators should be able to access statistics and metrics about a project or about the system.</a></li>
+		</ol>
+		</div>
+	 <div id="miscellaneous">
+	<h3>Miscellaneous</h3>
+		<ol style="list-style-type:decimal;">
+			<li><a id="FS-1000"><b>FS-1000</b> [<span class="implementation"><b>M</b></span>]: All users should be able to view another user's profile, which lists the same information displayed as when a user accesses his or her own profile.</a></li>
+				<ul>
+					<li>A user's profile should be accessible by clicking on a user's name wherever it is listed.</li>
+				</ul>
+		</ol>
+				
+</ol>
+</div><!-- featureset -->
+</div>
+<div class="legal1">Company Proprietary</div>
+
+<div class="footnote">
+ Copyright &#169; 2003-2004 Jason Robbins.  All rights reserved. <a href="readyset-license.html">License terms</a>.
+ Retain this copyright statement whenever this file is used as a
+ template.
+</div>
+</div>
+</body>
+</html>
+
+<!--  
+ [<span class="integration"><b>N</b></font>]
+ [<span class="implementation"><b>M</b></font>]
+ [<span class="hybrid"><b>H</b></font>] 
+ -->

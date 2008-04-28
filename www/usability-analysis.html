@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//Tigris//DTD XHTML 1.0 Transitional//EN"
+"http://style.tigris.org/tigris_transitional.dtd">
+<html>
+<head>
+ <style type="text/css">
+/* <![CDATA[ */ 
+@import "css/readyset.css"; 
+@import "css/inst.css";
+div.entry {
+	 padding: 3px !important;
+    font-size: 100%;
+    text-align: left;
+    float: left;
+    clear: left;
+    margin: 0;
+    position:relative;
+    background-color:#ffffff;
+    width: 95%;
+
+}
+ div.column-title-left {
+    border:1px solid #cccccc;
+    padding: 3px !important;
+    background-color:#f9f9f9;
+    font-size: 94%;
+    text-align: left;
+    float: left;
+    clear: left;
+    margin: 0;
+    position:relative;
+    width: 75%;
+ }
+ div.column-title-right {
+    border:1px solid #cccccc;
+    padding: 3px !important;
+    background-color:#f9f9f9;
+    font-size: 94%;
+    text-align: center;
+    float: right;
+    clear: right;
+    margin: 0;
+    position:relative;
+    width: 20%;
+ }
+ 
+ div.floatright { 
+    border:1px solid #cccccc;
+    padding: 3px !important;
+    background-color:#f9f9f9;
+    font-size: 94%;
+    text-align: center;
+    float: right;
+    clear: right;
+    margin: 0;
+    position:relative;
+    width: 20%;
+}
+ div.floatleft { 
+    padding: 3px !important;
+    font-size: 100%;
+    text-align: left;
+    float: left;
+    clear: left;
+    margin: 0;
+    position:relative;
+    background-color:#ffffff;
+    width: 75%;
+}
+
+/*  ]]> */
+ </style>
+
+<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+ <title>Usability Analysis</title>
+</head>
+
+<body>
+<div class="app">
+<div class="readyset">
+
+ <h2>Longhouse/Google Code Usability Analysis</h2>
+
+ <div id="releaseinfo">
+ <h3>Document Information</h3>
+ <table border="1" cellpadding="3" cellspacing="2" class="axial">
+  <tr>
+   <th>Project:</th> 
+   <td>Longhouse/Google Code</td> 
+  </tr>
+  <tr>
+   <th>Purpose:</th>
+   <td>To examine the usability of the Google Code interface in order to determine testing requirements and future improvements to add to Longhouse, and to document the results of our usability evaluation activities and show how to fix problems, or show how problems have been fixed.
+   </td>
+  </tr>
+  <tr>
+	<th>Related Documents</th>
+	<td><a href="usability.html">Usability Plan</a></td>
+  </tr>
+ </table>
+
+ </div> <!-- /releaseinfo -->
+
+<div id="heuristic">
+ <h3>Part I: First Usability Analysis: Heuristic Application</h3>
+ <p>Conducted on Google Code rather than Longhouse itself, as Google Code had much more available to analyze at the time, and was similar.</p>
+	<div class="entry">
+		<div class="column-title-left">
+			<p><b>Heuristics</b> :: Source: <a href="http://www.useit.com/papers/heuristic/heuristic_list.html">Jakob Nielsen's 10 Heuristics for User Interface Design</a></p>
+		</div>
+		<div class="column-title-right">
+			<p><b>Screenshots</b>
+		</div>
+	</div>
+	<div class="entry">
+		<div class="floatleft">
+			<p>1. <b>Visibility of system status</b>: The system should always keep users informed about what is going on, through appropriate feedback within reasonable time.</li>
+			<p>When updating or adding new project artifacts, users can see the result of their actions through the feedback given by e.g. the list of issues, the list of downloads, a Wiki page that was just created or edited, etc. System status information that the system does not currently provide to the user is the status of the servers (up, down, unstable) which is crucial for users to determine whether the hosting site is safe to host their valuable projects on. In addition, some settings changes and artifact edits do not result in feedback to confirm that the action was successfully applied. For example, editing the text or links on the project's home page in the Administer panel does not show a message (e.g. "changes successfully saved") or take the user back to the project home page; he/she remains on the project Administer page and must manually check whether the change was saved. The system has room for improvement in this area of usability, but provides feedback for most common actions.</p>
+		</div>
+		<div class="floatright">
+			<a href="ua_images/heur-01-change-save.png">Figure 1: Notification of Successful Settings Change</a>: Users are notified when the project settings are successfully changed, but they are taken back to the page to which they saved changes rather than the project home page.
+		</div>
+		<div class="floatright">
+			<a href="ua_images/heur-01-wiki-activity-awareness.png">Figure 2: Wiki List Detail</a>: This list provides awareness of the usage patterns of other users in the Wiki of a project's site.
+		</div>
+		<div class="floatright">
+			<a href="ua_images/heur-01-wiki-save.png">Figure 3: Wiki Saving</a>: Wiki pages only indirectly show when data is saved via the data provided on when the page was last saved.
+		</div>
+	</div>
+	<div id="point2" class="entry">
+		<div class="floatleft">
+			<p>2. <b>Match between system and the real world</b>: The system should speak the users' language, with words, phrases and concepts familiar to the user, rather than system-oriented terms. Follow real-world conventions, making information appear in a natural and logical order.</li>
+			<p>The system uses the metaphor for "home" for the project's start page, which matches a typical user's expectation of what a "home page" is for an institution, person or other entity. One means of improvement in this area of usability is to merge the different project artifact types together, which is one of the possible goals of the Longhouse project's third-quarter expansion and improvement. For example, allowing a user-contributed project to be marked as both an issue, and a documentation of that issue in Wiki-text is more natural to users, who express in natural language in the real world the details of a problem, the ways to reproduce it, possible usability implications and possible techniques to fix the problem, than maintaining multiple separate project artifacts.</p>
+		</div>
+		<div class="floatright">
+			<a href="ua_images/heur-02-home-metaphor.png">Figure 4: Home as a Metaphor</a>: The idea of a "Home page" for an entity on the Internet is familiar to users.
+		</div>
+	</div>
+	<div id="point3" class="entry">
+		<div class="floatleft">
+			<p>3. <b>User control and freedom</b>: Users often choose system functions by mistake and will need a clearly marked "emergency exit" to leave the unwanted state without having to go through an extended dialogue. Support undo and redo.</li>
+			<p>Many dialogues in the system, especially those for editing project artifacts, have a "cancel" button that acts as an emergency exit, as does the browser "back" button since this application is situated in a web environment where using the "back" button is safe and does not typically post new information. There is no "undo"/"redo" function in the web UI, but it will be implicitly available with SVN integration and an XML-based persistence layer, so it is a possible addition to the system later.</p>
+		</div>
+		<div class="floatright">
+			<a href="ua_images/heur-03-cancel-button.png">Figure 5: Discard Button</a>: Forms allow users to discard their content and return to the page they came from by using the "Discard" button.
+		</div>
+	</div>
+	<div id="point4" class="entry">
+		<div class="floatleft">
+			<p>4. <b>Consistency and standards</b>: Users should not have to wonder whether different words, situations, or actions mean the same thing. Follow platform conventions.</li>
+			<p>Google Code/Longhouse follows similar definitions of major project artifacts as competing collaborative development environments. However, the Google Code Wiki syntax is different than other Wiki systems' syntax, and could stand to be standardized. Form-based interactions share similar semantics in the actions they permit, and different projects in GC/LH will present the same kind of user experience overall.</p>
+		</div>
+		<div class="floatright">
+			<a href="ua_images/heur-04-artifact-types.png">Figure 6: Artifact Types</a>: At the top of the screen are tabs that signify to users the kind of artifact they can create and/or edit by visiting each section of the site.
+		</div>
+		<div class="floatright">
+			<a href="ua_images/heur-04-wiki-syntax.png">Figure 7: Wiki Syntax</a>: Wiki syntax is currently not standardized with other Wiki systems and should be standardized.
+		</div>
+	</div>
+	<div id="point5" class="entry">
+		<div class="floatleft">
+			<p>5. <b>Error prevention</b>: Even better than good error messages is a careful design which prevents a problem from occurring in the first place. Either eliminate error-prone conditions or check for them and present users with a confirmation option before they commit to the action.</li>
+			<p>The chief point of error in the Web UI comes from specifying incorrect data in forms, and due to the nature of Web applications it is easier to check for errors after forms have been submitted and save the correct information, while identifying the incorrect information. This allows users to have a quick flow through a task which they are familiar with and know how to do without error, and still preserves the usability of form-based actions for new users or users who are experienced but make a mistake. Other actions in the system do have confirmation dialogues, e.g., deleting a project.</p>
+		</div>
+		<div class="floatright">
+			<a href="ua_images/heur-05-prevent-issue-with-no-title.png">Figure 8: Error Prevention</a>: Issue entry forms prevent users from entering issues with no name because the "Submit" button is greyed out and unclickable.
+		</div>
+	</div>
+	<div id="point6" class="entry">
+		<div class="floatleft">
+			<p>6. <b>Recognition rather than recall</b>: Minimize the user's memory load by making objects, actions, and options visible. The user should not have to remember information from one part of the dialogue to another. Instructions for use of the system should be visible or easily retrievable whenever appropriate.</li>
+			<p>Most dialogues in GC/LH are one form worth, which avoids the issue of remembering dialogues all together. If there is a mistake in the form a user submits, GC/LH will preserve the acceptable information and mark the parts which need re-entering, preserving the description of each field. In most forms in GC/LH, instructions, general tips and advanced technical details (if necessary) are at the same eye-level horizontally as the form, which allows for easy access to those instructions for clarification of form purpose. The system should require few improvements in this area of usability.</p>
+		</div>
+		<div class="floatright">
+			<a href="ua_images/heur-06-wiki-remember-content.png">Figure 9: Remembering Content</a>: If an error is generated while creating a Wiki page, the system will remember valid parts of the form data.
+		</div>
+	</div>
+	<div id="point7" class="entry">
+		<div class="floatleft">
+			<p>7. <b>Flexibility and efficiency of use</b>: Accelerators -- unseen by the novice user -- may often speed up the interaction for the expert user such that the system can cater to both inexperienced and experienced users. Allow users to tailor frequent actions.</li>
+			<p>The current Google Code does this by using a separate server to perform large jobs that require large amounts of processing time or disc access time. Because Longhouse is designed for a different audience and uses a different persistence layer, this feature should not be necessary, but we plan to conduct performance testing in order to establish a time tolerance for typical tasks of an average user.</p>
+		</div>
+	</div>
+	<div id="point8" class="entry">
+		<div class="floatleft">
+			<P>8. <b>Aesthetic and minimalist design</b>: Dialogues should not contain information which is irrelevant or rarely needed. Every extra unit of information in a dialogue competes with the relevant units of information and diminishes their relative visibility.</li> 
+			<p>The Google look & feel is designed so that forms are generally vertical in nature, i.e., parts that are 'next' in the form are offscreen for an average user, so that he or she is not distracted by parts of the form that are not yet necessary to look at. Part of the system's pages are user-filled with content, so while Wikitext formatting allows users to make minimalist Wiki pages and other text pages, it cannot guarantee technically that this will happen, nor should it. Some parts of the system pages are less minimalist than others, e.g., the downloads and issue details pages, which show all of the information related to the specific artifact in one screen, plus an area to add a comment. This is one area of possible improvement, although in our use of the system it does not seem to pose a problem with locating relevant data since it is all equally important to understanding the artifact and typically all used at the same time in order to get the gist of what an artifact represents. Other parts of the site are non-minimalist by necessity, e.g., the list of issues; applying a reductionist approach to a page like the issue page detracts from its functionality, although users have the option to do so by reordering and deleting or adding additional columns.</p>
+		</div>
+		<div class="floatright">
+			<a href="ua_images/heur-08-googley-clean.png">Figure 10: A "Googley-Clean" Page</a>: The standard Google form layout paradigm.
+		</div>
+		<div class="floatright">
+			<a href="ua_images/heur-08-complex-page.png">Figure 11: A More Complex Page</a>: A page that could use a makeover to satisfy a "Googley-clean" Look & Feel standard.
+		</div>
+	</div>
+	<div id="point9" class="entry">
+		<div class="floatleft">
+			<p>9. <b>Help users recognize, diagnose, and recover from errors</b>: Error messages should be expressed in plain language (no codes), precisely indicate the problem, and constructively suggest a solution.</li>
+			<p>Some error messages in the system are helpful, while others are unformatted XML documents, especially the ones that require an esoteric sequence of steps and a boundary case in the project configuration to reach. We are aware of these problems and will be solving them with the error tools provided in Google Code, and investigating whether these tools provide satisfactory error handling.</p>
+		</div>
+		<div class="floatright">
+			<a href="ua_images/heur-09-unhelpful-error.png">Figure 12: An Unhelpful Error</a>: Reachable only in very uncommon circumstances, but still requires better handling.
+		</div>
+		<div class="floatright">
+			<a href="ua_images/heur-09-helpful-error.png">Figure 13: A Helpful Error</a>: Informs the user what (s)he needs to do to proceed correctly.
+		</div>
+		<div class="floatright">
+			<a href="ua_images/heur-09-helpful-error-2.png">Figure 14: Another Helpful Error</a>: Explains why the error happened, and anticipates the user's intent by giving a redirect link to the appropriate page.
+		</div>
+	</div>
+	<div id="point10" class="entry">
+		<div class="floatleft">
+			<p>10. <b>Help and documentation</b>: Even though it is better if the system can be used without documentation, it may be necessary to provide help and documentation. Any such information should be easy to search, focused on the user's task, list concrete steps to be carried out, and not be too large. </li>
+			<p>Current documentation explains tasks in groups, not single tasks, and is only easy to find starting in the "help" section of the system rather than linked from the page(s) of the site for which each explanation is relevant. We will need to write a new help/documentation system, and this complaint is one that the new documentation system will address.</p>
+		</div>
+		<div class="floatright">
+			<a href="ua_images/heur-10-help-doc.png">Figure 15: Documentation</a>: The documentation currently only explains groups of tasks together and does not respond to specific user problems dynamically.
+		</div>
+		
+	</div>
+</div> <!-- /heuristic -->
+
+<div id="hciclass">
+<h3>Part II: Results of HCI Student Analyses</h3>
+<p>Many of the problems that our HCI students found were technical bugs and errors that we've since fixed, misunderstandings based on misinterpreting the state of the project (not taking into account that it was very new) and/or based on misinterpretation of our directions, or usability problems that came up in the in-class usability evaluations and were already fixed. The items that are listed below are problems that are not covered by those areas, and are problems that we will examine and attempt to solve.
+
+<h4>User #1</h4>
+<ol>
+	<li>This user found that the index page of the site didn't give any explanation of what the site was used for. We've fixed this somewhat by adding a title where there wasn't one before, but this could still stand to be improved.</li>
+	<li>This user suggests that the search-engine-based look and feel of the front page is misleading because you need to have an account to create a project. While this perception was somewhat skewed because we asked the users to do project creation related activities rather than searching, there is some room for improvement here. However, the majority of users will be searching for projects rather than creating them, so emphasizing the search seems acceptable.</li>
+	<li>This user found that the login page needs to be updated to clarify the fact that full email addresses must be used to log in, rather than only the prefix of the email address, unless the email address is from the gmail domain.</li>
+	<li>This user found that the instructions for creating a project were too verbose and wordy, where "short, ancillary explanations like 'a-z' should be used." This is a good criticism and when the instructions are reworked as part of making them only show pertinent instructions, this will be changed.</li>
+	<li>This user found that required fields in forms should be denoted with an asterisk or color, or grouped separate.</li>
+	<li>This user found that the sequence of tags on the index page should be reorganized by concept first (i.e., "programming language", "web tools", "database") and then alphabetically by tag.</li>
+	<li>This user found that "Administer" is a vague name for a site section and could be changed to something more clear. The same problem arose with "Issues" tab.</li>
+	<li>This user found that users should be informed how many projects they've created, so that when they hit 10 projects they are not surprised to find that their quota is full.</li>
+</ol>
+
+<h4>User #2</h4>
+
+<ol>
+	<li>This user found that the Licenses in the Project Creation page should be related to a resource that describes each license, and describes how choosing the license should affect the use of the project and the items released to open-source in the project.</li>
+	<li>This user attempted to enter a syntactically valid email address as a project member, but an email address which was not associated with an extant user profile. This page should be clarified to state that only email addresses belonging to registered accounts can be used.</li>
+	<li>This user found that the home page and administer pages are not "symmetric", which appears to mean "visually similar in terms of structure and layout." Complete symmetry wouldn't be appropriate because one of them is an information relay page and one is a settings change page, but it is worth thinking about whether they should be more similar than they are at the moment.</li>
+	<li>This user found that there is no site map, and while this is somewhat solved by adding menus and profiles to let users visit their projects, and by the addition of search which will come soon, adding a list of created projects and a directory of users would help.</li>
+	<li>This user found that encasing instructions in a blue box is distracting. This is contrary to other users' experiences, which seemed to imply that users did <b>not</b> notice instructions in the blue box. This point is worth investigating in further UI evaluations.</li>
+	<li>This user said that "it would be nice to personalize [his/her] account", but did not explain what [he/she] meant.</li>
+	<li>This user found that learning aids above-and-beyond the scope of the instructions on the right-hand side of forms would be useful to let the users know what things like "repositories" and "licenses" are.</li>
+</ol>
+
+<h4>User #3</h4>
+
+<ol>
+	<li>This user found that the index page needed a description of what the search did, and what content it was searching. This user also found that it was unclear what to enter in the search bar, e.g., Project name? Project subject?</li>
+	<li>This user found that the instructions on the right-hand side of the Project Create form were too verbose, and was not inclined to read them.</li>
+	<li>This user found that [he/she] did not know what "Labels" are. This is a <b>major</b> terminology issue, and it seems like Longhouse would benefit from all instances of "label" to change into the more familiar "tag".</li>
+	<li>This user also found that licenses needed explaining.</li>
+	<li>This user found that the Project Create page needs to do a better job at explaining the acceptable format of input in each field.</li>
+	<li>This user was annoyed that tabbing through the Project Create page skips the License field and the Submit button, but this is a browser implementation error rather than one native to our system.</li>
+	<li>This user found it inconvenient that hitting Enter did not create a project. This might be intended behavior, since hitting Enter prematurely would create a project with insufficient information and either require the user to edit the information later, or require the system to show error messages informing the user of what needs to be completed.</li>
+	<li>This user also found that the home page needed more information about what Longhouse is.</li>
+</ol>
+
+<h4>User #4</h4>
+
+<ol>
+	<li>This user pointed out that [he/she] could not find the link to a Create Account page. This is by design, as there is no Create Account page yet and we do not wish for this functionality to be active at this time.</li>
+	<li>This user found that instructions being in a blue box on black text made them hard to read.</li>
+	<li>This user found that the "My account" link is too close to "Sign out" and that the user might sign out accidentally.</li>
+	<li>This user found that the Project Members page needs to show the correct format of entering new members into the text boxes.</li>
+</ol>
+
+<h4>User #5</h4>
+
+<ol>
+	<li>This user found that the "Google Analytics" section needs further more explanation, and needs to be developed so that the "learn more" link actually shows information.</li>
+	<li>This user found that there was insufficient information on the Project Settings page about any formatting restrictions for each field, and that there should be information on how to format things like URLs and Label text correctly.</li>
+</ol>
+
+<h4>User #6</h4>
+
+<ol>
+	<li>This user was confused by the catchphrase on the index page and why it links to a Google search of that phrase. This user suggests moving it to a different spot on the page so that it is more obviously a slogan.</li>
+	<li>This user found that the text boxes on the Project Members page are confusing because [he/she] did not know how to use them, and that they need documentation on how to enter users.</li>
+	<li>This user was confused on how "My Profile" is different than "Settings". We should choose new names for these pages, or take away the "Settings" link since "Settings" can be accessed from "My Profile." The fact that both pages are linked on the sign in bar is an artifact of coming from Google Code, where "My Profile" would take you to the central profile manager and "Settings" would manage Google-Code-Only settings.</li>
+	<li>This user felt that project pages "felt" too different from the index page, and that there should be a sort of orientation so that the transition is not so abrupt.</li>
+	<li>This user found that clicking on License links opened the license's website in the current window, and that it should open in a new window since it is going to another domain.</li>
+	<li>This user felt that instructions in blue boxes were hard to notice and too clumped-together.</li>
+	<li>This user felt that the delete functionality was hard to find because of the name of the Advanced tab. We're currently working on this.</li>
+	<li>This user felt that project names are too restricted (due to being lower case only and with no spaces). We should talk about this issue.</li>
+</ol>
+
+<h4>User #7</h4>
+
+<ol>
+	<li>This user complained that the index page was too "unbalanced" and not "symmetrical", with too much white space.</li>
+	<li>This user found that the instructions and error checking process during project creation was too unclear.</li>
+	<li>This user found a bug in IE where a box would pop up with an error message at every page he went to, but only after he completed a long sequence of tasks. This reminds us that we should test Longhouse in all major browsers to make sure such events do not reoccur.</li>
+</ol>
+
+<h4>User #8</h4>
+
+<ol>
+	<li>This user found that there is not enough white space between lines on the Project home page, suggesting that letters like "g", "j" and "y" will overlap onto the navigation tabs.</li>
+</ol>
+
+<h4>User #9</h4>
+
+<ol>
+	<li>This user found that the purpose and nature of Labels were confusing, and did not know how they were different from Links, and did not pick up the fact that they are operands for searching. This problem should be fixed by clarifying them somewhere - renaming them to "Tags" would help.</li>
+</ol>
+
+</div> <!-- /hciclass -->
+
+<div id="inclass">
+ <h3>Part III: Results of In-Class Usability Studies</h3>
+ 		<div class="entry">
+ 		<P>This section will describe our findings from the in-discussion usability evaluation at the end of the Second Quarter, and the in-class usability evaluation at the beginning of the Third Quarter. We have broken up the results into the three sections that match the different sections of the site that were evaluated.
+ 		</div>
+		<h4>Project Information and Settings</h4>
+	<div class="entry">
+		<div class="floatleft">
+		<p>1. We found, in preparing for the second evaluation, that users had no way of easily returning to projects that they are a member of. We addressed this in two ways:
+		<ul><li>A drop-down menu at the top right which allows users to quickly see their projects and visit them by clicking on their names.
+		<li>A profile page where users can see which projects they own and which they are a member of.
+		</ul></div>
+		<div class="floatright">
+			<a href="ua_images/uar_01_locmenu.png">Figure 16: Location of Drop-Down Menu</a>: Located near the user's information for ease of finding and ease of use.
+		</div>
+		<div class="floatright">
+			<a href="ua_images/uar_02_menu.png">Figure 17: The Menu Itself</a>: Clicking a project's name will jump to that project's home page.
+			</div>
+		<div class="floatright">
+			<a href="ua_images/uar_03_profile.png">Figure 18: User Profile Page</a>: An alternate way to comprehend the user's role in the system.
+			</div>
+
+	</div>
+	
+	<div class="entry">
+		<div class="floatleft">
+		<p>2. We found that users expected "edit" buttons to be present next to fields they could edit on the project home page; that they shouldn't have to go into the project administration tab to edit fields if they have the privileges to do so. Therefore, we added links to jump to the section of the project settings page to edit the appropriate field from the project home page.
+		</div>
+		<div class="floatright">
+		<a href="ua_images/uar_04_editlinks.png">Figure 19: Edit Links for Home Page Sections</a>: Allows jumping to the appropriate section in project administration.
+		</div>
+	</div>
+
+	<div class="entry">
+		<div class="floatleft">
+		<p>3. Users could not easily figure out which project administration page was for which issues. Therefore, we added a portal page to describe each section of the project administration pages and to let users know what they could do.
+		</div>
+		<div class="floatright">
+		<a href="ua_images/uar_05_portal.png">Figure 20: Project Administration Portal</a>: Avoids confusion on where to do which actions.
+		</div>
+	</div>
+	
+	<div class="entry">
+		<div class="floatleft">
+		<p>4. Users did not like the label "Advanced" for the tab relating to deletion and publishing. We are currently thinking of a new name for this tab.</div>
+	</div>
+	
+	<div class="entry">
+		<div class="floatleft">
+		<p>5. Users thought the text box for the project's description was too large; we shrunk it.
+		</div>
+	</div>
+	
+	<div class="entry">
+		<div class="floatleft">
+		<p>6. Users got lost on the project metadata administration page because it is very large; we added a table of contents that allows users to jump to one section or another to combat this.
+		</div>
+		<div class="floatright">
+		<a href="ua_images/uar_06_contents.png">Figure 21: Project Metadata Table of Contents</a>: Allows users to jump to different sections, like a Wikipedia article's table of contents.
+		</div>
+	</div>
+
+	<div class="entry">
+		<div class="floatleft">
+		<p>7. Users did not know whether their changes were saved or not when they pressed the "save" button. We fixed this by adding an alert in noticeable color that their changes were saved.
+		</div>
+		<div class="floatright">
+		<a href="ua_images/uar_07_alert.png">Figure 22: Alert That Changes Were Saved</a>: Shows when users edit any project metadata or settings, and also shows when users submit issues or comment on issues.
+		</div>
+	</div>
+
+	<h4>Project deletion</h4>
+
+	<div class="entry">
+		<div class="floatleft">
+		<p>8. Our test subject was confused about how the deletion process happens and what the implications are. We solved this by expanding the text next to the "delete project" button to list the implications and the steps that would happen in order to delete the project.
+		</div>
+		<div class="floatright">
+		<a href="ua_images/uar_08_deletetext.png">Figure 23: Text Describing Deletion</a>: Explains deletion process in depth.
+		</div>
+	</div>
+
+	<div class="entry">
+		<div class="floatleft">
+		<p>9. The audience commented that the "Are you sure?" popup needed to be more informative. It now lists the implications of deletion and re-explains the steps that need to be followed to delete the project.
+		</div>
+		<div class="floatright">
+		<a href="ua_images/uar_09_deletepopup.png">Figure 24: Delete Confirmation Popup</a>: More informative and makes the user be sure of what he or she is doing.
+		</div>
+	</div>
+
+	<div class="entry">
+		<div class="floatleft">
+		<p>10. The test subject was confused about the use of the word "scheduled" with regard to deletion. We changed our terminology by using "flagged" instead, which more accurately implies certain things about the process of deletion.
+		</div>
+	</div>
+	<h4>Issues</h4>
+	<div class="entry">
+		<div class="floatleft">
+		<p>11. Our task that we asked the user to perform was not a bug report, but he used the bug report template anyway and was confused on why he should use it. We added alternate, selectable templates for users to choose from depending on their task. These templates will be modifiable by project owners once the appropriate section of the site works.
+		</div>
+		<div class="floatright">
+		<a href="ua_images/uar_10_templateloc.png">Figure 25: Location of Template Menu</a>: Near the description itself, so they are associated visually.
+		</div>
+		<div class="floatright">
+		<a href="ua_images/uar_11_templatemenu.png">Figure 26: Template Menu</a>: Allows users to select different templates for the issue description.
+		</div>
+	</div>
+	
+	<div class="entry">
+		<div class="floatleft">
+		<p>12. Both our testers did not notice the star on the issue creation page, which ensures that you are notified of any changes to the issue. We moved it to be more in-line with the text fields in the form, which should hopefully make it more noticeable. Also, its text description is bigger and more in-line, which should make users read it more easily.
+		</div>
+		<div class="floatright">
+		<a href="ua_images/uar_12_starloc.png">Figure 27: Star Location</a>: Hopefully it is more noticeable now.
+		</div>
+	</div>
+	
+	<div class="entry">
+		<div class="floatleft">
+		<p>13. The audience did not like that our instructions are so long on the issue creation page. We are currently in the process of changing it so that it only shows the pertinent instructions to the field that the user currently is typing into.
+		</div>
+	</div>
+
+	<div class="entry">
+		<div class="floatleft">
+		<p>14. Users thought that the yellow instruction highlighting meant that text was selected on the issue creation page. We're changing it so that it does not highlight, now that it is only showing pertinent instructions instead of all of them.
+		</div>
+	</div>
+
+	<div class="entry">
+		<div class="floatleft">
+		<p>15. There were terminology issues in many issue tracker pages. We changed "Owner of an issue" to "User the issue is assigned to", and "CC list" to "List of users to notify when this issue is changed."
+		</div>
+		<div class="floatright">
+		<a href="ua_images/uar_13_terminology.png">Figure 28: Terminology Changes</a>: Using "Assigned to" and "Users to Notify" clarifies the meaning of thoese fields.
+		</div>
+	</div>
+
+
+
+</div> <!-- /inclass -->
+ 
+</div>
+
+<div class="legal1">Company Proprietary</div>
+
+<div class="footnote">
+ Copyright &#169; 2003-2004 Jason Robbins.  All rights reserved. <a href="readyset-license.html">License terms</a>.
+ Retain this copyright statement whenever this file is used as a
+ template.
+</div>
+</div>
+</body>
+</html>

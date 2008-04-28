@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//Tigris//DTD XHTML 1.0 Transitional//EN"
+"http://style.tigris.org/tigris_transitional.dtd">
+<html>
+<head>
+ <style type="text/css">
+/* <![CDATA[ */ 
+@import "css/readyset.css"; 
+@import "css/inst.css";
+/*  ]]> */
+ </style>
+
+<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+ <title>List of Project Phases By Feature Set</title>
+</head>
+
+<body>
+<div class="app">
+<div class="readyset">
+
+<h2><a href="srs.html">SRS</a> &gt; Phases By Feature Set</h2>
+
+ <div id="releaseinfo">
+ <h3>Release Information</h3>
+ <div class="axial">
+ <table border="1" cellpadding="3" cellspacing="2">
+
+  <tr>
+   <th>Project:</th> 
+   <td><a href="index.html">Longhouse</a></td> 
+  </tr>
+  <tr>
+   <th>Related Documents:</th> 
+   <td>
+    <div><a href="srs.html">SRS</a> &gt;
+         <a href="feature-set.html">Feature set</a></div>
+   <div><a href="plan.html">Project Plan</div>
+   </td>
+  </tr>
+ </table>
+
+ </div>
+ </div> <!-- /releaseinfo -->
+
+
+<div id="phases">
+<h3>Project Phases By Feature Set</h3>
+
+<p><b>Purpose:</b> To provide a terse summary of the project schedule by listing features with their
+corresponding use cases and test cases to provide an easy reference for progress on the project.
+<p>The type of work (integration/implementation/hybrid) is also listed for each feature; for more
+information on this means of categorization, consult the <a href="feature-set.html">feature set</a>.
+<p>Work type is catagorized by the work involved in implementing the given feature, either integration of prefabricated components 
+(<span class="integration"><b>N</b></span>), implementation of new components (<span class="implementation"><b>M</b></span>),
+    or a hybrid of implementation alongside integration (<span class="hybrid"><b>H</b></span>).
+
+<table border="1">
+	<tr>
+		<th>Feature</th>
+		<th>Work Type</th>
+		<th>Corresponding Use Cases</th>
+		<th>Corresponding Test Cases</th>
+	</tr>
+	<tr><td colspan=4>
+<b>Phase 1 (Fall quarter)</b></tr>
+	<tr>
+	  <td colspan=4>
+	  <b>Deliverables:</b> 
+	  <ul>
+	    <li>Requirements document</li>
+	    <li>Design document</li>
+	    <li>Project plan</li>
+	    <li>Test plan</li>
+	    <li>Code complying to milestone 1 
+	        (see the <a href="use-case-suite.html#milestone1">use case suite</a>
+	        for more details about milestones)
+	        </li>
+	  </ul>
+	  </td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-101">FS-101</a>
+		</td>
+		<td>
+			<span class="integration"><b>N</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-101">UC-101</a>
+		</td>
+		<td>           <a href="test-cases.html#TC-101A">TC-101A</a>,
+           <a href="test-cases.html#TC-101B">TC-101B</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-102">FS-102</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-102">UC-102</a>
+		</td>
+		<td>           <a href="test-cases.html#TC-103A">TC-103A</a>
+		</td>
+	</tr><tr><td colspan=4> </td></tr>
+	<tr>
+		<td><a href="feature-set.html#FS-200">FS-200</a>
+		</td>
+		
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		
+		<td><a href="use-cases.html#UC-200">UC-200</a>
+		</td>
+		<td>          <a href="test-cases.html#TC-200A">TC-200A</a>,     
+           <a href="test-cases.html#TC-200B">TC-200B</a>,
+           <a href="test-cases.html#TC-200C">TC-200C</a>,
+           <a href="test-cases.html#TC-200D">TC-200D</a>,
+           <a href="test-cases.html#TC-200E">TC-200E</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-201">FS-201</a>
+		</td>
+		<td>
+		<span class="hybrid"><b>H</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-201">UC-201</a>
+		</td>
+		<td>            <a href="test-cases.html#TC-201A">TC-201A</a>,     
+           <a href="test-cases.html#TC-201B">TC-201B</a>,
+           <a href="test-cases.html#TC-201C">TC-201C</a>  
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-202">FS-202</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-202">UC-202</a>
+		</td>
+		<td>           <a href="test-cases.html#TC-202A">TC-202A</a>
+		</td>
+	</tr>
+	<tr><td colspan=4><b>Phase 2 (Winter quarter)</b></td></tr>
+	<tr>
+	  <td colspan=4>
+	  <b>Deliverables:</b> 
+	  <ul>
+	    <li>Updated requirements document</li>
+	    <li>Updated design document</li>
+	    <li>Updated project plan</li>
+	    <li>Updated test plan</li>
+	    <li>Code with a feature set comprable to 
+	        <a href="http://code.google.com">code.google.com</a>
+	        (i.e. a complete port of Google Code)
+	        </li>
+	  </ul>
+	  </td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-300">FS-300</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-300">UC-300</a>
+		</td>
+		<td><a href="test-cases.html#TC-300A">TC-300A</a>,
+   			<a href="test-cases.html#TC-300B">TC-300B</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-301">FS-301</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-301">UC-301</a>
+		</td>
+		<td>
+		</td>
+	</tr>
+		<tr>
+		<td><a href="feature-set.html#FS-302">FS-302</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-302">UC-302</a>
+		</td>
+		<td>
+		</td>
+	</tr>
+		<tr>
+		<td><a href="feature-set.html#FS-303">FS-303</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-303">UC-303</a>
+		</td>
+		<td>
+		</td>
+	</tr><tr><td colspan=4> </td></tr>
+	<tr>
+		<td><a href="feature-set.html#FS-400">FS-400</a>
+		</td>
+		<td>
+		<span class="hybrid"><b>H</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-400">UC-400</a>
+		</td>
+		<td><a href="test-cases.html#TC-400A">TC-400A</a>,
+  		 	<a href="test-cases.html#TC-400B">TC-400B</a>,
+  		 	<a href="test-cases.html#TC-400C">TC-400C</a>
+		</td>
+	</tr>
+		<tr>
+		<td><a href="feature-set.html#FS-401">FS-401</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-401">UC-401</a>
+		</td>
+		<td><a href="test-cases.html#TC-401A">TC-401A</a>,
+   			<a href="test-cases.html#TC-401B">TC-401B</a>,
+   			<a href="test-cases.html#TC-401C">TC-401C</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-402">FS-402</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-402">UC-402</a>
+		</td>
+		<td><a href="test-cases.html#TC-402A">TC-402A</a>,
+   			<a href="test-cases.html#TC-402B">TC-402B</a>,
+   			<a href="test-cases.html#TC-402C">TC-402C</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-403">FS-403</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-403">UC-403</a>
+		</td>
+		<td><a href="test-cases.html#TC-403A">TC-403A</a>,
+   			<a href="test-cases.html#TC-403B">TC-403B</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-404">FS-404</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-404">UC-404</a>
+		</td>
+		<td><a href="test-cases.html#TC-404A">TC-404A</a>,
+   			<a href="test-cases.html#TC-404B">TC-404B</a>
+		</td>
+	</tr><tr><td colspan=4> </td></tr>
+	<tr>
+		<td><a href="feature-set.html#FS-500">FS-500</a>
+		</td>
+		<td>
+		<span class="hybrid"><b>H</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-500">UC-500</a>
+		</td>
+		<td><a href="test-cases.html#TC-500A">TC-500A</a>,
+   			<a href="test-cases.html#TC-500B">TC-500B</a>,
+   			<a href="test-cases.html#TC-500C">TC-500C</a>,
+   			<a href="test-cases.html#TC-500D">TC-500D</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-501">FS-501</a>
+		</td>
+		<td>
+		<span class="hybrid"><b>H</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-501">UC-501</a>
+		</td>
+		<td><a href="test-cases.html#TC-501A">TC-501A</a>,
+   			<a href="test-cases.html#TC-501B">TC-501B</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-502">FS-502</a>
+		</td>
+		<td>
+		<span class="hybrid"><b>H</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-502">UC-502</a>
+		</td>
+		<td><a href="test-cases.html#TC-502A">TC-502A</a>,
+   			<a href="test-cases.html#TC-T02B">TC-502B</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-503">FS-503</a>
+		</td>
+		<td>
+		<span class="hybrid"><b>H</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-503">UC-503</a>
+		</td>
+		<td><a href="test-cases.html#TC-503A">TC-503A</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-504">FS-504</a>
+		</td>
+		<td>
+		<span class="hybrid"><b>H</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-504">UC-504</a>
+		</td>
+		<td><a href="test-cases.html#TC-504A">TC-504A</a>
+		</td>
+	</tr><tr>
+		<td><a href="feature-set.html#FS-505">FS-505</a>
+		</td>
+		<td>
+		<span class="hybrid"><b>H</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-505">UC-505</a>
+		</td>
+		<td><a href="test-cases.html#TC-505A">TC-505A</a>,
+   			<a href="test-cases.html#TC-505B">TC-505B</a>
+		</td>
+	</tr><tr><td colspan=4> </td></tr>
+	<tr>
+		<td><a href="feature-set.html#FS-600">FS-600</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-600">UC-600</a>
+		</td>
+		<td><a href="test-cases.html#TC-600A">TC-600A</a>,
+   			<a href="test-cases.html#TC-600B">TC-600B</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-601">FS-601</a>
+		</td>
+		<td>
+		<span class="hybrid"><b>H</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-601">UC-601</a>
+		</td>
+		<td><a href="test-cases.html#TC-601A">TC-601A</a>,
+   			<a href="test-cases.html#TC-601B">TC-601B</a>,
+   			<a href="test-cases.html#TC-601C">TC-601C</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-602">FS-602</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-603">UC-603</a>, <a href="use-cases.html#UC-604">UC-604</a>
+		</td>
+		<td><a href="test-cases.html#TC-603A">TC-603A</a>,
+   			<a href="test-cases.html#TC-603B">TC-603B</a>,
+   			<a href="test-cases.html#TC-604A">TC-604A</a>,
+   			<a href="test-cases.html#TC-604B">TC-604B</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-603">FS-603</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-602">UC-602</a>
+		</td>
+		<td><a href="test-cases.html#TC-602A">TC-602A</a>,
+   			<a href="test-cases.html#TC-602B">TC-602B</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-604">FS-604</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-605">UC-605</a>
+		</td>
+		<td><a href="test-cases.html#TC-605A">TC-605A</a>,
+   			<a href="test-cases.html#TC-605B">TC-605B</a>
+		</td>
+	</tr><tr><td colspan=4> </td></tr>
+	<tr>
+		<td><a href="feature-set.html#FS-700">FS-700</a>
+		</td>
+		<td>
+			<span class="integration"><b>N</b></span>
+		</td>
+		<td>
+		</td>
+		<td>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-701">FS-701</a>
+		</td>
+		<td>
+			<span class="integration"><b>N</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-700">UC-700</a>
+		</td>
+		<td><a href="test-cases.html#TC-700A">TC-700A</a>,
+   			<a href="test-cases.html#TC-700B">TC-700B</a>,
+   			<a href="test-cases.html#TC-700C">TC-700C</a>,
+   			<a href="test-cases.html#TC-700D">TC-700D</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-702">FS-702</a>
+		</td>
+		<td>
+			<span class="integration"><b>N</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-700">UC-700</a>
+		</td>
+		<td><a href="test-cases.html#TC-700A">TC-700A</a>,
+   			<a href="test-cases.html#TC-700B">TC-700B</a>,
+   			<a href="test-cases.html#TC-700C">TC-700C</a>,
+   			<a href="test-cases.html#TC-700D">TC-700D</a>
+		</td>
+	</tr><tr><td colspan=4> </td></tr>
+	<tr>
+		<td><a href="feature-set.html#FS-800">FS-800</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td>
+		</td>
+		<td>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-801">FS-801</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href=use-cases.html#UC-800">UC-800</a>
+		</td>
+		<td>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-802">FS-802</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href=use-cases.html#UC-801">UC-801</a>
+		</td>
+		<td>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-803">FS-803</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href=use-cases.html#UC-802">UC-802</a>
+		</td>
+		<td>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="feature-set.html#FS-804">FS-804</a>
+		</td>
+		<td>
+			<span class="integration"><b>N</b></span>
+		</td>
+		<td><a href=use-cases.html#UC-803">UC-803</a>
+		</td>
+		<td>
+		</td>
+	</tr>
+	<tr><td colspan=4> </td></tr>
+	<tr>
+		<td><a href="feature-set.html#FS-1000">FS-1000</a>
+		</td>
+		<td>
+		<span class="implementation"><b>M</b></span>
+		</td>
+		<td><a href="use-cases.html#UC-1000">UC-1000</a>
+		</td>
+		<td><a href="test-cases.html#TC-1000">TC-1000</a>
+		</td>
+	</tr>
+	<tr><td colspan=4><b>Phase 3 (Spring quarter)</b></td></tr>
+	<tr>
+	  <td colspan=4>
+	  <b>Deliverables:</b> 
+	  <ul>
+	    <li>Updated requirements document</li>
+	    <li>Updated design document</li>
+	    <li>Updated project plan</li>
+	    <li>Updated test plan</li>
+	    <li>Code with innovations to the features found at 
+	        <a href="http://code.google.com">code.google.com</a>
+	        </li>
+	    <li>A project ready to be opened to the open source community and
+	    ready to take on new members</li>
+	  </ul>
+	  </td>
+	</tr>
+</table>
+</div>
+
+<div class="legal1">Company Proprietary</div>
+
+<div class="footnote">
+ Copyright &#169; 2003-2004 Jason Robbins.  All rights reserved. <a href="readyset-license.html">License terms</a>.
+ Retain this copyright statement whenever this file is used as a
+ template.
+</div>
+
+</div>
+</body>
+</html>

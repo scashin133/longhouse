@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//Tigris//DTD XHTML 1.0 Transitional//EN"
+"http://style.tigris.org/tigris_transitional.dtd">
+<html>
+<head>
+ <style type="text/css">
+/* <![CDATA[ */ 
+@import "css/readyset.css";
+@import "css/inst.css";
+/*  ]]> */
+ </style>
+
+<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+ <title>Design</title>
+</head>
+
+<body>
+<div class="app">
+<div class="readyset">
+ <h2>Design</h2>
+
+ <div id="releaseinfo">
+ <h3>Release Information</h3>
+ <table border="1" cellpadding="3" cellspacing="2" class="axial">
+  <tr>
+   <th>Project:</th> 
+   <td><a href="index.html">Longhouse</a></td> 
+  </tr>
+  <tr>
+   <th>Related Documents:</th> 
+   <td>
+    <div><a href="srs.html">SRS</a> &gt;
+         <a href="use-case-suite.html">Use case suite</a></div>
+    <div><a href="srs.html">SRS</a> &gt;
+         <a href="feature-set.html">Feature set</a></div>
+   </td>
+  </tr>
+ </table>
+ </div> <!-- /releaseinfo -->
+
+ <div id="introduction">
+ <h3>Introduction</h3>
+
+ <dl>
+
+  <dt>How is this design document organized?</dt>
+ 
+  <dd>
+	<br>This document represents the two phases of designing this system:
+	<ol>
+		<li><b>Recovery of the existing system.</b> This is no easy task for two reasons.
+			First, we were only given part of the code for the existing system, which
+			does not run. This was necessary because the code contains proprietary
+			Google technology which they did not wish to open source. A second reason
+			is that it is written in Python, an interpreted
+			scripting language. This means that the code does no compile-time
+			checking, for instance ensuring that data types are compatible or that methods
+			called on an object actually exist. The net result of these two challenges is
+			that it is both difficult to determine what pieces of the system we do not have
+			and the nature of those pieces.
+		</li>
+		<li><b>Design of the new system.</b> After recovering the design of the code we
+			were given we can determine how to write our system. Some parts of the code
+			we were delivered can be reused and some must be modified. Additionally
+			we must write new code to act as the "glue" between the existing code and the
+			open source technologies we are using, for instance classes to interface with
+			the Twisted web server.
+		</li>
+	</ol>
+  </dd>
+	
+<br>
+ 
+  <dt>What are the most important facts that a developer should know
+  about this design?</dt>
+ 
+  <dd><br>This design is highly reflective of the design for Google Code. 
+	The reason for this is that we were given a portion of the codebase for
+	Google Code to use as a starting point of our project. We have two reasons
+	for wanting our design to remain as similar to Google Code's design as possible:
+	<ul><li>We would like to reuse as much code as possible rather than rewrite
+		 it so we can have this system built and running as fast as possible.</li>
+	<li>We would like changes to the system to be easily exchanged in both directions. 
+		That is, new features implemented in Google Code can easily be integrated
+		into our system, and new features we add can be easily integrated
+		into Google Code.</li>
+	</ul>
+	A key difference between this system and Google Code is we replaced Google
+	Code's proprietary web server with an open source one, 
+	<a href="http://twistedmatrix.com/trac/wiki/TwistedWeb">Twisted</a>,
+	and Google's search engine with 
+	<a href="http://lucene.apache.org/java/docs/index.html">Lucene</a>.
+  </dd> 
+
+ </dl>
+ </div> <!-- /introduction -->
+
+
+
+
+ <div id="recovery">
+ <h3>Recovery</h3>
+ 
+ <dl>
+	<dt>Overview</dt>
+	<dd><ul>
+		<li><a href="recovery_diagrams/existing-system-design.png">This diagram</a>
+			provides a high-level overview of the system's architectural design.</li>
+	</ul></dd>
+
+	<dt>Sequence diagrams</dt>
+		<dd><ul>
+		<li><a href="recovery_diagrams/gc_startup.png">gc_startup.png</a>
+			shows the Google Code startup sequence</li>
+		</ul></dd>
+	
+	<dt>Class diagrams</dt>
+		<dd><ul>
+		<li><a href="recovery_diagrams/conn_pool.png">conn_pool.png</a>
+			shows the conn_pool object which we will have to re-implement</li>
+		<li><a href="recovery_diagrams/demetrius_pages.png">demetrius_pages.png</a>
+			shows Demetrius_Page and its subclasses</li>
+		<li><a href="recovery_diagrams/persist.png">persist.png</a>
+			shows the two persist classes, which we will have to re-implement</li>
+		<li><a href="recovery_diagrams/search_engine.png">search_engine.png</a>
+			shows search engine wrapper which will use the PyLucene engine.</li>
+		</ul></dd>
+
+ </dl>
+ </div> <!-- /recovery -->
+
+
+ <div id="design">
+ <h3>Design</h3>
+ <dl>
+	 <dt>Sequence Diagrams</dt>
+	 <dd><ul>
+	 <li><a href="design_diagrams/login.png">login.png</a>
+	 	shows a user signing in to the system</li>
+	 <li><a href="design_diagrams/createissue.png">createissue.png</a>
+	 	shows a user creating an issue</li>
+	 </ul></dd>
+	 
+	 <dt>Class Diagrams</dt>
+	 <dd><ul>
+	 <li><a href="design_diagrams/page_setup_handlers.png">page_setup_handlers.png</a>
+	 	shows where in the existing design we will add Twisted classes</li>
+	 <li><a href="design_diagrams/persist_design.png">persist_design.png</a>
+	 	shows how business objects are serialized, saved to disk, and saved to svn</li>
+	 <li><a href="design_diagrams/bo_generator.png">business_object_generator.png</a>
+		shows how we will be generating the business object files.</li>
+	 </ul></dd>
+	 
+	 <dt>Other Diagrams</dt>
+	 <dd><ul>
+	 <li><a href="design_diagrams/access_paradigm.png">access_paradigm.png</a>
+	 	shows the two ways a user can access and modify data: through a web
+	 	browser and through a subversion client</li>
+	 </dd></ul>
+	 
+	 </ul></dd>
+ </dl>
+ </div> <!-- /design -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<div class="legal1">Company Proprietary</div>
+
+<div class="footnote">
+ Copyright &#169; 2003-2004 Jason Robbins.  All rights reserved. <a href="readyset-license.html">License terms</a>.
+ Retain this copyright statement whenever this file is used as a
+ template.
+</div>
+
+</div>
+</body>
+</html>
