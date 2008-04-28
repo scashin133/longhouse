@@ -429,31 +429,135 @@ user in the hierarchy.</p></div>
 <div id="UC-301">
 <h3>UC-301: Add new members to project</h3>
 <table border="1" cellpadding="3" cellspacing="2" class="axial">
+
  <tr>
   <th>Summary:</th>
-  <td>todo</td>
+  <td>A <a href="glossary.html#project-owner">Project owner</a> adds a new member to the project.</td>
  </tr>
-</table>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Somewhat frequently</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#project-owner">Project owner</a></td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>Project is created and multiple users exist in the system.</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+	<li>User visits the home page of the project for which he/she is an owner.</li>
+	<li>User enters Administration area of project site.</li>
+	<li>User enters Project Members tool in Administration section.</li>
+	<li>User enters the user names of users to add to the project membership roster.</li>
+	<li>User chooses to save data and receives an alert that data was saved.</li>
+   </ol>
+  </td>  
+ </tr>    
+    
+ <tr>
+  <th>Success postconditions:</th>
+  <td>Additional members are added to the project roster and can create issues, Wiki pages and downloads.</td>  
+ </tr> 
+ 
+ </table>
 </div>
 
 <div id="UC-302">
 <h3>UC-302: Promote members of project</h3>
 <table border="1" cellpadding="3" cellspacing="2" class="axial">
+
  <tr>
   <th>Summary:</th>
-  <td>todo</td>
+  <td>A <a href="glossary.html#project-owner">Project owner</a> promotes project members to project owners.</td>
  </tr>
-</table>
-</div>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Somewhat frequently</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#project-owner">Project owner</a></td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>Project is created and multiple users exist in the system, and <a href="#UC-301">UC-301</a> has happened at least once.</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+	<li>User visits the home page of the project for which he/she is an owner.</li>
+	<li>User enters Administration area of project site.</li>
+	<li>User enters Project Members tool in Administration section.</li>
+	<li>User enters the user names of users who are already project members to add to the project ownership roster.</li>
+	<li>User chooses to save data and receives an alert that data was saved.</li>
+   </ol>
+  </td>  
+ </tr>    
+    
+ <tr>
+  <th>Success postconditions:</th>
+  <td>Additional owners are added to the project roster and can create issues, Wiki pages and downloads. In addition they can also execute <a href="#UC-301">UC-301</a> and <a href="#UC-302">UC-302</a>.</td>  
+ </tr></table> </div>
+ 
 
 <div id="UC-303">
 <h3>UC-303: Delete project</h3>
 <table border="1" cellpadding="3" cellspacing="2" class="axial">
+
  <tr>
   <th>Summary:</th>
-  <td>todo</td>
+  <td>A <a href="glossary.html#project-owner">Project owner</a> flags project for deletion.</td>
  </tr>
-</table>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Infrequent</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td><a href="glossary.html#project-owner">Project owner</a></td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>Project is created and the user owns the project.</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+	<li>User visits the home page of the project for which he/she is an owner.</li>
+	<li>User enters Administration area of project site.</li>
+	<li>User enters Advanced Options tool in Administration section.</li>
+	<li>User chooses to flag project for deletion.</li>
+	<li>System alerts user about the consequences of deletion.</li>
+	<li>User clicks to affirm the choice to flag for deletion.</li>
+	<li>System shows notice that the project is hidden and flagged for deletion.</li>
+   </ol>
+  </td>  
+ </tr>    
+    
+ <tr>
+  <th>Success postconditions:</th>
+  <td>System shows alert that the project is flagged for deletion.</td>  
+ </tr> 
+ </table>
 </div>
 
 <div id="UC-400">
@@ -462,7 +566,7 @@ user in the hierarchy.</p></div>
  
  <tr>
   <th>Summary:</th>
-  <td>An <a href="glossary.html#user">User</a> searches for a file to view.</td>
+  <td>A <a href="glossary.html#user">User</a> searches for a file to view.</td>
  </tr>
 
  <tr> 
