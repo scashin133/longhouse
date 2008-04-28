@@ -11,6 +11,8 @@ Longhouse requires:
 
 You must install both Python and Subversion before installing Longhouse.
 
+*IMPORTANT NOTE:* Some methods of distributing Python 2.5.* do not seem to include the `hashlib` library, which will create an error when you attempt to run Longhouse. Darwinports is known to have this problem at the time of writing. If you experience this issue, you may either install a standard release of 2.5.2 from [http://www.python.org python.org] or obtain `hashlib` from [http://pypi.python.org/pypi/hashlib/20060408a here].
+
 Once you install Subversion take note of where the svn command is located, we will need this later. A common location is /usr/local/bin/svn. On Unix systems run the command `which svn` to find where svn is located.
 
 
