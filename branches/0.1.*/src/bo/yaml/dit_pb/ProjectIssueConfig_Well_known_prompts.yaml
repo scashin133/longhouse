@@ -1,0 +1,11 @@
+---
+describe: field
+name: prompt_name
+type: string
+value: ""
+---
+describe: field
+name: prompt_text
+type: string
+value: ""
+---

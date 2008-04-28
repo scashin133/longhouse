@@ -1,0 +1,53 @@
+<div style="float:right; margin-left:2em">
+ <a href="list?can=[can]&amp;q=[query]&amp;colspec=[colspec]&amp;sort=[sortspec]&amp;x=[grid_x_attr]&amp;y=[grid_y_attr]&amp;cells=[grid_cell_mode]">List</a> |
+ <b>Grid</b>
+</div>
+
+[if-any grid_data]
+ <div class=pagination>
+  [is pagination.total_count "1"]
+   [pagination.total_count] issue shown
+  [else]
+   [pagination.total_count] issues shown
+  [end]
+ </div>
+[end]
+
+<div style="margin-bottom:4px; font-size:90%">
+ <form id=colspecform action=list method=GET style="display:inline">
+  <input type=hidden name=can value=[can] />
+  <input type=hidden name=q value="[format "raw"][q][end]" />
+  <input type=hidden name=sort value="[format "raw"][sortspec][end]" />
+  <input type=hidden name=mode value="grid" />
+
+Rows: 
+<select name=y>
+ <option value="" [if-any grid_y_attr][else]selected=selected[end]>None</option>
+ [for grid_axis_choices]
+  <option value="[grid_axis_choices]" 
+          [is grid_axis_choices grid_y_attr]selected=selected[end]
+    >[grid_axis_choices]</option>
+ [end]
+</select>
+
+&nbsp; Cols:
+<select name=x>
+ <option value="" [if-any grid_x_attr][else]selected=selected[end]>None</option>
+ [for grid_axis_choices]
+  <option value="[grid_axis_choices]" 
+          [is grid_axis_choices grid_x_attr]selected=selected[end]
+    >[grid_axis_choices]</option>
+ [end]
+</select>
+
+&nbsp; Cells:
+<select name=cells>
+ <option value="tiles" [is grid_cell_mode "tiles"]selected=selected[end]>Tiles</option>
+ <option value="ids" [is grid_cell_mode "ids"]selected=selected[end]>IDs</option>
+ <option value="counts" [is grid_cell_mode "counts"]selected=selected[end]>Counts</option>
+</select>
+
+&nbsp; <input type=submit style="font-size: 90%" name=nobtn value="Update" />&nbsp;
+
+</form>
+</div>
