@@ -1,5 +1,4 @@
 #summary More information about how Longhouse works and what its features are.
-#labels Featured
 
 = More Information About Longhouse =
 
@@ -15,18 +14,12 @@ If you don't want this functionality, just leave the field in the Persistence to
 
 == What Features Aren't Implemented Yet? ==
 
-Depending on the version of Longhouse you're running, some things might not be implemented yet. Here's a list of things that aren't implemented at the time of the last update of this page. We'll update this page and remove these items from this list when they get implemented.
+Depending on the version of Longhouse you're running, some things might not be implemented yet.
+ Odds are that we already know about what's missing and we'll be working on it soon.
 
-List for release 0.1:
+See the [WhatGoingOn what's going on?] page for an up-to-date list of what will be worked on in the future.
 
-  * Search engine
-  * Downloads
-  * Wiki
-  * Source code browsing
-  * Downloads, Wiki and Issue Tracker configuration management
-  * Activity notifications
-  * Google Analytics integration
-  * User preference modification
+In addition, check the issue list to see what tasks we've planned out in the near future.
 
 == FAQ/Troubleshooting ==
 
