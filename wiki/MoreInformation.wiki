@@ -17,7 +17,7 @@ If you don't want this functionality, just leave the field in the Persistence to
 Depending on the version of Longhouse you're running, some things might not be implemented yet.
  Odds are that we already know about what's missing and we'll be working on it soon.
 
-See the [WhatGoingOn what's going on?] page for an up-to-date list of what will be worked on in the future.
+See the [WhatsGoingOn what's going on?] page for an up-to-date list of what will be worked on in the future.
 
 In addition, check the issue list to see what tasks we've planned out in the near future.
 
