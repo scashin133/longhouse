@@ -1,5 +1,4 @@
-#summary This page documents the changes that are currently being worked on in Longhouse
- and provides a space for community feedback.
+#summary This page documents the changes that are currently being worked on in Longhouse and provides a space for community feedback.
 #labels Featured
 
 == Give us feedback about ideas for improvements ==
