@@ -530,6 +530,210 @@
 </table>
 </div>
 
+<div id="TC-301A">
+<h3>TC-301A: Add Project Members via Web UI</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the project owner can change project membership by using the Web UI.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be a Project Owner.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+	<li>Enter the Administration area of the project web site.</li>
+	<li>Choose the Project Members tool.</li>
+	<li>Add another user's email to the "Project Members" box.</li>
+	<li>Save changes.</li>
+	<li>Go to the project home page.</li>
+	<li>Verify that the new user's email is shown on the list of members.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-301B">
+<h3>TC-301B: Add Project Members via Subversion</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the project owner can change project membership by editing XML files in Subversion.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be a Project Owner, and have a Subversion client.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Log into the project repository using a Subversion client.</li>
+    <li>Navigate to the project membership XML file, download it, add a new member to the list of project members and reupload it.</li>
+    <li>Visit the project hosting home page.</li>
+	<li>Verify that the new member shows on the list of project members.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-302A">
+<h3>TC-302A: Promote Project Members via Web UI</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the project owner can promote existing project members by using the Web UI.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be a Project Owner. Have other project members in the membership roster of the project.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+	<li>Enter the Administration area of the project web site.</li>
+	<li>Choose the Project Members tool.</li>
+	<li>Add an existing member's email to the "Project Owner" box.</li>
+	<li>Save changes.</li>
+	<li>Go to the project home page.</li>
+	<li>Verify that the changed user's email is shown on the list of owner.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-302B">
+<h3>TC-302B: Promote Project Members via Subversion</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the project owner can promote existing project members by editing XML files in Subversion.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be a Project Owner, and have a Subversion client. Have other project members in the membership roster of the project.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Log into the project repository using a Subversion client.</li>
+    <li>Navigate to the project membership XML file, download it, add an existing member to the list of project owners. Remove the member's entry from the list of project members and reupload it.</li>
+    <li>Visit the project hosting home page.</li>
+	<li>Verify that the changed member shows on the list of project owners.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+
+<div id="TC-303A">
+<h3>TC-303A: Flag Deletion via Web UI</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the project owner can flag the project for deletion by using the Web UI.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be a Project Owner.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+	<li>Enter the Administration area of the project web site.</li>
+	<li>Choose the Advanced tool.</li>
+	<li>Click the button "Flag for deletion."</li>
+	<li>Click "OK" on the notification popup.</li>
+	<li>Verify that the project shows that it is flagged for deletion.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
+<div id="TC-303B">
+<h3>TC-303B: Flag Deletion via Subversion</h3>
+<table border="1" cellpadding="3" cellspacing="2" class="axial">
+ <tr>
+  <th>Purpose:</th>
+  <td>
+
+   Determine whether the project owner can flag the project for deletion by editing XML files in Subversion.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Prereq:</th>
+  <td>
+   Be a Project Owner, and have a Subversion client.
+  </td>
+ </tr>
+
+ <tr>
+  <th>Steps:</th>
+  <td>
+   <ol>
+    <li>Log into the project repository using a Subversion client.</li>
+    <li>Navigate to the project publishing options XML file, download it, change the Settings field to "Flagged for Deletion" and reupload it.</li>
+    <li>Visit the project hosting home page.</li>
+	<li>Verify that the project home page shows that it is flagged for deletion.</li>
+   </ol>
+  </td>
+ </tr>
+
+</table>
+</div>
+
 <div id="TC-400A">
 <h3>TC-400A: File List Manipulation</h3>
 <table border="1" cellpadding="3" cellspacing="2" class="axial">
