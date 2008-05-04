@@ -95,6 +95,14 @@ class PageSetup(framework.helpers.AbstractPageSetup):
       self.dit_persist, self.universal_ezt_data)
     self._SetupProjectPage(set_star_form.Handler,
                            constants.ISSUE_SETSTAR_FORM_URL)
+    
+    issue_admin_page = issueadmin.ProjectAdminIssues(
+      self.conn_pool, self.demetrius_persist,
+      self.dit_persist, self.universal_ezt_data)
+    self._SetupProjectPage(issue_admin_page.Handler,
+                           constants.ADMIN_ISSUES_PAGE_URL)
+    self._SetupProjectForm(issue_admin_page.FormHandler,
+                           constants.ADMIN_ISSUES_FORM_URL)
 
 """
     issue_advsearch_page = issueadvsearch.IssueAdvancedSearch(
