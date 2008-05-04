@@ -79,7 +79,6 @@ PROJECT_CREATE_FORM_URL = '/hosting/createProject.do'
 DOWNLOADS_INDEX_URL = '/downloads/list'
 WIKI_INDEX_URL = '/w/list'
 SEARCH_PAGE_URL = '/hosting/search'
-ADMIN_ISSUES_PAGE_URL = '/adminIssues'
 ADMIN_DOWNLOADS_PAGE_URL = '/adminDownloads'
 ADMIN_WIKI_PAGE_URL = '/adminWiki'
 

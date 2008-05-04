@@ -132,8 +132,6 @@ class PageSetup(framework.helpers.AbstractPageSetup):
     self._SetupProjectPage(placeholder_page.Handler,
                            constants.ADMIN_DOWNLOADS_PAGE_URL)
     self._SetupProjectPage(placeholder_page.Handler,
-                           constants.ADMIN_ISSUES_PAGE_URL)
-    self._SetupProjectPage(placeholder_page.Handler,
                            constants.ADMIN_WIKI_PAGE_URL)
     
     # TODO: register per project deferred pages here
