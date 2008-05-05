@@ -91,22 +91,6 @@ def main(logging, logfile, port, daemonized):
     else:
         pass
     
-    demetrius_persist.CreateUser("mad@uci.edu", "mad@uci.edu", "password")
-    demetrius_persist.CreateUser("deeksha@uci.edu", "deeksha@uci.edu", "password")
-    demetrius_persist.CreateUser("ayesham@uci.edu", "ayesham@uci.edu", "password")
-    demetrius_persist.CreateUser("jmilewski@uci.edu", "jmilewski@uci.edu", "password")
-    demetrius_persist.CreateUser("morgand@uci.edu", "morgand@uci.edu", "password")
-    demetrius_persist.CreateUser("lnakamur@uci.edu", "lnakamur@uci.edu", "password")
-    demetrius_persist.CreateUser("jpapa@uci.edu", "jpapa@uci.edu", "password")
-    demetrius_persist.CreateUser("ppourkho@uci.edu", "ppourkho@uci.edu", "password")
-    demetrius_persist.CreateUser("rrajput@uci.edu", "rrajput@uci.edu", "password")
-    demetrius_persist.CreateUser("sroeder@uci.edu", "sroeder@uci.edu", "password")
-    demetrius_persist.CreateUser("satyajid@uci.edu", "satyajid@uci.edu", "password")
-    demetrius_persist.CreateUser("patil@uci.edu", "patil@uci.edu", "password")
-    demetrius_persist.CreateUser("kobsa@uci.edu", "kobsa@uci.edu", "password")
-    demetrius_persist.CreateUser("ziv@uci.edu", "ziv@uci.edu", "password");
-    demetrius_persist.CreateUser("longhouse-tester@gmail.com", "longhouse-tester@gmail.com", "longhouse-password")
-
     test_project = demetrius_persist.GetProject('testproject')
     if test_project == None:
         print "couldn't load testproject from disk, creating it"
