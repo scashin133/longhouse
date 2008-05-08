@@ -1,4 +1,4 @@
-#!/usr/bin/python2.4
+#!/usr/bin/env python
 #
 # Copyright 2007 Google Inc.
 #
@@ -99,6 +99,9 @@ def main(logging, logfile, port, daemonized):
             "Now we must describe the test project.", ["label1", "label2", "label3"], "asf20", conn_pool)
         test_project = demetrius_persist.GetProject('testproject')
         test_project.set_repository_url('https://teamfreedom-projectcode.googlecode.com/svn/')
+        test_project.set_persist_repository_url('svn://eastmont.no-ip.org/var/svn/shared/sean_longhouse_persist')
+        test_project.set_persist_repository_username('longhouse')
+        test_project.set_persist_repository_password('longhousepass')
         link = test_project.add_linksurl()
         link.set_url("http://www.google.com")
         link.set_label("Google label")
