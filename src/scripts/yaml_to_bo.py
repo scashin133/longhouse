@@ -233,11 +233,11 @@ if __name__ == '__main__':
 
     searchForHandler(FieldHelpers)
 
-    for root, dirs, files in os.walk('../bo/yaml/'):
+    for root, dirs, files in os.walk('bo/yaml/'):
         for dir_name in dirs:
             if(re.compile("(/\.)").search(os.path.join(root,dir_name)) is not None):
                 continue
-            bo_file = open("../bo/generated_"+dir_name+".py", "w+")
+            bo_file = open("bo/generated_"+dir_name+".py", "w+")
             bo_file.write(imports(dir_name))
             bo_file.write(generate_bo_file(os.path.join(root, dir_name), dir_name))
             bo_file.close
