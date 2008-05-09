@@ -1,10 +1,26 @@
-import yaml
+#!/usr/bin/env python
+
+# importing standard python modules
+import os,sys
+from os.path import join
 import copy
 import re
-import os
+
+# Adding longhouse modules to path
+DIR_PATH = os.path.abspath(os.path.dirname(os.path.split(os.path.realpath(__file__))[0]))
+
+EXTRA_PATHS = [
+    DIR_PATH,
+    os.path.join(DIR_PATH, 'scripts', 'field_helpers'),
+    os.path.join(DIR_PATH, 'lib', 'yaml', 'lib')
+]
+
+sys.path = EXTRA_PATHS + sys.path
+
+
+import yaml
 from field_helpers import FieldHelpers
-import re
-from os.path import join
+
 
 global actions
 
@@ -233,11 +249,11 @@ if __name__ == '__main__':
 
     searchForHandler(FieldHelpers)
 
-    for root, dirs, files in os.walk('bo/yaml/'):
+    for root, dirs, files in os.walk(os.path.join(DIR_PATH, 'bo', 'yaml')):
         for dir_name in dirs:
             if(re.compile("(/\.)").search(os.path.join(root,dir_name)) is not None):
                 continue
-            bo_file = open("bo/generated_"+dir_name+".py", "w+")
+            bo_file = open(os.path.join(DIR_PATH, 'bo', "generated_"+dir_name+".py"), "w+")
             bo_file.write(imports(dir_name))
             bo_file.write(generate_bo_file(os.path.join(root, dir_name), dir_name))
             bo_file.close
