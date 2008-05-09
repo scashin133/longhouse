@@ -1,9 +1,5 @@
 import sys, os, string
 
-# append the working directory to the path
-
-sys.path.append(os.path.realpath('.'))
-
 
 # ensure minimum python version
 
