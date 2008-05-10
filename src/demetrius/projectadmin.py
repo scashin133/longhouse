@@ -290,20 +290,41 @@ class ProjectAdminPersist(pageclasses.DemetriusPage):
             repository, username, password = self._ParsePersist(post_data, errors)
 
             if not errors.AnyErrors():
-                try:
-                    print 'updating project', repository, username, password
-                    self.demetrius_persist.UpdateLockedProject(
-                        req_info.project_name, self.conn_pool,                                       
-                        persist_repository_url=repository,
-                        persist_repository_username=username,
-                        persist_repository_password=password)
-                except SvnException, e:
-                    print 'svn exception'
+                
+                print 'updating project', repository, username, password
+                updated_project = self.demetrius_persist.UpdateLockedProject(
+                    req_info.project_name, self.conn_pool,                                       
+                    persist_repository_url=repository,
+                    persist_repository_username=username,
+                    persist_repository_password=password)
+                    
+                def finishForm(*args):
+                    self._FinishProcessingForm(request, req_info, errors, repository, username, password)    
+                    
+                def updateProjectError(*args):
+                    print 'error updating locked project'
                     errors.svn_connect = 'Could not connect to subversion repository'
+                    
+                # TODO: use isinstance() here instead?
+                if str(updated_project.__class__) == 'twisted.internet.defer.Deferred':
+                    updated_project.addErrback(updateProjectError)
+                    updated_project.addCallback(finishForm)
+                    return updated_project
+                else:
+                    finishForm()
+                
+        except Exception, e:
+            print 'exception in ProjectAdminPersist.ProcessForm:', e
+            raise
 
-        finally:
-            self.demetrius_persist.UnlockProject(req_info.project_name)
 
+    def _FinishProcessingForm(self, request, req_info, errors, repository, username, password):
+        """ All deferreds have returned, finish processing """
+        
+        print 'finishing processing form'
+        
+        self.demetrius_persist.UnlockProject(req_info.project_name)
+        
         if errors.AnyErrors():
 
             params = {
@@ -311,6 +332,8 @@ class ProjectAdminPersist(pageclasses.DemetriusPage):
                 'username' : username,
                 'password' : password
                 }
+                
+            print 'there were errors, preparing subrequest'
             
             req_info.PrepareForSubrequest(req_info.project_name, errors, **params)
             self.Handler(request, req_info=req_info)
@@ -319,6 +342,9 @@ class ProjectAdminPersist(pageclasses.DemetriusPage):
                 req_info, constants.ADMIN_PERSIST_PAGE_URL, request,
                 saved=1, ts=int(time.time()))
             http.SendRedirect(url, request)
+            
+            
+            
 
     def _ParsePersist(self, post_data, errors):
         """Process the submited svn information"""
