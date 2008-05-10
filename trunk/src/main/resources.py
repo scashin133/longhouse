@@ -31,12 +31,6 @@ class HandlerResource(resource.Resource):
     def render_GET(self, request):
         """Call the handler method"""
         
-        #print 'blockingCallFromThread in render_GET'
-        ##result = threads.deferToThread( threads.blockingCallFromThread(reactor, self.blocker) )
-        #result = threads.blockingCallFromThread(reactor, self.getEchoOutput)
-        #print result
-        #print 'done with blocking call'
-        
         try:
             handler_result = self.handler(request)
 
@@ -64,38 +58,16 @@ class HandlerResource(resource.Resource):
 
         return server.NOT_DONE_YET
 
-
-#   def _respond(self, data):
-#       print 'finally responding to deferred handler with:', data
-#       self.request.write(str(data))
-#       self.request.finish()
-        
-        
         
         request.finish()   
         return server.NOT_DONE_YET     
         
     render_POST = render_GET
     
-    def getEchoOutput(self):
-        args = ['hello!']
-        return twisted.internet.utils.getProcessOutputAndValue(
-                    '/bin/echo', args)
-        
-    def blocker(self):
-        d = defer.Deferred()
-        seconds = 3
-        outval = '42'
-        print "- main thread has made a Deferred. will call back in %d seconds." % seconds
-        def blockerdone():
-            print "- %d seconds done. Now callback-ing Deferred with %r." % (seconds, outval)
-            d.callback(outval)
-        reactor.callLater(seconds, blockerdone)
-        print "- blocker is done and is returning the Deferred."
-        return d
-    
 class DeferredHandlerResource(resource.Resource):
-    """Wrapper for a deferred handler method."""
+    """Wrapper for a deferred handler method.
+    TODO: the normal HandlerResource should provide this same 
+    functionality but it is untested"""
     
     isLeaf = True
     

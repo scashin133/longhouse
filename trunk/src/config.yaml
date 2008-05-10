@@ -1,5 +1,0 @@
-working_dir: /Users/chrisbaker/workspaces/teamfreedom/longhouse_new/src
-port: 8080
-daemonized: false
-logging: true
-svn: /usr/local/bin/svn

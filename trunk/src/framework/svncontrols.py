@@ -73,38 +73,11 @@ class SvnController:
         if (len(self.working_copy_root) > 0) and\
             (self.working_copy_root[len(self.working_copy_root)-1:] != "/"):
             self.working_copy_root += "/"
-        
-        if VERBOSE:
-            print 'testing newly created svn controller'
-
-
-        # pause until the test is completed
-        # this is a poor use of twisted defereds
-        # we should instead do this test as an ajax call (in the Admin>Persistence tab)
-        # and not allow the page to be submited until the test is completed
-
-        #try:
-        #
-        #    #test_result = twisted.internet.defer.waitForDeferred(self.d_test())
-        #    #yield test_result
-        #    #test_result = test_result.getResult()
-        #
-        #    print dir(twisted.internet.threads)
-        #    print 'about to do blocking call from thread...'
-        #    test_result = twisted.internet.threads.blockingCallFromThread(reactor, self.d_test)
-        #    print 'done with blocking call from thread'
-        #
-        #    # check success
-        #    print '~~~~~~~~~~~~~~~~~~~~~~~~~~~ test_result is:', test_result
-        #
-        #except Exception, e:
-        #    print "exception setting up svn controller:", e
-        #    raise
 
         
     def d_test(self): 
         """Determine if we can contact the repository."""
-        print '~~~~~~~~~~~~~~~~~~~~~~~~ SvnController self test'
+        print 'SvnController self test'
         d = self.d_remote_list('/')
         d.addCallback(self._return_success)
         return d
