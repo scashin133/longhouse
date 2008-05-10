@@ -327,13 +327,13 @@ class ProjectAdminPersist(pageclasses.DemetriusPage):
         
         if errors.AnyErrors():
 
+            print 'There were errors processing ProjectAdminPersist form. Preparing subrequest...'
+
             params = {
                 'repository' : repository,
                 'username' : username,
                 'password' : password
                 }
-                
-            print 'there were errors, preparing subrequest'
             
             req_info.PrepareForSubrequest(req_info.project_name, errors, **params)
             self.Handler(request, req_info=req_info)
@@ -342,9 +342,7 @@ class ProjectAdminPersist(pageclasses.DemetriusPage):
                 req_info, constants.ADMIN_PERSIST_PAGE_URL, request,
                 saved=1, ts=int(time.time()))
             http.SendRedirect(url, request)
-            
-            
-            
+
 
     def _ParsePersist(self, post_data, errors):
         """Process the submited svn information"""

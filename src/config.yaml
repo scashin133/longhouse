@@ -1,4 +1,4 @@
-working_dir: /path/to/longhouse/src
+working_dir: /Users/chrisbaker/workspaces/teamfreedom/longhouse_new/src
 port: 8080
 daemonized: false
 logging: true

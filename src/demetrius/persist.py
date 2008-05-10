@@ -486,7 +486,8 @@ class DemetriusPersist(object):
     self.IndexProject(project, conn_pool)
     
     # update the project's svn_controller
-    # NOTE: if there was a change to the svn_controller, 
+    
+    # if there was a change to the svn_controller, 
     # this method will result in a deferred that will eventually return the project
     
     persist_changed = False

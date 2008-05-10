@@ -66,7 +66,6 @@ class Project(generated_demetrius_pb.Project):
                     return self.d_checkout_working_copy()
             
             d.addCallback(test_result)
-        
             
             return d
         
