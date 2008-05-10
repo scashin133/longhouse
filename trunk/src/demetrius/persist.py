@@ -32,6 +32,7 @@ import random
 import hashlib
 
 from twisted.python import log
+from twisted.internet import defer
 
 from common import post
 #from common import pywrapcodesitebase
@@ -419,7 +420,9 @@ class DemetriusPersist(object):
                           persist_repository_url=None,
                           persist_repository_username=None,
                           persist_repository_password=None):
-    """Update the named project with any of the given information."""
+    """Update the named project with any of the given information.
+    Returns the updated project or, if a change needs to be done to the
+    project's svn controller, returns a deferred"""
     assert self.IsValidProjectName(project_name)
     project = self.GetProject(project_name)
 
@@ -480,7 +483,12 @@ class DemetriusPersist(object):
       else:
         project.clear_analytics_account()
     
-    # first update persist information
+    self.IndexProject(project, conn_pool)
+    
+    # update the project's svn_controller
+    # NOTE: if there was a change to the svn_controller, 
+    # this method will result in a deferred that will eventually return the project
+    
     persist_changed = False
     
     if persist_repository_url is not None:
@@ -493,13 +501,17 @@ class DemetriusPersist(object):
       project.set_persist_repository_password(persist_repository_password)
       persist_changed = True
     
-    # now try to connect to the repository with the new information
     if(persist_changed):
-        project.setup_svn_controller()
-
-    self.IndexProject(project, conn_pool)
-
-    return project
+        def svn_exception(e):
+            raise e
+        def return_project():
+            return project
+        d = project.d_setup_svn_controller()
+        d.addErrback(svn_exception)
+        d.addCallback(return_project)
+        return d
+    else:
+        return project
 
   def DeleteProject(self, project_name,
                     new_state=demetrius_pb.Project.DELETE_PENDING,

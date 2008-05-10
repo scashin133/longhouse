@@ -1,5 +1,8 @@
 import sys, re
 
+import twisted.internet.utils
+from twisted.internet import threads, reactor, defer
+
 from twisted.web import resource, static
 from twisted.web import server
 from twisted.python import log
@@ -27,11 +30,69 @@ class HandlerResource(resource.Resource):
        
     def render_GET(self, request):
         """Call the handler method"""
-        self.handler(request)
+        
+        #print 'blockingCallFromThread in render_GET'
+        ##result = threads.deferToThread( threads.blockingCallFromThread(reactor, self.blocker) )
+        #result = threads.blockingCallFromThread(reactor, self.getEchoOutput)
+        #print result
+        #print 'done with blocking call'
+        
+        try:
+            handler_result = self.handler(request)
+
+            # TODO: use isinstance() here instead?
+            if str(handler_result.__class__) == 'twisted.internet.defer.Deferred':
+                # handler resulted in a deferred, we'll wait until it's done to finish the request
+                print 'handler was a deferred! adding callback to respond'
+                
+                def respond(data):
+                    print 'finally responding to deferred handler with:', data
+                    #request.write(str(data))
+                    request.finish()
+                    
+                handler_result.addCallback(respond)
+            else:
+                # handler is not deferred, we assume it's done now and we can finish the request
+                #request.write('?')    
+                print 'handler was not a deferred, it was a', str(handler_result.__class__)
+                print 'finishing request now'
+                request.finish();
+
+        except Exception, e:
+            print 'exception in HandlerResource.render_GET:', e
+            raise e
+
+        return server.NOT_DONE_YET
+
+
+#   def _respond(self, data):
+#       print 'finally responding to deferred handler with:', data
+#       self.request.write(str(data))
+#       self.request.finish()
+        
+        
+        
         request.finish()   
         return server.NOT_DONE_YET     
         
     render_POST = render_GET
+    
+    def getEchoOutput(self):
+        args = ['hello!']
+        return twisted.internet.utils.getProcessOutputAndValue(
+                    '/bin/echo', args)
+        
+    def blocker(self):
+        d = defer.Deferred()
+        seconds = 3
+        outval = '42'
+        print "- main thread has made a Deferred. will call back in %d seconds." % seconds
+        def blockerdone():
+            print "- %d seconds done. Now callback-ing Deferred with %r." % (seconds, outval)
+            d.callback(outval)
+        reactor.callLater(seconds, blockerdone)
+        print "- blocker is done and is returning the Deferred."
+        return d
     
 class DeferredHandlerResource(resource.Resource):
     """Wrapper for a deferred handler method."""

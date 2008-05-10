@@ -76,13 +76,37 @@ class SvnController:
         
         if VERBOSE:
             print 'testing newly created svn controller'
-        self.d_test()
+
+
+        # pause until the test is completed
+        # this is a poor use of twisted defereds
+        # we should instead do this test as an ajax call (in the Admin>Persistence tab)
+        # and not allow the page to be submited until the test is completed
+
+        #try:
+        #
+        #    #test_result = twisted.internet.defer.waitForDeferred(self.d_test())
+        #    #yield test_result
+        #    #test_result = test_result.getResult()
+        #
+        #    print dir(twisted.internet.threads)
+        #    print 'about to do blocking call from thread...'
+        #    test_result = twisted.internet.threads.blockingCallFromThread(reactor, self.d_test)
+        #    print 'done with blocking call from thread'
+        #
+        #    # check success
+        #    print '~~~~~~~~~~~~~~~~~~~~~~~~~~~ test_result is:', test_result
+        #
+        #except Exception, e:
+        #    print "exception setting up svn controller:", e
+        #    raise
+
         
     def d_test(self): 
         """Determine if we can contact the repository."""
+        print '~~~~~~~~~~~~~~~~~~~~~~~~ SvnController self test'
         d = self.d_remote_list('/')
-        d.addCallback(self._return_success).addCallback(self._print_response)
-        d.addErrback(self._print_error)
+        d.addCallback(self._return_success)
         return d
     
     def _return_success(self, output):
@@ -93,9 +117,13 @@ class SvnController:
         
     def _print_response(self, response):
         print 'got response:', response
+        return response
         
     def _print_error(self, error):
         print 'error in deferred:', error
+    
+    def _print_timeout(self, error):
+        print 'timeout in deferred'
     
     def is_working_copy(self, path):
         """
@@ -127,6 +155,8 @@ class SvnController:
                 '--username', self.repository_username, 
                 '--password', self.repository_password]
         
+        print 'doing svn list with args', args
+
         return twisted.internet.utils.getProcessOutputAndValue(
                     constants.SVN_LOC, args)
 
