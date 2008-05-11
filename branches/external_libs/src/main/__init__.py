@@ -29,9 +29,7 @@ DIR_PATH = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 
 EXTRA_PATHS = [
     DIR_PATH, # adding the working path
-    os.path.join(DIR_PATH, '..', '..', 'lib'), # adding yaml
-    #os.path.join(DIR_PATH, 'lib', 'twisted'), # adding twisted
-    #os.path.join(DIR_PATH, 'lib') # adding any top level modules (ezt)
+    os.path.join(DIR_PATH, '..', '..', 'lib'), # add lib directory (should be in same directory as /src)
 ]
 
 sys.path = EXTRA_PATHS + sys.path
