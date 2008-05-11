@@ -76,10 +76,10 @@ class Project(generated_demetrius_pb.Project):
     def d_checkout_working_copy(self):
         if(self.svn_controller().has_working_copy()):
             print 'already have working copy, updating'
-            return svn_controller().d_up()
+            return self.svn_controller().d_up()
         else:
             print 'checking out', self.svn_controller().repository_location
-            return svn_controller().d_checkout()
+            return self.svn_controller().d_checkout()
         
     def svn_controller(self):
         return self.svn_controller_

@@ -301,8 +301,9 @@ class ProjectAdminPersist(pageclasses.DemetriusPage):
                 def finishForm(*args):
                     self._FinishProcessingForm(request, req_info, errors, repository, username, password)    
                     
-                def updateProjectError(*args):
-                    print 'error updating locked project'
+                def updateProjectError(e):
+                    print 'error updating locked project', e
+                    print e.getTraceback()
                     errors.svn_connect = 'Could not connect to subversion repository'
                     
                 # TODO: use isinstance() here instead?
