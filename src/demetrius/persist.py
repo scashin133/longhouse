@@ -320,7 +320,7 @@ class DemetriusPersist(object):
             self.projects.append(project)
             
             print 'got projet from xml, now setting up svn controller'
-            project.setup_svn_controller()
+            project.d_setup_svn_controller()
             
             print 'now adding owners & members'
             for owner in project.owner_ids_list():
@@ -505,7 +505,7 @@ class DemetriusPersist(object):
     if(persist_changed):
         def svn_exception(e):
             raise e
-        def return_project():
+        def return_project(*args):
             return project
         d = project.d_setup_svn_controller()
         d.addErrback(svn_exception)
