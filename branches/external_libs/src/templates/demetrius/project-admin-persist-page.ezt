@@ -1,0 +1,55 @@
+[include "master-header.ezt" "showtabs"]
+
+[if-any read_only][include "../demetrius/read-only-rejection.ezt"]
+[else]
+
+[define show_google_accounts_registration_tip][end]
+
+ <form action='adminPersist.do' method="POST">
+  <input type="hidden" name="projectname" value="[projectname]" />
+  [if-any token]<input type=hidden name=token value="[token]" />[end]
+
+<h4>Persistence</h4>
+
+<!--input type=hidden name=adminmemberssection value=true / -->
+
+<div class="section">
+
+ [if-any project.svn_controller]
+  <div>Connected to [project.persist_repository_url]</div>
+ [else]
+  <div class=fielderror>Warning: not connected to any repository</div>
+ [end]<br/>
+ 
+
+ 
+ Persistence repository:<br/>
+ <input id=repository name=repository size=75 value="[project.persist_repository_url]" /><br/>
+ [if-any errors.repository]
+  <div class=fielderror>[errors.repository]</div>
+ [end]<br/>
+
+ Repository username:<br/>
+ <input id=repositoryusername name=username size=30 value="[project.persist_repository_username]" /><br/>
+ [if-any errors.username]
+  <div class=fielderror>[errors.username]</div>
+ [end]<br/>
+
+
+ Repository password:<br/>
+ <input id=repositorypassword name=password size=30 value="[project.persist_repository_password]" /><br/>
+ [if-any errors.password]
+  <div class=fielderror>[errors.password]</div>
+ [end]<br/>
+
+</div>
+
+
+
+  <input type="submit" id="savechanges" name="btn" value="Save Changes" class="submit"/> 
+ </form>
+
+[end]
+
+[include "footer-script.ezt"]
+[include "master-footer.ezt"]

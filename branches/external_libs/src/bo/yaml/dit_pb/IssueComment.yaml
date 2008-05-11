@@ -1,0 +1,52 @@
+---
+describe: field
+name: project_name
+type: string
+value: ""
+---
+describe: field
+name: issue_id
+type: integer
+value: 0
+---
+describe: field
+name: user_id
+type: integer
+value: 0
+---
+describe: field
+name: timestamp
+type: integer
+value: 0
+---
+describe: field
+name: content
+type: string
+value: ""
+---
+describe: field
+name: updates
+type: array_IssueComment_Updates
+value: "[]"
+---
+describe: field
+name: deleted_by
+type: integer
+value: 0
+---
+describe: field
+name: attachments
+type: array_IssueComment_Attachments
+value: "[]"
+---
+describe: field
+name: was_escaped
+type: integer
+value: 1
+---
+describe: field
+name: comment_id
+type: integer
+value: 0
+primary: true
+---

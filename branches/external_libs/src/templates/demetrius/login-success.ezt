@@ -1,0 +1,37 @@
+[define title]Log In to Your Account[end]
+
+[define breadcrumbs]
+<span class="item"><a href="">Project Hosting</a></span>
+[end]
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <META HTTP-EQUIV="refresh" content="10; url=[redirect]">
+    <style type="text/css">
+#popular { border: solid silver; border-width: 1px 0 1px 0; padding: 0.3em; width: 40em;}
+#popular table { width: 40em }
+#popular td { padding: 2px; white-space: nowrap }
+.rounded_ul { background: url(/images/ul.gif) no-repeat top left;}
+.rounded_ur { background: url(/images/ur.gif) no-repeat top right;}
+.rounded_ll { background: url(/images/ll.gif) no-repeat bottom left;}
+.rounded_lr { background: url(/images/lr.gif) no-repeat bottom right;}
+
+#intro { background:#ada; margin: 3em; width: 52em;}
+
+    </style>
+    
+  </head>
+  <body>
+ [include "signin-bar.ezt"]
+
+[if-any username]
+	You have successfully signed in as [username]!
+[else]
+	You are not signed in.
+[end]
+
+     [#include "../../html/_bottom.ezt"]
+  </body>
+</html>
+ 
