@@ -73,16 +73,13 @@ class SvnController:
         if (len(self.working_copy_root) > 0) and\
             (self.working_copy_root[len(self.working_copy_root)-1:] != "/"):
             self.working_copy_root += "/"
-        
-        if VERBOSE:
-            print 'testing newly created svn controller'
-        self.d_test()
+
         
     def d_test(self): 
         """Determine if we can contact the repository."""
+        print 'SvnController self test'
         d = self.d_remote_list('/')
-        d.addCallback(self._return_success).addCallback(self._print_response)
-        d.addErrback(self._print_error)
+        d.addCallback(self._return_success)
         return d
     
     def _return_success(self, output):
@@ -93,9 +90,13 @@ class SvnController:
         
     def _print_response(self, response):
         print 'got response:', response
+        return response
         
     def _print_error(self, error):
         print 'error in deferred:', error
+    
+    def _print_timeout(self, error):
+        print 'timeout in deferred'
     
     def is_working_copy(self, path):
         """
@@ -127,6 +128,8 @@ class SvnController:
                 '--username', self.repository_username, 
                 '--password', self.repository_password]
         
+        print 'doing svn list with args', args
+
         return twisted.internet.utils.getProcessOutputAndValue(
                     constants.SVN_LOC, args)
 
@@ -157,12 +160,18 @@ class SvnController:
     def d_up_add_commit(self, message="generic Longhouse commit"):
         if VERBOSE:
             print 'd_up_add_commit starting chain'
+        
+        def print_result(result):
+            print '\treturned:', result
             
         self.message = message
         d = self._d_cleanup()
         d.addCallback(self.d_up)
         d.addCallback(self._d_add_all)
+        d.addCallback(print_result)
         d.addCallback(self._d_commit)
+        d.addCallback(print_result)
+        
 
 
     def d_up(self, *args):
@@ -201,10 +210,30 @@ class SvnController:
         if VERBOSE:
             print '_d_add_all called'
 
-        args = ['add', '--force', self.working_copy_root]
+        d = defer.Deferred()
+
+        # recursively walk directories, adding everything we find to svn
+        for root, dirs, files in os.walk(self.working_copy_root):
+            
+            # remove any hidden dirs
+            for dir in dirs:
+                if dir.startswith("."):
+                    dirs.remove(dir)
+            
+            for dir in dirs:
+                print dir, os.path.join(root, dir)
+                args = ['add', os.path.join(root, dir)]
+                d.addCallback(ProcessOutputFactory(constants.SVN_LOC, args))
+            
+            for name in files:
+                print name, os.path.join(root, name)
+                args = ['add', os.path.join(root, name)]
+                d.addCallback(ProcessOutputFactory(constants.SVN_LOC, args))
         
-        return twisted.internet.utils.getProcessOutputAndValue(
-                    constants.SVN_LOC, args)
+        # start the chain of deferreds
+        d.callback('empty')
+        
+        return d 
 
 
     def _d_commit(self, *args):
@@ -224,7 +253,7 @@ class SvnController:
                 '--password', self.repository_password,
                 '-m', '"%s"' % self.message]
         
-        d = twisted.internet.utils.getProcessOutput(constants.SVN_LOC, args)
+        d = twisted.internet.utils.getProcessOutputAndValue(constants.SVN_LOC, args)
         self.message = None
         return d
 
@@ -251,7 +280,12 @@ class SvnController:
             os.remove(bad_merge + '.mine')
             for revision_file in glob.glob(bad_merge + '.r*'):
                 os.remove(revision_file)
-        
+
+def ProcessOutputFactory(process, args):
+    """ Returns a callable that will execute t.i.u.getProcessOutputAndValue
+    on the given process with the given arguments """
+    return lambda x: twisted.internet.utils.getProcessOutputAndValue(process, args)
+   
 
 class Error(Exception):
   """Base class for errors from this module."""

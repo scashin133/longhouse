@@ -1,5 +1,8 @@
 import sys, re
 
+import twisted.internet.utils
+from twisted.internet import threads, reactor, defer
+
 from twisted.web import resource, static
 from twisted.web import server
 from twisted.python import log
@@ -27,14 +30,44 @@ class HandlerResource(resource.Resource):
        
     def render_GET(self, request):
         """Call the handler method"""
-        self.handler(request)
+        
+        try:
+            handler_result = self.handler(request)
+
+            # TODO: use isinstance() here instead?
+            if str(handler_result.__class__) == 'twisted.internet.defer.Deferred':
+                # handler resulted in a deferred, we'll wait until it's done to finish the request
+                print 'handler was a deferred! adding callback to respond'
+                
+                def respond(data):
+                    print 'finally responding to deferred handler with:', data
+                    #request.write(str(data))
+                    request.finish()
+                    
+                handler_result.addCallback(respond)
+            else:
+                # handler is not deferred, we assume it's done now and we can finish the request
+                #request.write('?')    
+                print 'handler was not a deferred, it was a', str(handler_result.__class__)
+                print 'finishing request now'
+                request.finish();
+
+        except Exception, e:
+            print 'exception in HandlerResource.render_GET:', e
+            raise e
+
+        return server.NOT_DONE_YET
+
+        
         request.finish()   
         return server.NOT_DONE_YET     
         
     render_POST = render_GET
     
 class DeferredHandlerResource(resource.Resource):
-    """Wrapper for a deferred handler method."""
+    """Wrapper for a deferred handler method.
+    TODO: the normal HandlerResource should provide this same 
+    functionality but it is untested"""
     
     isLeaf = True
     

@@ -1,4 +1,4 @@
-#!/usr/bin/python2.4
+#!/usr/bin/env python
 #
 # Copyright 2007 Google Inc.
 #
@@ -55,6 +55,7 @@ class DITPersist(object):
     self.issue_comments = {}
     self.user_issue_stars = {}
     self.issue_user_stars = {}
+    self.project_issue_configs = {}
 
   ### Issues
   
@@ -74,33 +75,31 @@ class DITPersist(object):
 
     Returns: a list of Issue business objects for all open issues.
     """
-
+    project_config = self.GetProjectConfig(project_name)
+    well_known_statuses = project_config.well_known_statuses_list()
+    closed_statuses = []
+    for well_known_status in well_known_statuses:
+        if well_known_status.means_open() == 0:
+            closed_statuses.append(well_known_status)
+            
     open_issues = []
-    x = 0
-    project_issues = self.project_indexes.get(project_name, None)
-    if(project_issues is None):
-        return []
-    else:
-        #for issue in project_issues.values():
-            #TODO: Add 'is_open()' method to issue() and filter by the result of that method
-        return project_issues.values()
+    project_issues = self.GetAllIssuesInProject(project_name)
+    
+    if project_issues is not None:
+        for issue in project_issues:
+            issue_is_open = True
+            for closed_status in closed_statuses:
+                if issue.status() == closed_status.status():
+                    issue_is_open = False
+            if issue_is_open:
+                open_issues.append(issue)
+                
+    return open_issues
 
   def GetAllOpenIssueIDsInProject(self, project_name):
     """Return the list of open issue IDs only, not the actual issues."""
-    #issues = self.GetAllOpenIssuesInProject(project_name)
-    #return [issue.id() for issue in issues]
-    open_issues = []
-    x = 0
-    project_issues = self.project_indexes.get(project_name, None)
-    if(project_issues is None):
-        return []
-    else:
-        #for issue in project_issues.values():
-            #TODO: Add 'is_open()' method to issue() and filter by the result of that method
-        #    open_issues[x] = issue
-        #    x = x + 1
-        #return open_issues
-        return project_issues.keys()
+    issues = self.GetAllOpenIssuesInProject(project_name)
+    return [issue.id() for issue in issues]
 
   def GetAllIssuesInProject(self, project_name):
     """Special query to efficiently get ALL issues in a project.
@@ -763,9 +762,9 @@ class DITPersist(object):
     """
 
     assert project_name.lower() == project_name
-    #key = self._KeyForProjectIssueConfigByName(project_name)
-    #TODO: 
-    config = None # TODO: repimplement.
+    config = None
+    
+    config = self.project_issue_configs.get(project_name)
 
     if config is None:
       # This project had no stored config, use the default.
@@ -787,6 +786,7 @@ class DITPersist(object):
     project_config = self._MakeProjectIssueConfig(
       project_name, canned_queries, well_known_statuses, well_known_labels,
       excl_label_prefixes, well_known_prompts)
+    self.project_issue_configs[project_name] = project_config
     self._StoreProjectConfig(project_config)
 
   def UpdateConfigInLockedProject(
@@ -828,7 +828,7 @@ class DITPersist(object):
 
     if list_prefs:
       artifactlist.SetListPreferences(list_prefs, project_config)
-
+    self.project_issue_configs[project_name] = project_config
     self._StoreProjectConfig(project_config)
 
 

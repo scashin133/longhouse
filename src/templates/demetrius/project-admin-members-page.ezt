@@ -59,8 +59,8 @@
   <td class=vt>
    <div class=tip><div class=rounded_ul><div class=rounded_ur><div class=rounded_ll><div class=rounded_lr>
     <div style="padding: 5px">
-      <b>Instructions:</b><br/> Specify each project member by his or her Google Account email address. 
-      Each person must have already created a Google Account with that email address.<br/><br/>
+      <b>Instructions:</b><br/> Specify each project member by his or her email address. 
+      Each person must have already created an account with that email address.<br/><br/>
       Separate addresses with commas and/or newlines.
     </div>
    </div></div></div></div></div>
