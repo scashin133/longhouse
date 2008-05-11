@@ -1,4 +1,4 @@
-#!/usr/bin/python2.4
+#!/usr/bin/env python
 #
 # Copyright 2007 Google Inc.
 #
@@ -158,7 +158,7 @@ class DemetriusPage(object):
         self._TOOL_PERMISSION_DICT)
 
       self.AssertBasePermission(req_info)
-      self.ProcessForm(request, req_info)
+      form_result = self.ProcessForm(request, req_info)
 
     except permissions.PermissionException, e:
       log.msg('got PermissionException %s' % e)
@@ -192,6 +192,12 @@ class DemetriusPage(object):
     except:  # Log any other exception and show a generic error msg
       log.err('Failure rendering: %s' % self._PAGE_TEMPLATE)
       http.HttpResponse(request, code=http.HTTP_INTERNAL_SERVER_ERROR)
+
+    finally: # If the form resulted in a deferred, return it. The twisted resources know what to do with it
+        # TODO: use isinstance() here instead?
+        if str(form_result.__class__) == 'twisted.internet.defer.Deferred':
+            return form_result
+
 
   def GetTemplate(self, ezt_data):
     """Get the template to use for writing the http response.
