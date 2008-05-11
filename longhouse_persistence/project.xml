@@ -1,0 +1,89 @@
+<Project id="foo">
+	<field-list>
+		<field name="state">
+			1
+		</field>
+		<field name="project_name">
+			foo
+		</field>
+		<field name="project_num">
+			651
+		</field>
+		<field name="repository_url">
+			https://longhouse.googlecode.com/svn/
+		</field>
+		<field name="persist_repository_url">
+			https://longhouse.googlecode.com/svn/trunk/longhouse_persistence/
+		</field>
+		<field name="persist_repository_username">
+			Venom087
+		</field>
+		<field name="persist_repository_password">
+			w7a6y8h2
+		</field>
+		<field name="summary">
+			foo!
+		</field>
+		<field name="description">
+			foo
+		</field>
+		<field name="license_key">
+			gpl2
+		</field>
+		<field name="labels">
+			<field-list>
+				<field>
+					foo
+				</field>
+			</field-list>
+		</field>
+		<field name="delete_reason"/>
+		<field name="delete_time">
+			0
+		</field>
+		<field name="owner_ids">
+			<field-list>
+				<field>
+					1
+				</field>
+			</field-list>
+		</field>
+		<field name="member_ids">
+			<field-list/>
+		</field>
+		<field name="commit_notify_address"/>
+		<field name="issue_notify_address"/>
+		<field name="linksurl">
+			<field-list/>
+		</field>
+		<field name="linksblog">
+			<field-list/>
+		</field>
+		<field name="linksgroup">
+			<field-list/>
+		</field>
+		<field name="linksissues">
+			<field-list/>
+		</field>
+		<field name="analytics_account"/>
+		<field name="attachment_bytes_used">
+			0
+		</field>
+		<field name="attachment_quota">
+			0
+		</field>
+		<field name="recent_activity">
+			0
+		</field>
+		<field name="download_bytes_used">
+			0
+		</field>
+		<field name="download_quota">
+			0
+		</field>
+		<field name="max_upload_size">
+			0
+		</field>
+		<field name="wikiize_description"/>
+	</field-list>
+</Project>
