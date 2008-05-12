@@ -5,6 +5,8 @@
 
 == Table of Contents ==
 
+[InstallLonghouse#Test test]
+
   # [InstallLonghouse#Part_1:_Dependencies Dependencies]
   # [InstallLonghouse#Part_2:_Installation Installation]
   # [InstallLonghouse#Part_3:_Configuration Configuration]
@@ -25,6 +27,8 @@ You must install both Python and Subversion before installing Longhouse.
 
 Once you install Subversion, take note of where the `svn` command is located. We will need this later. A common location is `/usr/local/bin/svn`. On Unix systems, run the command `which svn` to find where `svn` is located.
 
+
+== Test ==
 
 == Part 2: Installation ==
 
