@@ -1,5 +1,5 @@
 #summary Instructions for installing and running Longhouse.
-#labels Featured,Version-0.1
+#labels Featured,LonghouseVersion-0.1
 
 = How to Install and Run Longhouse =
 
