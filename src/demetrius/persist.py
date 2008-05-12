@@ -419,7 +419,8 @@ class DemetriusPersist(object):
                           analytics_account=None,
                           persist_repository_url=None,
                           persist_repository_username=None,
-                          persist_repository_password=None):
+                          persist_repository_password=None,
+                          source_url=None):
     """Update the named project with any of the given information.
     Returns the updated project or, if a change needs to be done to the
     project's svn controller, returns a deferred"""
@@ -482,6 +483,9 @@ class DemetriusPersist(object):
         project.set_analytics_account(analytics_account)
       else:
         project.clear_analytics_account()
+    
+    if source_url is not None:
+        project.set_repository_url(source_url)
     
     self.IndexProject(project, conn_pool)
     

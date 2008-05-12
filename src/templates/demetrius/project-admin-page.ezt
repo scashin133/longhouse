@@ -29,7 +29,11 @@
 </td><td class=vt style="padding: 2px">
  [include "../dwiki/wiki-help-bubble.ezt"]
 </td></tr></table>
-
+<a id="sourceurl">Source Code Subversion Repository URL:</a><br />
+<input id=source_url name=source_url size=75 value="[project.repository_url]" /><br />
+[if-any errors.source_url]
+ <div class=fielderror>[errors.source_url]</div>
+ [end]
  <a id="license">License:</a><br/>
  <select name=license_key>
    [for available_licenses]
