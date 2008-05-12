@@ -1,4 +1,5 @@
 #summary Information on how to extend the functionality of Longhouse.
+#labels Version-0.1
 
 = Extending Longhouse =
 
