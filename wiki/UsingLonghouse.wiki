@@ -6,11 +6,7 @@
 
 To start using Longhouse, you need to register an account. From the Longhouse home page, click "create a new account." Then, supply your email address and a password. You need to enter your password twice - this makes sure that you aren't mistyping your password.
 
-Once you register, you'll be logged in and redirected back to the log in page.
-
-Longhouse may require you to validate your account before using it. If this is the case, you'll see text reading `Account Not Yet Validated` in the top-right corner of your screen, next to the drop-down menu of projects. If you need to validate your account, check your email - Longhouse will send a validation key for you to use to validate.
-
-Once your account is validated, you can create projects and participate in existing projects.
+Once you register, you'll be logged in and redirected back to the home page.
 
 == Creating a Project ==
 
@@ -38,7 +34,7 @@ Use the Project Members tool to control the membership of your project. Add or d
 
 Use the Downloads, Wiki and Issue Tracking configuration tools to change how those sections of your project's site look and operate.
 
-Use the Advanced tool to change the visibility of your project, or to schedule it for deletion.
+Use the Advanced tool to flagged your project for deletion. A project that is flagged for deletion cannot be seen by users who are not members of the project, and you cannot post new issues, downloads and Wiki pages to projects that are flagged for deletion.
 
 == Using Your Project ==
 
