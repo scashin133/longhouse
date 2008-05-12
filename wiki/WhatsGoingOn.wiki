@@ -1,5 +1,5 @@
 #summary This page documents the changes that are currently being worked on in Longhouse and provides a space for community feedback.
-#labels Featured,Version-0.1
+#labels Featured,LonghouseVersion-0.1
 
 == Give us feedback about ideas for improvements ==
 
