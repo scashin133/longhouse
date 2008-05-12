@@ -75,7 +75,7 @@
    [is main_tab_mode "t4"]
     <td>
      [#include "../sourcetools/source-tabs.ezt"]
-     <!-- source browsing controls go her -->
+     <!-- source browsing controls go here -->
     </td>
    [end]
    <td height=4 align=right style="padding:0px; vertical-align:top">
