@@ -50,30 +50,6 @@ class ProjectSource(pageclasses.DemetriusPage):
                              req_info.project.analytics_account()),
       }
 
-    # add data that is common and immutable to all requests
-    #options = helpers.BuildProjectAdminOptions(
-    #  req_info.project, req_info.user_pb)
-    #page_data.update(options)
-
-    ## if there are processing errors in ProcessForm, synthetic_params will
-    ## be defined with previous user supplied values
-    #if req_info.synthetic_params:
-    #  page_data.update(req_info.synthetic_params)
-    #
-    #  # serialize the labels to the format expected by the template
-    #  labels = req_info.synthetic_params['labels']
-    #  for i in range(15):
-    #    value = ''
-    #    if i < len(labels):
-    #      value = labels[i]
-    #    page_data['label%s' % str(i + 1)] = value
-    #
-    #  # proxy the licenses again to provide data in a template friendly format
-    #  page_data['project_license'] = helpers.LicenseProxy(
-    #    req_info.project, license_key=page_data['license_key'])
-    #
-    ## no errors, so just scoop up the data from our storage
-    #else:
     meta = helpers.BuildProjectMeta(req_info.project, self.demetrius_persist)
     links = helpers.BuildProjectLinks(req_info.project)
     
