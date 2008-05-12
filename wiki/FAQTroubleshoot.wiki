@@ -1,5 +1,5 @@
 #summary Solutions for problems encountered when installing, running and using Longhouse.
-#labels Featured
+#labels Featured,Version-0.1
 
 = FAQ/Troubleshooting =
 
