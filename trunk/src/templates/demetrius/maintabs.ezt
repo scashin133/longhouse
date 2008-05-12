@@ -20,9 +20,9 @@
          <div class="tT"><a onclick="cancelBubble=true;" href="/p/[projectname]/issues/list">Issues</a></div>
   </th><td>&nbsp;&nbsp;</td>
 
-  <th class="int4" onclick="if (!cancelBubble) _go('[project_repository]');">
+  <th class="int4" onclick="if (!cancelBubble) _go('/p/[projectname]/source');">
          <div class="tc1"><div class="tc2"><div class="tc3"></div></div></div>
-         <div class="tT"><a onclick="cancelBubble=true;" href="[project_repository]">Source</a></div>
+         <div class="tT"><a onclick="cancelBubble=true;" href="/p/[projectname]/source">Source</a></div>
   </th><td>&nbsp;&nbsp;</td>
 
   [if-any demetrius_perms.edit_project]
@@ -75,7 +75,7 @@
    [is main_tab_mode "t4"]
     <td>
      [#include "../sourcetools/source-tabs.ezt"]
-     <span>source tab goes here</span>
+     <!-- source browsing controls go her -->
     </td>
    [end]
    <td height=4 align=right style="padding:0px; vertical-align:top">
