@@ -5,7 +5,7 @@
 
 Hi! Thanks for your interest in Longhouse, a collaborative development environment based on Google Code. If you haven't already, please read our introduction to Longhouse, on our home page at http://code.google.com/p/longhouse/.
 
-If you'd like more information about Longhouse, see [MoreInformation additional information].
+If you'd like more information about Longhouse, see [MoreInformation additional information], and see [WhatsGoingOn what's going on] with current Longhouse development.
 
 For instructions on how to get up and running with Longhouse, see [InstallLonghouse how to install Longhouse].
 
