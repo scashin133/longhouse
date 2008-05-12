@@ -4,7 +4,7 @@
 
 == Adding a new page ==
 
-Adding a new page to Longhouse is easy.
+You might want to add a new page to Longhouse if you have an idea for a feature that currently isn't implemented in Longhouse. Luckily, adding a new page to Longhouse is easy.
 
 Pages have two components: the template used to describe what appears on it, and the Python file that defines how to get the information from Longhouse data to show on the page, and how to act if the page has a form.
 
