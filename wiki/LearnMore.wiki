@@ -1,5 +1,5 @@
 #summary Information about installing, using and extending Longhouse.
-#labels Featured
+#labels Featured,Version-0.1
 
 == Learn More About Longhouse ==
 
