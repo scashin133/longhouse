@@ -1,4 +1,5 @@
 #summary Information on how to use Longhouse to host and manage projects.
+#labels Version-0.1
 
 = Using Longhouse =
 
