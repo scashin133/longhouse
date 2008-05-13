@@ -95,6 +95,7 @@ ADMIN_MEMBERS_FORM_URL = '/adminMembers.do'
 ADMIN_ADVANCED_PAGE_URL = '/adminAdvanced'
 ADMIN_ADVANCED_FORM_URL = '/adminAdvanced.do'
 PROJECT_MEMBERS_FEED_URL = '/feeds/projectMembers'
+SOURCE_PAGE_URL = '/source'
 
 # URLs of demetrius static content like images and client-side includes.
 # These are found under googledata/codesite/html and served under /hosting/...

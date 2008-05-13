@@ -12,7 +12,7 @@ DIR_PATH = os.path.abspath(os.path.dirname(os.path.split(os.path.realpath(__file
 EXTRA_PATHS = [
     DIR_PATH,
     os.path.join(DIR_PATH, 'scripts', 'field_helpers'),
-    os.path.join(DIR_PATH, 'lib', 'yaml', 'lib')
+    os.path.join(DIR_PATH, '..', 'lib')
 ]
 
 sys.path = EXTRA_PATHS + sys.path
