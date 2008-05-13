@@ -122,7 +122,7 @@ class ProjectAdmin(pageclasses.DemetriusPage):
 
     self.demetrius_persist.LockProject(req_info.project_name)
     try:
-      summary, description, license_key, labels = self._ParseMeta(
+      summary, description, license_key, labels, source_url = self._ParseMeta(
          post_data, errors)
 
       if len(labels) > constants.MAX_PROJECT_LABELS:
@@ -159,7 +159,7 @@ class ProjectAdmin(pageclasses.DemetriusPage):
           license_key=license_key, url_links=url_links,
           group_links=group_links, blog_links=blog_links,
           commit_notify=commit_notify, issue_notify=issue_notify,
-          analytics_account=analytics_account)
+          analytics_account=analytics_account, source_url=source_url)
         
         # write the xml and commit
         self.demetrius_persist._StoreProject(self.demetrius_persist.GetProject(req_info.project_name))
@@ -198,6 +198,7 @@ class ProjectAdmin(pageclasses.DemetriusPage):
     summary = None
     description = None
     license_key = None
+    source_url = None
     labels = []
 
     if 'summary' in post_data:
@@ -216,8 +217,14 @@ class ProjectAdmin(pageclasses.DemetriusPage):
       labels = post_data['plabel']  # a list
     labels = [post.CanonicalizeLabel(label) for label in labels
               if label.strip()]  # Skip blanks, since post_data has blanks now.
+    if 'source_url' in post_data:
+        source_url = post_data['source_url'][0]
+        print 'source url: ' + str(source_url)
+        if len(source_url) > 0:
+            if source_url.startswith(('svn://', 'svn+ssh://', 'http://', 'https://')) is False:
+                errors.source_url = 'Invalid source URL. Make sure to enter a valid subversion URL (starting with either http://..., https://..., svn://..., or svn+ssh://...).'
 
-    return summary, description, license_key, labels
+    return summary, description, license_key, labels, source_url
 
   def _ParseLinks(self, post_data, errors):
     """Process the url links section of the admin page."""

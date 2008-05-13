@@ -2,20 +2,9 @@
 import sys
 import os
 
-# Adding longhouse modules to path
-DIR_PATH = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
-
-EXTRA_PATHS = [
-    DIR_PATH, # adding the working path
-    os.path.join(DIR_PATH, 'lib', 'yaml', 'lib'), # adding yaml
-    os.path.join(DIR_PATH, 'lib', 'twisted'), # adding twisted
-    os.path.join(DIR_PATH, 'lib') # adding any top level modules (ezt)
-]
-
-sys.path = EXTRA_PATHS + sys.path
-
-import yaml
 from main import codesite
+import yaml
+
 from framework import constants
 
 def createDaemon():

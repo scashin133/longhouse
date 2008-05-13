@@ -32,6 +32,7 @@ from demetrius import logout
 from demetrius import hostinghome
 from demetrius import projectadminportal
 from demetrius import projectadmin
+from demetrius import projectsource
 from demetrius import projectfeeds
 from demetrius import projectsummary
 from demetrius import projectpeople
@@ -119,6 +120,13 @@ class PageSetup(framework.helpers.AbstractPageSetup):
                            constants.ADMIN_ADVANCED_PAGE_URL)
     self._SetupProjectForm(admin_advanced_page.FormHandler,
                            constants.ADMIN_ADVANCED_FORM_URL)
+    
+    source_page = projectsource.ProjectSource(
+      self.conn_pool, self.demetrius_persist, self.universal_ezt_data)
+    self._SetupProjectPage(source_page.Handler,
+                           constants.SOURCE_PAGE_URL)
+    
+    
     
     #PLACEHOLDER PAGES#
     #Replace these with real pages once the pages are built#
