@@ -1,0 +1,14 @@
+#summary How to package a Longhouse release
+
+The following is a walkthrough for creating a release for Longhouse 0.0 from the trunk of the repository.
+
+  # Check out the code without the .svn directories:
+    `svn export https://longhouse.googlecode.com/svn/trunk/ longhouse_0.0/`
+  # Copy the libraries into the /lib directory (assuming you have a folder called longhouse_libs in the current directory):
+    `cp -R longhouse_libs/* longhouse_0.0/lib/`
+  # Generate business objects from yaml:
+    `python longhouse_0.0/src/scripts/yaml_to_bo.py`
+  # Package the files
+    * tar: `tar -cf longhouse_0.0.tar longhouse_0.0/`
+    * gzip: `tar -czf longhouse_0.0.tar.gz longhouse_0.0/` ||
+    * bzip2: `tar -cf - longhouse_0.0/ | bzip2 >longhouse_0.0.tar.bz2` ||
