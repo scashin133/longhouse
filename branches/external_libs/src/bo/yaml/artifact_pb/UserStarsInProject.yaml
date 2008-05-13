@@ -1,6 +1,0 @@
----
-describe: field
-name: artifact_names
-type: array_primitive_string
-value: "[]"
----
