@@ -17,10 +17,40 @@
 == Dependencies ==
 
 Longhouse requires:
-  * Python 2.5.2 - http://www.python.org/
+  * Python - http://www.python.org/
+    * Version 2.5 or higher is required
   * Subversion - http://subversion.tigris.org/
+  * Twisted - http://twistedmatrix.com/
+    * Version 8.0.1 or higher is required
+    * Recommended download: http://tmrc.mit.edu/mirror/twisted/Twisted/8.0/Twisted-8.0.1.tar.bz2
+  * zope.interface
+    * Comes packaged with Zope3, although only zope.interface is needed by Longhouse
+    * Recommended download: http://www.zope.org/Products/ZopeInterface/3.3.0/zope.interface-3.3.0.tar.gz
+  * PyYaml
+    * Recommended download: http://pyyaml.org/download/pyyaml/PyYAML-3.05.tar.gz
 
-You must install both Python and Subversion before installing Longhouse.
+
+You must install both Python and Subversion before installing Longhouse. 
+
+There are three options for installing the required packages (Twisted, zope.interface, and PyYaml)
+  # Install the packages as described in their respective installation procedures. This will make them available to all Python programs, including Longhouse.
+  # Extract the packages' source into Longhouse's /lib directory. This will make them available exclusively to Longhouse. This is useful if, say, you wanted to use a different version of Twisted for another project. Now your /lib directory should be structured like the following...
+    * lib/
+      * ezt/
+        * ...
+      * twisted/
+        * application/
+        * web/
+        * ...
+      * yaml/
+        * __init__.py
+        * composer.py
+        * ...
+      * zope/
+        * __init__.py
+        * interface/
+          * ...      
+  # Go to the Longhouse download section to download a tarball containing all the libraries needed. Extract this into Longhouse's /lib directory.
 
 *IMPORTANT NOTE:* Some methods of distributing Python 2.5 do not seem to include the `hashlib` library, which will create an error when you attempt to run Longhouse. Darwinports is known to have this problem at the time of writing. If you experience this issue, you may either install a standard release of 2.5.2 from [http://www.python.org python.org] or obtain `hashlib` from [http://pypi.python.org/pypi/hashlib/20060408a here].
 
