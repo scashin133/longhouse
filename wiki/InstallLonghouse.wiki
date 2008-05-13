@@ -50,7 +50,7 @@ There are three options for installing the required packages (Twisted, zope.inte
         * __init__.py
         * interface/
           * ...      
-  # Go to the Longhouse download section to download a tarball containing all the libraries needed. Extract this into Longhouse's /lib directory.
+  # Go to the Longhouse download section to download the longhouse dependencies tarball. Extract this into Longhouse's /lib directory.
 
 *IMPORTANT NOTE:* Some methods of distributing Python 2.5 do not seem to include the `hashlib` library, which will create an error when you attempt to run Longhouse. Darwinports is known to have this problem at the time of writing. If you experience this issue, you may either install a standard release of 2.5.2 from [http://www.python.org python.org] or obtain `hashlib` from [http://pypi.python.org/pypi/hashlib/20060408a here].
 
