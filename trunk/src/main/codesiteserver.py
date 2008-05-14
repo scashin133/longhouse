@@ -2,9 +2,13 @@
 #
 # Copyright 2007 Google Inc. All Rights Reserved.
 
+import sys
+
 from twisted.web import server, resource, static
 from twisted.internet import reactor
 from twisted.python import log
+from twisted.internet.error import CannotListenError
+
 from demetrius.hostinghome import HostingHome
 from demetrius.login import LoginPage
 
@@ -19,7 +23,12 @@ class CodesiteServer(object):
     
 
   def run(self):
-      reactor.listenTCP(self.port, self.site)
+      try:
+          reactor.listenTCP(self.port, self.site)
+      except CannotListenError:
+          log.msg('Error: another process is already bound to port', self.port)
+          sys.exit(1)
+          
       reactor.run()
 
   def RegisterStaticFiles(self, relative_uri, path):
