@@ -22,21 +22,34 @@ class ProjectSvnUpPage:
     def __init__(self, demetrius_persist):
         self.demetrius_persist = demetrius_persist
     
-    
     def Handler(self, request):
-        print 'svn up handler called'
-        self.project = request.postpath[0]
-        d = self.demetrius_persist.GetProject(self.project).svn_controller().d_up()
-        # TODO: add callback here to update BO
-        d.addCallback(self.load_fresh_xml)
-        d.addCallback(self.return_msg)
-        return d
+        
+        self.request = request
+        
+        self.project_name = request.path.split('/')[2]
+        project = self.demetrius_persist.GetProject(self.project_name)
+        
+        if project is None:
+            return self.return_err_msg('project not found')
+        
+        try:
+            d = self.demetrius_persist.GetProject(self.project_name).svn_controller().d_up()
+            d.addCallback(self.load_fresh_xml)
+            d.addErrback(self.return_err_msg)
+            d.addCallback(self.return_msg)
+            d.addErrback(self.return_err_msg)
+            return d
+        except Exception, e:
+            return self.return_err_msg(e)
 
     def load_fresh_xml(self, *args):
-        self.demetrius_persist.GetProject(self.project, fresh=True)
+        self.demetrius_persist.GetProject(self.project_name, fresh=True)
+
+    def return_err_msg(self, e):
+        self.request.write('Error: ' + str(e))
 
     def return_msg(self, *args):
-        return 'Done.'
+         self.request.write('Done.')
     
 
 class SvnController:

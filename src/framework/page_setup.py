@@ -54,10 +54,9 @@ class PageSetup(helpers.AbstractPageSetup):
     self._SetupSitePage(artifact_collision_page.Handler,
                         constants.NONPROJECT_COLLISION_PAGE_URL)
 
-    self._SetupDeferredPage(svncontrols.deferred_helloworld, '/test/hello')
 
     projectSvnUpPage = svncontrols.ProjectSvnUpPage(self.demetrius_persist)
-    self._SetupPerProjectDeferredPage(projectSvnUpPage.Handler, '/svnup')
+    self._SetupProjectPage(projectSvnUpPage.Handler, '/svnup')
 
     """
     excessive_activity_page = excessiveactivity.ExcessiveActivity(

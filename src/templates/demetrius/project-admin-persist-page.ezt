@@ -11,8 +11,6 @@
 
 <h4>Persistence</h4>
 
-<!--input type=hidden name=adminmemberssection value=true / -->
-
 <div class="section">
 
  [if-any project.svn_controller]
@@ -45,9 +43,75 @@
 </div>
 
 
-
   <input type="submit" id="savechanges" name="btn" value="Save Changes" class="submit"/> 
  </form>
+
+
+<br/><br/>
+
+<style>
+tt { font-size: 120%; }
+.indent {
+ margin-left: 2.3em;
+ margin-bottom: 4em;
+}
+.bubble_wrapper {
+ display: table;
+}
+.bubble {
+ padding: 0.8em;
+}
+</style>
+
+
+<h4>Post-commit hook</h4>
+
+<div class="section">
+
+	<p>
+		For Longhouse's persistence to work correctly, you must 
+		install a post-commit hook.
+	</p>
+	<p>
+		To use this hook you must make some minor modifications.
+		First assign HOST to the url where Longhouse 
+		is hosted and add any Longhouse projects to PROJECTS. Then
+		copy this script to the /hooks directory in your repository.
+		Be sure to chmod it to be executable.
+	<p>
+	<p>
+		Refer to the 
+		<a href="http://svnbook.red-bean.com/en/1.4/svn.reposadmin.create.html#svn.reposadmin.create.hooks">Subversion book</a>
+		for more information about commit hooks.
+	</p>
+	
+	<div class="indent">
+		<div class="bubble_wrapper">
+			<div class="pmeta_bubble_bg">
+				<div class="rounded_ul">
+					<div class="rounded_ur">
+						<div class="rounded_ll">
+							<div class="rounded_lr">
+		 						<p class="bubble">
+		 							<tt><pre>[post_commit_hook]</pre></tt>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+</div>
+
+
+
+
+
+
 
 [end]
 
