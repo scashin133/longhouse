@@ -287,7 +287,7 @@ class ProjectAdminPersist(pageclasses.DemetriusPage):
             os.path.join(
                 framework.constants.WORKING_DIR,
                 'scripts',
-                'post-commit.example'
+                'post-commit'
             )).read()
 
     def ProcessForm(self, request, req_info):
