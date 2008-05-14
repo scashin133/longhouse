@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
 """
-Simple post-commit hook for Longhouse.
+Subversion post-commit hook for Longhouse.
 
 Notifies Longhouse that it should perform a 'svn up'
 action and load changes from XML. 
 
-To use this hook, first assign HOST to the url where Longhouse 
+To use this hook you must make some minor modifications.
+First assign HOST to the url where Longhouse 
 is hosted and add any Longhouse projects to PROJECTS. Then
 copy this script to the /hooks directory in your repository.
 Be sure to chmod it to be executable.
@@ -16,15 +17,12 @@ import urllib
 import sys
 
 
-HOST = 'http://localhost:8080'
-
-PROJECTS = [
-    'testproject',
-    ]
+def main():
 
 
+    for file in os.walk('.')
 
-def notify_longhouse():
+
 
     global HOST, PROJECTS
     errors = []
@@ -42,14 +40,21 @@ def notify_longhouse():
         
         project_page = HOST + 'p/' + project
         
-        page = urllib.urlopen(project_page + '/svnup').read()
+        try:
+            page = urllib.urlopen(project_page + '/svnup').read()
+            
+            if not page == 'Done.':
+                errors.append(project_page)
         
-        if not page == 'Done.':
+        except:
             errors.append(project_page)
+        
+
                 
     if len(errors) > 0:
         
-        err_msg  = 'Problems were encountered updating the following Longhouse projects:\n'
+        err_msg  = \
+'Problems were encountered updating the following Longhouse projects:\n'
         
         for error in errors:
             err_msg += '\t' + error + '\n'
@@ -61,5 +66,5 @@ def notify_longhouse():
     
 if __name__ == '__main__':
     
-    notify_longhouse()
+    main()
     
