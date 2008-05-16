@@ -101,6 +101,14 @@ class PageSetup(framework.helpers.AbstractPageSetup):
                            constants.ADMIN_PERSIST_PAGE_URL)
     self._SetupProjectForm(admin_persist_page.FormHandler,
                            constants.ADMIN_PERSIST_FORM_URL)
+                           
+    # host some files linked to by the admin persist page
+    self._SetupProjectPage(admin_persist_page.HookFileHandler,
+                           '/files/hook.longhouse')
+    self.server.RegisterStaticFiles('files/post-commit', 'scripts/post-commit')
+                           
+                           
+
 
     admin_members_page = projectadmin.ProjectAdminMembers(
       self.conn_pool, self.demetrius_persist, self.universal_ezt_data)
@@ -195,9 +203,11 @@ class PageSetup(framework.helpers.AbstractPageSetup):
     hosting_home = hostinghome.HostingHome(
       self.conn_pool, self.demetrius_persist, self.universal_ezt_data)
     self.server.RegisterHandler(constants.HOSTING_HOME_URL,
-                                hosting_home.Handler)
-    #PLACEHOLDER PAGES#
-    #Replace these with real pages once the pages are built#
+                                hosting_home.Handler)  
+    
+                                
+    # PLACEHOLDER PAGES
+    # Replace these with real pages once the pages are built
     
     placeholder_page = placeholderpage.PlaceholderPage(
       self.conn_pool, self.demetrius_persist, self.universal_ezt_data)
@@ -218,6 +228,7 @@ class PageSetup(framework.helpers.AbstractPageSetup):
     self.server.RegisterStaticFiles('js', 'htdocs/js')
     # for path in constants.DEMETRIUS_STATIC_CONTENT:
     #       self._SetupStaticPage(_DATA_DIR + path, '/hosting' + path)
+
 
 
 if __name__ == '__main__':

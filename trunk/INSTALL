@@ -19,7 +19,8 @@ Dependencies
 Longhouse requires:
 
     * Python - http://www.python.org/
-          o Version 2.5 or higher is required 
+      version 2.5 or higher is required 
+
     * Subversion - http://subversion.tigris.org/
 
 You must install both Python and Subversion before installing Longhouse.
@@ -60,7 +61,7 @@ example, if the directory that I moved my Longhouse files to was
 /Users/exampleuser/Longhouse, I'd write, as the first line of the config.yml
 file:
 
-working_dir: /Users/exampleuser/Longhouse/src
+	working_dir: /Users/exampleuser/Longhouse/src
 
 Make sure to include the /src at the end of your working_dir! It's very
 important that this path point directly to where your config.yml file is
@@ -72,7 +73,7 @@ running on your machine. One common port to use is port 80 or 8080. We
 recommend simply using 8080 unless there is another program using it, or
 another reason to not use it. The line describing the port looks like:
 
-port: 8080
+	port: 8080
 
 The third value you're going to define is whether you want the process to be
 daemonized or not. If you use the value true, when you run Longhouse it will
@@ -82,37 +83,31 @@ shut down Longhouse. If you use false, it behaves like a regular Python
 application, running while your invocation of the Python runtime environment is
 active. So, this line looks like the following:
 
-daemonized: true
-
-or
-
-daemonized: false
+	daemonized: true
+	(or)
+	daemonized: false
 
 Next, specify whether you want Longhouse to log itself to a log file or not.
 This is crucial if you specified daemonized: true; if you run Longhouse as a
 separate process you will need to specify logging: true to have any output from
 Longhouse.
 
-logging: true
-(or)
-logging: false
+	logging: true
+	(or)
+	logging: false
 
 Finally, specify the location of your svn command. For example, mine is located
 at /usr/local/bin/svn, so I'd write:
 
-svn: /usr/local/bin/svn
+	svn: /usr/local/bin/svn
 
 My entire config file is as follows:
 
-working_dir: /Users/exampleuser/Longhouse/src
-
-port: 8080
-
-daemonized: false
-
-logging: true
-
-svn: /usr/local/bin/svn
+	working_dir: /Users/exampleuser/Longhouse/src
+	port: 8080
+	daemonized: false
+	logging: true
+	svn: /usr/local/bin/svn
 
 
 Run

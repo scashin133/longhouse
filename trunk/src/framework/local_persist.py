@@ -101,8 +101,6 @@ def load_item_from_local_disk(object_type, object_id):
         print 'about to parse', path
         parser.parse(path)
         
-        print 'SingleObjectLoadSaxHandler done. retrieved:', handler.record
-        
         if handler.record == None or handler.record == '':
             # failed to find what we were looking for
             print 'didnt find object we wanted'
@@ -167,8 +165,6 @@ def load_item_from_working_copy(object_type, object_id, projectname, versioned):
         parser.setContentHandler(handler)
         print 'about to parse', path
         parser.parse(path)
-        
-        print 'SingleObjectLoadSaxHandler done. retrieved:', handler.record
         
         if handler.record == None or handler.record == '':
             # failed to find what we were looking for

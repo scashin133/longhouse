@@ -71,6 +71,9 @@ tt { font-size: 120%; }
 	<p>
 		For Longhouse's persistence to work correctly, you must 
 		install a post-commit hook.
+		
+		<a href="/post-commit">download</a>
+		
 	</p>
 	<p>
 		To use this hook you must make some minor modifications.

@@ -61,7 +61,6 @@ class Project(generated_demetrius_pb.Project):
             def test_result(result):
                 if result == False:
                     self.svn_controller_ = ''
-                    raise Exception('problem setting up svn controller, self test failed')
                 else:
                     return self.d_checkout_working_copy()
             

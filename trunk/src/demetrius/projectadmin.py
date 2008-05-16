@@ -382,6 +382,10 @@ class ProjectAdminPersist(pageclasses.DemetriusPage):
             password = post_data['password'][0]
         
         return repository, username, password
+        
+    def HookFileHandler( self, request ):
+        request.write('hello world!')
+        
 
 
 class ProjectAdminMembers(pageclasses.DemetriusPage):
