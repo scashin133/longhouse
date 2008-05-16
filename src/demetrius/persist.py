@@ -448,6 +448,20 @@ class DemetriusPersist(object):
     
     return projects
 
+
+  def GetAllUsers(self):
+      """
+      Load all user BOs from disk
+      Returns: a list of the cooresponding User buisiness objects
+      """
+  
+      users = framework.local_persist.load_all_users()
+  
+      for user in users:
+          print 'loaded user:', user.account_email()
+          self.users.append(user)
+ 
+
   def GetProjectDescriptionCachedBlob(self, project_name):
       # TODO: maybe this is supposed to return a cashed version of the wikified project description?
       return "project description cashed blob for " + str(project_name)

@@ -116,7 +116,6 @@ def main(logging, logfile, port, daemonized):
     # demetrius_persist._StoreProject(test_project)
 
 
-
     framework_pages = framework.page_setup.PageSetup(
         server, conn_pool, demetrius_persist, dit_persist,
         worktable, template_data)
@@ -133,8 +132,9 @@ def main(logging, logfile, port, daemonized):
     dit_pages.RegisterPages()
 
 
-    log.msg('will begin loading projects in 3 seconds to avoid race condition')
-    reactor.callLater(3, demetrius_persist.GetAllProjects)
+    log.msg('calling two methods after reactor is run')
+    reactor.callLater(2, demetrius_persist.GetAllProjects)
+    reactor.callLater(2, demetrius_persist.GetAllUsers)
 
     server.run()
 
