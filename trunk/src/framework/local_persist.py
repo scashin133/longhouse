@@ -33,6 +33,8 @@ import os
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
+from xml.dom import minidom
+
 import constants
 from bo import demetrius_pb   
    
@@ -65,8 +67,36 @@ def init(demetrius_persist):
         projects_xml_template = os.path.join(constants.WORKING_DIR, 'templates/storage/projects.xml')
         shutil.copy(projects_xml_template, local_project_storage)
     
+    
+def load_all_users():
+    
+    path = os.path.join( 
+        constants.WORKING_DIR,
+        constants.LOCAL_STORAGE_ROOT,
+        constants.LD_USERS, )
+    
+    dom = minidom.parse(path)
+    
+    user_elements = dom.getElementsByTagName("User")
+    
+    print user_elements
+    
+    def create_new_user(dom_element):
+        print 'using as xml:', dom_element.toxml()
+        new_user = demetrius_pb.User()
+        # TODO: why does the next line now work?
+        new_user = new_user.FromXML(new_user, dom_element.toxml())
+        print 'now user email is', new_user.account_email()
+        return new_user
+    
+    users = map (create_new_user, user_elements)
+    
+    print users
+    
+    return users
+    
 
-def load_item_from_local_disk(object_type, object_id):
+def load_items_from_local_disk(object_type, object_id=None):
     """ TODO: docstring """
     
     # retrieve the path for this object
@@ -85,32 +115,51 @@ def load_item_from_local_disk(object_type, object_id):
     # construct the full path
     path = os.path.join(
         constants.WORKING_DIR, constants.LOCAL_STORAGE_ROOT, path)
-
-    object = None
-    if object_type == OBJECT_TYPES.PROJECT:
-        object = demetrius_pb.Project()
-#    elif object_type == OBJECT_TYPES.USER:
-#        pass
-    # TODO: other object types 
+        
     
-    if not object == None:
-        # parse!
-        handler = SingleObjectLoadSaxHandler(object_type, object_id)
-        parser = make_parser()
-        parser.setContentHandler(handler)
-        print 'about to parse', path
-        parser.parse(path)
-        
-        if handler.record == None or handler.record == '':
-            # failed to find what we were looking for
-            print 'didnt find object we wanted'
-            object = None
-        else:
-            print 'Now using from_xml to populate object'
-            object.FromXML(object, handler.record.encode('ascii', 'replace'))
-        
+    if object_id == None:
+        # they must want an array of all the objects of that type
+        handler = AllObjectLoadSaxHandler(object_type)
     else:
-        print "Don't know how to load object of type", object_type
+        handler = SingleObjectLoadSaxHandler(object_type, object_id)
+        
+    log.msg('making parser...')
+    parser = make_parser()
+    log.msg('done making parser')
+    parser.setContentHandler(handler)
+    parser.parse(path)
+    
+    if handler.record == None or handler.record == '':
+        # failed to find what we were looking for
+        return None
+    else:
+        print 'Now using from_xml to populate object'
+        
+        if object_type == OBJECT_TYPES.PROJECT:
+            object_constructor = demetrius_pb.Project
+        elif object_type == OBJECT_TYPES.USER:
+            object_constructor = demetrius_pb.User
+            # TODO: other object types
+        else:
+            log.msg('tried to load invalid object type:', object_type)
+        
+        
+        
+        if object_id == None:
+            # we are returning an array of objects
+            object = []
+            for object_xml in handler.record:
+                new_object = object_constructor()
+                print 'going to stuff', str(new_object), 'with', handler.record
+                new_object.FromXML(new_object, handler.record.encode('ascii', 'replace'))
+                object.append(new_object)
+            
+        else:
+            # we are returning a single object
+            
+            object = object_constructor()
+            object.FromXML(object, handler.record.encode('ascii', 'replace'))
+    
         
         
     return object
@@ -354,6 +403,32 @@ class SingleObjectLoadSaxHandler(ContentHandler):
             else:
                 self.record += content.strip()
 
+
+class AllObjectLoadSaxHandler(SingleObjectLoadSaxHandler):
+    """
+    Sax handler to find all object with the given name
+    and store their xml in self.record
+    """
+
+    def __init__(self, object_type):
+
+        SingleObjectLoadSaxHandler.__init__( self, object_type, None )
+
+
+
+    def startElement(self, name, attrs):
+
+        if name == self._object_type:
+            # found an object we're looking for
+
+            self._start_recording(self._object_type)
+            self.found_target = True
+
+        if self._recording:
+            self.record += '<' \
+                + name \
+                + self._make_attribute_list(attrs) \
+                + '>'
 
 
 class FindAndReplaceSaxHandler(ContentHandler):
