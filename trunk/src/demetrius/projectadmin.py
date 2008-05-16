@@ -162,9 +162,6 @@ class ProjectAdmin(pageclasses.DemetriusPage):
           commit_notify=commit_notify, issue_notify=issue_notify,
           analytics_account=analytics_account, source_url=source_url)
         
-        # write the xml and commit
-        self.demetrius_persist._StoreProject(self.demetrius_persist.GetProject(req_info.project_name))
-
     finally:
       self.demetrius_persist.UnlockProject(req_info.project_name)
 
