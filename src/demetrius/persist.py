@@ -531,6 +531,7 @@ class DemetriusPersist(object):
         project.set_repository_url(source_url)
     
     self.IndexProject(project, conn_pool)
+    self._StoreProject(project)
     
     # update the project's svn_controller
     
