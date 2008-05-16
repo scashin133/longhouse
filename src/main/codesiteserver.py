@@ -29,6 +29,8 @@ class CodesiteServer(object):
           log.msg('Error: another process is already bound to port', self.port)
           sys.exit(1)
           
+      log.msg('starting the reactor')
+            
       reactor.run()
 
   def RegisterStaticFiles(self, relative_uri, path):

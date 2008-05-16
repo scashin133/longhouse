@@ -4,6 +4,8 @@ import os
 from time import strftime
 import re
 import glob
+import string
+import commands
 
 import twisted.internet.utils
 from twisted.internet import reactor, defer
@@ -86,7 +88,6 @@ class SvnController:
         if (len(self.working_copy_root) > 0) and\
             (self.working_copy_root[len(self.working_copy_root)-1:] != "/"):
             self.working_copy_root += "/"
-
         
     def d_test(self): 
         """Determine if we can contact the repository."""
@@ -141,8 +142,6 @@ class SvnController:
                 '--username', self.repository_username, 
                 '--password', self.repository_password]
         
-        print 'doing svn list with args', args
-
         return twisted.internet.utils.getProcessOutputAndValue(
                     constants.SVN_LOC, args)
 

@@ -310,12 +310,22 @@ class DemetriusPersist(object):
             
     # if it wasn't in memory, try to load it from xml
     if project == None:
-        #def load_item_from_working_copy(object_type, object_id, projectname, versioned):
+        
         project = framework.local_persist.load_item_from_working_copy(
             framework.local_persist.OBJECT_TYPES.PROJECT,
             project_name,
             project_name,
             True)
+            
+        
+        if project == None:
+            # project wasn't in a working copy, look for it in the unversioned directory
+            project = framework.local_persist.load_item_from_working_copy(
+                framework.local_persist.OBJECT_TYPES.PROJECT,
+                project_name,
+                project_name,
+                False)
+            
         if not project == None:
             self.projects.append(project)
             
@@ -393,16 +403,49 @@ class DemetriusPersist(object):
     finally:
       self.UnlockProject(project_name)
 
-  def GetAllProjects(self, project_name_list):
-    """Load all the Project BOs for the named projects.
-
-    Args:
-      project_name_list: list of project names.
-
+  def GetAllProjects(self):
+    """
+    Load all the Project BOs from disk
     Returns: a list of the corresponding Project business objects.
     """
+    
     projects = []
-    # TODO(students): reimplement.
+    project_names = []
+    
+    log.msg('loading all projects')
+    
+    
+    # first load all version controlled projects
+    
+    working_copies = os.path.join(
+        framework.constants.WORKING_DIR, 
+        'storage', 'working_copies')
+        
+    for project_wc in os.listdir(working_copies):
+        log.msg('\tloading versioned project:', project_wc)
+        projects.append( self.GetProject(project_wc, fresh=True) )
+        project_names.append( project_wc )
+        
+        
+    # now load any unversioned projects
+    
+    unversioned_projects = os.path.join( 
+        framework.constants.WORKING_DIR, 
+        'storage', 'unversioned' )
+        
+    for project_name in os.listdir(unversioned_projects):
+        
+        if project_name in project_names:
+            # we just loaded this project from a working copy, don't load it again
+            # TODO: we should probably delete the second copy here
+            log.msg('\tnot loading duplicate project:', project_name)
+        else:
+            log.msg('\tloading unversioned project:', project_name)
+            projects.append( self.GetProject(project_name, fresh=True) )
+            project_names.append( project_name )
+    
+    log.msg('loaded', len(projects), 'projects')
+    
     return projects
 
   def GetProjectDescriptionCachedBlob(self, project_name):
