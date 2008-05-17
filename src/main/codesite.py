@@ -86,11 +86,14 @@ def main(logging, logfile, port, daemonized):
     dit_persist.register_demetrius_persist(demetrius_persist)
     #dit_persist = None
 
+    """
     for i in range(6):
         username = "testuser" + str(i)
         demetrius_persist.CreateUser(username + "@gmail.com", username, "testpass")
     else:
         pass
+    """
+    
     
     #test_project = demetrius_persist.GetProject('testproject')
     #if test_project == None:
@@ -132,9 +135,13 @@ def main(logging, logfile, port, daemonized):
     dit_pages.RegisterPages()
 
 
+    def load_from_saved_xml():
+         demetrius_persist.GetAllUsers()
+         demetrius_persist.GetAllProjects()
+
     log.msg('calling two methods after reactor is run')
-    reactor.callLater(2, demetrius_persist.GetAllProjects)
-    reactor.callLater(2, demetrius_persist.GetAllUsers)
+    reactor.callLater(2, load_from_saved_xml)
+    
 
     server.run()
 

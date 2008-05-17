@@ -113,15 +113,12 @@ class RootResource(resource.Resource):
     def addHandler(self, path, handler):
         """Wrap the handler with a HandlerResource and add it
         to the dictionary of handlers"""
-        print 'adding handler to path', path
         self.handlers[path] = HandlerResource(handler)
 
     def addProjectHandler(self, path, handler):
-        print 'adding project handler to path', path
         self.project_handlers[path] = HandlerResource(handler)
         
     def addUserHandler(self, path, handler):
-        print 'adding user handler to path', path
         self.user_handlers[path] = HandlerResource(handler)
         
     def addDeferredHandler(self, path, handler):

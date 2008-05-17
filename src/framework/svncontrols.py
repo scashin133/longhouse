@@ -12,8 +12,6 @@ from twisted.internet import reactor, defer
 
 from framework import constants
 
-VERBOSE = True
-
 def deferred_helloworld(self):
     d = defer.Deferred()
     reactor.callLater(2, d.callback, 'hello, world!')
@@ -70,8 +68,6 @@ class SvnController:
         You may also optionaly specify a location to check out
         working copies to.
         """
-        if VERBOSE:
-            print 'constructing working copy root at:', working_copy_root
         
         self.repository_location = repository_location
         self.repository_username = repository_username
@@ -91,7 +87,6 @@ class SvnController:
         
     def d_test(self): 
         """Determine if we can contact the repository."""
-        print 'SvnController self test'
         d = self.d_remote_list('/')
         d.addCallback(self._return_success)
         return d
@@ -127,16 +122,12 @@ class SvnController:
         check if working_copy_root is a working copy
         """
         print 'checking if', self.working_copy_root, 'is working copy'
-        if VERBOSE:
-            print 'has working copy?', self.is_working_copy(self.working_copy_root)
         return self.is_working_copy(self.working_copy_root)
     
     def d_remote_list(self, dir, ):
         """
         Perform a 'svn list' command on the repository
         """
-        if VERBOSE:
-            print 'd_remote_list called'
         args = ['list', 
                 url_join(self.repository_location, dir),
                 '--username', self.repository_username, 
@@ -153,8 +144,6 @@ class SvnController:
         use the previously given working copy root
         TODO: untested
         """
-        if VERBOSE:
-            print 'd_checkout called'
             
         if local_path == '#':
             local_path = self.working_copy_root
@@ -170,8 +159,6 @@ class SvnController:
 
 
     def d_up_add_commit(self, message="generic Longhouse commit"):
-        if VERBOSE:
-            print 'd_up_add_commit starting chain'
         
         def print_result(result):
             print '\treturned:', result
@@ -192,8 +179,6 @@ class SvnController:
         path is the working copy root. Handle any bad merges by
         having local changes take priority. 
         """
-        if VERBOSE:
-            print '_d_up called'
         
         args = ['up', self.working_copy_root]
         
@@ -205,8 +190,6 @@ class SvnController:
     
     
     def _d_cleanup(self, *args):
-        if VERBOSE:
-            print '_d_cleanup called'
         
         args = ['cleanup']
         
@@ -219,8 +202,6 @@ class SvnController:
         Add the specified file or directory to the repository. It
         will be checked in in the next commit.
         """
-        if VERBOSE:
-            print '_d_add_all called'
 
         d = defer.Deferred()
 
@@ -253,8 +234,6 @@ class SvnController:
         Perform a 'svn commit' command. If no directory is specified, 
         commit the working copy root.
         """
-        if VERBOSE:
-            print 'd_commit called'
             
         if self.message == None:
             self.message = 'generic Longhouse commit'
@@ -277,8 +256,6 @@ class SvnController:
         TODO: this might not be twisted thread safe, if shutil.copyfile
         or os.remove takes too long we might get an interrupted system call error
         """
-        if VERBOSE:
-            print '_handle_bad_merges called, given', output
             
         bad_merges = self.CONFLICT_FILES.findall(output[0])
         
