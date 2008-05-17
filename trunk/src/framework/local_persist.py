@@ -82,10 +82,8 @@ def load_all_users():
     
     users = load_items_from_local_disk( OBJECT_TYPES.USER )
     
-    def create_new_user(user_xml):
-        new_user = demetrius_pb.User()
-        new_user = new_user.FromXML(new_user, user_xml)
-        return new_user
+    if users is None:
+        users = []
     
     return users
     

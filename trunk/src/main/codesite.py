@@ -48,11 +48,29 @@ import demetrius.constants
 def main(logging, logfile, port, daemonized):
     """Creates the page objects (handlers) and starts the server."""
 
+    # make sure the storage folder and its subdirectories exist
+
+    dirs = [
+        'storage/unversioned',
+        'storage/working_copies',
+        'logs',
+    ]
+    
+    for dir in dirs:
+        try:
+            os.makedirs(dir)
+        except OSError:
+            continue
+
+
+    # start logging
+
     if logging:
         log.startLogging(open(logfile, "w+"), 0)
     
     if not daemonized:
         log.startLogging(sys.stdout)
+    
     
     # Initialize the random seed.  Passing in None causes either the
     # system time or an OS-provided randomness source to be used when
@@ -135,13 +153,16 @@ def main(logging, logfile, port, daemonized):
     dit_pages.RegisterPages()
 
 
+
+    # load serialized users and projects    
+
     def load_from_saved_xml():
          demetrius_persist.GetAllUsers()
          demetrius_persist.GetAllProjects()
 
     log.msg('calling two methods after reactor is run')
     reactor.callLater(2, load_from_saved_xml)
-    
+
 
     server.run()
 
