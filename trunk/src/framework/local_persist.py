@@ -32,8 +32,9 @@ import re
 import os
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
-
 from xml.dom import minidom
+
+from twisted.python import log
 
 import constants
 from bo import demetrius_pb   
@@ -79,19 +80,12 @@ def load_all_users():
     
     user_elements = dom.getElementsByTagName("User")
     
-    print user_elements
+    users = load_items_from_local_disk( OBJECT_TYPES.USER )
     
-    def create_new_user(dom_element):
-        print 'using as xml:', dom_element.toxml()
+    def create_new_user(user_xml):
         new_user = demetrius_pb.User()
-        # TODO: why does the next line now work?
-        new_user = new_user.FromXML(new_user, dom_element.toxml())
-        print 'now user email is', new_user.account_email()
+        new_user = new_user.FromXML(new_user, user_xml)
         return new_user
-    
-    users = map (create_new_user, user_elements)
-    
-    print users
     
     return users
     
@@ -123,17 +117,14 @@ def load_items_from_local_disk(object_type, object_id=None):
     else:
         handler = SingleObjectLoadSaxHandler(object_type, object_id)
         
-    log.msg('making parser...')
     parser = make_parser()
-    log.msg('done making parser')
     parser.setContentHandler(handler)
     parser.parse(path)
     
-    if handler.record == None or handler.record == '':
+    if not handler.found_target:
         # failed to find what we were looking for
         return None
     else:
-        print 'Now using from_xml to populate object'
         
         if object_type == OBJECT_TYPES.PROJECT:
             object_constructor = demetrius_pb.Project
@@ -142,16 +133,15 @@ def load_items_from_local_disk(object_type, object_id=None):
             # TODO: other object types
         else:
             log.msg('tried to load invalid object type:', object_type)
-        
+            return None
         
         
         if object_id == None:
             # we are returning an array of objects
             object = []
-            for object_xml in handler.record:
+            for object_xml in handler.records:
                 new_object = object_constructor()
-                print 'going to stuff', str(new_object), 'with', handler.record
-                new_object.FromXML(new_object, handler.record.encode('ascii', 'replace'))
+                new_object.FromXML(new_object, object_xml.encode('ascii', 'replace'))
                 object.append(new_object)
             
         else:
@@ -203,8 +193,8 @@ def load_item_from_working_copy(object_type, object_id, projectname, versioned):
     object = None
     if object_type == OBJECT_TYPES.PROJECT:
         object = demetrius_pb.Project()
-#    elif object_type == OBJECT_TYPES.USER:
-#        pass
+    elif object_type == OBJECT_TYPES.USER:
+        object = demetrius_pb.User()
     # TODO: other object types 
     
     if not object == None:
@@ -212,20 +202,18 @@ def load_item_from_working_copy(object_type, object_id, projectname, versioned):
         handler = SingleObjectLoadSaxHandler(object_type, object_id)
         parser = make_parser()
         parser.setContentHandler(handler)
-        print 'about to parse', path
         parser.parse(path)
         
         if handler.record == None or handler.record == '':
             # failed to find what we were looking for
-            print 'didnt find object we wanted'
+            log.msg('parser failed to find what it was looking for')
             object = None
         else:
-            print 'Now using from_xml to populate object'
             object.FromXML(object, handler.record.encode('ascii', 'replace'))
         
     else:
-        print "Don't know how to load object of type", object_type
-        
+        log.msg("Don't know how to load object of type", object_type)
+        return None
         
     return object
 
@@ -364,10 +352,9 @@ class SingleObjectLoadSaxHandler(ContentHandler):
         
         if name == self._object_type \
             and attrs.has_key("id") \
-            and attrs.get("id") == self._object_id:
+            and attrs.get("id") == self._object_id \
+            and not attrs.get("valid") == 'false':
             # found the object we're looking for
-               
-            print 'started recording'  
                 
             self._start_recording(self._object_type)
             self.found_target = True
@@ -413,12 +400,13 @@ class AllObjectLoadSaxHandler(SingleObjectLoadSaxHandler):
     def __init__(self, object_type):
 
         SingleObjectLoadSaxHandler.__init__( self, object_type, None )
-
+        self.records = []
 
 
     def startElement(self, name, attrs):
 
-        if name == self._object_type:
+        if name == self._object_type \
+            and not attrs.get("valid") == 'false':
             # found an object we're looking for
 
             self._start_recording(self._object_type)
@@ -429,6 +417,20 @@ class AllObjectLoadSaxHandler(SingleObjectLoadSaxHandler):
                 + name \
                 + self._make_attribute_list(attrs) \
                 + '>'
+          
+                
+    def endElement(self, name):
+
+        if self._recording:
+            self.record += '</' \
+                + name \
+                + '>'
+
+        # stop recording if appropriate    
+        if self._recording and self._recording_tagname == name:
+            self._recording = False
+            self.records.append(self.record)
+            self.record = ''
 
 
 class FindAndReplaceSaxHandler(ContentHandler):
