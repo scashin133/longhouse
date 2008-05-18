@@ -411,7 +411,7 @@ class AllObjectLoadSaxHandler(SingleObjectLoadSaxHandler):
     def __init__(self, object_type):
 
         SingleObjectLoadSaxHandler.__init__( self, object_type, None )
-        self.records = []
+        self.records = None
 
 
     def startElement(self, name, attrs):
@@ -440,7 +440,12 @@ class AllObjectLoadSaxHandler(SingleObjectLoadSaxHandler):
         # stop recording if appropriate    
         if self._recording and self._recording_tagname == name:
             self._recording = False
-            self.records.append(self.record)
+            if self.records is None:
+                self.records = [self.record]
+            else:
+                records_temp = self.records
+                self.records = [self.record]
+                self.records.extend(records_temp)
             self.record = ''
 
 
