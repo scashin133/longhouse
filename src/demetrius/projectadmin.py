@@ -273,19 +273,10 @@ class ProjectAdminPersist(pageclasses.DemetriusPage):
         page_data = {
           'admin_tab_mode': constants.ADMIN_TAB_PERSIST,
           'errors': req_info.errors or ezt_google.EZTError(),
-          'post_commit_hook' : self._GetPostCommitHook(req_info)
           }
 
         post.URLCommandAttacksEncode(page_data, req_info.logged_in_user_id)
         return page_data
-        
-    def _GetPostCommitHook (self, req_info):
-        return open(
-            os.path.join(
-                framework.constants.WORKING_DIR,
-                'scripts',
-                'post-commit'
-            )).read()
 
     def ProcessForm(self, request, req_info):
         """Process the posted form."""
