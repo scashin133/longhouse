@@ -11,6 +11,32 @@ function _toggleStarLocal(element, element_type) {
 	 }
 }
 
+function _toggleStar(element, project_name, issue_id){
+    urlStarToggle = "/p/" + project_name + "/issues/setstar.do"
+    
+    var src_img = element.getAttribute('src');
+    var is_starred;
+    if(src_img == '/images/star_on.gif'){
+        is_starred = 0
+    } else {
+        is_starred = 1
+    }
+    
+    new Ajax.Request(urlStarToggle, {
+  	  method: 'post',
+  	  parameters: {issueid : issue_id, starred : is_starred},
+  	  onSuccess: function(transport){
+	      json = transport.responseText.evalJSON();
+	      if(json.star == 1){
+	          element.writeAttribute({src : '/images/star_on.gif'})
+	      } else {
+	          element.writeAttribute({src : '/images/star_off.gif'})	          
+	      }
+      }
+      
+    });
+}
+
 function _showInsteadFinal(divid, linkid){
   if(document.getElementById(divid).style.display == 'none'){
     document.getElementById(divid).style.display = '';
