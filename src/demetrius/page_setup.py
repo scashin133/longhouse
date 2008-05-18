@@ -102,8 +102,8 @@ class PageSetup(framework.helpers.AbstractPageSetup):
     self._SetupProjectForm(admin_persist_page.FormHandler,
                            constants.ADMIN_PERSIST_FORM_URL)
                            
-    # host some files linked to by the admin persist page
-    self._SetupProjectPage(admin_persist_page.HookFileHandler, '/myproject.longhouse')
+    # unfinished handler to generate a helper file for the post-commit hook
+    #self._SetupProjectPage(admin_persist_page.HookFileHandler, '/myproject.longhouse')
                            
                            
 
