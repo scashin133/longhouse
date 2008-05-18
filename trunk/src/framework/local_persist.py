@@ -46,8 +46,9 @@ class OBJECT_TYPES:
     ISSUE = 'Issue'
     ISSUE_COMMENT = 'IssueComment'
     USER_ISSUE_STAR = 'UserIssueStars'
-    ISSUE_USER_STAR = 'UserIssueStars'
+    ISSUE_USER_STAR = 'IssueUserStars'
     USER = 'User'
+    PROJECT_ISSUE_CONFIG = 'ProjectIssueConfig'
 
 def init(demetrius_persist):
     """
@@ -153,7 +154,7 @@ def load_items_from_local_disk(object_type, object_id=None):
     return object
 
 
-def load_item_from_working_copy(object_type, object_id, projectname, versioned):
+def load_item_from_working_copy(object_type, object_id, projectname, versioned, parent_id=None):
     """ TODO: docstring """
     
     # retrieve the path for this object
@@ -163,6 +164,7 @@ def load_item_from_working_copy(object_type, object_id, projectname, versioned):
         OBJECT_TYPES.ISSUE_COMMENT : constants.WC_ISSUES_COMMENTS,
         OBJECT_TYPES.USER_ISSUE_STAR : constants.WC_ISSUES_USER_ISSUE_STARS,
         OBJECT_TYPES.ISSUE_USER_STAR : constants.WC_ISSUES_ISSUE_USER_STARS,
+        OBJECT_TYPES.PROJECT_ISSUE_CONFIG : constants.WC_ISSUES_PROJECT_ISSUE_CONFIG,
     }.get(object_type, None)
     
     
@@ -171,6 +173,11 @@ def load_item_from_working_copy(object_type, object_id, projectname, versioned):
         path = path \
             .replace('%projectname%', projectname) \
             .replace('%uid',str(object_id))
+            
+        if parent_id is not None:
+            save_path = save_path \
+                .replace('%pid', str(parent_id))
+
     else:
         raise UnsupportedArtifactException('Attempted to load an invalid artifact from working copy:' +
             '\nProject Name: ' + projectname +
@@ -236,7 +243,7 @@ def save_to_local_disk(object_type, object_id, object):
     _do_save(save_path, object_type, object_id, object)
     
     
-def save_to_working_copy(projectname, object_type, object_id, object, versioned):
+def save_to_working_copy(projectname, object_type, object_id, object, versioned, parent_id=None):
     
     # retrieve the path for this object
     save_path = {
@@ -245,6 +252,7 @@ def save_to_working_copy(projectname, object_type, object_id, object, versioned)
         OBJECT_TYPES.ISSUE_COMMENT : constants.WC_ISSUES_COMMENTS,
         OBJECT_TYPES.USER_ISSUE_STAR : constants.WC_ISSUES_USER_ISSUE_STARS,
         OBJECT_TYPES.ISSUE_USER_STAR : constants.WC_ISSUES_ISSUE_USER_STARS,
+        OBJECT_TYPES.PROJECT_ISSUE_CONFIG : constants.WC_ISSUES_PROJECT_ISSUE_CONFIG,
     }.get(object_type, None)
     
     # replace wildcards in the save path
@@ -252,6 +260,11 @@ def save_to_working_copy(projectname, object_type, object_id, object, versioned)
         save_path = save_path \
             .replace('%projectname%', projectname) \
             .replace('%uid',str(object_id))
+
+        if parent_id is not None:
+            save_path = save_path \
+                .replace('%pid', str(parent_id))
+            
     else:
         raise UnsupportedArtifactException('Attempted to save an invalid artifact to working copy:' +
             '\nProject Name: ' + projectname +
