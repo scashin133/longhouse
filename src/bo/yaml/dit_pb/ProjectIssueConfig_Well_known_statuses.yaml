@@ -3,6 +3,7 @@ describe: field
 name: status
 type: string
 value: ""
+primary: true
 ---
 describe: field
 name: means_open
