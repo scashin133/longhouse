@@ -1,4 +1,3 @@
-working_dir: /path/to/longhouse/src
 port: 8080
 daemonized: false
 logging: true

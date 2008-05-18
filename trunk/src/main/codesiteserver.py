@@ -41,6 +41,8 @@ class CodesiteServer(object):
           
       self.root_resource.putChild(relative_uri, static.File(path))
       
+      print 'put', path, 'at', relative_uri
+      
   def RegisterHandler(self, relative_uri, callback, private=False,
                                 does_write=None):
       self.root_resource.addHandler(relative_uri, callback)

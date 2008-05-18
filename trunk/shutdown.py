@@ -4,11 +4,13 @@ import re
 import sys
 import commands
 
-DIR_PATH = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
+# the directory this file is in
+# should be the root dir
+ROOT_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 
 EXTRA_PATHS = [
-    DIR_PATH, # adding the working path
-    os.path.join(DIR_PATH, '..', 'lib'), # add lib directory (should be in same directory as /src)
+    os.path.join(ROOT_DIR, 'src'), # /src
+    os.path.join(ROOT_DIR, 'lib'), # /lib
 ]
 
 sys.path = EXTRA_PATHS + sys.path
@@ -43,7 +45,7 @@ Get the daemon log file.
 """
 DAEMON_LOG = config.get('daemon_log')
 if DAEMON_LOG == None or DAEMON_LOG == "":
-    DAEMON_LOG = "createDaemon.log"
+    DAEMON_LOG = "logs/createDaemon.log"
     
 """
 Load the log file and retrieve the port number
@@ -64,6 +66,8 @@ except AttributeError:
 """
 Kill the process.
 """
+print 'killing pid', pid
+
 success = commands.getstatusoutput("kill " + pid)
 
 if(success[0] == 0):
