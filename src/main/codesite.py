@@ -45,31 +45,8 @@ import demetrius.constants
 
 
 
-def main(logging, logfile, port, daemonized):
+def main(port, daemonized):
     """Creates the page objects (handlers) and starts the server."""
-
-    # make sure the storage folder and its subdirectories exist
-
-    dirs = [
-        'storage/unversioned',
-        'storage/working_copies',
-        'logs',
-    ]
-    
-    for dir in dirs:
-        try:
-            os.makedirs(dir)
-        except OSError:
-            continue
-
-
-    # start logging
-
-    if logging:
-        log.startLogging(open(logfile, "w+"), 0)
-    
-    if not daemonized:
-        log.startLogging(sys.stdout)
     
     
     # Initialize the random seed.  Passing in None causes either the
