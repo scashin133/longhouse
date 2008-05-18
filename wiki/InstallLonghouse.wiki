@@ -34,7 +34,7 @@ You must install both Python and Subversion before installing Longhouse.
 
 There are three options for installing the required packages (Twisted, zope.interface, and PyYaml)
   # Install the packages as described in their respective installation procedures. This will make them available to all Python programs, including Longhouse.
-  # Extract the packages' source into Longhouse's /lib directory. This will make them available exclusively to Longhouse. This is useful if, say, you wanted to use a different version of Twisted for another project. Now your /lib directory should be structured like the following...
+  # Extract the packages' source into Longhouse's `/lib` directory. This will make them available exclusively to Longhouse. This is useful if, say, you wanted to use a different version of Twisted for another project. Now your `/lib` directory should be structured like the following...
 {{{
 lib/
 	ezt/
@@ -52,7 +52,7 @@ lib/
 		interface/
 			...
 }}}      
-  # Go to the Longhouse download section to download the longhouse dependencies tarball. Extract this into Longhouse's /lib directory.
+  # Go to the Longhouse download section to download the longhouse dependencies tarball. Extract this into Longhouse's `/lib` directory.
 
 *IMPORTANT NOTE:* Some methods of distributing Python 2.5 do not seem to include the `hashlib` library, which will create an error when you attempt to run Longhouse. Darwinports is known to have this problem at the time of writing. If you experience this issue, you may either install a standard release of 2.5.2 from [http://www.python.org python.org] or obtain `hashlib` from [http://pypi.python.org/pypi/hashlib/20060408a here].
 
@@ -60,7 +60,7 @@ Once you install Subversion, take note of where the `svn` command is located. We
 
 == Installation ==
 
-Download the latest Longhouse install from Longhouse's Google Code site, at http://code.google.com/p/longhouse/. Decompress the archive and place the source files where you'd like them to reside - the specific location doesn't matter for the purposes of running the software. You should see a `/src` folder inside the folder created when you decompressed the Longhouse archive, and inside the `/src` folder should be all of the Longhouse source files.
+Download the latest Longhouse install from Longhouse's Google Code site, at http://code.google.com/p/longhouse/. Decompress the archive and place the source files where you'd like them to reside - the specific location doesn't matter for the purposes of running the software. Inside the root folder you should see a `lib` folder, a `src` folder, and several files, listed below in the Configuration section.
 
 == Configuration ==
 
@@ -72,7 +72,7 @@ Longhouse requires a configuration file in order to run properly. Navigate to th
 
 You're going to need to create a config file in order to ensure that Longhouse runs properly. The install should contain an example config file, named `config.yml.example`, so you may simply create a new config file from the example config file. On Unix systems you can achieve this by running the command `cp config.yml.example config.yml`.
 
-The Longhouse config file has four values that need to be present in order for Longhouse to run. The first value to specify is the port you want the Longhouse server to run on. Choose whatever value you want that isn't being used by any other services running on your machine. One common port to use is port `80` or `8080`. We recommend simply using `8080` unless there is another program using it, or another reason to not use it. The line describing the port looks like:
+The Longhouse config file has four values that need to be present in order for Longhouse to run. The first value to specify is the port you want the Longhouse server to run on. Choose whatever value you want that isn't being used by any other web services running on your machine. Some common ports to use are port `80`, `8000` or `8080`. We recommend simply using `8080` unless there is another program using it, or another reason to not use it. The line describing the port looks like:
 
 `port: 8080`
 
