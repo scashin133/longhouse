@@ -195,7 +195,6 @@ def main():
         DAEMON_LOG = config.get('daemon_log')
         if DAEMON_LOG == None or DAEMON_LOG == "":
             DAEMON_LOG = os.path.join(ROOT_DIR, 'logs', 'createDaemon.log')
-            print 'using as daemon log:', DAEMON_LOG
 
     """
     Should we log?
@@ -213,9 +212,10 @@ def main():
     if(LOGGING):  
         LOGFILE = config.get('logfile')
         if LOGFILE == None or LOGFILE == "":
-            LOGFILE = "logs/longhouse.log"
+            LOGFILE = os.path.join(ROOT_DIR, 'logs', 'longhouse.log')
     else:
         LOGFILE = None
+        
 
     """
     Get the port number.
@@ -265,10 +265,23 @@ def main():
         print 'opening', DAEMON_LOG
         open(DAEMON_LOG, "w").write(procParams + "\n")
 
+
+    """
+    Start logging
+    """
+
+    if LOGGING:
+        log.startLogging(open(LOGFILE, "w+"), 0)
+
+    if not DAEMONIZED:
+        log.startLogging(sys.stdout)
+
+
+
     """
     Run longhouse!
     """
-    codesite.main(LOGGING, LOGFILE, PORT, DAEMONIZED)
+    codesite.main(PORT, DAEMONIZED)
 
     """
     Longhouse shut itself down
@@ -296,6 +309,21 @@ if __name__ == '__main__':
     sys.path = EXTRA_PATHS + sys.path     
 
 
+    # make sure some directories exist
+
+    dirs = [
+        'src/storage/unversioned',
+        'src/storage/working_copies',
+        'logs',
+    ]
+    
+    for dir in dirs:
+        try:
+            os.makedirs(dir)
+        except OSError:
+            continue
+
+
     # now we can import from /src and /lib
     # time to start Longhouse
 
@@ -304,6 +332,8 @@ if __name__ == '__main__':
     import yaml
 
     from framework import constants
+    
+    from twisted.python import log
         
     constants.WORKING_DIR = os.path.join( ROOT_DIR, 'src' )
     os.chdir(constants.WORKING_DIR)
