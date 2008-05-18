@@ -56,7 +56,7 @@ SECS_PER_YEAR = SECS_PER_DAY * 365
 MAX_POST_BODY_SIZE = 10 * 1024 * 1024   # = 10 MB
 
 # Special user id and name to use when no user was specified.
-NO_USER_SPECIFIED = 0
+NO_USER_SPECIFIED = -1
 NO_USER_NAME = '---'
 
 # String to display when some field has no value.
