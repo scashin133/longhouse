@@ -96,36 +96,27 @@ tt { font-size: 120%; }
 		You must have administrative access to the server hosting your
 		Subversion repository to install this hook.
 		To install, copy this script to the /hooks directory in your repository.
-		Be sure the hook is named 'post-commit' (no extension) and chmod it to be executable.
+		Be sure the hook is named "post-commit" (no extension) and chmod it to be executable.
 	</p>
 	
 	<p>
 		Once you have the hook installed, you specify which
-		projects are hosted on this repository. The hook (recursively) searches
-		the directory it is in for any .longhouse files. These files contain the
+		projects are hosted on this repository. There are two ways to 
+		accomplish this.
+		<br/><br/>
+		1) One of the first real lines of code in the script initializes
+		an empty array of project_urls. Add the url to your project
+		(e.g. <a href="http://longhouse.no-ip.org:8000/p/gimpybot/">
+		http://longhouse.no-ip.org:8000/p/gimpybot/</a>) to this array. 
+		<br/><br/>
+		2) The hook recursively searches
+		its directory it is in for any .longhouse files. These files contain the
 		information the hook needs to notify that project it needs to update
-		its working copy. Below you can download a .longhouse file generated
-		for this project. Put it in the /hooks directory or any subdirectory.
-		It can be named anything, as long as it ends in .longhouse
-	</p>
-	
-	<div class="indent">
-		<div class="bubble_wrapper">
-			<div class="pmeta_bubble_bg">
-				<div class="rounded_ul">
-					<div class="rounded_ur">
-						<div class="rounded_ll">
-							<div class="rounded_lr">
-		 						<p class="bubble">
-		 							<tt>Download <a href="/p/[projectname]/myproject.longhouse">myproject.longhouse</a></tt>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+		its working copy. Just create a new file (e.g. "[projectname].longhouse")
+		and put add url to your project (e.g. 
+		<a href="http://longhouse.no-ip.org:8000/p/gimpybot/">
+		http://longhouse.no-ip.org:8000/p/gimpybot/</a>) as the first line in
+		the file.
 	
 	<p>
 		Refer to the 
