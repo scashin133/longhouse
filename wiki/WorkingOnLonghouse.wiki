@@ -7,4 +7,6 @@ To learn basic information on how to add new pages, see [ExtendingLonghouse exte
 
 To learn how to package Longhouse for a public release, see [Releasing releasing Longhouse].
 
+To learn how to manipulate the business objects, or how the yamltobo script works, see [NewBusinessObject  business objects].
+
 Are you interested in joining the [http://longhouse.googlecode.com Longhouse Google Code project]? Check back later - after June 15th we'll be adding new project members.
