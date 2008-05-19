@@ -36,7 +36,6 @@ class Project(generated_demetrius_pb.Project):
     # by the yaml files so it goes here
     
     def d_setup_svn_controller(self):
-        print 'setting up svn controller for project', self.project_name()
 
         try:
 
@@ -61,7 +60,6 @@ class Project(generated_demetrius_pb.Project):
             def test_result(result):
                 if result == False:
                     self.svn_controller_ = ''
-                    raise Exception('problem setting up svn controller, self test failed')
                 else:
                     return self.d_checkout_working_copy()
             
@@ -70,15 +68,13 @@ class Project(generated_demetrius_pb.Project):
             return d
         
         except Exception, e:
-            print 'exception in d_setup_svn_controller', e
+            log.msg('exception in d_setup_svn_controller', e)
             raise
         
     def d_checkout_working_copy(self):
         if(self.svn_controller().has_working_copy()):
-            print 'already have working copy, updating'
             return self.svn_controller().d_up()
         else:
-            print 'checking out', self.svn_controller().repository_location
             return self.svn_controller().d_checkout()
         
     def svn_controller(self):
@@ -89,10 +85,8 @@ class Project(generated_demetrius_pb.Project):
     
     def has_working_copy(self):
         if (self.has_svn_controller() and self.svn_controller().has_working_copy()):
-            print 'has working copy?', self.svn_controller().has_working_copy()
             return self.svn_controller().has_working_copy()
         else:
-            print 'does not have working copy'
             return False
         
 class User(generated_demetrius_pb.User):

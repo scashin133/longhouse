@@ -17,12 +17,12 @@
  	 [end]
 </select>
     
-     | <a href="/p/support/">Help</a>
+     | <a href="http://code.google.com/p/longhouse/wiki/LearnMore">Help</a>
      | <a href="/u/[logged_in_user.display_name]/">My Account Profile</a>
      [if-any logged_in_user]| <a href="/hosting/settings">Settings</a>[end]
      | <a href="/logout[if-any currentPageURLEncoded]?continue=[currentPageURLEncoded][end]">Sign Out</a>
     [else]
-     <a href="/support/">Help</a>
+     <a href="http://code.google.com/p/longhouse/wiki/LearnMore">Help</a>
      | <a href="/login?followup=[currentPageURLEncoded]">Sign In</a>
      
     [end]

@@ -386,7 +386,16 @@ class DITPersist(object):
   def _StoreIssue(self, issue, config, ts=None):
     """Save the given issue to disk. Assign it an ID if needed."""
     #save_to_working_copy(issue.project_name(), 'issue', issue.id(), issue)
-    # TODO(students): reimplement this.
+    
+    project = self.demetrius_persist.GetProject(issue.project_name())
+
+    framework.local_persist.save_to_working_copy(
+                            project.project_name(),
+                            framework.local_persist.OBJECT_TYPES.ISSUE,
+                            issue.id(),
+                            issue,
+                            project.has_working_copy()
+                                                 )
 
   def GetCurrentIssueId(self, project_name, demetrius_persist):
     """Return the next available issue id in this project."""
@@ -458,8 +467,16 @@ class DITPersist(object):
     project_issue_comments[issue_id] = issue_comment_list
     self.issue_comments[project_name] = project_issue_comments
 
-    #local_persist.save_to_working_copy(iss_cmnt.project_name(), 'issue_comment', iss_cmnt.comment_id(), iss_cmnt)
-    # TODO(students): reimplement this.
+    project = self.demetrius_persist.GetProject(project_name)
+    
+    framework.local_persist.save_to_working_copy(
+                            project_name,
+                            framework.local_persist.OBJECT_TYPES.ISSUE_COMMENT,
+                            iss_cmnt.comment_id(),
+                            iss_cmnt, 
+                            project.has_working_copy(),
+                            iss_cmnt.issue_id()
+                            )
 
   def SoftDeleteComment(self, project_name, issue_id, sequence_num,
                         deleted_by_user_id, delete=True):
@@ -688,22 +705,16 @@ class DITPersist(object):
 
     project_ius[issue_id] = issueuserstars
     self.issue_user_stars[project_name] = project_ius
-    #local_persist.save_to_working_copy(issueuserstars.project_name(), 'issue_user_stars', issueuserstars.issue_id(), issueuserstars)
-    # TODO(students): reimplement this.
 
-
-  def _StoreIssueUserStars(self, project_name, issue_id, issueuserstars):
-    """Store a IssueUserStars BO to disk."""
+    project = self.demetrius_persist.GetProject(project_name)
     
-    project_ius = self.issue_user_stars.get(project_name, None)
-    if project_ius is None:
-        project_ius = {}
-
-    project_ius[issue_id] = issueuserstars
-    self.issue_user_stars[project_name] = project_ius
-
-    #local_persist.save_to_working_copy(issueuserstars.project_name(), 'issue_user_stars', issueuserstars.issue_id(), issueuserstars)
-    # TODO(students): reimplement this.
+    framework.local_persist.save_to_working_copy(
+                             project_name,
+                             framework.local_persist.OBJECT_TYPES.ISSUE_USER_STAR,
+                             issueuserstars.issue_id(),
+                             issueuserstars,
+                             project.has_working_copy()
+                             )
 
 
   def _StoreUserIssueStars(self, project_name, user_id, userissuestars):
@@ -714,9 +725,19 @@ class DITPersist(object):
 
     project_uis[user_id] = userissuestars
     self.user_issue_stars[project_name] = project_uis
-    #local_persist.save_to_working_copy(userissuestars.project_name(), 'user_issue_stars',userissuestars.user_id(), userissuestars)
-    # TODO(students): reimplement this.
 
+
+    project = self.demetrius_persist.GetProject(project_name)
+    
+    print userissuestars.user_id()
+    
+    framework.local_persist.save_to_working_copy(
+                             project_name,
+                             framework.local_persist.OBJECT_TYPES.USER_ISSUE_STAR,
+                             userissuestars.user_id(),
+                             userissuestars,
+                             project.has_working_copy()
+                             )
 
   ### Attachments
 
@@ -908,7 +929,16 @@ class DITPersist(object):
 
   def _StoreProjectConfig(self, project_config):
     """Store the given ProjectIssueConfig BO in BT."""
-    # TODO(students): reimplement this.
+    
+    project = self.demetrius_persist.GetProject(project_config.project_name())
+    
+    framework.local_persist.save_to_working_copy(
+                             project.project_name(),
+                             framework.local_persist.OBJECT_TYPES.PROJECT_ISSUE_CONFIG,
+                             project_config.project_name(),
+                             project_config,
+                             project.has_working_copy()
+                             )
 
   ### Search and Indexing functions
 

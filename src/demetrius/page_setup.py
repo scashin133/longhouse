@@ -64,7 +64,7 @@ class PageSetup(framework.helpers.AbstractPageSetup):
     """Register all the Demetrius pages, forms, and feeds with the server."""
     self._RegisterProjectHandlers()
     self._RegisterSiteHandlers()
-    self._RegisterClientSideIncludes()
+    self._RegisterStaticFiles()
     self._RegisterRedirects()
     log.msg('Finished registering Demetrius handlers.')
 
@@ -101,6 +101,12 @@ class PageSetup(framework.helpers.AbstractPageSetup):
                            constants.ADMIN_PERSIST_PAGE_URL)
     self._SetupProjectForm(admin_persist_page.FormHandler,
                            constants.ADMIN_PERSIST_FORM_URL)
+                           
+    # unfinished handler to generate a helper file for the post-commit hook
+    #self._SetupProjectPage(admin_persist_page.HookFileHandler, '/myproject.longhouse')
+                           
+                           
+
 
     admin_members_page = projectadmin.ProjectAdminMembers(
       self.conn_pool, self.demetrius_persist, self.universal_ezt_data)
@@ -195,9 +201,11 @@ class PageSetup(framework.helpers.AbstractPageSetup):
     hosting_home = hostinghome.HostingHome(
       self.conn_pool, self.demetrius_persist, self.universal_ezt_data)
     self.server.RegisterHandler(constants.HOSTING_HOME_URL,
-                                hosting_home.Handler)
-    #PLACEHOLDER PAGES#
-    #Replace these with real pages once the pages are built#
+                                hosting_home.Handler)  
+    
+                                
+    # PLACEHOLDER PAGES
+    # Replace these with real pages once the pages are built
     
     placeholder_page = placeholderpage.PlaceholderPage(
       self.conn_pool, self.demetrius_persist, self.universal_ezt_data)
@@ -211,13 +219,13 @@ class PageSetup(framework.helpers.AbstractPageSetup):
     self.server.RegisterHandler('/p/', redirect.Handler)
     # Only keep this if the web site has no other HTML home page.
 
-  def _RegisterClientSideIncludes(self):
+  def _RegisterStaticFiles(self):
     """Register static page for CSS and JS files used in demetrius."""
     self.server.RegisterStaticFiles('css', 'htdocs/css')
     self.server.RegisterStaticFiles('images', 'htdocs/images')
     self.server.RegisterStaticFiles('js', 'htdocs/js')
-    # for path in constants.DEMETRIUS_STATIC_CONTENT:
-    #       self._SetupStaticPage(_DATA_DIR + path, '/hosting' + path)
+    self.server.RegisterStaticFiles('files', 'htdocs/files')
+
 
 
 if __name__ == '__main__':

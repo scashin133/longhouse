@@ -3,6 +3,7 @@ describe: field
 name: name
 type: string
 value: ""
+primary: true
 ---
 describe: field
 name: mustang_query

@@ -4,7 +4,6 @@
    no-ops. ]
 <script>
 function _showBelow(){}
-function _toggleStar(){}
 function _rowRolloverOn(){}
 function _rowRolloverOff(){}
 function _goIssue(){}

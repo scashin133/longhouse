@@ -34,6 +34,8 @@ from demetrius import pageclasses
 from demetrius import helpers
 from demetrius import permissions
 
+import hashlib
+
 class UserRegistration(pageclasses.DemetriusPage):
   """Shows a page with a simple form to create an account.
   """
@@ -96,7 +98,12 @@ class UserRegistration(pageclasses.DemetriusPage):
           errors.other_error = 'Sorry, your two password entries don\'t match. Please try again - matching the two entries helps make sure that you know what your password is.'
             
       if not errors.AnyErrors():
-          self.demetrius_persist.CreateUser(email_address, email_address, password1, True)
+          
+          sha1 = hashlib.sha1()
+          sha1.update(str(password1))
+          hashed_pw = sha1.hexdigest()
+          
+          self.demetrius_persist.CreateUser(email_address, email_address, hashed_pw, True)
           uid = self.demetrius_persist.LookupUserIdByEmail(email_address)
           request.getSession().logged_in_user_id = uid
           url = framework.helpers.FormatAbsoluteURL(

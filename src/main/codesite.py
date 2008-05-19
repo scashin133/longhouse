@@ -27,6 +27,7 @@ import time
 import random
 
 from twisted.python import log
+from twisted.internet import reactor
 
 from main import codesiteserver
 
@@ -44,14 +45,9 @@ import demetrius.constants
 
 
 
-def main(logging, logfile, port, daemonized):
+def main(port, daemonized):
     """Creates the page objects (handlers) and starts the server."""
-
-    if logging:
-        log.startLogging(open(logfile, "w+"), 0)
     
-    if not daemonized:
-        log.startLogging(sys.stdout)
     
     # Initialize the random seed.  Passing in None causes either the
     # system time or an OS-provided randomness source to be used when
@@ -85,33 +81,38 @@ def main(logging, logfile, port, daemonized):
     dit_persist.register_demetrius_persist(demetrius_persist)
     #dit_persist = None
 
+    """
     for i in range(6):
         username = "testuser" + str(i)
         demetrius_persist.CreateUser(username + "@gmail.com", username, "testpass")
     else:
         pass
+    """
     
-    test_project = demetrius_persist.GetProject('testproject')
-    if test_project == None:
-        print "couldn't load testproject from disk, creating it"
-        demetrius_persist.CreateProject("testproject", [1], [2, 3, 4, 5], "This is the summary for the test project.",
-            "http://www.google.com",
-            "Now we must describe the test project.", ["label1", "label2", "label3"], "asf20", conn_pool)
-        test_project = demetrius_persist.GetProject('testproject')
-        test_project.set_repository_url('https://teamfreedom-projectcode.googlecode.com/svn/')
-        test_project.set_persist_repository_url('svn://eastmont.no-ip.org/var/svn/shared/sean_longhouse_persist')
-        test_project.set_persist_repository_username('longhouse')
-        test_project.set_persist_repository_password('longhousepass')
-        link = test_project.add_linksurl()
-        link.set_url("http://www.google.com")
-        link.set_label("Google label")
-    else:
-        print 'loaded testproject from disk'
+    
+    #test_project = demetrius_persist.GetProject('testproject')
+    #if test_project == None:
+    #    print "couldn't load testproject from disk, creating it"
+    #    demetrius_persist.CreateProject("testproject", [1], [2, 3, 4, 5], "This is the summary for the test project.",
+    #        "http://www.google.com",
+    #        "Now we must describe the test project.", ["label1", "label2", "label3"], "asf20", conn_pool)
+    #    test_project = demetrius_persist.GetProject('testproject')
+    #    test_project.set_repository_url('https://teamfreedom-projectcode.googlecode.com/svn/')
+    #    test_project.set_persist_repository_url('svn://eastmont.no-ip.org/var/svn/shared/sean_longhouse_persist')
+    #    test_project.set_persist_repository_username('longhouse')
+    #    test_project.set_persist_repository_password('longhousepass')
+    #    link = test_project.add_linksurl()
+    #    link.set_url("http://www.google.com")
+    #    link.set_label("Google label")
+    #else:
+    #    print 'loaded testproject from disk'
 
-    # TODO: this causes an error because the reactor hasn't been started yet
+
+    # this causes an error because the reactor hasn't been started yet
     #test_project.setup_svn_controller()
     
-    demetrius_persist._StoreProject(test_project)
+    # demetrius_persist._StoreProject(test_project)
+
 
     framework_pages = framework.page_setup.PageSetup(
         server, conn_pool, demetrius_persist, dit_persist,
@@ -127,6 +128,18 @@ def main(logging, logfile, port, daemonized):
         server, conn_pool, demetrius_persist, dit_persist,
         worktable, template_data)
     dit_pages.RegisterPages()
+
+
+
+    # load serialized users and projects    
+
+    def load_from_saved_xml():
+         demetrius_persist.GetAllUsers()
+         demetrius_persist.GetAllProjects()
+
+    log.msg('calling two methods after reactor is run')
+    reactor.callLater(2, load_from_saved_xml)
+
 
     server.run()
 

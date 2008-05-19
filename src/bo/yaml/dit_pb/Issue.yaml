@@ -23,7 +23,7 @@ value: ""
 describe: field
 name: owner_id
 type: integer
-value: 0
+value: -1
 ---
 describe: field
 name: cc_ids

@@ -81,7 +81,7 @@ class IssueEntry(dit.pageclasses.DITPage):
     # to project owner and members, not site admins who are not themselves
     # involved in this project.
     user_id = req_info.logged_in_user_id
-    is_member = (user_id and
+    is_member = (user_id is not None and
                  (user_id in req_info.project.owner_ids_list() or
                   user_id in req_info.project.member_ids_list()))
     offer_meta = (req_info.tool_perms.Check(dit.permissions.ENTER_METADATA) and

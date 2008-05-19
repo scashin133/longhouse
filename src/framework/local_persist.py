@@ -32,6 +32,9 @@ import re
 import os
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
+from xml.dom import minidom
+
+from twisted.python import log
 
 import constants
 from bo import demetrius_pb   
@@ -43,8 +46,9 @@ class OBJECT_TYPES:
     ISSUE = 'Issue'
     ISSUE_COMMENT = 'IssueComment'
     USER_ISSUE_STAR = 'UserIssueStars'
-    ISSUE_USER_STAR = 'UserIssueStars'
+    ISSUE_USER_STAR = 'IssueUserStars'
     USER = 'User'
+    PROJECT_ISSUE_CONFIG = 'ProjectIssueConfig'
 
 def init(demetrius_persist):
     """
@@ -65,8 +69,27 @@ def init(demetrius_persist):
         projects_xml_template = os.path.join(constants.WORKING_DIR, 'templates/storage/projects.xml')
         shutil.copy(projects_xml_template, local_project_storage)
     
+    
+def load_all_users():
+    
+    path = os.path.join( 
+        constants.WORKING_DIR,
+        constants.LOCAL_STORAGE_ROOT,
+        constants.LD_USERS, )
+    
+    dom = minidom.parse(path)
+    
+    user_elements = dom.getElementsByTagName("User")
+    
+    users = load_items_from_local_disk( OBJECT_TYPES.USER )
+    
+    if users is None:
+        users = []
+    
+    return users
+    
 
-def load_item_from_local_disk(object_type, object_id):
+def load_items_from_local_disk(object_type, object_id=None):
     """ TODO: docstring """
     
     # retrieve the path for this object
@@ -85,40 +108,53 @@ def load_item_from_local_disk(object_type, object_id):
     # construct the full path
     path = os.path.join(
         constants.WORKING_DIR, constants.LOCAL_STORAGE_ROOT, path)
-
-    object = None
-    if object_type == OBJECT_TYPES.PROJECT:
-        object = demetrius_pb.Project()
-#    elif object_type == OBJECT_TYPES.USER:
-#        pass
-    # TODO: other object types 
+        
     
-    if not object == None:
-        # parse!
-        handler = SingleObjectLoadSaxHandler(object_type, object_id)
-        parser = make_parser()
-        parser.setContentHandler(handler)
-        print 'about to parse', path
-        parser.parse(path)
-        
-        print 'SingleObjectLoadSaxHandler done. retrieved:', handler.record
-        
-        if handler.record == None or handler.record == '':
-            # failed to find what we were looking for
-            print 'didnt find object we wanted'
-            object = None
-        else:
-            print 'Now using from_xml to populate object'
-            object.FromXML(object, handler.record.encode('ascii', 'replace'))
-        
+    if object_id == None:
+        # they must want an array of all the objects of that type
+        handler = AllObjectLoadSaxHandler(object_type)
     else:
-        print "Don't know how to load object of type", object_type
+        handler = SingleObjectLoadSaxHandler(object_type, object_id)
+        
+    parser = make_parser()
+    parser.setContentHandler(handler)
+    parser.parse(path)
+    
+    if not handler.found_target:
+        # failed to find what we were looking for
+        return None
+    else:
+        
+        if object_type == OBJECT_TYPES.PROJECT:
+            object_constructor = demetrius_pb.Project
+        elif object_type == OBJECT_TYPES.USER:
+            object_constructor = demetrius_pb.User
+            # TODO: other object types
+        else:
+            log.msg('tried to load invalid object type:', object_type)
+            return None
+        
+        
+        if object_id == None:
+            # we are returning an array of objects
+            object = []
+            for object_xml in handler.records:
+                new_object = object_constructor()
+                new_object.FromXML(new_object, object_xml.encode('ascii', 'replace'))
+                object.append(new_object)
+            
+        else:
+            # we are returning a single object
+            
+            object = object_constructor()
+            object.FromXML(object, handler.record.encode('ascii', 'replace'))
+    
         
         
     return object
 
 
-def load_item_from_working_copy(object_type, object_id, projectname, versioned):
+def load_item_from_working_copy(object_type, object_id, projectname, versioned, parent_id=None):
     """ TODO: docstring """
     
     # retrieve the path for this object
@@ -128,6 +164,7 @@ def load_item_from_working_copy(object_type, object_id, projectname, versioned):
         OBJECT_TYPES.ISSUE_COMMENT : constants.WC_ISSUES_COMMENTS,
         OBJECT_TYPES.USER_ISSUE_STAR : constants.WC_ISSUES_USER_ISSUE_STARS,
         OBJECT_TYPES.ISSUE_USER_STAR : constants.WC_ISSUES_ISSUE_USER_STARS,
+        OBJECT_TYPES.PROJECT_ISSUE_CONFIG : constants.WC_ISSUES_PROJECT_ISSUE_CONFIG,
     }.get(object_type, None)
     
     
@@ -136,6 +173,11 @@ def load_item_from_working_copy(object_type, object_id, projectname, versioned):
         path = path \
             .replace('%projectname%', projectname) \
             .replace('%uid',str(object_id))
+            
+        if parent_id is not None:
+            save_path = save_path \
+                .replace('%pid', str(parent_id))
+
     else:
         raise UnsupportedArtifactException('Attempted to load an invalid artifact from working copy:' +
             '\nProject Name: ' + projectname +
@@ -156,8 +198,8 @@ def load_item_from_working_copy(object_type, object_id, projectname, versioned):
     object = None
     if object_type == OBJECT_TYPES.PROJECT:
         object = demetrius_pb.Project()
-#    elif object_type == OBJECT_TYPES.USER:
-#        pass
+    elif object_type == OBJECT_TYPES.USER:
+        object = demetrius_pb.User()
     # TODO: other object types 
     
     if not object == None:
@@ -165,22 +207,18 @@ def load_item_from_working_copy(object_type, object_id, projectname, versioned):
         handler = SingleObjectLoadSaxHandler(object_type, object_id)
         parser = make_parser()
         parser.setContentHandler(handler)
-        print 'about to parse', path
         parser.parse(path)
-        
-        print 'SingleObjectLoadSaxHandler done. retrieved:', handler.record
         
         if handler.record == None or handler.record == '':
             # failed to find what we were looking for
-            print 'didnt find object we wanted'
+            log.msg('parser failed to find what it was looking for')
             object = None
         else:
-            print 'Now using from_xml to populate object'
             object.FromXML(object, handler.record.encode('ascii', 'replace'))
         
     else:
-        print "Don't know how to load object of type", object_type
-        
+        log.msg("Don't know how to load object of type", object_type)
+        return None
         
     return object
 
@@ -205,7 +243,7 @@ def save_to_local_disk(object_type, object_id, object):
     _do_save(save_path, object_type, object_id, object)
     
     
-def save_to_working_copy(projectname, object_type, object_id, object, versioned):
+def save_to_working_copy(projectname, object_type, object_id, object, versioned, parent_id=None):
     
     # retrieve the path for this object
     save_path = {
@@ -214,6 +252,7 @@ def save_to_working_copy(projectname, object_type, object_id, object, versioned)
         OBJECT_TYPES.ISSUE_COMMENT : constants.WC_ISSUES_COMMENTS,
         OBJECT_TYPES.USER_ISSUE_STAR : constants.WC_ISSUES_USER_ISSUE_STARS,
         OBJECT_TYPES.ISSUE_USER_STAR : constants.WC_ISSUES_ISSUE_USER_STARS,
+        OBJECT_TYPES.PROJECT_ISSUE_CONFIG : constants.WC_ISSUES_PROJECT_ISSUE_CONFIG,
     }.get(object_type, None)
     
     # replace wildcards in the save path
@@ -221,6 +260,11 @@ def save_to_working_copy(projectname, object_type, object_id, object, versioned)
         save_path = save_path \
             .replace('%projectname%', projectname) \
             .replace('%uid',str(object_id))
+
+        if parent_id is not None:
+            save_path = save_path \
+                .replace('%pid', str(parent_id))
+            
     else:
         raise UnsupportedArtifactException('Attempted to save an invalid artifact to working copy:' +
             '\nProject Name: ' + projectname +
@@ -319,10 +363,9 @@ class SingleObjectLoadSaxHandler(ContentHandler):
         
         if name == self._object_type \
             and attrs.has_key("id") \
-            and attrs.get("id") == self._object_id:
+            and attrs.get("id") == self._object_id \
+            and not attrs.get("valid") == 'false':
             # found the object we're looking for
-               
-            print 'started recording'  
                 
             self._start_recording(self._object_type)
             self.found_target = True
@@ -358,6 +401,52 @@ class SingleObjectLoadSaxHandler(ContentHandler):
             else:
                 self.record += content.strip()
 
+
+class AllObjectLoadSaxHandler(SingleObjectLoadSaxHandler):
+    """
+    Sax handler to find all object with the given name
+    and store their xml in self.record
+    """
+
+    def __init__(self, object_type):
+
+        SingleObjectLoadSaxHandler.__init__( self, object_type, None )
+        self.records = None
+
+
+    def startElement(self, name, attrs):
+
+        if name == self._object_type \
+            and not attrs.get("valid") == 'false':
+            # found an object we're looking for
+
+            self._start_recording(self._object_type)
+            self.found_target = True
+
+        if self._recording:
+            self.record += '<' \
+                + name \
+                + self._make_attribute_list(attrs) \
+                + '>'
+          
+                
+    def endElement(self, name):
+
+        if self._recording:
+            self.record += '</' \
+                + name \
+                + '>'
+
+        # stop recording if appropriate    
+        if self._recording and self._recording_tagname == name:
+            self._recording = False
+            if self.records is None:
+                self.records = [self.record]
+            else:
+                records_temp = self.records
+                self.records = [self.record]
+                self.records.extend(records_temp)
+            self.record = ''
 
 
 class FindAndReplaceSaxHandler(ContentHandler):

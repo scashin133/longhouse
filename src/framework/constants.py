@@ -43,10 +43,11 @@ LD_PROJECTS = 'projects.xml'
 
 # working copy (per-project information)
 WC_PROJECT = '%projectname%/project.xml'
-WC_ISSUES = '%projectname%/issues.xml'
-WC_ISSUES_COMMENTS = '%projectname%/issuecomments.xml'
-WC_ISSUES_USER_ISSUE_STARS = '%projectname%/issues-userissuestars.xml'
-WC_ISSUES_ISSUE_USER_STARS = '%projectname%/issues-issueuserstars.xml'
+WC_ISSUES = '%projectname%/longhouse_issues/issues/%uid.xml'
+WC_ISSUES_COMMENTS = '%projectname%/longhouse_issues/issuecomments/%pid/%uid.xml'
+WC_ISSUES_USER_ISSUE_STARS = '%projectname%/longhouse_issues/userissuestars/%uid.xml'
+WC_ISSUES_ISSUE_USER_STARS = '%projectname%/longhouse_issues/issueuserstars/%uid.xml'
+WC_ISSUES_PROJECT_ISSUE_CONFIG = '%projectname%/longhouse_issues/projectissueconfig.xml'
 
 # Number of seconds in one day.
 SECS_PER_DAY = 60 * 60 * 24
@@ -56,7 +57,7 @@ SECS_PER_YEAR = SECS_PER_DAY * 365
 MAX_POST_BODY_SIZE = 10 * 1024 * 1024   # = 10 MB
 
 # Special user id and name to use when no user was specified.
-NO_USER_SPECIFIED = 0
+NO_USER_SPECIFIED = -1
 NO_USER_NAME = '---'
 
 # String to display when some field has no value.
