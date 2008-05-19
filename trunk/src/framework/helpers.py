@@ -141,12 +141,10 @@ def MakeAllUserIDProxies(conn_pool, demetrius_persist, *args):
     Returns a dictionary of distinct user ids from all the given lists with
     the correpsonding UserIDProxy for each user..
   """
-  print 'making user id proxies for issue'
   unique_user_ids = []
   for user_id_list in args:
     for user_id in user_id_list:
       if user_id not in unique_user_ids:
-         print 'appending user id ' + str(user_id)
          unique_user_ids.append(user_id)
 
   #cuis_by_id = conn_pool.GetClientUserInfoBatch(unique_user_ids)
