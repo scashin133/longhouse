@@ -1,0 +1,124 @@
+How to Install and Run Longhouse
+
+Longhouse Version: 0.1
+
+Table of Contents
+=================
+
+   1. Dependencies
+   2. Installation
+   3. Configuration
+   4. Generate Code
+   5. Run
+   6. Use Longhouse
+   7. Shut Down 
+
+
+Dependencies
+============
+
+Longhouse requires:
+
+    * Python - http://www.python.org/
+      version 2.5 or higher is required 
+
+    * Subversion - http://subversion.tigris.org/
+
+You must install both Python and Subversion before installing Longhouse.
+
+IMPORTANT NOTE: Some methods of distributing Python 2.5 do not seem to include
+the hashlib library, which will create an error when you attempt to run
+Longhouse. Darwinports is known to have this problem at the time of writing. If
+you experience this issue, you may either install a standard release of 2.5.2
+from python.org or obtain hashlib from here.
+
+Once you install Subversion, take note of where the svn command is located. We
+will need this later. A common location is /usr/local/bin/svn. On Unix systems,
+run the command which svn to find where svn is located.
+
+
+Configuration
+=============
+
+Longhouse requires a configuration file in order to run properly. Navigate to
+the directory that you extracted the Longhouse files to. Inside the /src
+directory, you should see several files, including:
+
+    * COPYING
+    * config.yml.example
+    * run.py
+    * shutdown.py 
+
+You're going to need to create a config file in order to ensure that Longhouse
+runs properly. The install should contain an example config file, named
+config.yml.example, so you may simply create a new config file from the
+example. On Unix systems you can achieve this by running the command:
+	cp config.yml.example config.yml
+
+The Longhouse config file has four values that need to be present in order for
+Longhouse to run. The first value to specify is the port you want the Longhouse
+server to run on. Choose whatever value you want that isn't being used by any 
+other web services running on your machine. Some common ports to use are 80, 8000
+ or 8080. We recommend simply using 8080 unless there is another program using it, or
+another reason to not use it. The line describing the port looks like:
+
+	port: 8080
+
+The next value you're going to define is whether you want the process to be
+daemonized or not. If you use the value true, when you run Longhouse it will
+spawn a separate process, so you'll be free to close your Python environment or
+command-line invocation. In this case you can use the shutdown.py script to
+shut down Longhouse. If you use false, it behaves like a regular Python
+application, running while your invocation of the Python runtime environment is
+active. So, this line looks like the following:
+
+	daemonized: true
+	(or)
+	daemonized: false
+
+Next, specify whether you want Longhouse to log itself to a log file or not.
+This is crucial if you specified daemonized: true; if you run Longhouse as a
+separate process you will need to specify logging: true to have any output from
+Longhouse.
+
+	logging: true
+	(or)
+	logging: false
+
+Finally, specify the location of your svn command. For example, mine is located
+at /usr/local/bin/svn, so I'd write:
+
+	svn: /usr/local/bin/svn
+
+My entire config file is as follows:
+
+	port: 8080
+	daemonized: false
+	logging: true
+	svn: /usr/local/bin/svn
+
+
+Run
+===
+
+Run the file run.py in the Longhouse root directory. If all goes well, Longhouse should
+be running properly. If you encounter any errors, check our FAQ/Troubleshooting
+page.
+
+
+Use Longhouse
+=============
+
+Visit http://localhost:portnumber/ to test whether Longhouse is running, where
+portnumber is the value you specified for port in the config.yml file. If you
+encounter an 'Unable to connect' or similar error, it means Longhouse isn't
+running on that port for one reason or another. Check our FAQ/Troubleshooting
+page to find out why.
+
+
+Shut Down
+=========
+
+If you specified daemonized: true in the config.yml file, you need to run
+shutdown.py to shut Longhouse down. If not, simply exit the program in which
+you invoked run.py.

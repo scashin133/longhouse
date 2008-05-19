@@ -28,7 +28,7 @@
   <tr onmouseover="_rowRolloverOn(this)" onmouseout="_rowRolloverOff(this); cancelBubble=false;">
    <td class=vt nowrap=nowrap style="padding:2px 2px 0 2px">[if-any tool_perms.enter_metadata][# TODO:<input type="checkbox" onmouseup="_highlightRow(this);">][end][if-any read_only][else][if-any tool_perms.set_star]<img 
         src=[if-any table_data.starred]"/images/star_on.gif"[else]"/images/star_off.gif"[end] 
-        onclick="_toggleStar(this,'[projectname]',[table_data.issue_id])" 
+        onclick="_toggleStar(this,'[projectname]',[table_data.issue_id]);" 
        />[else]&nbsp;[end][end]</td>
 
     [for table_data.cells]

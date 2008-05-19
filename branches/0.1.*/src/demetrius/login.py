@@ -30,6 +30,8 @@ from demetrius import pageclasses
 from demetrius import helpers
 from demetrius import permissions
 
+import hashlib
+
 class LoginPage(pageclasses.DemetriusPage):
 
     _PAGE_TEMPLATE = 'demetrius/login.ezt'
@@ -74,8 +76,6 @@ class LoginPage(pageclasses.DemetriusPage):
             errors.username = e.text
             username = post.LoadFieldFromPOST('username', post_data)
 
-        # TODO: incoming password should be hashed, LoadFieldFromPOST('pwhash'
-        # let's leave it plaintext for the Dec 6 demo
         try:
             pwhash = post.LoadFieldFromPOST('password', post_data)
         except validate.InvalidFormattedField, e:
@@ -100,7 +100,12 @@ class LoginPage(pageclasses.DemetriusPage):
             uid = self.demetrius_persist.LookupUserIdByEmail(username)
             if not uid is None:
                 user_pb = self.demetrius_persist.GetUser(uid)
-                if user_pb.verify_account_password(pwhash) is True:
+                
+                sha1 = hashlib.sha1()
+                sha1.update(str(pwhash))
+                hashed_pw = sha1.hexdigest()
+
+                if user_pb.verify_account_password(hashed_pw) is True:
                     # successful login. add their user_id to the sessions
                     request.getSession().logged_in_user_id = uid
                     # TODO: redirect them to where they were before they logged in

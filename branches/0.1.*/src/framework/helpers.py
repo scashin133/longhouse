@@ -101,8 +101,12 @@ class UserIDProxy(object):
     self.projects_owned = []
     self.projects_member = []
     self.demetrius_persist = demetrius_persist
-
-    if user_id or user_id == 0:
+    
+    if user_id == constants.NO_USER_SPECIFIED:
+        self.email = ''
+        self.profile_url = ''
+        self.display_name = ''
+    elif user_id or user_id == 0:
         
         if user_pb is None:
             user_pb = demetrius_persist.GetUser(user_id)
@@ -137,7 +141,6 @@ def MakeAllUserIDProxies(conn_pool, demetrius_persist, *args):
     Returns a dictionary of distinct user ids from all the given lists with
     the correpsonding UserIDProxy for each user..
   """
-  
   unique_user_ids = []
   for user_id_list in args:
     for user_id in user_id_list:

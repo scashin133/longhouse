@@ -47,9 +47,6 @@ class HandlerResource(resource.Resource):
                 handler_result.addCallback(respond)
             else:
                 # handler is not deferred, we assume it's done now and we can finish the request
-                #request.write('?')    
-                print 'handler was not a deferred, it was a', str(handler_result.__class__)
-                print 'finishing request now'
                 request.finish();
 
         except Exception, e:
@@ -62,45 +59,7 @@ class HandlerResource(resource.Resource):
         request.finish()   
         return server.NOT_DONE_YET     
         
-    render_POST = render_GET
-    
-class DeferredHandlerResource(resource.Resource):
-    """Wrapper for a deferred handler method.
-    TODO: the normal HandlerResource should provide this same 
-    functionality but it is untested"""
-    
-    isLeaf = True
-    
-    def __init__(self, handler):
-        resource.Resource.__init__(self)
-        self.handler = handler
-        
-    def getChildWithDefault(self, path, request):
-        """There are never any children, always return self"""
-        return self   
-    
-    def render_GET(self, request):
-        """Call the handler method"""
-        self.request = request
-        
-        d = self.handler(request)
-        
-        # TODO: use isinstance() here instead?
-        if str(d.__class__) == 'twisted.internet.defer.Deferred':
-            d.addCallback(self._respond)
-        else:
-            request.write('Error: Deferred handler must return \
-            twisted.internet.defer.Deferred.<br> \
-            Returned ' + str(d.__class__) + ' instead.')    
-            request.finish();
-        
-        return server.NOT_DONE_YET
-        
-    def _respond(self, data):
-        self.request.write(str(data))
-        self.request.finish()
-        
-    render_POST = render_GET
+    render_POST = render_GET  
 
 
 class RootResource(resource.Resource):
@@ -154,15 +113,12 @@ class RootResource(resource.Resource):
     def addHandler(self, path, handler):
         """Wrap the handler with a HandlerResource and add it
         to the dictionary of handlers"""
-        print 'adding handler to path', path
         self.handlers[path] = HandlerResource(handler)
 
     def addProjectHandler(self, path, handler):
-        print 'adding project handler to path', path
         self.project_handlers[path] = HandlerResource(handler)
         
     def addUserHandler(self, path, handler):
-        print 'adding user handler to path', path
         self.user_handlers[path] = HandlerResource(handler)
         
     def addDeferredHandler(self, path, handler):

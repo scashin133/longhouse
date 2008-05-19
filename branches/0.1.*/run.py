@@ -1,13 +1,6 @@
 #!/usr/bin/env python
-import sys
-import os
 
-from main import codesite
-import yaml
-
-from framework import constants
-
-def createDaemon():
+def createDaemon(UMASK, MAXFD, DAEMON_LOG, ROOT_DIR, REDIRECT_TO):
    """Detach a process from the controlling terminal and run it in the
    background as a daemon.
    """
@@ -74,7 +67,9 @@ def createDaemon():
          # Since the current working directory may be a mounted filesystem, we
          # avoid the issue of not being able to unmount the filesystem at
          # shutdown time by changing it to the root directory.
-         os.chdir(WORKDIR)
+         
+         #os.chdir(ROOT_DIR) # we do this in main() now
+         
          # We probably don't want the file mode creation mask inherited from
          # the parent, so we give the child complete control over permissions.
          os.umask(UMASK)
@@ -145,147 +140,206 @@ def createDaemon():
    return(0)
 
 
-"""
-Try to load the config file
-(config.yml or config.yaml)
-"""
-try:
-    config = yaml.load(open('config.yml'))
-except IOError:
+def main():
+
     """
-    Maybe some silly person named it config.yaml instead...
+    Try to load the config file
+    (config.yml or config.yaml)
     """
     try:
-        config = yaml.load(open('config.yaml'))
+        config = yaml.load(open('../config.yml'))
     except IOError:
         """
-        Couldn't find config file under either name.
+        Maybe some silly person named it config.yaml instead...
         """
-        print "Error: couldn't load config.yml at " + \
-            os.path.join(os.getcwd(), 'config.yml')
-        sys.exit(1)
+        try:
+            config = yaml.load(open('../config.yaml'))
+        except IOError:
+            """
+            Couldn't find config file under either name.
+            """
+            print "Error: couldn't load config.yml at " + \
+                os.path.join(os.getcwd(), '..', 'config.yml')
+            sys.exit(1)
 
-
-"""
-Get the working directory.
-Required.
-"""
-WORKDIR = config.get('working_dir')
-if WORKDIR == None or WORKDIR == "":
-    print 'Error: working_dir not specified in config.yml'
-    sys.exit(1)
-# other modules will need to know the working directory
-constants.WORKING_DIR = WORKDIR
-
-"""
-Should we run in daemonized mode?
-Not required.
-"""
-DAEMONIZED = config.get('daemonized')
-if DAEMONIZED == None or DAEMONIZED == "":
-    DAEMONIZED = False
-
-if(DAEMONIZED):
     """
-    Get the umask (file mode creation mask of the daemon)
+    Should we run in daemonized mode?
     Not required.
     """
-    UMASK = config.get('umask')
-    if UMASK == None or UMASK == "":
-        UMASK = 7
-        
-    """
-    Get maximum number of available file descriptors.
-    Not required.
-    """
-    MAXFD = config.get('maxfd')
-    if MAXFD == None or MAXFD == "":
-        MAXFD = 1024
+    DAEMONIZED = config.get('daemonized')
+    if DAEMONIZED == None or DAEMONIZED == "":
+        DAEMONIZED = False
+
+    if(DAEMONIZED):
     
+        """
+        Get the umask (file mode creation mask of the daemon)
+        Not required.
+        """
+        UMASK = config.get('umask')
+        if UMASK == None or UMASK == "":
+            UMASK = 7
+        
+        """
+        Get maximum number of available file descriptors.
+        Not required.
+        """
+        MAXFD = config.get('maxfd')
+        if MAXFD == None or MAXFD == "":
+            MAXFD = 1024
+    
+        """
+        Get the daemon log file.
+        Not required.
+        """
+        DAEMON_LOG = config.get('daemon_log')
+        if DAEMON_LOG == None or DAEMON_LOG == "":
+            DAEMON_LOG = os.path.join(ROOT_DIR, 'logs', 'createDaemon.log')
+
     """
-    Get the daemon log file.
+    Should we log?
     Not required.
     """
-    DAEMON_LOG = config.get('daemon_log')
-    if DAEMON_LOG == None or DAEMON_LOG == "":
-        DAEMON_LOG = "createDaemon.log"
-
-"""
-Should we log?
-Not required.
-"""
-LOGGING = config.get('logging')
-if LOGGING == None or LOGGING == "":
-    LOGGING = False
+    LOGGING = config.get('logging')
+    if LOGGING == None or LOGGING == "":
+        LOGGING = False
   
-"""
-If we're logging, get the log file.
-If we're not logging, just throw output to std out
-Not required.
-"""
-if(LOGGING):  
-    LOGFILE = config.get('logfile')
-    if LOGFILE == None or LOGFILE == "":
-        LOGFILE = "logs/longhouse.log"
-else:
-    LOGFILE = None
-
-"""
-Get the port number.
-Not required.
-"""
-PORT = config.get('port')
-if PORT == None or PORT == "":
-    PORT = 8080
-
-"""
-Get the svn location.
-Required.
-"""
-SVN_LOC = config.get('svn')
-if SVN_LOC == None or SVN_LOC == "":
-    print 'Error: svn location not specified in config.yml'
-    sys.exit(1)
-constants.SVN_LOC = SVN_LOC
-
-
-"""
-The standard I/O file descriptors are redirected 
-to /dev/null by default.
-"""
-if (hasattr(os, "devnull")):
-   REDIRECT_TO = os.devnull
-else:
-   REDIRECT_TO = "/dev/null"
-
-
-
-if(DAEMONIZED):
     """
-    Create a daemon and write to the daemon log file.
+    If we're logging, get the log file.
+    If we're not logging, just throw output to std out
+    Not required.
     """
-    print 'Longhouse daemon launching on port', PORT
-    retCode = createDaemon()
-    procParams = """
-    return code = %s
-    process ID = %s
-    parent process ID = %s
-    process group ID = %s
-    session ID = %s
-    user ID = %s
-    effective user ID = %s
-    real group ID = %s
-    effective group ID = %s
-    """ % (retCode, os.getpid(), os.getppid(), os.getpgrp(), os.getsid(0), os.getuid(), os.geteuid(), os.getgid(), os.getegid())
-    open(DAEMON_LOG, "w").write(procParams + "\n")
+    if(LOGGING):  
+        LOGFILE = config.get('logfile')
+        if LOGFILE == None or LOGFILE == "":
+            LOGFILE = os.path.join(ROOT_DIR, 'logs', 'longhouse.log')
+    else:
+        LOGFILE = None
+        
 
-"""
-Run longhouse!
-"""
-codesite.main(LOGGING, LOGFILE, PORT, DAEMONIZED)
+    """
+    Get the port number.
+    Not required.
+    """
+    PORT = config.get('port')
+    if PORT == None or PORT == "":
+        PORT = 8080
 
-"""
-Longhouse shut itself down
-"""
-if(DAEMONIZED):
-    sys.exit(retCode)
+    """
+    Get the svn location.
+    Required.
+    """
+    SVN_LOC = config.get('svn')
+    if SVN_LOC == None or SVN_LOC == "":
+        print 'Error: svn location not specified in config.yml'
+        sys.exit(1)
+    constants.SVN_LOC = SVN_LOC
+
+
+    """
+    The standard I/O file descriptors are redirected 
+    to /dev/null by default.
+    """
+    if (hasattr(os, "devnull")):
+       REDIRECT_TO = os.devnull
+    else:
+       REDIRECT_TO = "/dev/null"
+
+    if(DAEMONIZED):
+        """
+        Create a daemon and write to the daemon log file.
+        """
+        print 'Longhouse daemon launching on port', PORT
+        retCode = createDaemon(UMASK, MAXFD, DAEMON_LOG, ROOT_DIR, REDIRECT_TO)
+        procParams = """
+        return code = %s
+        process ID = %s
+        parent process ID = %s
+        process group ID = %s
+        session ID = %s
+        user ID = %s
+        effective user ID = %s
+        real group ID = %s
+        effective group ID = %s
+        """ % (retCode, os.getpid(), os.getppid(), os.getpgrp(), os.getsid(0), os.getuid(), os.geteuid(), os.getgid(), os.getegid())
+        print 'opening', DAEMON_LOG
+        open(DAEMON_LOG, "w").write(procParams + "\n")
+
+
+    """
+    Start logging
+    """
+
+    if LOGGING:
+        log.startLogging(open(LOGFILE, "w+"), 0)
+
+    if not DAEMONIZED:
+        log.startLogging(sys.stdout)
+
+
+
+    """
+    Run longhouse!
+    """
+    codesite.main(PORT, DAEMONIZED)
+
+    """
+    Longhouse shut itself down
+    """
+    if(DAEMONIZED):
+        sys.exit(retCode)
+        
+        
+if __name__ == '__main__':
+
+    # first patch up the path
+
+    import sys
+    import os
+
+    # the directory this file is in
+    # should be the root dir
+    ROOT_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
+
+    EXTRA_PATHS = [
+        os.path.join(ROOT_DIR, 'src'), # /src
+        os.path.join(ROOT_DIR, 'lib'), # /lib
+    ]
+
+    sys.path = EXTRA_PATHS + sys.path     
+
+
+    # make sure some directories exist
+
+    dirs = [
+        'src/storage/unversioned',
+        'src/storage/working_copies',
+        'logs',
+    ]
+    
+    for dir in dirs:
+        try:
+            os.makedirs(dir)
+        except OSError:
+            continue
+
+
+    # now we can import from /src and /lib
+    # time to start Longhouse
+
+
+    from main import codesite
+    import yaml
+
+    from framework import constants
+    
+    from twisted.python import log
+        
+    constants.WORKING_DIR = os.path.join( ROOT_DIR, 'src' )
+    os.chdir(constants.WORKING_DIR)
+        
+    main()
+    
+    
+    
+

@@ -134,8 +134,11 @@ class DemetriusPersist(object):
     user_pb = None
     if user_id is None:
         return None
-    user_pb = self.users[int(user_id)]
-    return user_pb
+    try:
+        user_pb = self.users[int(user_id)]
+        return user_pb
+    except:
+        return None
 
   def LookupUserIdByUsername(self, username):
     """Return the user id that corresponds to the given username."""
@@ -285,7 +288,7 @@ class DemetriusPersist(object):
     user_pb.set_account_username(username)
     user_pb.set_account_password(pwdhash)
     user_pb.set_account_email(email)
-    user_pb.set_is_site_admin(False)
+    user_pb.set_is_site_admin(0)
     user_pb.set_svn_password(user.GenerateSVNPassword())
     return user_pb
 
@@ -296,8 +299,6 @@ class DemetriusPersist(object):
     or if it is not found, from disk.
     If fresh=True, always load it from disk."""
     
-    print 'getting project "', project_name, '"'
-    
     project = None
     
     if not fresh:
@@ -305,24 +306,30 @@ class DemetriusPersist(object):
         for i in range(0, len(self.projects)):
             if(self.projects[i].project_name() == project_name):
                 project = self.projects[i]
-                
-        print 'got project from memory:', project
             
     # if it wasn't in memory, try to load it from xml
     if project == None:
-        #def load_item_from_working_copy(object_type, object_id, projectname, versioned):
+        
         project = framework.local_persist.load_item_from_working_copy(
             framework.local_persist.OBJECT_TYPES.PROJECT,
             project_name,
             project_name,
             True)
+            
+        
+        if project == None:
+            # project wasn't in a working copy, look for it in the unversioned directory
+            project = framework.local_persist.load_item_from_working_copy(
+                framework.local_persist.OBJECT_TYPES.PROJECT,
+                project_name,
+                project_name,
+                False)
+            
         if not project == None:
             self.projects.append(project)
             
-            print 'got projet from xml, now setting up svn controller'
             project.d_setup_svn_controller()
             
-            print 'now adding owners & members'
             for owner in project.owner_ids_list():
                 owner_bo = self.GetUser(int(owner))
                 if not project.project_name() in owner_bo.owner_of_projects_list():
@@ -331,9 +338,7 @@ class DemetriusPersist(object):
                 member_bo = self.GetUser(int(member))
                 if not project.project_name() in member_bo.member_of_projects_list():
                     member_bo.add_member_of_projects(project.project_name())
-        else:
-            pass
-            # TODO: if we fail to load the project from working copy, try to load it from disk? is this the best way?
+            
     return project
 
   def CreateProject(self, project_name, owner_ids, member_ids, summary,
@@ -393,17 +398,75 @@ class DemetriusPersist(object):
     finally:
       self.UnlockProject(project_name)
 
-  def GetAllProjects(self, project_name_list):
-    """Load all the Project BOs for the named projects.
-
-    Args:
-      project_name_list: list of project names.
-
+  def GetAllProjects(self):
+    """
+    Load all the Project BOs from disk
     Returns: a list of the corresponding Project business objects.
     """
+    
     projects = []
-    # TODO(students): reimplement.
+    project_names = []
+    
+    log.msg('loading projects...')
+    
+    # first load all version controlled projects
+    
+    working_copies = os.path.join(
+        framework.constants.WORKING_DIR, 
+        'storage', 'working_copies')
+        
+    for project_wc in os.listdir(working_copies):
+        project = self.GetProject(project_wc, fresh=True)
+        project_name = project.project_name()
+        
+        projects.append( self.GetProject(project_wc, fresh=True) )
+        project_names.append( project_name )
+        
+        log.msg('\tloaded versioned project:', project_name)
+        
+        
+    # now load any unversioned projects
+    
+    unversioned_projects = os.path.join( 
+        framework.constants.WORKING_DIR, 
+        'storage', 'unversioned' )
+        
+    for project_dir in os.listdir(unversioned_projects):
+        
+        if project_dir in project_names:
+            # we just loaded this project from a working copy, don't load it again
+            # TODO: we should probably delete the second copy here
+            log.msg('\tnot loading duplicate project:', project_name)
+        else:
+            project = self.GetProject(project_dir, fresh=True)
+            project_name = project.project_name()
+            
+            projects.append( project )
+            project_names.append( project_name )
+    
+            log.msg('\tloaded unversioned project:', project_name)
+    
+    log.msg('loaded', len(projects), 'projects')
+    
     return projects
+
+
+  def GetAllUsers(self):
+      """
+      Load all user BOs from disk
+      Returns: a list of the cooresponding User buisiness objects
+      """
+    
+      log.msg('loading users...')
+    
+      users = framework.local_persist.load_all_users()
+  
+      for user in users:
+          log.msg('\tloaded user:', user.account_email())
+          self.users.append(user)
+          
+      log.msg('loaded', len(users), 'users')
+ 
 
   def GetProjectDescriptionCachedBlob(self, project_name):
       # TODO: maybe this is supposed to return a cashed version of the wikified project description?
@@ -488,6 +551,7 @@ class DemetriusPersist(object):
         project.set_repository_url(source_url)
     
     self.IndexProject(project, conn_pool)
+    self._StoreProject(project)
     
     # update the project's svn_controller
     
