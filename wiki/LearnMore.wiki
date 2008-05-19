@@ -13,7 +13,7 @@ To learn about how to use Longhouse, see [UsingLonghouse using Longhouse].
 
 If you're having trouble installing, running or using Longhouse, see [FAQTroubleshoot the FAQ and troubleshooting page].
 
-To learn how to extend Longhouse, see [ExtendingLonghouse extending Longhouse].
+Are you an advanced user or a developer? Do you want to work on Longhouse? See [WorkingOnLonghouse working on Longhouse].
 
 Thanks!
 
