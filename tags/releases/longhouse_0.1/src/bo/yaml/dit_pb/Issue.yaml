@@ -1,0 +1,67 @@
+---
+describe: field
+name: project_name
+type: string
+value: ""
+---
+describe: field
+name: id
+type: integer
+value: 0
+primary: true
+---
+describe: field
+name: summary
+type: string
+value: ""
+---
+describe: field
+name: status
+type: string
+value: ""
+---
+describe: field
+name: owner_id
+type: integer
+value: -1
+---
+describe: field
+name: cc_ids
+type: array_primitive_integer
+value: "[]"
+---
+describe: field
+name: labels
+type: array_primitive_string
+value: "[]"
+---
+describe: field
+name: star_count
+type: integer
+value: 0
+---
+describe: field
+name: reporter_id
+type: integer
+value: 0
+---
+describe: field
+name: opened_timestamp
+type: integer
+value: 0
+---
+describe: field
+name: summary_is_escaped
+type: integer
+value: 1
+---
+describe: field
+name: closed_timestamp
+type: integer
+value: 0
+---
+describe: field
+name: modified_timestamp
+type: integer
+value: 0
+---
