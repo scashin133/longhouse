@@ -1,0 +1,42 @@
+#summary Explains how to create a new business object, or to extend an old one
+#labels LonghouseVersion-0.1
+
+= Modifying or Creating Business Objects =
+
+In an effort to make generation of business objects easier for developers, there is an automated system for building all of the business objects.  First discussed is some basic architecture and then how to actually use it.
+
+== Architecture ==
+
+When developing for longhouse you are first asked to run a script called yamltobo.py.  This is essentially what the script does:
+
+  # Finds folders inside of /src/bo/yaml/
+  # For each folder:
+    # Read the yaml file
+    # Add what is interpreted from the yaml file to a file of name generated_<folder_name>, where folder name is the name of the folder the script is currently evaluating.
+
+This process is also described below:
+
+[http://longhouse.googlecode.com/svn/www/design_diagrams/yamltobo.png]
+
+== How to change/add ==
+
+=== Modifying an existing business object ===
+
+This will require you looking inside of the folder for your generated file and modifying one of its underlying yaml files.  Lets take a look at a section of one of the yaml files:
+{{{
+---
+describe: field
+name: summary
+type: string
+value: ""
+---
+}}}
+
+This is taken from the Project.yaml file inside of the demetrius folder.  The project.yaml file describes the Project business object.  This particular entry is describing what the summary field is.  Lets break it down piece by piece:
+
+{{{
+---
+describe: field
+}}}
+
+This is what the particular entry is talking about.  As of right now it understands two values: field or constant.  
