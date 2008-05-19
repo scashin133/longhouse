@@ -53,7 +53,7 @@ The primitive types that can be entered are: string and integer.
 
 The class type refers to another business object.  For instance, you can have a variable with *type: Project*.  
 
-The array type has a specific syntax to follow, which depends on whether it is an array of primitives or of classes.  If it is an array of primitives the structure is *array_primitive_<primitive type>*.  If it is an array of classes the structure is *array_<class name>*.
+The array type has a specific syntax to follow, which depends on whether it is an array of primitives or of classes.  If it is an array of primitives the structure is *array_primitive_<primitive type>_*.  If it is an array of classes the structure is *array_<class name>_*.
 
 {{{
 value: ""
