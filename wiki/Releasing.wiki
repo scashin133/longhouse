@@ -5,8 +5,6 @@ The following is a walkthrough for creating a release for Longhouse 0.0 from the
 
   # Check out the code without the .svn directories:
     `svn export https://longhouse.googlecode.com/svn/trunk/ longhouse_0.0/`
-  # chmod the run and shutdown scripts so they are executable
-    `chmod +x longhouse_0.0/src/run.py longhouse_0.0/src/shutdown.py`
   # Copy the libraries into the /lib directory (assuming you have a folder called longhouse_libs in the current directory):
     `cp -R longhouse_libs/* longhouse_0.0/lib/`
   # Generate business objects from yaml:
