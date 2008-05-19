@@ -33,6 +33,9 @@ Longhouse requires:
 You must install both Python and Subversion before installing Longhouse. 
 
 There are three options for installing the required packages (Twisted, zope.interface, and PyYaml)
+
+*You don't need to do any of these if you downloaded a release from the [http://code.google.com/p/longhouse/downloads/list Downloads section]. The archived releases should come with all necessary libs.*
+
   # Install the packages as described in their respective installation procedures. This will make them available to all Python programs, including Longhouse.
   # Extract the packages' source into Longhouse's `/lib` directory. This will make them available exclusively to Longhouse. This is useful if, say, you wanted to use a different version of Twisted for another project. Now your `/lib` directory should be structured like the following...
 {{{
