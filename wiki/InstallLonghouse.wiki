@@ -3,7 +3,20 @@
 
 = How to Install and Run Longhouse =
 
-== Table of Contents ==
+== Quick and Easy Install Guide ==
+
+# Download and install [http://www.python.org Python 2.5 or higher]
+# Download and install [http://subversion.tygris.org Subversion]
+# Download the latest release from [http://code.google.com/p/longhouse/downloads/list the Downloads section]
+# Unarchive the release
+# [InstallLonghouse#Configuration change default settings, if necessary in your environment]
+# Run `run.py`
+
+Need more info? Refer to the in-depth guide below.
+
+== In-Depth Guide ==
+
+=== Table of Contents ===
 
 
   # [InstallLonghouse#Dependencies Dependencies]
@@ -14,7 +27,7 @@
   # [InstallLonghouse#Use_Longhouse Use Longhouse]
   # [InstallLonghouse#Shut_Down Shut Down]
 
-== Dependencies ==
+=== Dependencies ===
 
 Longhouse requires:
   * Python - http://www.python.org/
@@ -61,11 +74,11 @@ lib/
 
 Once you install Subversion, take note of where the `svn` command is located. We will need this later. A common location is `/usr/local/bin/svn`. On Unix systems, run the command `which svn` to find where `svn` is located.
 
-== Installation ==
+=== Installation ===
 
 Download the latest Longhouse install from Longhouse's Google Code site, at http://code.google.com/p/longhouse/. Decompress the archive and place the source files where you'd like them to reside - the specific location doesn't matter for the purposes of running the software. Inside the root folder you should see a `lib` folder, a `src` folder, and several files, listed below in the Configuration section.
 
-== Configuration ==
+=== Configuration ===
 
 Longhouse requires a configuration file in order to run properly. Navigate to the directory that you copied the Longhouse source files to. You should see several files, including:
   * `INSTALL`
@@ -109,20 +122,20 @@ My entire config file is as follows:
 
 `svn: /usr/local/bin/svn`
 
-== Generate Code ==
+=== Generate Code ===
 
 If you downloaded Longhouse as a release, you may skip this step because all the code you need to run Longhouse has already been generated. However if you checked out the source code directly from the repository you will need to complete one last step before starting the system. Navigate to the `/src/scripts` directory and run `yaml_to_bo.py`. This script reads the files in `/src/bo/yaml` and generates several python modules in `/src/bo` named `generated_*.py`. Without these generated files, Longhouse cannot run. 
 
 If you encounter any errors with this step, check our [FAQTroubleshoot FAQ/Troubleshooting page].
 
-== Run ==
+=== Run ===
 
 Run the file `run.py` in the Longhouse root directory. If all goes well, Longhouse should be running properly. If you encounter any errors, check our [FAQTroubleshoot FAQ/Troubleshooting page].
 
-== Use Longhouse ==
+=== Use Longhouse ===
 
 Visit `http://localhost:portnumber/` to test whether Longhouse is running, where `portnumber` is the value you specified for `port` in the `config.yml` file. If you encounter an 'Unable to connect' or similar error, it means Longhouse isn't running on that port for one reason or another. Check our [FAQTroubleshoot FAQ/Troubleshooting page] to find out why.
 
-== Shut Down ==
+=== Shut Down ===
 
 If you specified `daemonized: true` in the `config.yml` file, you need to run `shutdown.py` to shut Longhouse down. If not, simply exit the program in which you invoked `run.py`.
