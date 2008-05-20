@@ -5,12 +5,12 @@
 
 == Quick and Easy Install Guide ==
 
-# Download and install [http://www.python.org Python 2.5 or higher]
-# Download and install [http://subversion.tygris.org Subversion]
-# Download the latest release from [http://code.google.com/p/longhouse/downloads/list the Downloads section]
-# Unarchive the release
-# [InstallLonghouse#Configuration change default settings, if necessary in your environment]
-# Run `run.py`
+  # Download and install [http://www.python.org Python 2.5 or higher]
+  # Download and install [http://subversion.tygris.org Subversion]
+  # Download the latest release from [http://code.google.com/p/longhouse/downloads/list the Downloads section]
+  # Unarchive the release
+  # [InstallLonghouse#Configuration change default settings, if necessary in your environment]
+  # Run `run.py`
 
 Need more info? Refer to the in-depth guide below.
 
