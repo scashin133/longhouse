@@ -12,6 +12,6 @@ The following is a walkthrough for creating a release for Longhouse 0.0 from the
   # You may wish to modify the installation instructions:
     `vim longhouse_0.0/INSTALL`
   # Package the files
-    * tar: `tar -cf longhouse_0.0.tar longhouse_0.0/`
-    * gzip: `tar -czf longhouse_0.0.tar.gz longhouse_0.0/` ||
-    * bzip2: `tar -cf - longhouse_0.0/ | bzip2 >longhouse_0.0.tar.bz2` ||
+    * tar:   `tar -cf longhouse_0.0.tar longhouse_0.0/`
+    * gzip:  `tar -czf longhouse_0.0.tar.gz longhouse_0.0/` ||
+    * bzip2: `tar -jzf longhouse_0.0.tar.bz2 longhouse_0.0/` ||
