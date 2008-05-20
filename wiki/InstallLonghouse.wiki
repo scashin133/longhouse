@@ -8,9 +8,9 @@
   # Download and install [http://www.python.org Python 2.5 or higher]
   # Download and install [http://subversion.tygris.org Subversion]
   # Download the latest release from [http://code.google.com/p/longhouse/downloads/list the Downloads section]
-  # Unarchive the release
+  # Unarchive the release and place the root directory wherever you want
   # [InstallLonghouse#Configuration Change default settings, if necessary in your environment]
-  # Run `run.py`
+  # Run the file `run.py` in the root directory
 
 Need more info? Refer to the in-depth guide below.
 
