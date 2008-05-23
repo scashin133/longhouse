@@ -338,6 +338,10 @@ class NoSuchPageException(Error):
   """The servlet finds that there is no page for the requested resource."""
 
 
+class NoSuchProjectException(Error):
+  """No project with the specified name exists."""
+
+
 class NoSuchUserException(Error):
   """No user with the specified name exists."""
 

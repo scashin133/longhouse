@@ -97,6 +97,9 @@ ADMIN_ADVANCED_FORM_URL = '/adminAdvanced.do'
 PROJECT_MEMBERS_FEED_URL = '/feeds/projectMembers'
 SOURCE_PAGE_URL = '/source'
 
+# URL for projectnotfound page
+PROJECT_NOT_FOUND_URL = '/projectnotfound'
+
 # URLs of demetrius static content like images and client-side includes.
 # These are found under googledata/codesite/html and served under /hosting/...
 DEMETRIUS_STATIC_CONTENT = [
