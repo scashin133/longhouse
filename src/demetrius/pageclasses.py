@@ -128,6 +128,11 @@ class DemetriusPage(object):
     except helpers.NoSuchPageException, e:
       http.HttpResponse(request, code=http.HTTP_NOT_FOUND)
 
+    except helpers.NoSuchProjectException, e:
+      url = demetrius.constants.PROJECT_NOT_FOUND_URL
+      log.msg('no such project')
+      http.SendRedirect(url, request, code=http.HTTP_FOUND)
+
     except helpers.AlreadySentResponse:
       pass  # If servlet already sent response, then do nothing more.
 
