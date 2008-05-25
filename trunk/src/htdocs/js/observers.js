@@ -209,27 +209,23 @@ document.observe("dom:loaded", function(){
 	// Will show the instructions when the field is clicked on for that field.  Requires that the instructions already be 
 	// written out on the page, and that there is a div tag with an id of instructions.
 	
-	function viewableInstructionsHandler(e){
-	  focusedElementId = e.element().identify();
-	  
-	  
-	  regexp = new RegExp(/^([a-zA-Z]+)([0-9]+)?$/);
-  	matches = regexp.exec(focusedElementId);
-  	
-  	if(matches != null && matches[2] != null){
-  		focusedElementId = matches[1];
-  	}
-  	
-  	instructionId = focusedElementId + "instructions";
-  	
-	  $('instructions').nextSiblings().each(function(element){
-	    element.hide();
-	  });
-	  $(instructionId).show();
+	function focusHelp(e){
+        focusedElementId = e.element().identify();
+
+        regexp = new RegExp(/^([a-zA-Z]+)([0-9]+)?$/);
+        
+        matches = regexp.exec(focusedElementId);
+
+        if(matches != null && matches[2] != null){
+        	focusedElementId = matches[1] + "2";
+        }
+        
+        showInstructions(focusedElementId);
+        
 	}
 	
-	$$('.viewableInstructions').each(function(element){
-	  Event.observe(element, "focus", viewableInstructionsHandler.bindAsEventListener(element));
+	$$('.focusHelp').each(function(element){
+	  Event.observe(element, "focus", focusHelp.bindAsEventListener(element));
 	});
 	
 });
