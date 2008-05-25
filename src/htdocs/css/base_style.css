@@ -675,3 +675,9 @@ div.gridtile { background:#c3d9ff; width:10em; float:left; margin: 2px; }
 }
 
 img.cancel{width:13px;position:absolute;left:293px;top:4px;}
+
+a.active{
+    color:#000000;
+    font-weight:bold;
+    text-decoration:none;
+}

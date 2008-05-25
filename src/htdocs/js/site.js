@@ -190,6 +190,33 @@ function _addAttachmentFields(idToAddTo){
     fileAttachmentCount++;
 }
 
+var currentSection = "info";
+function assemblePageNavigation(){
+    pageNavBar = $('pageNavigation');
+    
+    pageNavBar.insert(new Element('a', {'id' : 'infolink', 'class' : 'active', href : "javascript:updatePageSection('info')"}).insert("Project Information")).insert(" | ");
+    pageNavBar.insert(new Element('a', {'id' : 'linkslink', href : "javascript:updatePageSection('links')"}).insert("Links")).insert(" | ");
+    pageNavBar.insert(new Element('a', {'id' : 'groupslink', href : "javascript:updatePageSection('groups')"}).insert("Discussion Groups")).insert(" | ");
+    pageNavBar.insert(new Element('a', {'id' : 'blogslink', href : "javascript:updatePageSection('blogs')"}).insert("Blogs")).insert(" | ");
+    pageNavBar.insert(new Element('a', {'id' : 'notifylink', href : "javascript:updatePageSection('notify')"}).insert("Activity Notifications")).insert(" | ");
+    pageNavBar.insert(new Element('a', {'id' : 'analyticslink', href : "javascript:updatePageSection('analytics')"}).insert("Website Analytics"));    
+}
+
+function updatePageSection(newCurrentSection){
+    linkElement = $(newCurrentSection + 'link');
+    linkElement.adjacent('a').each(function(element){
+        element.removeClassName('active');
+    });
+    
+    linkElement.addClassName('active');
+    
+    $(currentSection).toggle();    
+    $(newCurrentSection).toggle();
+    
+    currentSection = newCurrentSection;
+    
+}
+
 function _acmo(event){}
 
 function _onload(){}
