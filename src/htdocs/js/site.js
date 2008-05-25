@@ -114,22 +114,64 @@ function _clearOnFirstEvent(){
 		sum.value = "";
 	}
 }
-
+var previousInstructionId;
 function showInstructions(id){
-  regexp = new RegExp(/^([a-zA-Z]+)([0-9]+)?$/);
-	matches = regexp.exec(id);
-	if(matches != null && matches[2] != null){
-		id = matches[1];
-	}
+    formElement = $(id)
+	
+    regexp = new RegExp(/^([a-zA-Z]+)([0-9]+)?$/);
+    
+    matches = regexp.exec(id);
+    if(matches != null && matches[2] != null){
+    	id = matches[1];
+    }
 	
 	instructionId = id + "instructions";
-	
-  $('instructions').nextSiblings().each(function(element){
-    element.hide();
-  });
-  
-  $(instructionId).show();
-  $('instructions').scrollTo();
+    
+    if(previousInstructionId != instructionId){
+	    previousInstructionId = instructionId;
+        deleteInstructions();
+    
+    	buildAndInsertInstructions(formElement, formElement.up(), instructionId);
+	} 
+
+}
+
+function hideInstructions(){
+    previousInstructionId = ""
+    previous_element = $('popuphelper')
+    if(previous_element != null){
+        new Effect.SwitchOff(previous_element);
+    }
+}
+
+function deleteInstructions(){
+    previous_element = $('popuphelper')
+    if(previous_element != null){
+        previous_element.remove();
+    }
+}
+
+function buildAndInsertInstructions(element, whereToInsert, idOfInstructions){
+    cOffset = element.cumulativeOffset();
+    
+    newInstructions = new Element('div', {'id' : 'popuphelper'}).insert(innerInstructions = new Element('div', {'id' : 'innerpopuphelper'}));
+    
+    newInstructions.hide();
+    
+    innerInstructions.insert(new Element('div').insert(new Element('a', {href : 'javascript:hideInstructions()'}).insert(new Element('img', {src : '/images/cancel.png', 'class' : 'cancel'}))));
+    innerInstructions.insert(new Element('div').update($(idOfInstructions).innerHTML));
+    
+    whereToInsert.insert(newInstructions);
+    y = ((cOffset[1] + (element.getHeight() - (element.getHeight()/2))) - (newInstructions.getHeight()/2))
+    x = (cOffset[0] + element.getWidth())
+    newInstructions.setStyle({
+       top : y.toPaddedString(0) + "px",
+       left : x.toPaddedString(0) + "px"
+    });
+    
+    new Effect.Appear(newInstructions,{
+        duration : 0.25
+    });
 }
 
 var fileAttachmentCount = 1;
