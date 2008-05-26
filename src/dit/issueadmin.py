@@ -148,8 +148,8 @@ class ProjectAdminIssues(dit.pageclasses.DITPage):
     excl_prefixes = framework.constants.IDENTIFIER_RE.findall(excl_prefix_text)
 
     wkp_tuples = []
-    while ('promptname%s' % len(wkp_tuples)) in post_data:
-      prompt_name = post_data['promptname%s' % len(wkp_tuples)][0]
+    while ('nameprompt%s' % len(wkp_tuples)) in post_data:
+      prompt_name = post_data['nameprompt%s' % len(wkp_tuples)][0]
       prompt_text = ''
       if 'prompt%s' % len(wkp_tuples) in post_data:
         prompt_text = post_data['prompt%s' % len(wkp_tuples)][0]
