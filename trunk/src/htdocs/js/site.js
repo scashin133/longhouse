@@ -216,6 +216,22 @@ function updatePageSection(newCurrentSection){
     currentSection = newCurrentSection;
     
 }
+var formDown = false;
+function showPromptForm(){
+    if(!formDown){
+        new Effect.BlindDown($('newPromptForm'));
+        formDown = true;
+    }
+}
+
+function hidePromptForm(){
+    if(formDown){
+        new Effect.BlindUp($('newPromptForm'));
+        formDown = false;
+        $('newNamePrompt').value = "";
+        $('newTextPrompt').value = "";
+    }
+}
 
 function _acmo(event){}
 
@@ -234,3 +250,10 @@ function _dirty(){}
 function _confirmNovelStatus(element){}
 
 function _RC(element, event){}
+
+function _toggleHidden(element){
+    element.up('.closed').removeClassName('closed').addClassName('opened');
+    return false;
+}
+
+function _selectPrompt(){}

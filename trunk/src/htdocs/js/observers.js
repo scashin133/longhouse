@@ -158,8 +158,11 @@ document.observe("dom:loaded", function(){
 	}
 	
   // acof functionality for the project members
-  projName = $F('projectname');
-  
+  projNameArray = $$('input[name="projectname"]');
+  projName = "";
+  if(projNameArray.size()>0){
+      projName = projNameArray[0].readAttribute("value");
+  }
   if(projName != ""){
   	urlProjectMembers = "/p/" + projName + "/feeds/projectMembers";
   	urlIssueOptions = "/p/" + projName + "/feeds/issueOptions"
@@ -228,4 +231,102 @@ document.observe("dom:loaded", function(){
 	  Event.observe(element, "focus", focusHelp.bindAsEventListener(element));
 	});
 	
+	function promptBoxSelection(e){
+	    element = $('promptSelectionBox'); //select
+	    optionValue = $F(element);
+	    Form.Element.enable($('delete_prompt'));
+	    promptAreaElement = $('promptarea');
+	    promptAreaElement.removeClassName('undef');
+	    
+	    promptTextInputElement = $(optionValue);
+	    
+	    promptAreaElement.value = promptTextInputElement.readAttribute('value');
+	}
+	
+
+    Event.observe($('promptSelectionBox'), "change", promptBoxSelection.bindAsEventListener($('promptSelectionBox')));
+    
+    function savePromptArea(e){
+        promptAreaElement = $('promptarea');
+        optionValue = $F('promptSelectionBox');
+        promptTextInputElement = $(optionValue);
+
+        promptTextInputElement.writeAttribute({value : promptAreaElement.value});
+    }
+    
+    Event.observe($('promptarea'), "keyup", savePromptArea.bindAsEventListener($('promptarea')));
+    
+    function deletePrompt(e){
+        r=confirm("Are you sure?");
+        if(r==true){
+            $(Event.element(e)).disable();
+            promptAreaElement = $('promptarea');
+            selectionBox = $('promptSelectionBox');
+            optionValue = $F('promptSelectionBox');
+            promptTextInputElement = $(optionValue);
+            promptNameElement = $("name" + optionValue);
+        
+            selectionBox.childElements().each(function(element){
+               if(element.selected){
+                   element.remove();
+               }
+            });
+            promptTextInputElement.remove();
+            promptNameElement.remove();
+            promptAreaElement.addClassName("undef");
+            promptAreaElement.value = "Select prompt type from list.";
+        }
+    }
+    
+    Event.observe($('delete_prompt'), "click", deletePrompt.bindAsEventListener($('delete_prompt')));
+
+    function createPrompt(e){
+
+        body = $F('newTextPrompt');
+        name = $F('newNamePrompt');
+        type = $F('newTypePrompt');
+
+        hiddenPrompts = $('hiddenPrompts');
+        selectBox = $('promptSelectionBox');
+
+        
+        if(name.startsWith('User ')){
+            name.sub("User ", "");
+        } else if(name.startsWith('Developer ')){
+            name.sub("Developer ", "");
+        }
+        
+        name = type + " " + name;
+
+        childElements = hiddenPrompts.childElements();
+        if(childElements.size() > 0){
+            nextPromptNumber = (childElements.last().readAttribute('promptnumber') * 1) + 1;
+        } else {
+            nextPromptNumber = 1;
+        }
+
+        hiddenPrompts.insert(newDiv = new Element('div', {promptnumber : nextPromptNumber}))
+        
+        newDiv.insert(new Element('input', {type :'hidden',
+                                'id' : 'nameprompt'+nextPromptNumber.toString(),
+                                'value' : name,
+                                name : 'nameprompt'+nextPromptNumber.toString()}));
+        newDiv.insert(new Element('input', {type : 'hidden',
+                                'id' : 'prompt'+nextPromptNumber.toString(),
+                                value : body,
+                                name : 'prompt'+nextPromptNumber.toString()}));
+        
+        selectBox.insert(newOption = new Element('option', {value : 'prompt'+nextPromptNumber.toString()}).insert(name));
+        
+        newOption.selected = true;
+        
+        promptBoxSelection(null);
+        
+        hidePromptForm();
+        
+        Field.focus(selectBox);
+        
+    }
+    
+	Event.observe($('promptCreateButton'), "click", createPrompt.bindAsEventListener($('promptCreateButton')));
 });
