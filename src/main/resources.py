@@ -31,27 +31,19 @@ class HandlerResource(resource.Resource):
     def render_GET(self, request):
         """Call the handler method"""
         
-        try:
-            handler_result = self.handler(request)
+        handler_result = self.handler(request)
 
-            # TODO: use isinstance() here instead?
-            if str(handler_result.__class__) == 'twisted.internet.defer.Deferred':
-                # handler resulted in a deferred, we'll wait until it's done to finish the request
-                print 'handler was a deferred! adding callback to respond'
+        if isinstance(handler_result, defer.Deferred):
+            # handler was a deferred, wait for it to finish
+            
+            def respond(data):
+                #request.write(str(data))
+                request.finish()
                 
-                def respond(data):
-                    print 'finally responding to deferred handler with:', data
-                    #request.write(str(data))
-                    request.finish()
-                    
-                handler_result.addCallback(respond)
-            else:
-                # handler is not deferred, we assume it's done now and we can finish the request
-                request.finish();
-
-        except Exception, e:
-            print 'exception in HandlerResource.render_GET:', e
-            raise e
+            handler_result.addCallback(respond)
+        else:
+            # handler is not deferred, we can finish the request
+            request.finish();
 
         return server.NOT_DONE_YET
 

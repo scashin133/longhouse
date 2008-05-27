@@ -29,6 +29,7 @@ import os
 from ezt import ezt
 
 from twisted.python import log
+from twisted.internet import defer
 
 from common import http
 from common import post
@@ -311,8 +312,8 @@ class ProjectAdminPersist(pageclasses.DemetriusPage):
                     print e.getTraceback()
                     errors.svn_connect = 'Could not connect to subversion repository'
                     
-                # TODO: use isinstance() here instead?
-                if str(updated_project.__class__) == 'twisted.internet.defer.Deferred':
+                    
+                if isinstance(updated_project, defer.Deferred):
                     updated_project.addErrback(updateProjectError)
                     updated_project.addCallback(finishForm)
                     return updated_project
