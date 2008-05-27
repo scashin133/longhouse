@@ -24,9 +24,11 @@
       </p>
       <b>Remember:</b> 
       <p>
-        This report will be publicly visible. So, don't include passwords or other confidential information.<br/><br/>
+        This report will be publicly visible. So, don't include passwords or other confidential information.
       </p>
    </div></div></div></div></div></div>
+   <br/>
+
  <table cellspacing=2 cellpadding=2 border=0 class="rowmajor">
    <tr><th class=vt>Summary: <a href="#" onclick="showInstructions('summary');return false;" class="helplink"><img src="/images/help.gif" /></a></th>
     <td colspan=2 class="inplace">

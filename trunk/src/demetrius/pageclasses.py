@@ -32,6 +32,7 @@ import time
 import urllib
 
 from twisted.python import log
+from twisted.internet import defer
 
 from ezt import ezt
 
@@ -199,8 +200,7 @@ class DemetriusPage(object):
       http.HttpResponse(request, code=http.HTTP_INTERNAL_SERVER_ERROR)
 
     finally: # If the form resulted in a deferred, return it. The twisted resources know what to do with it
-        # TODO: use isinstance() here instead?
-        if str(form_result.__class__) == 'twisted.internet.defer.Deferred':
+        if isinstance(form_result, defer.Deferred):
             return form_result
 
 
