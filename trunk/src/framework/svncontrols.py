@@ -9,6 +9,7 @@ import commands
 
 import twisted.internet.utils
 from twisted.internet import reactor, defer
+from twisted.python import log
 
 from framework import constants
 
