@@ -1,0 +1,36 @@
+[include "../demetrius/master-header.ezt" "showtabs"]
+[include "../demetrius/js-placeholders.ezt" "showtabs"]
+
+<div id="colcontrol">
+<div class=bubble_bg><div class=rounded_ul><div class=rounded_ur><div class=rounded_ll><div class=rounded_lr><div class=bubble id=bub>
+
+ [if-any grid_mode]
+  [include "issue-grid-controls-top.ezt"]
+ [else]
+  [include "issue-list-controls-top.ezt"]
+ [end]
+
+  <table cellspacing=0 cellpadding=2 border=0 class="results" id=resultstable width=100%>
+  <tbody>
+  
+   [if-any grid_mode]
+    [include "issue-grid-body.ezt"]
+   [else]
+    [include "issue-list-body.ezt"]
+   [end]
+  </tbody>
+  </table>
+
+ [if-any grid_mode]
+  [include "issue-grid-controls-bottom.ezt"]
+ [else]
+  [include "issue-list-controls-bottom.ezt"]
+  [include "issue-list-menus.ezt"]
+ [end]
+</div></div></div></div></div></div>
+
+</div>
+
+[include "../demetrius/footer-script.ezt"]
+[include "issue-list-js.ezt"]
+[include "../demetrius/master-footer.ezt"]

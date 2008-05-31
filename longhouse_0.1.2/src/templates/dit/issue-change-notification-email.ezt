@@ -1,0 +1,23 @@
+Issue [issue.id]: [format "raw"][raw_summary][end]
+[detail_url]
+
+[is comment.sequence "0"]New issue report[else]Comment #[comment.sequence][end] by [comment.creator.display_name]:
+[if-any comment.content][format "raw"][comment_text][end][else](No comment was entered for this change.)[end]
+[if-any comment.attachments]
+Attachments:
+[for comment.attachments]	[comment.attachments.filename]  [comment.attachments.filesizestr] 
+[end][end]
+
+[is comment.sequence "0"]Issue attributes:
+	Status: [is issue.status ""]----[else][issue.status][end]
+	Owner: [is issue.owner.username ""]----[else][issue.owner.display_name][end][if-any issue.cc]
+	CC: [for issue.cc][issue.cc.display_name][if-index issue.cc last] [else], [end] [end][end][if-any issue.labels]
+	Tags:[for issue.labels] [issue.labels.name][end][end]
+[else][if-any comment.update_objs]Issue attribute updates:
+[for comment.update_objs]	[comment.update_objs.field_name]: [format "raw"][comment.update_objs.newvalue][end]
+[end][end][end]
+-- 
+You received this message because you are listed in the owner
+or CC fields of this issue, or because you starred this issue.
+You may adjust your issue notification preferences at:
+http://code.google.com/hosting/settings

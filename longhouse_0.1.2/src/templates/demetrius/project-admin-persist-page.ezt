@@ -1,0 +1,144 @@
+[include "master-header.ezt" "showtabs"]
+
+[if-any read_only][include "../demetrius/read-only-rejection.ezt"]
+[else]
+
+[define show_google_accounts_registration_tip][end]
+
+ <form action='adminPersist.do' method="POST">
+  <input type="hidden" name="projectname" value="[projectname]" />
+  [if-any token]<input type=hidden name=token value="[token]" />[end]
+
+<h4>Persistence</h4>
+
+<div class="section">
+
+ [if-any project.svn_controller]
+  <div>Connected to [project.persist_repository_url]</div>
+ [else]
+  <div class=fielderror>Not connected to any repository</div>
+ [end]<br/>
+ 
+
+ 
+ Persistence repository:<br/>
+ <input id=repository name=repository size=75 value="[project.persist_repository_url]" /><br/>
+ [if-any errors.repository]
+  <div class=fielderror>[errors.repository]</div>
+ [end]<br/>
+
+ Repository username:<br/>
+ <input id=repositoryusername name=username size=30 value="[project.persist_repository_username]" /><br/>
+ [if-any errors.username]
+  <div class=fielderror>[errors.username]</div>
+ [end]<br/>
+
+
+ Repository password:<br/>
+ <input id=repositorypassword name=password size=30 value="[project.persist_repository_password]" /><br/>
+ [if-any errors.password]
+  <div class=fielderror>[errors.password]</div>
+ [end]<br/>
+
+</div>
+
+
+  <input type="submit" id="savechanges" name="btn" value="Save Changes" class="submit"/> 
+ </form>
+
+
+<br/><br/>
+
+<style>
+tt { font-size: 120%; }
+.indent {
+ margin-left: 2.3em;
+}
+.bubble_wrapper {
+ display: table;
+}
+.bubble {
+ padding: 0.8em;
+}
+</style>
+
+
+<h4>Post-commit hook</h4>
+
+<div class="section">
+
+	<p>
+		For Longhouse's persistence to work correctly, you must 
+		install a Subversion post-commit hook. This hook will notify
+		Longhouse that a commit has been made and it should update
+		its working copy in case any persistence data has changed.	
+	</p>
+	
+	<div class="indent">
+		<div class="bubble_wrapper">
+			<div class="pmeta_bubble_bg">
+				<div class="rounded_ul">
+					<div class="rounded_ur">
+						<div class="rounded_ll">
+							<div class="rounded_lr">
+		 						<p class="bubble">
+		 							<tt>Download <a href="/files/post-commit">post-commit</a> hook</tt>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<p>
+		You must have administrative access to the server hosting your
+		Subversion repository to install this hook.
+		To install, copy this script to the /hooks directory in your repository.
+		Be sure the hook is named "post-commit" (no extension) and chmod it to be executable.
+	</p>
+	
+	<p>
+		Once you have the hook installed, you specify which
+		projects are hosted on this repository. There are two ways to 
+		accomplish this.
+		<br/><br/>
+		1) One of the first real lines of code in the script initializes
+		an empty array of project_urls. Add the url to your project
+		(e.g. <a href="http://longhouse.no-ip.org:8000/p/gimpybot/">
+		http://longhouse.no-ip.org:8000/p/gimpybot/</a>) to this array. 
+		<br/><br/>
+		2) The hook recursively searches
+		its directory it is in for any .longhouse files. These files contain the
+		information the hook needs to notify that project it needs to update
+		its working copy. Just create a new file (e.g. "[projectname].longhouse")
+		and put add url to your project (e.g. 
+		<a href="http://longhouse.no-ip.org:8000/p/gimpybot/">
+		http://longhouse.no-ip.org:8000/p/gimpybot/</a>) as the first line in
+		the file.
+	
+	<p>
+		Refer to the 
+		<a href="http://svnbook.red-bean.com/en/1.4/svn.reposadmin.create.html#svn.reposadmin.create.hooks">Subversion book</a>
+		for more information about commit hooks.
+	</p>
+	
+
+	
+<br /><br /><br /><br /><br /><br />
+	
+	
+	
+</div>
+
+
+
+
+
+
+
+[end]
+
+[include "footer-script.ezt"]
+[include "master-footer.ezt"]

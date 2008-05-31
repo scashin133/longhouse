@@ -1,0 +1,90 @@
+<table id="mt" cellspacing="0" cellpadding="0" width="100%" border="0">
+ <tr>
+  <th class="int1" onclick="if (!cancelBubble) _go('/p/[projectname]/');">
+          <div class="tc1"><div class="tc2"><div class="tc3"></div></div></div>
+          <div class="tT"><a onclick="cancelBubble=true;" href="/p/[projectname]/">Project&nbsp;Home</a></div>
+  </th><td>&nbsp;&nbsp;</td>
+
+  <th class="int2" onclick="if (!cancelBubble) _go('/p/[projectname]/downloads/list');">
+         <div class="tc1"><div class="tc2"><div class="tc3"></div></div></div>
+         <div class="tT"><a onclick="cancelBubble=true;" href="/p/[projectname]/downloads/list">Downloads</a></div>
+  </th><td>&nbsp;&nbsp;</td>
+
+  <th class="int6" onclick="if (!cancelBubble) _go('/p/[projectname]/w/list');">
+         <div class="tc1"><div class="tc2"><div class="tc3"></div></div></div>
+         <div class="tT"><a onclick="cancelBubble=true;" href="/p/[projectname]/w/list">Wiki</a></div>
+  </th><td>&nbsp;&nbsp;</td>
+
+  <th class="int3" onclick="if (!cancelBubble) _go('/p/[projectname]/issues/list');">
+         <div class="tc1"><div class="tc2"><div class="tc3"></div></div></div>
+         <div class="tT"><a onclick="cancelBubble=true;" href="/p/[projectname]/issues/list">Issues</a></div>
+  </th><td>&nbsp;&nbsp;</td>
+
+  <th class="int4" onclick="if (!cancelBubble) _go('/p/[projectname]/source');">
+         <div class="tc1"><div class="tc2"><div class="tc3"></div></div></div>
+         <div class="tT"><a onclick="cancelBubble=true;" href="/p/[projectname]/source">Source</a></div>
+  </th><td>&nbsp;&nbsp;</td>
+
+  [if-any demetrius_perms.edit_project]
+  <th class="int5" onclick="if (!cancelBubble) _go('/p/[projectname]/adminPortal');">
+         <div class="tc1"><div class="tc2"><div class="tc3"></div></div></div>
+         <div class="tT"><a onclick="cancelBubble=true;" href="/p/[projectname]/adminPortal">Administer</a></div>
+  </th>[end]
+  <td width="100%">&nbsp;[if-any project_alert]<span style="white-space:nowrap; color:#c00">[project_alert]</span>[end]</td>
+
+ </tr>
+</table>
+
+<table cellspacing="0" cellpadding="0" width="100%" align="center" border="0" class="st">
+  <tr> 
+   [is main_tab_mode "t5"]
+    <td>
+
+     <div class="[admin_tab_mode]">
+      <div class="at">
+       <span class="inst8"><a href="/p/[projectname]/adminPortal">Administration Portal</a></span> |
+       <span class="inst1"><a href="/p/[projectname]/admin">Project&nbsp;Summary</a></span> |
+       <span class="inst7"><a href="/p/[projectname]/adminPersist">Persistence</a></span> |
+       <span class="inst2"><a href="/p/[projectname]/adminMembers">Project&nbsp;Members</a></span> |
+       <span class="inst5"><a href="/p/[projectname]/adminDownloads">Downloads</a></span> |
+       <span class="inst6"><a href="/p/[projectname]/adminWiki">Wiki</a></span> |
+       <span class="inst3"><a href="/p/[projectname]/adminIssues">Issue&nbsp;Tracking</a></span> |
+       <span class="inst4"><a href="/p/[projectname]/adminAdvanced">Advanced</a></span>
+      </div>
+     </div>
+
+    </td>
+   [end]
+   [is main_tab_mode "t6"]
+    <td>
+     [#include "../dwiki/wiki-search-form.ezt"]
+     <span>Wiki search form goes here</span>
+    </td>
+   [end]
+   [is main_tab_mode "t2"]
+    <td>
+     [#include "../ddl/download-search-form.ezt"]
+     <span>download search form goes here</span>
+    </td>
+   [end]
+   [is main_tab_mode "t3"]
+    <td>
+     [include "../dit/issue-search-form.ezt"]
+    </td>
+   [end]
+   [is main_tab_mode "t4"]
+    <td>
+     [#include "../sourcetools/source-tabs.ezt"]
+     <!-- source browsing controls go here -->
+    </td>
+   [end]
+   <td height=4 align=right style="padding:0px; vertical-align:top">
+    <div class="stur"></div>
+   </td>
+  </tr>
+</table>
+
+<script>
+   var cancelBubble = false;
+   function _go(url) { document.location = url; }
+</script>

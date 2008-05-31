@@ -1,0 +1,12 @@
+---
+describe: field
+name: label
+type: string
+value: ""
+primary: true
+---
+describe: field
+name: label_docstring
+type: string
+value: ""
+---

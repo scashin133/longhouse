@@ -1,0 +1,88 @@
+[# Table header popup menus ]
+
+[for column_values]
+ [is column_values.column_name "id"]
+   <div id="pop_[column_values.col_index]" class="popup">
+    <table cellspacing=0 cellpadding=0 border=0>
+     <tr onmouseover="_rowRolloverOn(this)" onmouseout="_rowRolloverOff(this)" 
+         onclick="_closeAllPopups(this);_sortUp('[column_values.column_name]')"><td>Sort Up</td></tr>
+     <tr onmouseover="_rowRolloverOn(this)" onmouseout="_rowRolloverOff(this)" 
+         onclick="_closeAllPopups(this);_sortDown('[column_values.column_name]')"><td>Sort Down</td></tr>
+     <tr onmouseover="_rowRolloverOn(this)" onmouseout="_rowRolloverOff(this)" 
+         onclick="_closeAllPopups(this);_toggleColumnUpdate([column_values.col_index])"><td>Hide Column</td></tr>
+    </table>
+   </div>
+ [else]
+  [is column_values.column_name "summary"]
+   <div id="pop_[column_values.col_index]" class="popup">
+    <table cellspacing=0 cellpadding=0 border=0>
+     <tr onmouseover="_rowRolloverOn(this);_closeSubmenus()" onmouseout="_rowRolloverOff(this)" 
+         onclick="_closeAllPopups(this);_sortUp('[column_values.column_name]')"><td>Sort Up</td></tr>
+     <tr onmouseover="_rowRolloverOn(this);_closeSubmenus()" onmouseout="_rowRolloverOff(this)" 
+         onclick="_closeAllPopups(this);_sortDown('[column_values.column_name]')"><td>Sort Down</td></tr>
+     [if-any column_values.filter_values]
+      <tr onmouseover="_rowRolloverOn(this);" onmouseout="_rowRolloverOff(this)"><td 
+          onmouseover="_showRight('filter_[column_values.col_index]', this);">Show only 
+          <img src="/images/triangle.gif" border=0/></td></tr>
+     [end]
+     <tr onmouseover="_rowRolloverOn(this);_closeSubmenus()" onmouseout="_rowRolloverOff(this)" 
+         onclick="_closeAllPopups(this);_toggleColumnUpdate([column_values.col_index])"><td>Hide Column</td></tr>
+    </table>
+   </div>
+  [else]
+   <div id="pop_[column_values.col_index]" class="popup">
+    <table cellspacing=0 cellpadding=0 border=0>
+     <tr onmouseover="_rowRolloverOn(this);_closeSubmenus()" onmouseout="_rowRolloverOff(this)" 
+         onclick="_closeAllPopups(this);_sortUp('[column_values.column_name]')"><td>Sort Up</td></tr>
+     <tr onmouseover="_rowRolloverOn(this);_closeSubmenus()" onmouseout="_rowRolloverOff(this)" 
+         onclick="_closeAllPopups(this);_sortDown('[column_values.column_name]')"><td>Sort Down</td></tr>
+     [if-any column_values.filter_values]
+      <tr onmouseover="_rowRolloverOn(this);" onmouseout="_rowRolloverOff(this)"><td 
+          onmouseover="_showRight('filter_[column_values.col_index]', this)">Show only 
+          <img src="/images/triangle.gif" border=0/></td></tr>
+     [end]
+     <tr onmouseover="_rowRolloverOn(this);_closeSubmenus()" onmouseout="_rowRolloverOff(this)" 
+         onclick="_closeAllPopups(this);_toggleColumnUpdate([column_values.col_index])"><td>Hide Column</td></tr>
+     [# <tr onmouseover="_rowRolloverOn(this);_closeSubmenus()" onmouseout="_rowRolloverOff(this)" 
+            onclick="_closeAllPopups(this);_toggleColumnUpdate({column_values.col_index});_toggleRows('hide_pri_groups')"
+          ><td>Group By</td></tr> ]
+    </table>
+   </div>
+  [end]
+ [end]
+
+[end]
+
+[# Table header popup submenus for autofiltering of values ]
+
+[for column_values]
+ <div id="filter_[column_values.col_index]" class="popup subpopup">
+  <table cellspacing=0 cellpadding=0 border=0>
+   [for column_values.filter_values]
+    <tr onmouseover="_rowRolloverOn(this)" onmouseout="_rowRolloverOff(this)" 
+        onclick="_closeAllPopups(this);_filterTo([is column_values.column_name "Summary"]'label'[else]'[column_values.column_name]'[end],'[column_values.filter_values]');">
+     <td>[column_values.filter_values]</td></tr>
+   [end]
+  </table>
+ </div>
+[end]
+
+[# Popup menu showing the list of available columns allowing show/hide ]
+
+<div id="pop__dot" class="popup">
+ <table cellspacing=0 cellpadding=0 border=0>
+  <tr><th>Show columns:</th></tr>
+   [for ordered_columns]
+    <tr onmouseover="_rowRolloverOn(this)" onmouseout="_rowRolloverOff(this)" 
+        onclick="_closeAllPopups(this);_toggleColumnUpdate([ordered_columns.col_index])"><td>&nbsp;<span 
+        class="col_[ordered_columns.col_index]">&radic;</span>&nbsp;[ordered_columns.name]</td></tr>
+   [end]
+   [for unshown_columns]
+    <tr onmouseover="_rowRolloverOn(this)" onmouseout="_rowRolloverOff(this)" 
+        onclick="_closeAllPopups(this);addcol('[unshown_columns]')"><td>&nbsp;&nbsp;&nbsp;&nbsp;[unshown_columns]</td></tr>
+   [end]
+   <tr onmouseover="_rowRolloverOn(this)" onmouseout="_rowRolloverOff(this)" 
+       onclick="_closeAllPopups(this); document.getElementById('columnspec').style.display=''; return true;"
+      ><td>&nbsp;&nbsp;&nbsp;&nbsp;Edit&nbsp;Column&nbsp;Spec...</td></tr>
+ </table>
+</div>

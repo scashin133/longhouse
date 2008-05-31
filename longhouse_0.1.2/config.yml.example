@@ -1,0 +1,4 @@
+port: 8080
+daemonized: false
+logging: true
+svn: /usr/local/bin/svn

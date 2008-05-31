@@ -1,0 +1,52 @@
+[define title]Log In to Your Account[end]
+
+[define breadcrumbs]
+<span class="item"><a href="/login">Login</a></span>
+[end]
+[include "master-header.ezt" "notabs"]
+    <style type="text/css">
+#popular { border: solid silver; border-width: 1px 0 1px 0; padding: 0.3em; width: 40em;}
+#popular table { width: 40em }
+#popular td { padding: 2px; white-space: nowrap }
+.rounded_ul { background: url(/images/ul.gif) no-repeat top left;}
+.rounded_ur { background: url(/images/ur.gif) no-repeat top right;}
+.rounded_ll { background: url(/images/ll.gif) no-repeat bottom left;}
+.rounded_lr { background: url(/images/lr.gif) no-repeat bottom right;}
+
+#intro { background:#ada; margin: 3em; width: 52em;}
+
+#login_box{
+	position:relative;
+	top:10px;
+	width:99%;
+}
+
+#login_box form{width:500px;height:auto;}
+#login_box form div{margin-bottom:1em;}
+#login_box form div.button{text-align:left;}
+
+    </style>
+<div class=fielderror>[error]</div>
+<div id="login_box" width=40% align=left>
+	<form action="login.do" method=POST>
+		<div align=right>
+			<label for="username">Email Address:</label>
+			<input type="text" size=40 id="username" name="username" value="[username]" />
+		</div>
+	
+		<div align=right>
+			<label for="password">Password:</label>
+			<input type="password" size=40 id="password" name="password" />
+		</div>
+		<input type="hidden" name="followup_page" id="followup_page" value="[followup_page]" />
+		<div align=right>
+			<input type="submit" value="Sign in" />
+		</div>
+			<div align=right>Don't have an account? <a href="/createAccount">Register one!</a>	</div>
+		
+	</form>
+</div>
+     [#include "../../html/_bottom.ezt"]
+  </body>
+</html>
+ 
