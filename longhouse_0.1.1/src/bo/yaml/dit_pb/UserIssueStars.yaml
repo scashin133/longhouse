@@ -1,0 +1,17 @@
+---
+describe: field
+name: user_id
+type: integer
+value: 0
+primary: true
+---
+describe: field
+name: project_name
+type: string
+value: ""
+---
+describe: field
+name: issue_ids
+type: array_primitive_integer
+value: "[]"
+---

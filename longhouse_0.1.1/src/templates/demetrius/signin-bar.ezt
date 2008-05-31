@@ -1,0 +1,29 @@
+   <font size="-1">
+   
+    [if-any logged_in_user]
+    
+     <b>[logged_in_user.email]</b>[if-any logged_in_user_verified][else]
+      <i>(<a style="color:red" href="/validateAccount">Account Not Yet Validated</a>)</i>
+     [end] |
+<select name="menu" onChange="">
+<option selected="selected">My Projects...</option>
+<option> Owner of:</option>
+    [for logged_in_user.projects_owned]
+     	<option onclick="window.location='/p/[logged_in_user.projects_owned]'" value="GO"> - [logged_in_user.projects_owned]</option>
+     [end]
+<option> Member of:</option>
+	 [for logged_in_user.projects_member]
+     	<option onclick="window.location='/p/[logged_in_user.projects_member]'" value="GO"> - [logged_in_user.projects_member]</option>
+ 	 [end]
+</select>
+    
+     | <a href="http://code.google.com/p/longhouse/wiki/LearnMore">Help</a>
+     | <a href="/u/[logged_in_user.display_name]/">My Account Profile</a>
+     [if-any logged_in_user]| <a href="/hosting/settings">Settings</a>[end]
+     | <a href="/logout[if-any currentPageURLEncoded]?continue=[currentPageURLEncoded][end]">Sign Out</a>
+    [else]
+     <a href="http://code.google.com/p/longhouse/wiki/LearnMore">Help</a>
+     | <a href="/login?followup=[currentPageURLEncoded]">Sign In</a>
+     
+    [end]
+   </font> 

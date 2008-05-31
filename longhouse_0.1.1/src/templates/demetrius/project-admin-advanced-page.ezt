@@ -1,0 +1,87 @@
+[include "master-header.ezt" "showtabs"]
+
+[if-any read_only][include "../demetrius/read-only-rejection.ezt"]
+[else]
+
+ <form action='adminAdvanced.do' method="POST">
+  [if-any token]<input type=hidden name=token value="[token]" />[end]
+
+<h4>Project Publishing Options</h4>
+
+<div class="section">
+<table cellspacing=20>
+ [if-any offer_delete]
+ <tr>
+  <td class=vt>
+    <input type=submit name=deletebtn style="width:12em" value="Delete Project" 
+     onclick="return confirm('Flagging your project for deletion will have the following implications:\n1. Until a system administrator approves of the deletion, your project will be only visible to members, and you will not be able to create new issues, downloads or Wiki pages.\n2. If you do flag your project for deletion, you will be able to un-delete it and republish it at any time until a system administrator approves its deletion.\n3. If a system administrator approves and carries out your project deletion, you may only un-delete your project by contacting a system administrator. In such cases, system administrators may deny your request for re-creation of the project.\n\nAre you sure you want to flag your project for deletion?')"
+     />
+  </td>
+  <td>Flag your project for deletion.<br><br>Flagging your project for deletion will have the following implications:<ol><li>Until a system administrator approves of the deletion, your project will be only visible to members, and you will not be able to create new issues, downloads or Wiki pages.<li> If you do flag your project for deletion, you will be able to un-delete it and republish it at any time until a system administrator approves its deletion.<li> If a system administrator approves and carries out your project deletion, you may only un-delete your project by contacting a system administrator. In such cases, system administrators may deny your request for re-creation of the project.</li><ol>
+      <br/><br/>&nbsp;
+  </td>
+ </tr>
+ [end]
+
+ [if-any offer_undelete]
+ <tr>
+  <td class=vt><input type=submit name=undeletebtn style="width:12em" value="Undelete Project" />
+  </td>
+  <td>Publish this project again.  All project contents will become
+  visible to all users, and the project will be in no danger of being removed.<br/><br/>&nbsp;
+  </td>
+ </tr>
+ [end]
+
+ [if-any offer_hide]
+ <tr>
+  <td class=vt><input type=submit name=hidebtn style="width:12em" value="Hide Project" />
+  </td>
+  <td>Hide this project.  Only project members and site admins will be
+      able to view it.<br/><br/>&nbsp;
+  </td>
+ </tr>
+ [end]
+
+ [if-any offer_publish]
+ <tr>
+  <td class=vt><input type=submit name=publishbtn style="width:12em" value="Publish Project" />
+  </td>
+  <td>Publish this project.  All project contents will become
+  visible to all users.<br/><br/>&nbsp;
+  </td>
+ </tr>
+ [end]
+
+ [if-any offer_doom]
+ <tr>
+  <td class=vt><input type=submit name=doombtn style="width:12em" value="Doom Project" />
+  </td>
+  <td>Schedule this project for deletion.  All project contents will become
+  inaccessible in the near future.  In the meantime, the reason why the project is
+  being deleted will be displayed on every page of the project.  The project owner
+  cannot re-publish a doomed project.<br/><br/>
+  <b>Reason:</b> <input name=reason size=50 value="[default_doom_reason]" />
+  </td>
+ </tr>
+ [end]
+
+ [if-any offer_delete offer_hide offer_publish offer_doom offer_undelete][else]
+ <tr>
+  <td>
+  </td>
+  <td>You are not authorized to change the project publishing state.
+  </td>
+ </tr>
+ [end]
+
+</table>
+
+</div>
+
+
+
+ </form>
+
+[end]
+[include "master-footer.ezt"]
