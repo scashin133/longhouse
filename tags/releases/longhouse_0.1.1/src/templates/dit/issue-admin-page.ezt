@@ -1,0 +1,131 @@
+[include "../demetrius/master-header.ezt" "showtabs"]
+
+[if-any read_only][include "../demetrius/read-only-rejection.ezt"]
+[else]
+
+<form action='adminIssues.do' method="POST">
+ <input type="hidden" name="projectname" value="[projectname]" />
+ [if-any token]<input type=hidden name=token value="[token]" />[end]
+
+ <h4>Predefined Status Values</h4>
+ <div class="section">
+  <table>
+   <tr><td>Open Issue Status Values:<br/>
+     <textarea name="predefinedopen" rows=6 cols=75>[for open_statuses]
+[open_statuses.name_padded][if-any open_statuses.docstring]	= [open_statuses.docstring][end][end]
+</textarea><br/><br/>
+     Closed Issue Status Values:<br/>
+     <textarea name="predefinedclosed" rows=6 cols=75>[for closed_statuses]
+[closed_statuses.name_padded][if-any closed_statuses.docstring]	= [closed_statuses.docstring][end][end]
+</textarea>
+    </td>
+    <td>&nbsp;</td>
+    <td class=vt>
+     <div class=tip><div class=rounded_ul><div class=rounded_ur><div class=rounded_ll><div class=rounded_lr>
+      <div style="padding: 5px">
+       <b>Instructions:</b><br/> List one status value per line in desired sort-order.<br/><br/>
+       Optionally, use an equals-sign to document the meaning of each status value.
+      </div>
+     </div></div></div></div></div>
+    </td>
+   </tr>
+  </table>
+ </div>
+
+ <h4>Predefined Issue Tags</h4>
+ <div class="section">
+  <table>
+   <tr><td>
+     <textarea name="predefinedlabels" rows=12 cols=75>[for issue_labels]
+[issue_labels.name_padded][if-any issue_labels.docstring] = [issue_labels.docstring][end][end]
+</textarea><br/><br/>
+
+     Each issue may have <b>at most one</b> tag with each of these prefixes:<br/>
+     <input type=text size=75 name="excl_prefixes"
+       value="[for excl_prefixes][excl_prefixes][if-index excl_prefixes last][else], [end][end]" />
+    </td>
+    <td>&nbsp;</td>
+    <td class=vt>
+     <div class=tip><div class=rounded_ul><div class=rounded_ur><div class=rounded_ll><div class=rounded_lr>
+      <div style="padding: 5px">
+       <b>Instructions:</b><br/> List one tag per line in desired sort-order.<br/><br/>
+       Optionally, use an equals-sign to document the meaning of each tag.
+      </div>
+     </div></div></div></div></div>
+    </td>
+   </tr>
+  </table>
+ </div>
+
+ <h4>New Issue Prompt Text</h4>
+ <div class="section">
+  <table>
+    <tr>
+      <td>
+        <a href="javascript:showPromptForm();">Make a new Prompt...</a>
+        
+        <div id="newPromptForm" style="display:none;">
+          
+          <label for="newTypePrompt">Type of Prompt: </label><br />
+          <select id="newTypePrompt">
+            <option value="Developer">Developer</option>
+            <option value="User">User</option>
+          </select><br /><br />
+          
+          <label for="newNamePrompt">Name: </label><br />
+          <input id="newNamePrompt" type=text /><br /><br />
+          
+          <label for="newTextPrompt">Body: </label><br />
+          <textarea id="newTextPrompt" type=text ></textarea><br /><br />
+          
+          
+          <input type=button value="Create Prompt..." id="promptCreateButton" /> or <a href="javascript:hidePromptForm();">Cancel</a>
+          
+        </div>
+      
+      </td>
+    </tr>
+
+   <tr><td class=vt>Choose Prompt: <br/>
+     <select id="promptSelectionBox" size=9>
+      [for prompts]
+       <option value=prompt[prompts.index]>[prompts.prompt_name]</option>
+      [end]
+     </select><br /><br />
+     <input id="delete_prompt" type=button disabled=disabled value="Delete..." />
+    </td>
+    <td style="color:#666; font-weight:bold">
+     &nbsp;&rarr;&nbsp;<br/><br/>
+     &nbsp;&rarr;&nbsp;<br/><br/>
+     &nbsp;&rarr;&nbsp;<br/><br/>
+    </td>
+    <td class=vt>Prompt Text:<br/>
+     <textarea wrap=hard id="promptarea" rows=12 cols=75 class="undef">
+Select prompt type from list.
+</textarea>
+    </td>
+   </tr>
+  </table>
+ </div>
+ <div id="hiddenPrompts" style="display:none;">
+ [for prompts]
+  <div promptNumber="[prompts.index]">
+    <input type=hidden name="nameprompt[prompts.index]" id="nameprompt[prompts.index]"
+      value="[prompts.prompt_name]" />
+    <input type=hidden name="prompt[prompts.index]" id="prompt[prompts.index]"
+      value="[prompts.prompt_text_value]" />
+    </div>
+ [end]
+ </div>
+
+
+ [include "../framework/artifact-list-admin-part.ezt" "with_grid"]
+
+ <input type="submit" id="savechanges" name="btn" value="Save Changes" class="submit"/> 
+</form>
+
+[end]
+
+[include "../demetrius/footer-script.ezt"]
+[include "../demetrius/master-footer.ezt"]
+

@@ -1,0 +1,9 @@
+[include "../framework/artifact-list-pagination-part.ezt"]
+&nbsp;&nbsp;
+
+<div style="margin-top: 1px; font-size: small">
+ [# TODO: <a href="some-rss-url.rss" style="float:right"
+   ><img src="/images/xml.png" title="XML format" width=36 height=14 border=0 /></a> ]
+ [# TODO: <a href="some-csv-file.csv" style="float:right; margin-right: 0.5em"
+   ><img src="/images/csv.png" title="CSV format" width=36 height=14 border=0 /></a>]
+</div>
