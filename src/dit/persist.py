@@ -67,14 +67,12 @@ class DITPersist(object):
     
   def GetAllOpenIssuesInProject(self, project_name):
     """Special query to efficiently get all open issues in a project.
-
     This is the most common query because it is the default.
-
     Args:
       project_name: the name of the current project.
-
     Returns: a list of Issue business objects for all open issues.
     """
+    
     project_config = self.GetProjectConfig(project_name)
     well_known_statuses = project_config.well_known_statuses_list()
     closed_statuses = []
@@ -134,7 +132,6 @@ class DITPersist(object):
 
     Returns: (Issue business object, timestamp of last update)
     """
-    # TODO(students): reimplement this.
     project_index = self.project_indexes.get(project_name)
     issue = project_index.get(issue_id)
     issue_ts = self.issue_modified_timestamps.get(project_name).get(issue_id)

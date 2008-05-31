@@ -29,7 +29,7 @@ class CodesiteServer(object):
           log.msg('Error: another process is already bound to port', self.port)
           sys.exit(1)
           
-      log.msg('starting the reactor')
+      log.msg('Starting twisted reactor')
             
       reactor.run()
 
@@ -40,8 +40,6 @@ class CodesiteServer(object):
           relative_uri = relative_uri[1:]
           
       self.root_resource.putChild(relative_uri, static.File(path))
-      
-      print 'put', path, 'at', relative_uri
       
   def RegisterHandler(self, relative_uri, callback, private=False,
                                 does_write=None):

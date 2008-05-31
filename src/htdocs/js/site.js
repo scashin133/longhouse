@@ -114,22 +114,64 @@ function _clearOnFirstEvent(){
 		sum.value = "";
 	}
 }
-
+var previousInstructionId;
 function showInstructions(id){
-  regexp = new RegExp(/^([a-zA-Z]+)([0-9]+)?$/);
-	matches = regexp.exec(id);
-	if(matches != null && matches[2] != null){
-		id = matches[1];
-	}
+    formElement = $(id)
+	
+    regexp = new RegExp(/^([a-zA-Z]+)([0-9]+)?$/);
+    
+    matches = regexp.exec(id);
+    if(matches != null && matches[2] != null){
+    	id = matches[1];
+    }
 	
 	instructionId = id + "instructions";
-	
-  $('instructions').nextSiblings().each(function(element){
-    element.hide();
-  });
-  
-  $(instructionId).show();
-  $('instructions').scrollTo();
+    
+    if(previousInstructionId != instructionId){
+	    previousInstructionId = instructionId;
+        deleteInstructions();
+    
+    	buildAndInsertInstructions(formElement, formElement.up(), instructionId);
+	} 
+
+}
+
+function hideInstructions(){
+    previousInstructionId = ""
+    previous_element = $('popuphelper')
+    if(previous_element != null){
+        new Effect.SwitchOff(previous_element);
+    }
+}
+
+function deleteInstructions(){
+    previous_element = $('popuphelper')
+    if(previous_element != null){
+        previous_element.remove();
+    }
+}
+
+function buildAndInsertInstructions(element, whereToInsert, idOfInstructions){
+    cOffset = element.cumulativeOffset();
+    
+    newInstructions = new Element('div', {'id' : 'popuphelper'}).insert(innerInstructions = new Element('div', {'id' : 'innerpopuphelper'}));
+    
+    newInstructions.hide();
+    
+    innerInstructions.insert(new Element('div').insert(new Element('a', {href : 'javascript:hideInstructions()'}).insert(new Element('img', {src : '/images/cancel.png', 'class' : 'cancel'}))));
+    innerInstructions.insert(new Element('div').update($(idOfInstructions).innerHTML));
+    
+    whereToInsert.insert(newInstructions);
+    y = ((cOffset[1] + (element.getHeight() - (element.getHeight()/2))) - (newInstructions.getHeight()/2))
+    x = (cOffset[0] + element.getWidth())
+    newInstructions.setStyle({
+       top : y.toPaddedString(0) + "px",
+       left : x.toPaddedString(0) + "px"
+    });
+    
+    new Effect.Appear(newInstructions,{
+        duration : 0.25
+    });
 }
 
 var fileAttachmentCount = 1;
@@ -146,6 +188,49 @@ function _addAttachmentFields(idToAddTo){
     elementToAddTo.insert(elementToAdd);
     
     fileAttachmentCount++;
+}
+
+var currentSection = "info";
+function assemblePageNavigation(){
+    pageNavBar = $('pageNavigation');
+    
+    pageNavBar.insert(new Element('a', {'id' : 'infolink', 'class' : 'active', href : "javascript:updatePageSection('info')"}).insert("Project Information")).insert(" | ");
+    pageNavBar.insert(new Element('a', {'id' : 'linkslink', href : "javascript:updatePageSection('links')"}).insert("Links")).insert(" | ");
+    pageNavBar.insert(new Element('a', {'id' : 'groupslink', href : "javascript:updatePageSection('groups')"}).insert("Discussion Groups")).insert(" | ");
+    pageNavBar.insert(new Element('a', {'id' : 'blogslink', href : "javascript:updatePageSection('blogs')"}).insert("Blogs")).insert(" | ");
+    pageNavBar.insert(new Element('a', {'id' : 'notifylink', href : "javascript:updatePageSection('notify')"}).insert("Activity Notifications")).insert(" | ");
+    pageNavBar.insert(new Element('a', {'id' : 'analyticslink', href : "javascript:updatePageSection('analytics')"}).insert("Website Analytics"));    
+}
+
+function updatePageSection(newCurrentSection){
+    linkElement = $(newCurrentSection + 'link');
+    linkElement.adjacent('a').each(function(element){
+        element.removeClassName('active');
+    });
+    
+    linkElement.addClassName('active');
+    
+    $(currentSection).toggle();    
+    $(newCurrentSection).toggle();
+    
+    currentSection = newCurrentSection;
+    
+}
+var formDown = false;
+function showPromptForm(){
+    if(!formDown){
+        new Effect.BlindDown($('newPromptForm'));
+        formDown = true;
+    }
+}
+
+function hidePromptForm(){
+    if(formDown){
+        new Effect.BlindUp($('newPromptForm'));
+        formDown = false;
+        $('newNamePrompt').value = "";
+        $('newTextPrompt').value = "";
+    }
 }
 
 function _acmo(event){}
@@ -165,3 +250,10 @@ function _dirty(){}
 function _confirmNovelStatus(element){}
 
 function _RC(element, event){}
+
+function _toggleHidden(element){
+    element.up('.closed').removeClassName('closed').addClassName('opened');
+    return false;
+}
+
+function _selectPrompt(){}

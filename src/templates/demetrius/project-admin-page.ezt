@@ -6,98 +6,113 @@
  <form action='admin.do' method="POST">
   <input type="hidden" name="projectname" value="[projectname]" />
   [if-any token]<input type=hidden name=token value="[token]" />[end]
-<h4>Contents</h4>
-<div class="section"><a href="#summary">Summary</a> | <a href="#description">Description</a>  | <a href="#license">License</a>
- | <a href="#links">Links</a> | <a href="#discussion">Discussion Groups</a> | <a href="#blogs">Blogs</a>
- | <a href="#activity">Activity Notifications</a> | <a href="#stats">Website Analytics</a></div>
+<h4>Project Summary</h4><br />
 
-<h4>Project Metadata</h4>
-<a id="summary">
+<div class="section" id="pageNavigation">
+
+</div>
+<script type="text/javascript">
+  assemblePageNavigation();
+</script>
+
+<div id="info">
 <div class="section">
- Summary:<br/>
- <input id=projectsummary name=summary size=75 value="[project.summary]" /><br/>
- [if-any errors.summary]
-  <div class=fielderror>[errors.summary]</div>
- [end]<br/></a>
-<table cellspacing=0 cellpadding=0 border=0 class="rowmajor"><tr><td>
- <a id="description">Description:</a><br/>
- <textarea id=projectdescription name=description rows=15 cols=90 wrap=soft
- >[project.description]</textarea><br/>
- [if-any errors.description]
-  <div class=fielderror>[errors.description]</div>
- [end]<br/>
-</td><td class=vt style="padding: 2px">
- [include "../dwiki/wiki-help-bubble.ezt"]
-</td></tr></table>
-<a id="sourceurl">Source Code Subversion Repository URL:</a><br />
-<input id=source_url name=source_url size=75 value="[project.repository_url]" /><br />
-[if-any errors.source_url]
- <div class=fielderror>[errors.source_url]</div>
- [end]
- <a id="license">License:</a><br/>
- <select name=license_key>
+  Summary:<br/>
+  <input id=projectsummary name=summary size=75 value="[project.summary]" /><br/>
+  [if-any errors.summary]
+    <div class=fielderror>[errors.summary]</div>
+  [end]<br/>
+  <table cellspacing=0 cellpadding=0 border=0 class="rowmajor">
+    <tr>
+      <td>
+        Description:<br/>
+        <textarea id=projectdescription name=description rows=15 cols=90 wrap=soft>[project.description]</textarea><br/>
+        [if-any errors.description]
+          <div class=fielderror>[errors.description]</div>
+        [end]<br/>
+       </td>
+     <td class=vt style="padding: 2px">
+      [include "../dwiki/wiki-help-bubble.ezt"]
+      </td>
+    </tr>
+  </table>
+
+  Source Code Subversion Repository URL:<br />
+
+  <input id=source_url name=source_url size=75 value="[project.repository_url]" /><br />
+
+  [if-any errors.source_url]
+    <div class=fielderror>[errors.source_url]</div>
+  [end]
+
+  License:<br/>
+
+  <select name=license_key>
    [for available_licenses]
      <option value="[available_licenses.key]" 
             [is project_license.key available_licenses.key]selected=selected[end]
             >&nbsp;[available_licenses.name]</option>
    [end]
- </select>
- <br/>
- [if-any errors.license_key]
-  <div class=fielderror>[errors.license_key]</div>
- [end]
-<br/>
+  </select>
 
- <a id="labels">Tags:</a><br/>
-            <div id="editrow1">
-             <input onfocus="_acof(event)" autocomplete=off id=labeledit1 size=20 
-                    name="plabel" value="[label1]" />
-             <input onfocus="_acof(event)" autocomplete=off id=labeledit2 size=20 
-                    name="plabel" value="[label2]" /> 
-             <input onfocus="_acof(event)" autocomplete=off id=labeledit3 size=20 
-                    name="plabel" value="[label3]" />
-            </div>
-            <div>
-              <input onfocus="_acof(event)" autocomplete=off id=labeledit4 size=20 
-                     name="plabel" value="[label4]" /> 
-              <input onfocus="_acof(event)" autocomplete=off id=labeledit5 size=20 
-                     name="plabel" value="[label5]" />
-              <input onfocus="_acof(event)" autocomplete=off id=labeledit6 size=20 
-                     name="plabel" value="[label6]" />
-             </div>
-             <div>
-              <input onfocus="_acof(event)" autocomplete=off id=labeledit7 size=20 
-                     name="plabel" value="[label7]" /> 
-              <input onfocus="_acof(event)" autocomplete=off id=labeledit8 size=20 
-                     name="plabel" value="[label8]" />
-              <input onfocus="_acof(event)" autocomplete=off id=labeledit9 size=20 
-                     name="plabel" value="[label9]" />
-             </div>
-             <div>
-              <input onfocus="_acof(event)" autocomplete=off id=labeledit10 size=20 
-                     name="plabel" value="[label10]" /> 
-              <input onfocus="_acof(event)" autocomplete=off id=labeledit11 size=20 
-                     name="plabel" value="[label11]" />
-              <input onfocus="_acof(event)" autocomplete=off id=labeledit12 size=20 
-                     name="plabel" value="[label12]" /> 
-             </div>
-             <div>
-              <input onfocus="_acof(event)" autocomplete=off id=labeledit13 size=20 
-                     name="plabel" value="[label13]" /> 
-              <input onfocus="_acof(event)" autocomplete=off id=labeledit14 size=20 
-                     name="plabel" value="[label14]" />
-              <input onfocus="_acof(event)" autocomplete=off id=labeledit15 size=20 
-                     name="plabel" value="[label15]" /> 
-             </div>
-             [if-any errors.labels]
-              <div class=fielderror>[errors.labels]</div>
-             [end]
+  <br/>
+  [if-any errors.license_key]
+    <div class=fielderror>[errors.license_key]</div>
+  [end]
+  <br/>
+
+  Tags:<br/>
+  <div id="editrow1">
+    <input onfocus="_acof(event)" autocomplete=off id=labeledit1 size=20 
+          name="plabel" value="[label1]" />
+    <input onfocus="_acof(event)" autocomplete=off id=labeledit2 size=20 
+          name="plabel" value="[label2]" /> 
+    <input onfocus="_acof(event)" autocomplete=off id=labeledit3 size=20 
+          name="plabel" value="[label3]" />
+  </div>
+  <div>
+    <input onfocus="_acof(event)" autocomplete=off id=labeledit4 size=20 
+           name="plabel" value="[label4]" /> 
+    <input onfocus="_acof(event)" autocomplete=off id=labeledit5 size=20 
+           name="plabel" value="[label5]" />
+    <input onfocus="_acof(event)" autocomplete=off id=labeledit6 size=20 
+           name="plabel" value="[label6]" />
+  </div>
+  <div>
+    <input onfocus="_acof(event)" autocomplete=off id=labeledit7 size=20 
+           name="plabel" value="[label7]" /> 
+    <input onfocus="_acof(event)" autocomplete=off id=labeledit8 size=20 
+           name="plabel" value="[label8]" />
+    <input onfocus="_acof(event)" autocomplete=off id=labeledit9 size=20 
+           name="plabel" value="[label9]" />
+  </div>
+  <div>
+    <input onfocus="_acof(event)" autocomplete=off id=labeledit10 size=20 
+           name="plabel" value="[label10]" /> 
+    <input onfocus="_acof(event)" autocomplete=off id=labeledit11 size=20 
+           name="plabel" value="[label11]" />
+    <input onfocus="_acof(event)" autocomplete=off id=labeledit12 size=20 
+           name="plabel" value="[label12]" /> 
+  </div>
+  <div>
+    <input onfocus="_acof(event)" autocomplete=off id=labeledit13 size=20 
+           name="plabel" value="[label13]" /> 
+    <input onfocus="_acof(event)" autocomplete=off id=labeledit14 size=20 
+           name="plabel" value="[label14]" />
+    <input onfocus="_acof(event)" autocomplete=off id=labeledit15 size=20 
+           name="plabel" value="[label15]" /> 
+  </div>
+  [if-any errors.labels]
+    <div class=fielderror>[errors.labels]</div>
+  [end]
+</div>
+<input type="submit" id="savechanges" name="btn" value="Save Changes" class="submit"/>
+
 </div>
 
-  <input type="submit" id="savechanges" name="btn" value="Save Changes" class="submit"/>
-<a id="links">
-<h4>Links</h4>
-</a>
+<div id="links" style="display:none;">
+
+
 <div class="section">
    <table class="links">
      <tr style="display:''"><th>Link text</th><th>URL</th></tr>
@@ -160,9 +175,10 @@
 </div>
 
   <input type="submit" id="savechanges" name="btn" value="Save Changes" class="submit"/>
-<a id="discussion">
-<h4>Discussion Groups</h4>
-</a>
+</div>
+<div id="groups" style="display:none;">
+
+
 <div class="section">
    <table class="links">
      <tr style="display:''"><th>Description</th><th>Google Groups name</th></tr>
@@ -228,9 +244,10 @@
 </div>
 
   <input type="submit" id="savechanges" name="btn" value="Save Changes" class="submit"/>
-<a id="blogs">
-<h4>Blogs</h4>
-</a>
+</div>
+<div id="blogs" style="display:none;">
+
+
 <div class="section">
    <table class="links">
      <tr style="display:''"><th>Blog name</th><th>Blog URL</th></tr>
@@ -294,9 +311,11 @@
 </div>
 
   <input type="submit" id="savechanges" name="btn" value="Save Changes" class="submit"/>
-<a id="activity">
-<h4>Activity Notifications</h4>
-</a>
+</div>
+
+<div id="notify" style="display:none;">
+
+
 <div class="section">
   <p>Email notifications of project activity will automatically be sent to 
      the following email addresses.</p>
@@ -330,9 +349,11 @@
 </div>
 
   <input type="submit" id="savechanges" name="btn" value="Save Changes" class="submit"/>
-<a id="stats">
-<h4>Website Analytics</h4>
-</a>
+</div>
+
+<div id="analytics" style="display:none;">
+
+
 <div class="section">
  <div class=closed>
   <p>You may track visits to this project in <a
@@ -364,7 +385,7 @@
 </div>
 
   <input type="submit" id="savechanges" name="btn" value="Save Changes" class="submit"/> 
-<br />
+</div>
  </form>
 
 [end]

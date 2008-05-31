@@ -194,6 +194,10 @@ table.st div.stur {
   width:14em;
 }
 
+#issuetip{
+    width:49em;
+}
+
 #pname { font-size:120%; font-weight:bold; margin-top:0;}
 #psum { font-style:italic; margin-top:3px;}
 #license { padding: 0 0 0.5em 6px;} 
@@ -654,3 +658,26 @@ div.gridtile { background:#c3d9ff; width:10em; float:left; margin: 2px; }
 .gridtile table { width:100%; table-layout:fixed;}
 .gridtile td { border:0; padding:2px; overflow:hidden;}
 .gridtile td div { height:5.5ex; font-size:90%; line-height: 100%;}
+
+#popuphelper{
+    width:300px;
+    background: transparent url(/images/helpboxarrow.gif) no-repeat scroll 0% 50%; 
+    padding-left: 10px;
+    margin-left:3px; 
+    position: absolute;
+}
+
+#innerpopuphelper{
+    padding: 5px 10px; 
+    background: #E5ECF9 none repeat scroll 0% 50%;
+    min-height: 30px;
+    border: 3px solid #CCCCFF;
+}
+
+img.cancel{width:13px;position:absolute;left:293px;top:4px;}
+
+a.active{
+    color:#000000;
+    font-weight:bold;
+    text-decoration:none;
+}

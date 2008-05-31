@@ -42,6 +42,7 @@ from demetrius import user_settings
 from demetrius import user_registration
 from demetrius import user_validation
 from demetrius import placeholderpage
+from demetrius import projectnotfound
 
 
 # The location where we keep our templates, images, css, etc.
@@ -202,6 +203,11 @@ class PageSetup(framework.helpers.AbstractPageSetup):
       self.conn_pool, self.demetrius_persist, self.universal_ezt_data)
     self.server.RegisterHandler(constants.HOSTING_HOME_URL,
                                 hosting_home.Handler)  
+    
+    project_not_found_page = projectnotfound.ProjectNotFound(
+      self.conn_pool, self.demetrius_persist, self.universal_ezt_data)
+    self.server.RegisterHandler(constants.PROJECT_NOT_FOUND_URL,
+        project_not_found_page.Handler)
     
                                 
     # PLACEHOLDER PAGES

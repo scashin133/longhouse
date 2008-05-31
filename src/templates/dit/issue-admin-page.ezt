@@ -60,18 +60,39 @@
  <h4>New Issue Prompt Text</h4>
  <div class="section">
   <table>
-   <tr><td class=vt>Choose Prompt:<br/>
-     <select size=9 onchange="_selectPrompt(this)">
+    <tr>
+      <td>
+        <a href="javascript:showPromptForm();">Make a new Prompt...</a>
+        
+        <div id="newPromptForm" style="display:none;">
+          
+          <label for="newTypePrompt">Type of Prompt: </label><br />
+          <select id="newTypePrompt">
+            <option value="Developer">Developer</option>
+            <option value="User">User</option>
+          </select><br /><br />
+          
+          <label for="newNamePrompt">Name: </label><br />
+          <input id="newNamePrompt" type=text /><br /><br />
+          
+          <label for="newTextPrompt">Body: </label><br />
+          <textarea id="newTextPrompt" type=text ></textarea><br /><br />
+          
+          
+          <input type=button value="Create Prompt..." id="promptCreateButton" /> or <a href="javascript:hidePromptForm();">Cancel</a>
+          
+        </div>
+      
+      </td>
+    </tr>
+
+   <tr><td class=vt>Choose Prompt: <br/>
+     <select id="promptSelectionBox" size=9>
       [for prompts]
        <option value=prompt[prompts.index]>[prompts.prompt_name]</option>
       [end]
-     </select>
-     [# TODO: 
-      <div style="padding-top:4px; text-align:center">
-       <input type=button disabled=disabled title=TODO name=nobtn value="New..." />
-       <input type=button disabled=disabled title=TODO name=nobtn value="Delete" />
-      </div>
-     ]
+     </select><br /><br />
+     <input id="delete_prompt" type=button disabled=disabled value="Delete..." />
     </td>
     <td style="color:#666; font-weight:bold">
      &nbsp;&rarr;&nbsp;<br/><br/>
@@ -79,20 +100,24 @@
      &nbsp;&rarr;&nbsp;<br/><br/>
     </td>
     <td class=vt>Prompt Text:<br/>
-     <textarea id="promptarea" rows=12 cols=75 class="undef" onkeyup="_savePrompt()">
+     <textarea wrap=hard id="promptarea" rows=12 cols=75 class="undef">
 Select prompt type from list.
 </textarea>
     </td>
    </tr>
   </table>
  </div>
-
+ <div id="hiddenPrompts" style="display:none;">
  [for prompts]
-  <input type=hidden name="promptname[prompts.index]" id="promptname[prompts.index]"
-    value="[prompts.prompt_name]" />
-  <input type=hidden name="prompt[prompts.index]" id="prompt[prompts.index]"
-    value="[prompts.prompt_text_value]" />
+  <div promptNumber="[prompts.index]">
+    <input type=hidden name="nameprompt[prompts.index]" id="nameprompt[prompts.index]"
+      value="[prompts.prompt_name]" />
+    <input type=hidden name="prompt[prompts.index]" id="prompt[prompts.index]"
+      value="[prompts.prompt_text_value]" />
+    </div>
  [end]
+ </div>
+
 
  [include "../framework/artifact-list-admin-part.ezt" "with_grid"]
 
