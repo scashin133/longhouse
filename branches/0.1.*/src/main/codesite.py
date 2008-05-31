@@ -131,14 +131,22 @@ def main(port, daemonized):
 
 
 
-    # load serialized users and projects    
+       
 
-    def load_from_saved_xml():
-         demetrius_persist.GetAllUsers()
-         demetrius_persist.GetAllProjects()
+    def post_reactor_methods():
+        """Some things need to happen after the reactor is run. 
+        reactor.callWhenRunning seems to be suffering from a race conditions bug
+        (should be fixed with the next version of twisted)
+        so we just wait a few seconds to call these things."""
+
+        # load serialized users and projects 
+        demetrius_persist.GetAllUsers()
+        demetrius_persist.GetAllProjects()
+        
+        log.msg('Ready to serve pages.')
 
     log.msg('calling two methods after reactor is run')
-    reactor.callLater(2, load_from_saved_xml)
+    reactor.callLater(2, post_reactor_methods)
 
 
     server.run()

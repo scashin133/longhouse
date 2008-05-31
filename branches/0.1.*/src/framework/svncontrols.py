@@ -9,6 +9,7 @@ import commands
 
 import twisted.internet.utils
 from twisted.internet import reactor, defer
+from twisted.python import log
 
 from framework import constants
 
@@ -98,14 +99,14 @@ class SvnController:
             return False
         
     def _print_response(self, response):
-        print 'got response:', response
+        log.msg('got response:', response)
         return response
         
     def _print_error(self, error):
-        print 'error in deferred:', error
+        log.msg('error in deferred:', error)
     
     def _print_timeout(self, error):
-        print 'timeout in deferred'
+        log.msg('timeout in deferred')
     
     def is_working_copy(self, path):
         """
@@ -121,7 +122,6 @@ class SvnController:
         """
         check if working_copy_root is a working copy
         """
-        print 'checking if', self.working_copy_root, 'is working copy'
         return self.is_working_copy(self.working_copy_root)
     
     def d_remote_list(self, dir, ):
@@ -161,7 +161,7 @@ class SvnController:
     def d_up_add_commit(self, message="generic Longhouse commit"):
         
         def print_result(result):
-            print '\treturned:', result
+            log.msg('\treturned:', result)
             
         self.message = message
         d = self._d_cleanup()
@@ -214,12 +214,12 @@ class SvnController:
                     dirs.remove(dir)
             
             for dir in dirs:
-                print dir, os.path.join(root, dir)
+                log.msg(dir, os.path.join(root, dir))
                 args = ['add', os.path.join(root, dir)]
                 d.addCallback(ProcessOutputFactory(constants.SVN_LOC, args))
             
             for name in files:
-                print name, os.path.join(root, name)
+                log.msg(name, os.path.join(root, name))
                 args = ['add', os.path.join(root, name)]
                 d.addCallback(ProcessOutputFactory(constants.SVN_LOC, args))
         
@@ -260,7 +260,7 @@ class SvnController:
         bad_merges = self.CONFLICT_FILES.findall(output[0])
         
         for bad_merge in bad_merges:
-            print 'correcting bad merge on file', bad_merge
+            log.msg('correcting bad merge on file', bad_merge)
             
             # use the .mine file as resolution (local changes take priority)
             shutil.copyfile(bad_merge + '.mine', bad_merge)

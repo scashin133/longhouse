@@ -16,11 +16,6 @@
 
 """Define the allowable licenses for hosted projects.
 
-We have taken the position that projects hosted at this site may only
-choose from a limited set of licenses for their project. We support
-the idea of reducing license proliferation, and our set of allowed
-licenses is one way to do that.
-
 Three variables are available:
 
   USER_LICENSES: a raw dictionary of allowable licenses that may
@@ -35,8 +30,10 @@ Three variables are available:
 USER_LICENSES = {
   'asf20': ('Apache License 2.0',
             'http://www.apache.org/licenses/LICENSE-2.0'),
-  'art': ('Artistic License/GPLv2',
-          'http://dev.perl.org/licenses/'),
+  'art': ('Artistic License 1.0',
+           'http://www.opensource.org/licenses/artistic-license-1.0.php'),
+  'art20': ('Artistic License 2.0',
+           'http://www.opensource.org/licenses/artistic-license-2.0.php'),
   'lgpl': ('GNU Lesser General Public License',
            'http://www.gnu.org/licenses/lgpl.html'),
   'gpl2': ('GNU General Public License v2',

@@ -234,7 +234,7 @@ class RequestInfo(object):
     if not self.project_name: return
     self.project = self.project_promise.WaitAndGetValue()
     if not self.project:
-      raise helpers.NoSuchPageException()
+      raise helpers.NoSuchProjectException()
 
   def PrepareForSubrequest(self, project_name, errors, **kw):
     """Expose the resuls of form processing as if it was a new GET.

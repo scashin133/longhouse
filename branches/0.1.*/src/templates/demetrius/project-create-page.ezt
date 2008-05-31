@@ -21,9 +21,8 @@
 .rounded_lr { background: url(/images/lr.gif) no-repeat bottom right;}
 .tip {
   background-color: #e5ecf9;
-  margin-left: 2em;
   font-size: 92%;
-  width: 16em;
+  width: 28em;
 }
     </style>
 [if-any banner_message]
@@ -37,51 +36,49 @@
 
   <table cellpadding=0 cellspacing=0 border=0>
    <tr>
-    <td>
-<b>Bold</b> = Required field
+    <td style="vertical-align:top;">
+    <div class=tip style="width:"><div class=rounded_ul><div class=rounded_ur><div class=rounded_ll><div class=rounded_lr>
+      <div style="padding: 5px">
+        <b>Tips:</b>
+        <p>Need help filling out a field?  Click <img src="/images/help.gif" /> to get some help.</p>
+        <p><b>Bold</b> = Required field</p>
+     </div>
+     </div></div></div></div></div>
 <div style="margin-top: 0; padding: 3px;">
  <form action="createProject.do" method=POST onsubmit="s=document.getElementById('submit');s.value='Creating Project...'; s.disabled='disabled';">
  [if-any token]<input type=hidden name=token value="[token]" />[end]
 
- <div><b>Project Name:</b> <a href="#" onclick="showInstructions('projectname');return false;">Help</a></div>
+ <div><b>Project Name:</b> <a href="#" onclick="showInstructions('projectname');return false;" class="helplink"><img src="/images/help.gif" /></a></div>
  <div>
-  <input id="projectname" class="viewableInstructions"  name="projectname" size=30 value="[initialName]"
+  <input id="projectname" class="focusHelp" name="projectname" size=30 value="[initialName]"
       onkeyup="checkprojectname()"/>
+
   <span id=projectnamefeedback></span>
  </div>
+
  [if-any errors.projectname]
    <div class=fielderror>[errors.projectname]</div>
  [end]
- 
- <div style="padding-top:2ex">Repository URL: <a href="#" onclick="showInstructions('repositoryurl');return false;">Help</a></div>
- <div>
-  <input id="repositoryurl" class="viewableInstructions"  name=repositoryurl size=75 value="[initialRepositoryURL]"
-  		onkeyup="checkrepositoryurl();"/><br />
-  <span id="repositoryurlfeedback"></span>
- </div>
- [if-any errors.repositoryurl]
-   <div class=fielderror>[errors.repositoryurl]</div>
- [end]
 
- <div style="padding-top: 2ex;"><b>Summary:</b> <a href="#" onclick="showInstructions('summary');return false;">Help</a></div>
+ <div style="padding-top: 2ex;"><b>Summary:</b> <a href="#" onclick="showInstructions('summary');return false;" class="helplink"><img src="/images/help.gif" /></a></div>
  <div>
-  <input id=summary class="viewableInstructions"  name=summary size=75 value="[initialSummary]"
+  <input id=summary class="focusHelp" name=summary size=75 value="[initialSummary]"
        onkeyup="checksubmit()"/><br/>
  </div>
  [if-any errors.summary]
    <div class=fielderror>[errors.summary]</div>
  [end]
 
- <div style="padding-top: 2ex;"><b>Description:</b><a href="#" onclick="showInstructions('description');return false;">Help</a></div>
-  <textarea cols=75 rows=13 class="viewableInstructions"  name=description id=description onkeyup="checksubmit()">[initialDescription]</textarea>
+ <div style="padding-top: 2ex;"><b>Description:</b><a href="#" onclick="showInstructions('description');return false;" class="helplink"><img src="/images/help.gif" /></a></div>
+  <textarea class="focusHelp" cols=75 rows=13 name=description id=description onkeyup="checksubmit()">[initialDescription]</textarea>
  </div>
  [if-any errors.description]
    <div class=fielderror>[errors.description]</div>
  [end]
 
- <div style="padding-top: 2ex;"><b>License:</b> <a href="#" onclick="showInstructions('license_key');return false;">Help</a></div>
+ <div style="padding-top: 2ex;"><b>License:</b> <a href="#" onclick="showInstructions('license_key');return false;" class="helplink"><img src="/images/help.gif" /></a></div>
  <div>
-  <select name=license_key class="viewableInstructions"  id=license_key onchange="checksubmit()">
+  <select class="focusHelp" name=license_key id=license_key onchange="checksubmit()">
    <option value="" [if-any initialLicenseKey][else]selected=selected[end]
      disabled=disabled>Select a license...</option>
    [for available_licenses]
@@ -94,52 +91,62 @@
  [if-any errors.licensekey]
    <div class=fielderror>[errors.licensekey]</div>
  [end]
+ 
+ <div style="padding-top:2ex">Repository URL: <a href="#" onclick="showInstructions('repositoryurl');return false;" id="helplink" class="helplink"><img src="/images/help.gif" /></a></div>
+  <div>
+   <input id="repositoryurl" class="focusHelp" name=repositoryurl size=75 value="[initialRepositoryURL]"
+   		onkeyup="checkrepositoryurl();"/><br />
+   <span id="repositoryurlfeedback"></span>
+  </div>
+  [if-any errors.repositoryurl]
+    <div class=fielderror>[errors.repositoryurl]</div>
+  [end]
 
- <div style="padding-top: 2ex;">Tags: <a href="#" onclick="showInstructions('labeledit');return false;">Help</a></div>
+ <div style="padding-top: 2ex;">Tags: <a href="#" onclick="showInstructions('labeledit2');return false;" class="helplink"><img src="/images/help.gif" /></a></div>
  <div id="editrow1">
-   <input class="viewableInstructions"  autocomplete=off id=labeledit0 size=20 
+   <input class="focusHelp" autocomplete=off id=labeledit0 size=20 
       name="label" value="[label0]" />
-   <input class="viewableInstructions" autocomplete=off id=labeledit1 size=20 
+   <input  class="focusHelp" autocomplete=off id=labeledit1 size=20 
       name="label" value="[label1]" /> 
-   <input  class="viewableInstructions"  autocomplete=off id=labeledit2 size=20 
+   <input  class="focusHelp"  autocomplete=off id=labeledit2 size=20 
       name="label" value="[label2]" />
  </div>
  <div id=editrow2>
-   <input class="viewableInstructions"  autocomplete=off id=labeledit3 size=20 
+   <input  class="focusHelp" autocomplete=off id=labeledit3 size=20 
       name="label" value="[label3]" /> 
-   <input class="viewableInstructions"  autocomplete=off id=labeledit4 size=20 
+   <input  class="focusHelp" autocomplete=off id=labeledit4 size=20 
       name="label" value="[label4]" />
-   <input class="viewableInstructions"  autocomplete=off id=labeledit5 size=20 
+   <input class="focusHelp"  autocomplete=off id=labeledit5 size=20 
       onkeyup="if (this.value){_showID('editrow3');_hideID('addrow2');}return true;" 
       name="label" value="[label5]" />
    <a href="#" class=fakelink id=addrow2 onclick="_showInstead('editrow3', 'addrow3', 'addrow2');return false;">Add row</a>
  </div>
  <div id=editrow3 style="display:none">
-   <input class="viewableInstructions"  autocomplete=off id=labeledit6 size=20 
+   <input  class="focusHelp" autocomplete=off id=labeledit6 size=20 
       name="label" value="[label6]" /> 
-   <input class="viewableInstructions"  autocomplete=off id=labeledit7 size=20 
+   <input class="focusHelp"  autocomplete=off id=labeledit7 size=20 
       name="label" value="[label7]" />
-   <input class="viewableInstructions"   autocomplete=off id=labeledit8 size=20 
+   <input  class="focusHelp"  autocomplete=off id=labeledit8 size=20 
       onkeyup="if (this.value){_showID('editrow4');_hideID('addrow3');}return true;" 
       name="label" value="[label8]" />
    <a href="#" class=fakelink id=addrow3 onclick="_showInstead('editrow4', 'addrow4', 'addrow3');return false;">Add row</a>
  </div>
  <div id=editrow4 style="display:none">
-   <input class="viewableInstructions"  autocomplete=off id=labeledit9 size=20 
+   <input class="focusHelp"  autocomplete=off id=labeledit9 size=20 
       name="label" value="[label9]" /> 
-   <input class="viewableInstructions"  autocomplete=off id=labeledit10 size=20 
+   <input  class="focusHelp" autocomplete=off id=labeledit10 size=20 
       name="label" value="[label10]" />
-   <input class="viewableInstructions"  autocomplete=off id=labeledit11 size=20 
+   <input class="focusHelp"  autocomplete=off id=labeledit11 size=20 
       onkeyup="if (this.value){_showID('editrow5');_hideID('addrow4');}return true;" 
       name="label" value="[label11]" /> 
    <a href="#" class=fakelink id=addrow4 onclick="_showInsteadFinal('editrow5', 'addrow4');return false;">Add row</a>
  </div>
  <div id=editrow5 style="display:none">
-   <input class="viewableInstructions"  autocomplete=off id=labeledit12 size=20 
+   <input class="focusHelp"  autocomplete=off id=labeledit12 size=20 
       name="label" value="[label12]" /> 
-   <input class="viewableInstructions"  autocomplete=off id=labeledit13 size=20 
+   <input  class="focusHelp" autocomplete=off id=labeledit13 size=20 
       name="label" value="[label13]" />
-   <input class="viewableInstructions"  autocomplete=off id=labeledit14 size=20 
+   <input class="focusHelp"  autocomplete=off id=labeledit14 size=20 
       name="label" value="[label14]" /> 
  </div>
  [if-any errors.labels]
@@ -172,47 +179,63 @@
    </td>
    <td style="vertical-align: top; width: 14em;">
 
-   <div class=tip><div class=rounded_ul><div class=rounded_ur><div class=rounded_ll><div class=rounded_lr>
-    <div style="padding: 5px">
-     <div id="instructions"><b>Instructions:</b></div>
+   <div style="display:none;">
 	 <div id="projectnameinstructions">
+	   <b>Project Name</b>
+	   <p>
      Your project's name must consist of a lowercase letter, followed by lowercase 
      letters, digits, and dashes, with no spaces.
      The project name will be part of your project's URL and cannot be changed later.
+     </p>
      </div>
    
-   <div id="repositoryurlinstructions" style="display:none;">
-	This is the URL for the repository that houses the source code for your project.  Make sure to enter a valid subversion URL
-	(starting with either http://..., https://..., svn://..., or svn+ssh://...).<br /><br />You can skip this field if you don't want to show your source code.
+   <div id="repositoryurlinstructions">
+    <b>Repository URL</b>
+    <p>
+  	This is the URL for the repository that houses the source code for your project.  Make sure to enter a valid subversion URL
+  	(starting with either http://..., https://..., svn://..., or svn+ssh://...).<br /><br />You can skip this field if you don't want to show your source code.
+  	</p>
    </div>
 
-   <div id="summaryinstructions" style="display:none;">
+   <div id="summaryinstructions">
+    <b>Summary</b>
+    <p>
      Your project's summary is a one-line description that will be shown at the top of the screen
      when the project's name is shown.
+     </p>
    </div>
 
-   <div id="descriptioninstructions" style="display:none;">
+   <div id="descriptioninstructions">
+    <b>Description</b>
+    <p>
      This plain-text description will be the main content of your project's home page. Introduce
      new users to your project and what it's about here.
+     </p>
    </div>
 
-   <div id="license_keyinstructions" style="display:none;">
+   <div id="license_keyinstructions">
+    <b>License</b>
+      <p>
      Your choice of license determines how others are allowed to use your work.</br /></br />
      if your software project has already started, you've probably already chosen a license. If not, check these
      sites for information about each license: <br /><br />
      [for available_licenses]
      <a href="[available_licenses.url]" target="_new">[available_licenses.name]</a><br />
    	[end]
+   	</p>
    </div>
 
-   <div id="labeleditinstructions" style="display:none;">
-     Project tags help to classify your project so that other users can easily
-     find it or browse projects by tags. Tagging also helps users identify the subject
-     of your project at a glance.
+   <div id="labeleditinstructions">
+    <b>Tags</b>
+    <p>
+       Project tags help to classify your project so that other users can easily
+       find it or browse projects by tags. Tagging also helps users identify the subject
+       of your project at a glance.
+      </p>
    </div>
 
    </div>
-   </div></div></div></div></div>
+
 
 
    </td>

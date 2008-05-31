@@ -41,7 +41,7 @@ Configuration
 =============
 
 Longhouse requires a configuration file in order to run properly. Navigate to
-the directory that you extracted the Longhouse files to. Inside the /src
+the directory that you extracted the Longhouse files to. Inside the root
 directory, you should see several files, including:
 
     * COPYING

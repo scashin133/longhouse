@@ -142,7 +142,7 @@ def BuildProjectIssuesConfig(project, dit_persist):
     item = ezt_google.EZTItem(index=len(prompts),
                               prompt_name=JSEscape(p.prompt_name()),
                               prompt_text=JSEscape(p.prompt_text()),
-                              prompt_text_value=p.prompt_text())
+                              prompt_text_value=p.prompt_text().replace("\\n", "\n"))
     prompts.append(item)
 
   config_data = {

@@ -140,27 +140,45 @@ def createDaemon(UMASK, MAXFD, DAEMON_LOG, ROOT_DIR, REDIRECT_TO):
    return(0)
 
 
-def main():
+def main(config_path):
 
-    """
-    Try to load the config file
-    (config.yml or config.yaml)
-    """
+    # first patch up the path and import some libraries    
+
+    # the directory this file is in
+    # should be the root dir
+    ROOT_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
+
+    EXTRA_PATHS = [
+        os.path.join(ROOT_DIR, 'src'), # /src
+        os.path.join(ROOT_DIR, 'lib'), # /lib
+    ]
+
+    sys.path = EXTRA_PATHS + sys.path
+
+
+    # with /src and /lib on the path, we can start importing
+
+    from main import codesite
+    import yaml
+
+    from framework import constants
+    
+    from twisted.python import log
+        
+    constants.WORKING_DIR = os.path.join( ROOT_DIR, 'src' )
+    os.chdir(constants.WORKING_DIR)
+
+
+    #Try to load the config file
+    
     try:
-        config = yaml.load(open('../config.yml'))
+        config = yaml.load(open(config_path))
     except IOError:
-        """
-        Maybe some silly person named it config.yaml instead...
-        """
-        try:
-            config = yaml.load(open('../config.yaml'))
-        except IOError:
-            """
-            Couldn't find config file under either name.
-            """
-            print "Error: couldn't load config.yml at " + \
-                os.path.join(os.getcwd(), '..', 'config.yml')
-            sys.exit(1)
+        print "Error: couldn't load config file at " + \
+            config_path + " (working dir: " + \
+            os.getcwd() + ")"
+        sys.exit(1)
+
 
     """
     Should we run in daemonized mode?
@@ -292,22 +310,10 @@ def main():
         
 if __name__ == '__main__':
 
-    # first patch up the path
-
     import sys
-    import os
+    import os 
 
-    # the directory this file is in
-    # should be the root dir
-    ROOT_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
-
-    EXTRA_PATHS = [
-        os.path.join(ROOT_DIR, 'src'), # /src
-        os.path.join(ROOT_DIR, 'lib'), # /lib
-    ]
-
-    sys.path = EXTRA_PATHS + sys.path     
-
+    os.chdir(os.path.realpath(os.path.dirname(__file__)))
 
     # make sure some directories exist
 
@@ -317,29 +323,18 @@ if __name__ == '__main__':
         'logs',
     ]
     
-    for dir in dirs:
+    for dirname in dirs:
         try:
-            os.makedirs(dir)
+            os.makedirs(dirname)
         except OSError:
             continue
 
-
-    # now we can import from /src and /lib
-    # time to start Longhouse
-
-
-    from main import codesite
-    import yaml
-
-    from framework import constants
     
-    from twisted.python import log
+    # optional command line argument for specifying location of config.yml
+    
+    config_path = '../config.yml'
+    
+    if len(sys.argv) > 1:
+        config_path = sys.argv[1]
         
-    constants.WORKING_DIR = os.path.join( ROOT_DIR, 'src' )
-    os.chdir(constants.WORKING_DIR)
-        
-    main()
-    
-    
-    
-
+    main(config_path)
