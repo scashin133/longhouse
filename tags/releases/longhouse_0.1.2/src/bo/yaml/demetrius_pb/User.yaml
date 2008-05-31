@@ -1,0 +1,72 @@
+---
+describe: field
+name: owner_of_projects
+type: array_primitive_integer
+value: "[]"
+---
+describe: field
+name: member_of_projects
+type: array_primitive_integer
+value: "[]"
+---
+describe: field
+name: account_email
+type: string
+value: ""
+---
+describe: field
+name: account_username
+type: string
+primary: true
+value: ""
+---
+describe: field
+name: account_password
+type: string
+value: ""
+---
+describe: field
+name: svn_password
+type: string
+value: ""
+---
+describe: field
+name: is_site_admin
+type: integer
+value: 0
+---
+describe: field
+name: notify_issue_change
+type: integer
+value: 1
+---
+describe: field
+name: notify_starred_issue_change
+type: integer
+value: 1
+---
+describe: field
+name: banned
+type: string
+value: ""
+---
+describe: field
+name: keep_wiki_help_open
+type: integer
+value: 0
+---
+describe: field
+name: keep_wiki_log_open
+type: integer
+value: 0
+---
+describe: field
+name: validation_key
+type: string
+value: ""
+---
+describe: field
+name: is_validated
+type: integer
+value: 0
+---

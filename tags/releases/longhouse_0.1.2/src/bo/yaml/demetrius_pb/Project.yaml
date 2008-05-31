@@ -1,0 +1,181 @@
+---
+describe: constant
+name: LIVE
+type: integer
+value: "1"
+---
+describe: constant
+name: DELETE_PENDING
+type: integer
+value: "2"
+---
+describe: constant
+name: MOVED
+type: integer
+value: "3"
+---
+describe: constant
+name: DOOMED
+type: integer
+value: "4"
+---
+describe: constant
+name: HIDDEN
+type: integer
+value: "5"
+---
+describe: constant
+name: SECURE
+type: integer
+value: "6"
+---
+describe: constant
+name: LOCKED
+type: integer
+value: "7"
+---
+describe: field
+name: state
+type: integer
+value: "0"
+---
+describe: field
+name: project_name
+type: string
+primary: true
+value: ""
+---
+describe: field
+name: project_num
+type: integer
+value: "0"
+---
+describe: field
+name: repository_url
+type: string
+value: ""
+---
+describe: field
+name: persist_repository_url
+type: string
+value: ""
+---
+describe: field
+name: persist_repository_username
+type: string
+value: ""
+---
+describe: field
+name: persist_repository_password
+type: string
+value: ""
+---
+describe: field
+name: summary
+type: string
+value: ""
+---
+describe: field
+name: description
+type: string
+value: ""
+---
+describe: field
+name: license_key
+type: string
+value: ""
+---
+describe: field
+name: labels
+type: array_primitive_string
+value: "[]"
+---
+describe: field
+name: delete_reason
+type: string
+value: ""
+---
+describe: field
+name: delete_time
+type: integer
+value: "0"
+---
+describe: field
+name: owner_ids
+type: array_primitive_integer
+value: "[]"
+---
+describe: field
+name: member_ids
+type: array_primitive_integer
+value: "[]"
+---
+describe: field
+name: commit_notify_address
+type: string
+value: ""
+---
+describe: field
+name: issue_notify_address
+type: string
+value: ""
+---
+describe: field
+name: linksurl
+type: array_Project_LinksURL
+value: "[]"
+---
+describe: field
+name: linksblog
+type: array_Project_LinksBlog
+value: "[]"
+---
+describe: field
+name: linksgroup
+type: array_Project_LinksGroup
+value: "[]"
+---
+describe: field
+name: linksissues
+type: array_Project_LinksIssues
+value: "[]"
+---
+describe: field
+name: analytics_account
+type: string
+value: ""
+---
+describe: field
+name: attachment_bytes_used
+type: integer
+value: "0"
+---
+describe: field
+name: attachment_quota
+type: integer
+value: "0"
+---
+describe: field
+name: recent_activity
+type: integer
+value: "0"
+---
+describe: field
+name: download_bytes_used
+type: integer
+value: "0"
+---
+describe: field
+name: download_quota
+type: integer
+value: "0"
+---
+describe: field
+name: max_upload_size
+type: integer
+value: "0"
+---
+describe: field
+name: wikiize_description
+type: string
+value: ""

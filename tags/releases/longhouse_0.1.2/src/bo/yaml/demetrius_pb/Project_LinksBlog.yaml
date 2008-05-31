@@ -1,0 +1,16 @@
+---
+describe: field
+name: label
+type: string
+value: ""
+---
+describe: field
+name: url
+type: string
+value: ""
+---
+describe: field
+name: feed
+type: string
+value: ""
+---    
