@@ -1675,10 +1675,44 @@ user in the hierarchy.</p></div>
 <div id="UC-800">
 <h3>UC-800: Promote user to system administrator</h3>
 <table border="1" cellpadding="3" cellspacing="2" class="axial">
+
  <tr>
   <th>Summary:</th>
-  <td>todo</td>
+  <td>Promote a user account from a normal user account to a system administrator account.</td>
  </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Infrequently</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td>System administrator.</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>None</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+	<li>Enter system administrator interface.</li>
+	<li>Choose the user control tool.</li>
+	<li>Find the account to promote.</li>
+	<li>Choose to promote the account.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>The selected account is promoted. The system administrator is notified of the successful account status change.</td>  
+ </tr> 
+
 </table>
 </div>
 
@@ -1687,8 +1721,40 @@ user in the hierarchy.</p></div>
 <table border="1" cellpadding="3" cellspacing="2" class="axial">
  <tr>
   <th>Summary:</th>
-  <td>todo</td>
+  <td>The system administrator bans a user account from performing any actions in Longhouse.</td>
  </tr>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Infrequently</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td>System administrator.</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>None</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+	<li>Enter system administrator interface.</li>
+	<li>Choose the user control tool.</li>
+	<li>Find the account to ban.</li>
+	<li>Choose to ban the account.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>The banned account cannot create projects or perform any actions in projects.</td>  
+ </tr> 
 </table>
 </div>
 
@@ -1697,9 +1763,42 @@ user in the hierarchy.</p></div>
 <table border="1" cellpadding="3" cellspacing="2" class="axial">
  <tr>
   <th>Summary:</th>
-  <td>todo</td>
+  <td>The system administrator changes the amount of disk space a project is allocated.</td>
  </tr>
-</table>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Infrequently</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td>System administrator.</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>None</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+	<li>Enter the system administrator interface.</li>
+	<li>Choose the project control tool.</li>
+	<li>Find the project to modify.</li>
+	<li>Choose to change disk allocation.</li>
+	<li>Set a new disk storage limit.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>The specified project has a new disk quota. If the amount of space the project is using
+   is below or equal to the new limit, new downloads and other things taking up disk space cannot be created.</td>  
+ </tr> </table>
 </div>
 
 <div id="UC-803">
@@ -1707,9 +1806,40 @@ user in the hierarchy.</p></div>
 <table border="1" cellpadding="3" cellspacing="2" class="axial">
  <tr>
   <th>Summary:</th>
-  <td>todo</td>
+  <td>The system administrator views a variety of statistics about the site activity.</td>
  </tr>
-</table>
+
+ <tr> 
+  <th>Use frequency:</th>
+  <td>Infrequently</td>
+ </tr>
+
+ <tr>  
+  <th>Direct actors:</th>
+  <td>System administrator.</td>
+ </tr>
+  
+ <tr>
+  <th>Preconditions:</th>
+  <td>None</td>  
+ </tr>  
+  
+ <tr>
+  <th>Main success scenario:</th>
+  <td>
+   <ol>
+	<li>Enter the system administrator interface.</li>
+	<li>Choose the statistics tool.</li>
+	<li>Choose to view project statistics, view user statistics or view site-wide statiscs.</li>
+	<li>Choose categories/sub-categories until the desired statistic is found.</li>
+   </ol>
+  </td>  
+ </tr>    
+  
+ <tr>
+  <th>Success postconditions:</th>
+  <td>Desired statistic is made available to the system administrator.</td>  
+ </tr> </table>
 </div>
 
 <div id="UC-1000">
