@@ -35,6 +35,7 @@ Longhouse requires:
   * Subversion - http://subversion.tigris.org/
   * Twisted - http://twistedmatrix.com/
     * Version 8.0.1 or higher is required
+    * Note: at the time or writing, Longhouse will not work in daemonized mode if using Twisted 8.1.0
     * Recommended download: http://tmrc.mit.edu/mirror/twisted/Twisted/8.0/Twisted-8.0.1.tar.bz2
   * zope.interface
     * Comes packaged with Zope3, although only zope.interface is needed by Longhouse
