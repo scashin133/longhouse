@@ -4,15 +4,15 @@
 The following is a walkthrough for creating a release for Longhouse 0.0 from the trunk of the repository.
 
   # Check out the code without the .svn directories:
-    `svn export https://longhouse.googlecode.com/svn/trunk/ longhouse_0.0/`
-  # Extract libraries from longhouse_dependencies.tar.gz (download this from the downloads tab)
-    `tar -xzf longhouse_dependencies.tar.gz`
-  # Copy the libraries into the /lib directory:
-    `cp -R longhouse_dependencies/* longhouse_0.0/lib/`
+    * `svn export https://longhouse.googlecode.com/svn/trunk/ longhouse_0.0/`
+  # Download, extract, and install dependencies (at the time of writing, 0.1.2 was the newest dependency bundle)
+    * `wget http://longhouse.googlecode.com/files/longhouse_dependencies_0.1.2.tar.gz`
+    * `tar -xzf longhouse_dependencies_0.1.2.tar.gz`
+    * `cp -R longhouse_dependencies_0.1.2/* longhouse_0.0/lib/`
   # Generate business objects from yaml:
-    `python longhouse_0.0/src/scripts/yaml_to_bo.py`
+    * `python longhouse_0.0/src/scripts/yaml_to_bo.py`
   # You may wish to modify the installation instructions:
-    `vim longhouse_0.0/INSTALL`
+    * `vim longhouse_0.0/INSTALL`
   # Package the files
     * tar:   `tar -cf longhouse_0.0.tar longhouse_0.0/`
     * gzip:  `tar -czf longhouse_0.0.tar.gz longhouse_0.0/` ||
