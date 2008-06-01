@@ -11,9 +11,6 @@ and take your ideas into consideration.
 == What's being worked on ==
 
 Right now we're working on the following features in Longhouse:
-  * Finishing the issue tracker: 
-    * Miscellaneous javascript
-    * Allowing project owners to configure the way their issue tracker works 
   * Search engine integration, most likely using Lucene
   * Integration of email service
 
