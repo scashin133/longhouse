@@ -14,23 +14,69 @@ from demetrius.login import LoginPage
 
 import resources
 
+from chat import irc_server
+
 class CodesiteServer(object):
 
   def __init__(self, serviceport):
     self.port = serviceport
     self.root_resource = resources.RootResource()
     self.site = server.Site(self.root_resource)    
+    self.running = False
+    self.callTheseWhenRunning = []
     
+  def callWhenRunning(self, callMe):
+      """Have the server execute the given callable after the twisted
+      reactor is running."""
+      
+      if self.running:
+          callMe()
+      else:
+          self.callTheseWhenRunning.append(callMe)
+          
+  def reactorRunning(self):
+      """Callback for once the reactor has started up.
+      Call all callbacks that were stored up with callWhenRunning"""
+      
+      for callMe in self.callTheseWhenRunning:
+          callMe()
+          
+      self.callTheseWhenRunning = []
+      
+      log.msg('Longhouse startup complete.')
+
 
   def run(self):
+      
+      # web server
       try:
+          log.msg('Listening for http requests...')
           reactor.listenTCP(self.port, self.site)
+          log.msg('\tready')
       except CannotListenError:
           log.msg('Error: another process is already bound to port', self.port)
           sys.exit(1)
           
+      # irc server
+      try:
+          log.msg('Listening for irc requests...')
+          reactor.listenTCP(6667, irc_server.getLonghouseIRCFactory())
+          log.msg('\tready')
+      except CannotListenError:
+          log.msg('Error: another process is already bound to port 6667')
+          sys.exit(1)
+          
+      
+      
+          
       log.msg('Starting twisted reactor')
-            
+      
+      self.running = True
+      
+      # I wish we could use reactor.callWhenRunning, but to avoid a nasty
+      # race condition we just wait a few seconds instead
+      reactor.callLater(2, self.reactorRunning)
+      
       reactor.run()
 
   def RegisterStaticFiles(self, relative_uri, path):

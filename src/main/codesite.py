@@ -42,7 +42,8 @@ import demetrius.page_setup
 import demetrius.persist
 import demetrius.constants
 
-
+from chat import irc_logbot
+import chat.page_setup
 
 
 def main(port, daemonized):
@@ -81,38 +82,6 @@ def main(port, daemonized):
     dit_persist.register_demetrius_persist(demetrius_persist)
     #dit_persist = None
 
-    """
-    for i in range(6):
-        username = "testuser" + str(i)
-        demetrius_persist.CreateUser(username + "@gmail.com", username, "testpass")
-    else:
-        pass
-    """
-    
-    
-    #test_project = demetrius_persist.GetProject('testproject')
-    #if test_project == None:
-    #    print "couldn't load testproject from disk, creating it"
-    #    demetrius_persist.CreateProject("testproject", [1], [2, 3, 4, 5], "This is the summary for the test project.",
-    #        "http://www.google.com",
-    #        "Now we must describe the test project.", ["label1", "label2", "label3"], "asf20", conn_pool)
-    #    test_project = demetrius_persist.GetProject('testproject')
-    #    test_project.set_repository_url('https://teamfreedom-projectcode.googlecode.com/svn/')
-    #    test_project.set_persist_repository_url('svn://eastmont.no-ip.org/var/svn/shared/sean_longhouse_persist')
-    #    test_project.set_persist_repository_username('longhouse')
-    #    test_project.set_persist_repository_password('longhousepass')
-    #    link = test_project.add_linksurl()
-    #    link.set_url("http://www.google.com")
-    #    link.set_label("Google label")
-    #else:
-    #    print 'loaded testproject from disk'
-
-
-    # this causes an error because the reactor hasn't been started yet
-    #test_project.setup_svn_controller()
-    
-    # demetrius_persist._StoreProject(test_project)
-
 
     framework_pages = framework.page_setup.PageSetup(
         server, conn_pool, demetrius_persist, dit_persist,
@@ -128,25 +97,20 @@ def main(port, daemonized):
         server, conn_pool, demetrius_persist, dit_persist,
         worktable, template_data)
     dit_pages.RegisterPages()
+    
+    chat_pages = chat.page_setup.PageSetup(
+        server, conn_pool, demetrius_persist, dit_persist,
+        worktable, template_data)
+    chat_pages.RegisterPages()
 
 
-
-       
-
-    def post_reactor_methods():
-        """Some things need to happen after the reactor is run. 
-        reactor.callWhenRunning seems to be suffering from a race conditions bug
-        (should be fixed with the next version of twisted)
-        so we just wait a few seconds to call these things."""
-
-        # load serialized users and projects 
-        demetrius_persist.GetAllUsers()
-        demetrius_persist.GetAllProjects()
-        
-        log.msg('Ready to serve pages.')
-
-    log.msg('calling two methods after reactor is run')
-    reactor.callLater(2, post_reactor_methods)
+    # These things need to be called after the twisted reactor is running
+    
+    server.callWhenRunning(demetrius_persist.GetAllUsers)
+    
+    server.callWhenRunning(demetrius_persist.GetAllProjects)
+    
+    server.callWhenRunning(irc_logbot.connect)
 
 
     server.run()

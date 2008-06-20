@@ -148,8 +148,6 @@ class PageSetup(framework.helpers.AbstractPageSetup):
                            constants.ADMIN_DOWNLOADS_PAGE_URL)
     self._SetupProjectPage(placeholder_page.Handler,
                            constants.ADMIN_WIKI_PAGE_URL)
-    
-    # TODO: register per project deferred pages here
 
   def _RegisterSiteHandlers(self):
     """Register page and form handlers that aren't associated with projects."""

@@ -25,6 +25,11 @@
          <div class="tT"><a onclick="cancelBubble=true;" href="/p/[projectname]/source">Source</a></div>
   </th><td>&nbsp;&nbsp;</td>
 
+  <th class="int7" onclick="if (!cancelBubble) _go('/p/[projectname]/chat');">
+         <div class="tc1"><div class="tc2"><div class="tc3"></div></div></div>
+         <div class="tT"><a onclick="cancelBubble=true;" href="/p/[projectname]/chat">Chat</a></div>
+  </th><td>&nbsp;&nbsp;</td>
+
   [if-any demetrius_perms.edit_project]
   <th class="int5" onclick="if (!cancelBubble) _go('/p/[projectname]/adminPortal');">
          <div class="tc1"><div class="tc2"><div class="tc3"></div></div></div>

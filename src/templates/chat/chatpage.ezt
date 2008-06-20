@@ -1,0 +1,56 @@
+[define title]Longhouse Chat[end]
+
+[define breadcrumbs]
+<span class="item">Longhouse Chat</span>
+[end]
+
+[include "../demetrius/master-header.ezt" "showtabs"]
+
+
+[if-any logged_in_user]
+
+	<applet 
+		code=IRCApplet.class 
+		codebase=/files/pjirc 
+		archive="irc.jar,pixx.jar" 
+		width=640 
+		height=400>
+	<param name="nick" value="[chat_username]">
+	<param name="alternatenick" value="[chat_username]???">
+	<param name="name" value="Java User">
+	<param name="host" value="localhost">
+	<param name="gui" value="pixx">
+
+	<param name="command1" value="join #foobar">
+
+	</applet>
+	
+	<!--
+	
+	<APPLET 
+		CODEBASE=/files/snirc
+		CODE="Chat.class" WIDTH=600 HEIGHT=400> 
+	<PARAM NAME="Server" VALUE="localhost">
+	<PARAM NAME="Port" VALUE="6667">
+	<PARAM NAME="Channel" VALUE="#foobar">
+	<PARAM NAME="AllowChannelChange" VALUE="Yes">
+	<PARAM NAME="FontName" VALUE="Monospaced">
+	<PARAM NAME="FontSize" VALUE="12">
+	<PARAM NAME="Barebones" VALUE="No">
+	<PARAM NAME="HelpURL" VALUE="http://www.provider.org/help/">
+	<PARAM NAME="ListURL" VALUE="http://www.provider.org/list/">
+	</APPLET>
+
+	-->
+
+[else]
+
+	You must be signed in to use this page.
+
+[end]
+
+
+
+
+
+[include "../demetrius/master-footer.ezt"]
