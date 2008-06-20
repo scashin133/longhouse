@@ -1,0 +1,59 @@
+[define title]Register An Account[end]
+
+[define breadcrumbs]
+<span class="item"><a href="/createAccount">Register</a></span>
+[end]
+[include "master-header.ezt" "notabs"]
+    <style type="text/css">
+#popular { border: solid silver; border-width: 1px 0 1px 0; padding: 0.3em; width: 40em;}
+#popular table { width: 40em }
+#popular td { padding: 2px; white-space: nowrap }
+.rounded_ul { background: url(/images/ul.gif) no-repeat top left;}
+.rounded_ur { background: url(/images/ur.gif) no-repeat top right;}
+.rounded_ll { background: url(/images/ll.gif) no-repeat bottom left;}
+.rounded_lr { background: url(/images/lr.gif) no-repeat bottom right;}
+
+#intro { background:#ada; margin: 3em; width: 52em;}
+
+#registration_box{
+	position:relative;
+	top:10px;
+	width:99%;
+}
+
+#registration_box form{width:500px;height:auto;}
+#registration_box form div{margin-bottom:1em;}
+#registration_box form div.button{text-align:left;}
+    </style>
+    
+    <div id="registration_box" align=left>
+	<form action="createAccount.do" method=POST>
+		<div align=right>
+			<label for="email_address">Email Address:</label>
+			<input type="text" size=40 id="email_address" name="email_address" value="[email_address]" />
+			[if-any errors.email_address]<div class=fielderror>[errors.email_address]</div>[end]
+		</div>	
+		<div align=right>
+			<label for="password1">Password:</label>
+			<input type="password" size=40 id="password1" name="password1" />
+			[if-any errors.password1]<div class=fielderror>[errors.password1]</div>[end]
+		</div>
+		<div align=right>
+			<label for="password2">Password (Confirm):</label>
+			<input type="password" size=40 id="password2" name="password2" />
+			[if-any errors.password2]<div class=fielderror>[errors.password2]</div>[end]
+		</div>
+		<div align=right>
+			[if-any errors.other_error]<div class=fielderror>[errors.other_error]</div>[end]
+		</div>
+		<div align=right>
+			<input type="submit" value="Register an Account" />
+		</div>
+		<div align=right>
+			Already have an account? <a href="/login">Log in</a>.
+		</div>
+	</form></div>
+     [#include "../../html/_bottom.ezt"]
+  </body>
+</html>
+ 

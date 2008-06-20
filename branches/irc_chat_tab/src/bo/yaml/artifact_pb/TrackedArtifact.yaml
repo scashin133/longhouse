@@ -1,0 +1,21 @@
+---
+describe: field
+name: artifact
+type: class_Artifact
+value: "Artifact()"
+---
+describe: field
+name: status
+type: string
+value: ""
+---
+describe: field
+name: owner_id
+type: integer
+value: 0
+---
+describe: field
+name: cc_ids
+type: array_primitive_integer
+value: "[]"
+---

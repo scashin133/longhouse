@@ -1,0 +1,22 @@
+---
+describe: field
+name: attachment_id
+type: integer
+value: 0
+primary: true
+---
+describe: field
+name: filename
+type: string
+value: ""
+---
+describe: field
+name: filesize
+type: integer
+value: 0
+---
+describe: field
+name: mimetype
+type: string
+value: ""
+---

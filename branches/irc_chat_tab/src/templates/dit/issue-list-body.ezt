@@ -1,0 +1,94 @@
+<tr id=headingrow><th style="border-left: 0"> &nbsp; </th>
+ [for ordered_columns]
+  [is ordered_columns.name "Summary"]
+   <th class="col_[ordered_columns.col_index]" style="border-left:0">&nbsp;</th>
+   <th class="col_[ordered_columns.col_index]" nowrap=nowrap id=summaryheading 
+       onclick="_showBelow('pop_[ordered_columns.col_index]',this)" width="100%"
+       ><a href="#" style="text-decoration: none">Summary + Tags</a></th>
+  [else]
+   [is ordered_columns.name "ID"]
+    <th class="col_[ordered_columns.col_index]" nowrap=nowrap 
+        onclick="_showBelow('pop_[ordered_columns.col_index]',this)"
+       ><a href="#" style="text-decoration: none">[ordered_columns.name]</a></th>
+   [else]
+    <th class="col_[ordered_columns.col_index]" nowrap=nowrap 
+        onclick="_showBelow('pop_[ordered_columns.col_index]',this)"
+       ><a href="#" style="text-decoration: none">[ordered_columns.name]</a></th>
+   [end]
+  [end]
+ [end]
+ <th onclick="return _showBelow('pop__dot',this)" style="width:3ex"><a href="#columnprefs" 
+     style="text-decoration: none; background: none; margin-right:0; padding-right:0">...</a></th>
+</tr>
+[# TODO: implement groupings as per mockup ]
+
+
+[if-any table_data]
+ [for table_data]
+  <tr onmouseover="_rowRolloverOn(this)" onmouseout="_rowRolloverOff(this); cancelBubble=false;">
+   <td class=vt nowrap=nowrap style="padding:2px 2px 0 2px">[if-any tool_perms.enter_metadata][# TODO:<input type="checkbox" onmouseup="_highlightRow(this);">][end][if-any read_only][else][if-any tool_perms.set_star]<img 
+        src=[if-any table_data.starred]"/images/star_on.gif"[else]"/images/star_off.gif"[end] 
+        onclick="_toggleStar(this,'[projectname]',[table_data.issue_id]);" 
+       />[else]&nbsp;[end][end]</td>
+
+    [for table_data.cells]
+     [define detailURL]detail?id=[table_data.issue_id][end]
+
+     [is table_data.cells.type "ID"]
+      <td class="vt id col_[table_data.cells.col_index]"><a href="[detailURL]">[table_data.issue_id]</a></td>
+     [end]
+
+     [is table_data.cells.type "summary"]
+      <td class="vt col_[table_data.cells.col_index]" onclick="_goIssue([table_data.issue_id]);" 
+          align="right" valign="top" style="padding-right:0; padding-top: 0.15em">
+       [if-any table_data.owner_is_me]<small><b>&rsaquo;</b></small>[else]&nbsp;[end]
+      </td>
+      <td class="vt col_[table_data.cells.col_index]" width="100%" 
+         onclick="if (!cancelBubble) _goIssue([table_data.issue_id])"
+        ><a onclick="cancelBubble=true" href="[detailURL]">[format "raw"][table_data.cells.value][end]</a>
+       [if-any table_data.cells.non_column_labels] &nbsp;[end]
+       [for table_data.cells.non_column_labels]<a onclick="cancelBubble=true"
+        class="label" href="list?q=label:[table_data.cells.non_column_labels]">[table_data.cells.non_column_labels]</a> 
+       [end]
+      </td>
+     [end]
+
+     [is table_data.cells.type "attr"]
+      <td class="vt col_[table_data.cells.col_index]" onclick="if (!cancelBubble) _goIssue([table_data.issue_id])" 
+            ><a onclick="cancelBubble=true" href="[detailURL]">[table_data.cells.value]</a></td>
+     [end]
+
+     [is table_data.cells.type "unfilterable"]
+       <td class="vt col_[table_data.cells.col_index]" onclick="if (!cancelBubble) _goIssue([table_data.issue_id])" 
+         ><a onclick="cancelBubble=true" href="[detailURL]" style="white-space:nowrap">[table_data.cells.value]</a></td>
+     [end]
+    [end]
+   <td>&nbsp;</td>
+  </tr>
+ [end]
+
+[else]
+
+ <tr>
+  <td colspan=40 class=id>
+   <div style="padding: 3em; text-align: center">
+    [if-any project_has_any_issues]
+     Your search did not generate any results.  <br/>
+     [is can "1"]
+      You may want to remove some terms from your query.<br/>
+     [else]
+      You may want to try your search over <a href="list?can=1&amp;q=[q]">all issues</a>.<br/>
+     [end]
+    [else]
+     This project currently has no issues.<br/>
+     [if-any tool_perms.enter_comment]
+      [if-any read_only][else]
+       You may want to enter a <a class=id href="entry">new issue</a>.
+      [end]
+     [end]
+    [end]
+    </div>
+   </td>
+  </tr>
+
+[end]

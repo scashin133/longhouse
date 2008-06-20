@@ -1,0 +1,19 @@
+[include "master-header.ezt" "showtabs"]
+
+<h4>Repository location</h4>
+[project_repository]
+
+<br/><br/>
+
+<h4>HTTP browsing</h4>
+If the repository has been configured for HTTP browsing, you may browse
+the repository with this link:
+<br/>
+<a href="[project_repository]">[project_repository]</a>
+
+
+
+
+<br/><br/><br/><br/><br/><br/><br/><br/>
+
+[include "master-footer.ezt"]

@@ -1,0 +1,78 @@
+[define title]Longhouse[end]
+
+[if-any user_not_found]
+[define breadcrumbs]Users > No valid user specified![end]
+[include "master-header.ezt" "notabs"]
+Sorry! The user you have specified was not found.
+[else]
+[define breadcrumbs]
+<span class="item">Users > <a href="/u/[profile_username]">[profile_username]</a></span>
+[end]
+
+[include "master-header.ezt" "notabs"]
+
+[if-any not_this_user]
+<div class="t1">
+<table id="mt" cellspacing="0" cellpadding="0" border="0">
+ <tr>
+  <th class="int1" onclick="if (!cancelBubble) _go('/u/[profile_username]/');">
+          <div class="tc1"><div class="tc2"><div class="tc3"></div></div></div>
+          <div class="tT"><a onclick="cancelBubble=true;" href="/u/[profile_username]/">User Profile</a></div>
+  </th><td>&nbsp;&nbsp;</td>
+[else]
+<div class="t1">
+<table id="mt" cellspacing="0" cellpadding="0" border="0">
+ <tr>
+  <th class="int1" onclick="if (!cancelBubble) _go('/u/[profile_username]/');">
+          <div class="tc1"><div class="tc2"><div class="tc3"></div></div></div>
+          <div class="tT"><a onclick="cancelBubble=true;" href="/u/[profile_username]/">My Profile</a></div>
+  </th><td>&nbsp;&nbsp;</td>
+  <th class="int2" onclick="if (!cancelBubble) _go('/hosting/settings');">
+         <div class="tc1"><div class="tc2"><div class="tc3"></div></div></div>
+         <div class="tT"><a onclick="cancelBubble=true;" href="/hosting/settings">Settings</a></div>
+  </th><td>&nbsp;&nbsp;</td>
+
+[end]
+</table>
+ 
+<table cellspacing="0" cellpadding="0" width="100%" align="center" border="0" class="st">
+ <tr> 
+ <td height=4 align=right style="padding:0px; vertical-align:top">
+ <div class="stur"></div>
+ </td>
+ </tr>
+</table>
+</div>
+
+
+
+<div style="margin-top: 0; padding: 3px;">
+ <table cellspacing=2 cellpadding=5 border=0 class="rowmajor">
+ <tr>
+ <th>Username:</th>
+ <td>[profile_username]
+ </td>
+ </tr>
+ <tr>
+ <th class=vt style="padding-top:0.3em">Project&nbsp;Ownership:</th>
+
+ <td class=vt>[for viewed_user.owner_of_projects_]<a href="/p/[viewed_user.owner_of_projects_]/">[viewed_user.owner_of_projects_]</a><br>[end]
+ </td>
+ </tr>
+ <tr>
+ <th class=vt style="padding-top:0.3em">Project&nbsp;Membership:</th>
+ <td class=vt>[for viewed_user.member_of_projects_]<a href="/p/[viewed_user.member_of_projects_]/">[viewed_user.member_of_projects_]</a><br>[end]
+ 
+ </td>
+ </tr>
+ 
+ </table>
+</div>
+
+<script>
+   var cancelBubble = false;
+   function _go(url) { document.location = url; }
+</script>
+[end]
+
+[include "master-footer.ezt"]

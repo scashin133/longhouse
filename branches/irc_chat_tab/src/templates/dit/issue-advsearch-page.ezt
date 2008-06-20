@@ -1,0 +1,54 @@
+[include "../demetrius/master-header.ezt" "showtabs"]
+
+<form action="advsearch.do" method=POST style="margin:6px;margin-top:12px;">
+
+[# Note: No need for UI element permission checking here. ]
+
+<table cellspacing=0 cellpadding=4 border=0 class=advquery>
+   <tr class="focus"><td width=25%><b>&nbsp;Find issues</b></td>
+    <td>Search within</td>
+    <td>
+       <select name=can style="width:100%">
+        <option disabled=disabled>Search Within:</option>
+         [# TOOD(jrobbins): should loop over project-defined canned queries ]
+        <option value=1 [is can "1"]selected=selected[end]>&nbsp;All Issues</option>
+        <option value=2 [is can "2"]selected=selected[end]>&nbsp;Open Issues</option>
+        <option value=3 [is can "3"]selected=selected[end]>&nbsp;My Issues</option>
+        <option value=4 [is can "4"]selected=selected[end]>&nbsp;My Starred Issues</option>
+        <option value=5 [is can "5"]selected=selected[end]>&nbsp;New Issues</option>
+        <option value=6 [is can "6"]selected=selected[end]>&nbsp;Issues to Verify</option>
+        [# TODO: <option value=0>Manage this list...</option> ]
+       </select>
+    </td>
+    <td width=25% align=center rowspan=3>
+     <input type=submit name=btn value=Search style="font-weight:bold; font-size:120%"/>
+    </td>
+   </tr>
+   <tr class="focus"><td width=25%></td>
+       <td>with <b>all</b> of the words</td><td><input autocomplete=off size=25 name=words value="" /></td>
+   </tr>
+   <tr class="focus"><td></td>
+       <td><b>without</b> the words</td><td><input autocomplete=off size=25 name=without value="" /></td>
+   </tr>
+   <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
+   <tr><td><b>&nbsp;Restrict search to</b></td><td>Tags</td><td><input autocomplete=off name=labels size=25 value="" /></td><td class="eg">e.g., FrontEnd Priority-High</td></tr>
+   <tr><td rowspan=4><br/>
+        <table cellspacing=0 cellpadding=0 border=0><tr><td>
+        <div class=tip><div class=rounded_ul><div class=rounded_ur><div class=rounded_ll><div class=rounded_lr>
+         <div style="padding: 5px">
+          <b>Tip:</b> Search results can be<br/>refined by clicking on the<br/>result table headings.<br/>
+          <a href="searchtips">More Search Tips</a>
+         </div>
+        </div></div></div></div></div>
+        </td></tr></table>
+       </td>
+       <td>Statuses</td><td><input autocomplete=off name=statuses size=25 value="" /></td><td class="eg">e.g., Started</td></tr>
+   <tr><td>Reporters</td><td><input autocomplete=off size=25 name=reporters value="" /></td><td class="eg"></td></tr>
+   <tr><td>Owners</td><td><input autocomplete=off size=25 name=owners value=""></td><td class="eg">e.g., username1 username2&nbsp;</td></tr>
+   <tr><td>Cc</td><td><input autocomplete=off size=25 name=cc value="" /></td><td class="eg"></td></tr>
+   <tr><td></td><td>Comment by</td><td><input autocomplete=off size=25 name=commentby value="" /></td><td class="eg"></td></tr>
+   <tr><td></td><td>&nbsp;</td><td></td><td class="eg"></td></tr>
+</table>
+</form>
+
+[include "../demetrius/master-footer.ezt"]
