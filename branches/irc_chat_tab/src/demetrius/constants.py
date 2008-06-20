@@ -42,6 +42,7 @@ MAIN_TAB_ISSUES = 't3'
 MAIN_TAB_SOURCE = 't4'
 MAIN_TAB_ADMIN = 't5'
 MAIN_TAB_WIKI = 't6'
+MAIN_TAB_CHAT = 't7'
 
 # CSS classes for the <body> element to make each of admin tabs highlight.
 ADMIN_TAB_META = 'st1'
